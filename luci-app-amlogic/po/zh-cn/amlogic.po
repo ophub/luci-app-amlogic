@@ -1,0 +1,285 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: https://github.com/ophub/amlogic-s9xxx-openwrt \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"X-Generator: Poedit 2.3.1\n"
+
+msgid "Choose local file:"
+msgstr "选择本地文件："
+
+msgid "Couldn't open file:"
+msgstr "无法打开文件："
+
+msgid "The file Will download automatically."
+msgstr "文件将自动下载"
+
+msgid "Create upload file error."
+msgstr "创建上传文件失败。"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Download file"
+msgstr "下载文件"
+
+msgid "File name"
+msgstr "文件名"
+
+msgid "File saved to"
+msgstr "文件保存到"
+
+msgid "FileTransfer"
+msgstr "文件传输"
+
+msgid "Install"
+msgstr "安装"
+
+msgid "Attributes"
+msgstr "属性"
+
+msgid "Modify time"
+msgstr "修改时间"
+
+msgid "No specify upload file."
+msgstr "未指定上传文件。"
+
+msgid "Path on Route:"
+msgstr "路由根目录："
+
+msgid "Remove"
+msgstr "移除"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "Upload"
+msgstr "上传"
+
+msgid "Upload file list"
+msgstr "上传文件列表"
+
+msgid "There are config file in the upload directory, and you can restore the config. "
+msgstr "上传文件列表中有配置文件，你可以恢复配置。"
+
+msgid "There are kernel files in the upload directory, and you can replace the kernel."
+msgstr "上传文件列表中有内核文件，你可以升级内核。"
+
+msgid "Upload the file. It will automatically recognize the [Backup Config File], [Kernel File] and [IPK File], and the operation buttons will be displayed automatically."
+msgstr "将文件上传到[ /tmp/upload/ ]。将自动识别备份的[配置文件]，[内核文件]和[IPK文件]，并自动显示相关操作按钮。"
+
+msgid "Amlogic Service"
+msgstr "晶晨宝盒"
+
+msgid "Install OpenWrt"
+msgstr "安装 OpenWrt"
+
+msgid "Select the Amlogic SoC: "
+msgstr "选择晶晨宝盒型号："
+
+msgid "Select List"
+msgstr "选择列表"
+
+msgid "X96-Max+ (4G DDR) 2124Mtz"
+msgstr "X96-Max+ (4G DDR) 2124Mtz"
+
+msgid "X96-Max+ (4G DDR) 2208Mtz"
+msgstr "X96-Max+ (4G DDR) 2208Mtz"
+
+msgid "HK1-Box (4G DDR) 2124Mtz"
+msgstr "HK1-Box (4G DDR) 2124Mtz"
+
+msgid "HK1-Box (4G DDR) 2184Mtz"
+msgstr "HK1-Box (4G DDR) 2184Mtz"
+
+msgid "H96-Max-X3 (4G DDR) 2124Mtz"
+msgstr "H96-Max-X3 (4G DDR) 2124Mtz"
+
+msgid "H96-Max-X3 (4G DDR) 2208Mtz"
+msgstr "H96-Max-X3 (4G DDR) 2208Mtz"
+
+msgid "Ugoos-X3 (Cube/Pro/Plus) 2124Mtz"
+msgstr "Ugoos-X3 (Cube/Pro/Plus) 2124Mtz"
+
+msgid "Ugoos-X3 (Cube/Pro/Plus) 2208Mtz"
+msgstr "Ugoos-X3 (Cube/Pro/Plus) 2208Mtz"
+
+msgid "X96-Max-4G"
+msgstr "X96-Max-4G"
+
+msgid "X96-Max-2G"
+msgstr "X96-Max-2G"
+
+msgid "Belink-GT-King"
+msgstr "Belink-GT-King"
+
+msgid "Belink-GT-King-Pro"
+msgstr "Belink-GT-King-Pro"
+
+msgid "UGOOS-AM6-Plus"
+msgstr "UGOOS-AM6-Plus"
+
+msgid "Octopus-Planet"
+msgstr "章鱼星球"
+
+msgid "Phicomm-n1"
+msgstr "斐讯-n1"
+
+msgid "HG680P & B860H"
+msgstr "烽火HG680 & 中兴B860H"
+
+msgid "Enter the dtb file name"
+msgstr "输入自定义 dtb 文件"
+
+msgid "Use custom dtb file: "
+msgstr "使用自定义 dtb 文件："
+
+msgid "Invalid dtb file."
+msgstr "无效的 dtb 文件。"
+
+msgid "Or enter the dtb file name: "
+msgstr "或者输入晶晨宝盒 dtb 文件名称："
+
+msgid "Use custom dtb file: "
+msgstr "使用自定义 dtb 文件："
+
+msgid "Invalid dtb file."
+msgstr "无效的 dtb 文件名称。"
+
+msgid "Install OpenWrt to Amlogic EMMC, Please Select the Amlogic SoC, Or enter the dtb file name."
+msgstr "将 OpenWrt 安装到晶晨宝盒 EMMC，请选择宝盒型号，或输入 dtb 文件名。"
+
+msgid "Tip: Writing is in progress, and it will automatically restart after completion."
+msgstr "提示：正在写入，完成后将自动重启。"
+
+msgid "Update"
+msgstr "升级"
+
+msgid "Update OpenWrt firmware"
+msgstr "升级 OpenWrt 固件"
+
+msgid "kernel"
+msgstr "内核"
+
+msgid "Replace OpenWrt Kernel"
+msgstr "更换 OpenWrt 内核"
+
+msgid "Tip: There are kernel files in the upload directory, and you can replace the kernel."
+msgstr "提示：上传目录里有内核文件，你可以替换当前 OpenWrt 中正在使用的内核。"
+
+msgid "Tip: The kernel is being replaced, and it will automatically restart after completion."
+msgstr "提示：正在替换内核，完成后将自动重启。"
+
+msgid "Existing function description:"
+msgstr "当前版本功能介绍："
+
+msgid "Supported functions:"
+msgstr "支持的功能："
+
+msgid "Provide services such as install to EMMC / Backup and Recovery Config / Update Kernel for Amlogic STB."
+msgstr "为 Amlogic 系列盒子提供支持，例如将 OpenWrt 系统写入 EMMC、备份和恢复自定义配置、升级内核版本等。"
+
+msgid "Supported Amlogic SoC & STB:"
+msgstr "支持的 SoC 和 盒子："
+
+msgid "S922x --- [ belink, belinkpro, ugoos ]"
+msgstr "S922x --- [ belink, belinkpro, ugoos ]"
+
+msgid "S905x3 -- [ x96, hk1, h96, ugoosx3 ]"
+msgstr "S905x3 -- [ x96, hk1, h96, ugoosx3 ]"
+
+msgid "S905x2 -- [ x96max4g, x96max2g ]"
+msgstr "S905x2 -- [ x96max4g, x96max2g ]"
+
+msgid "S905x --- [ hg680p, b860h ]"
+msgstr "S905x --- [ hg680p, b860h ]"
+
+msgid "S912 ---- [ h96proplus, octopus ]"
+msgstr "S912 ---- [ h96proplus, octopus ]"
+
+msgid "S905d --- [ n1 ]"
+msgstr "S905d --- [ n1 ]"
+
+msgid "Other --- [ optional dtb ]"
+msgstr "Other --- [ optional dtb ]"
+
+msgid "Next version function:"
+msgstr "下一版本功能介绍："
+
+msgid "Script description:"
+msgstr "脚本说明："
+
+msgid "Install OpenWrt: openwrt-install"
+msgstr "安装 OpenWrt：openwrt-install"
+
+msgid "Update OpenWrt firmware: openwrt-update"
+msgstr "升级 OpenWrt 固件：openwrt-update"
+
+msgid "Replace OpenWrt kernel: openwrt-kernel -r"
+msgstr "更换 OpenWrt 内核：openwrt-kernel -r"
+
+msgid "Backup Config: openwrt-backup -b"
+msgstr "备份配置：openwrt-backup -b"
+
+msgid "Restore Config: openwrt-backup -r"
+msgstr "恢复配置：openwrt-backup -r"
+
+msgid "The plug-in uses the above commands for related operations, and these commands can also be used in terminals such as TTYD."
+msgstr "插件使用以上命令进行相关操作，这些命令也可以在 TTYD 等终端中使用。"
+
+msgid "More intelligent fault-tolerant processing, better user experience."
+msgstr "更加智能化的容错处理，更好的使用体验。"
+
+msgid "Copyright Notice:"
+msgstr "版权申明："
+
+msgid "This plug-in integrates the file upload functions of luci-app-filetransfer, Flippy's kernel and scripts, etc. Thanks hereby."
+msgstr "本插件整合了 luci-app-filetransfer 的文件上传等功能、Flippy 的内核及脚本等。特此鸣谢。"
+
+msgid "Install Ipk"
+msgstr "安装Ipk"
+
+msgid "Backup Config"
+msgstr "备份配置"
+
+msgid "Backup Config (openwrt_config.tar.gz) for Amlogic OpenWrt. You can [upload] this file, and the [Restore Config] button will be displayed in the [Upload file list]."
+msgstr "备份晶晨宝盒中 OpenWrt 软件的相关配置信息(openwrt_config.tar.gz)。可将此文件[上传]，文件列表中将显示[恢复]按钮。"
+
+msgid "Restore"
+msgstr "恢复"
+
+msgid "Restore Config"
+msgstr "恢复配置"
+
+msgid "Restore configuration"
+msgstr "还原配置"
+
+msgid "Config File"
+msgstr "配置文件"
+
+msgid "Tip: The config is being restored, and it will automatically restart after completion."
+msgstr "提示：正在还原配置，完成后将自动重启。"
+
+msgid "Server Logs"
+msgstr "操作日志"
+
+msgid "Display the execution log of the current operation."
+msgstr "显示当前操作的执行日志。"
+
+msgid "Stop Refresh Log"
+msgstr "停止刷新"
+
+msgid "Start Refresh Log"
+msgstr "开始刷新"
+
+msgid "Clean Log"
+msgstr "清理日志"
+
+msgid "Download Log"
+msgstr "下载日志"
