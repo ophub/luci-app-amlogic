@@ -1,0 +1,108 @@
+<style>
+	#hid_btn {
+		display: block;
+		width: 18px;
+		margin:0 auto;
+	}
+	.rotate{
+    transform-origin:center center;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transition: transform 0.2s;
+    -moz-transition: -moz-transform 0.2s; 
+    -moz-transition: -moz-transform 0.2s; 
+    -o-transition: -o-transform 0.2s; 
+    -ms-transition: -ms-transform 0.2s; 
+}
+
+	.rotate1{
+    transform-origin:center center;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transition: transform 0.2s; 
+    -moz-transition: -moz-transform 0.2s; 
+    -moz-transition: -moz-transform 0.2s; 
+    -o-transition: -o-transform 0.2s; 
+    -ms-transition: -ms-transform 0.2s; 
+}
+	.rotate2{
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+}
+</style>
+<fieldset class="cbi-section">
+	<table width="100%">
+	   <tr>
+	  	<td colspan="2" width="100%">
+	  		<p align="center">
+	      <img id="logo" src="https://hdmiforum.org/wp-content/uploads/2017/08/logo_Amlogic.jpg" title="Amlogic Logo" alt="Amlogic Logo" width="200" />
+        </p>
+	  		
+	   </td></tr>
+	   <tr><td colspan="2" width="100%">
+     	  <p align="center">
+    	     <img id="luci-app-amlogic" src="https://img.shields.io/badge/Github-luci--app--amlogic-blue?logo=github" loading="lazy" alt="luci-app-amlogic" width="170px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return homepage('app')" />
+			  &nbsp;&nbsp;
+			  <img id="How-to-compile" src="https://img.shields.io/badge/OpenWrt-How%20to%20compile-green?logo=github" loading="lazy" alt="How-to-compile" width="170px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return homepage('compile')" />
+			  &nbsp;&nbsp;
+			  <img id="Kernel-and-script" src="https://img.shields.io/badge/Kernel%20and%20script-Offered%20by%20Flippy-blueviolet?logo=github" loading="lazy" alt="Kernel-and-script" width="230px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return homepage('kernel')" />
+
+        </p>
+     </td></tr>
+	  <tr><td width="25%" align="right"><b><%:Existing function description%></b></td><td  width="75%" align="left" id="_clash"></td></tr>
+	  <tr><td width="25%" align="right"><%:Supported functions:%></td><td  width="75%" align="left" id="_clash"><%:Provide services such as install to EMMC / Backup and Recovery Config / Update Kernel for Amlogic STB.%></td></tr>
+	  <tr><td width="25%" align="right"><%:Script description:%></td><td  width="75%" align="left" id="_clash">
+		  <%:Install OpenWrt: openwrt-install%><br>
+		  <%:Update OpenWrt firmware: openwrt-update%><br>
+		  <%:Replace OpenWrt kernel: openwrt-kernel -r%><br>
+		  <%:Backup Config: openwrt-backup -b%><br>
+		  <%:Restore Config: openwrt-backup -r%><br>
+		  <%:The plug-in uses the above commands for related operations, and these commands can also be used in terminals such as TTYD.%>
+	  </td></tr>
+	  <tr><td width="25%" align="right"><%:Supported Amlogic SoC & STB:%></td><td  width="75%" align="left" id="_clash">
+		  <%:S922x --- [ belink, belinkpro, ugoos ]%><br>
+		  <%:S905x3 -- [ x96, hk1, h96, ugoosx3 ]%><br>
+		  <%:S905x2 -- [ x96max4g, x96max2g ]%><br>
+		  <%:S905x --- [ hg680p, b860h ]%><br>
+		  <%:S912 ---- [ h96proplus, octopus ]%><br>
+		  <%:S905d --- [ n1 ]%><br>
+		  <%:Other --- [ optional dtb ]%>
+	  </td></tr>
+	  <tr><td width="25%" align="right">&nbsp;</td><td  width="75%" align="left" id="_clash"></td></tr>
+	  <tr><td width="25%" align="right"><b><%:Next version function%></b></td><td  width="75%" align="left" id="_clash"></td></tr>
+	  <tr><td width="25%" align="right"><%:Online update:%></td><td  width="75%" align="left" id="_clash"><%:Increase the online query service of the latest version of the kernel, and you can choose to upgrade online.%></td></tr>
+	  <tr><td width="25%" align="right"><%:Fault tolerance:%></td><td  width="75%" align="left" id="_clash"><%:More intelligent fault-tolerant processing, better user experience.%></td></tr>
+	  <tr><td width="25%" align="right">&nbsp;</td><td  width="75%" align="left" id="_clash"></td></tr>
+	  <tr><td width="25%" align="right"><b><%:Copyright Notice:%></b></td><td  width="75%" align="left" id="_clash">This plug-in integrates the file upload functions of luci-app-filetransfer, Flippy's kernel and scripts, etc. Thanks hereby.</td></tr>
+
+</table>
+</fieldset>
+<script type="text/javascript">//<![CDATA[
+
+	function winOpen(url)
+	{
+		var winOpen = window.open(url);
+		if(winOpen == null || typeof(winOpen) == 'undefined'){
+		 window.location.href=url;
+	}
+	}
+	
+    function homepage(website)
+    {
+		var url = "";
+    	if( website == 'app' ) { url = 'https://github.com/ophub/luci-app-amlogic'; }
+    	if( website == 'compile' ) { url = 'https://github.com/ophub/amlogic-s9xxx-openwrt'; }
+    	if( website == 'kernel' ) { url = 'https://github.com/unifreq/openwrt_packit'; }
+        if ( url != "" ) { winOpen(url); }
+    }
+
+//]]></script>
