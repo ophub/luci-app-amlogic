@@ -24,7 +24,7 @@ make package/luci-app-amlogic/compile V=99
 
 # Compile
 make menuconfig
-# choose LuCI ---> 3. Applications  ---> <*> luci-app-amlogic..... Provide services for Amlogic S9xxx STB ----> save
+# choose LuCI ---> 3. Applications  ---> <*> luci-app-amlogic..... LuCI support for Amlogic S9xxx STB ----> save
 make V=99
 ```
 
