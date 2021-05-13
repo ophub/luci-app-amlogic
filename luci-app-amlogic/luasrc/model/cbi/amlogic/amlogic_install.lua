@@ -17,7 +17,7 @@ b.submit = false
 s = b:section(SimpleSection, "", "")
 
 --1.Select menu
-o = s:option(ListValue, "amlogic_soc", translate("Select the Amlogic SoC: "))
+o = s:option(ListValue, "amlogic_soc", translate("Select the Amlogic SoC:"))
 o.default = "0"
 o.datatype = "uinteger"
 o:value("0", translate("Select List"))
@@ -35,7 +35,7 @@ o:value("11", translate("Belink-GT-King"))
 o:value("12", translate("Belink-GT-King-Pro"))
 o:value("13", translate("UGOOS-AM6-Plus"))
 o:value("14", translate("Octopus-Planet"))
-o:value("15", translate("Phicomm-n1"))
+o:value("15", translate("PhicommN1"))
 o:value("16", translate("HG680P & B860H"))
 o:value("99", translate("Enter the dtb file name"))
 o.write = function(self, key, value)
@@ -44,12 +44,12 @@ o.write = function(self, key, value)
 end
 
 --2.dtb fill in the text box
-o = s:option(Value, "amlogic_dtb", translate("Or enter the dtb file name: "))
+o = s:option(Value, "amlogic_dtb", translate("Or enter the dtb file name:"))
 o.rmempty = true
 o.default = "no"
 o.write = function(self, key, value)
 	if (string.lower(string.sub(value, -4, -1)) == ".dtb") then
-        self.description = translate("Use custom dtb file: ") .. value
+        self.description = translate("Use custom dtb file:") .. value
         emmc_dtb = value
 	else
         self.description = translate("Invalid dtb file.")
@@ -59,7 +59,7 @@ end
 o:depends("amlogic_soc", "99")
 
 --3.Install button
-o = s:option(Button, "", translate("Install OpenWrt"))
+o = s:option(Button, "", translate("Install OpenWrt:"))
 o.template = "amlogic/other_button"
 o.render = function(self, section, scope)
 	self.section = true
@@ -72,8 +72,8 @@ o.write = function(self, section, scope)
 	if not emmc_dtb then
 	    emmc_dtb = "no"
 	end
-	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-install")
-	local r = luci.sys.exec("/usr/bin/openwrt-install TEST-UBOOT YES " .. emmc_soc .. " " .. emmc_dtb .. " > /tmp/amlogic.log && sync")
+	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-install 2>/dev/null")
+	local r = luci.sys.exec("/usr/bin/openwrt-install TEST-UBOOT YES " .. emmc_soc .. " " .. emmc_dtb .. " > /tmp/amlogic.log && sync 2>/dev/null")
 	--self.description = "SOC: " .. emmc_soc .. " dtb: " .. emmc_dtb
 end
 

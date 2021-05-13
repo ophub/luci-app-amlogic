@@ -27,8 +27,8 @@ end
 
 o.write = function(self, section, scope)
 
-	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-backup")
-	local r = luci.sys.exec("/usr/bin/openwrt-backup -b > /tmp/amlogic.log && sync")
+	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-backup 2>/dev/null")
+	local r = luci.sys.exec("/usr/bin/openwrt-backup -b > /tmp/amlogic.log && sync 2>/dev/null")
 
 	local sPath, sFile, fd, block
 	sPath = "/.reserved/openwrt_config.tar.gz"
