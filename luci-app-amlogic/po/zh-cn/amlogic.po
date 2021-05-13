@@ -248,7 +248,7 @@ msgstr "更加智能化的容错处理，更好的使用体验。"
 msgid "Copyright Notice:"
 msgstr "版权申明："
 
-msgid "This plug-in integrates the file upload functions of luci-app-filetransfer, Flippy's kernel and scripts, etc. Thanks hereby."
+msgid "This plug-in integrates the file upload functions of luci-app-filetransfer, The kernel and scripts of Flippy, etc. Thanks hereby."
 msgstr "本插件整合了 luci-app-filetransfer 的文件上传等功能、Flippy 的内核及脚本等。特此鸣谢。"
 
 msgid "Install Ipk"
