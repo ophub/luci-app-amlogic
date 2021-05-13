@@ -159,8 +159,8 @@ btnis.write = function(self, section)
         form.description = string.format('<span style="color: red">%s</span>', r)
     elseif IsConfigFile(inits[section].name) then
         form.description =  ' <span style="color: green"><b> ' .. translate("Tip: The config is being restored, and it will automatically restart after completion.") .. ' </b></span> '
-        local x = luci.sys.exec("chmod +x /usr/bin/openwrt-backup")
-        local r = luci.sys.exec("/usr/bin/openwrt-backup -r > /tmp/amlogic.log && sync")
+        local x = luci.sys.exec("chmod +x /usr/bin/openwrt-backup 2>/dev/null")
+        local r = luci.sys.exec("/usr/bin/openwrt-backup -r > /tmp/amlogic.log && sync 2>/dev/null")
     end
 end
 
@@ -177,8 +177,8 @@ ksbtn.render = function(self, section, scope)
 end
 ksbtn.write = function(self, section, scope)
 	kum.value = translate("Tip: The kernel is being replaced, and it will automatically restart after completion.")
-	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-kernel")
-	local r = luci.sys.exec("/usr/bin/openwrt-kernel -r > /tmp/amlogic.log && sync")
+	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-kernel 2>/dev/null")
+	local r = luci.sys.exec("/usr/bin/openwrt-kernel -r > /tmp/amlogic.log && sync 2>/dev/null")
 end
 kum = btnkernel:option(DummyValue, "", nil)
 kum.template = "amlogic/other_dvalue"

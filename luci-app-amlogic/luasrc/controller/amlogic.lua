@@ -4,10 +4,10 @@ function index()
 
     page = entry({"admin", "system", "amlogic"}, alias("admin", "system", "amlogic", "info"), _("Amlogic Service"), 88)
     page.dependent = true
-    entry({"admin", "system", "amlogic", "info"},cbi("amlogic/amlogic_info"),_("Amlogic Info"), 1).leaf = true
-    entry({"admin", "system", "amlogic", "install"},cbi("amlogic/amlogic_install"),_("OpenWrt Install"), 2).leaf = true
+    entry({"admin", "system", "amlogic", "info"},cbi("amlogic/amlogic_info"),_("Amlogic Service"), 1).leaf = true
+    entry({"admin", "system", "amlogic", "install"},cbi("amlogic/amlogic_install"),_("Install OpenWrt"), 2).leaf = true
     entry({"admin", "system", "amlogic", "backup"},cbi("amlogic/amlogic_backup"),_("Backup Config"), 3).leaf = true
-    entry({"admin", "system", "amlogic", "upload"},cbi("amlogic/amlogic_upload"),_("Restore Config / Replace kernel"), 4).leaf = true
+    entry({"admin", "system", "amlogic", "upload"},cbi("amlogic/amlogic_upload"),_("Restore Config / Replace OpenWrt Kernel"), 4).leaf = true
 	entry({"admin", "system", "amlogic", "refresh_log"},call("action_refresh_log"))
 	entry({"admin", "system", "amlogic", "del_log"},call("action_del_log"))
 

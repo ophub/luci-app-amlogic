@@ -77,10 +77,16 @@ msgstr "将文件上传到[ /tmp/upload/ ]。将自动识别备份的[配置文�
 msgid "Amlogic Service"
 msgstr "晶晨宝盒"
 
+msgid "OpenWrt for Amlogic S9xxx STB"
+msgstr "OpenWrt 之晶晨宝盒"
+
+msgid "Restore Config / Replace OpenWrt Kernel"
+msgstr "恢复配置 / 更换 OpenWrt 内核"
+
 msgid "Install OpenWrt"
 msgstr "安装 OpenWrt"
 
-msgid "Select the Amlogic SoC: "
+msgid "Select the Amlogic SoC:"
 msgstr "选择晶晨宝盒型号："
 
 msgid "Select List"
@@ -128,29 +134,23 @@ msgstr "UGOOS-AM6-Plus"
 msgid "Octopus-Planet"
 msgstr "章鱼星球"
 
-msgid "Phicomm-n1"
-msgstr "斐讯-n1"
+msgid "PhicommN1"
+msgstr "斐讯N1"
 
 msgid "HG680P & B860H"
 msgstr "烽火HG680 & 中兴B860H"
 
-msgid "Enter the dtb file name"
-msgstr "输入自定义 dtb 文件"
+msgid "Or enter the dtb file name:"
+msgstr "或者输入自定义 dtb 文件名："
 
-msgid "Use custom dtb file: "
+msgid "Use custom dtb file:"
 msgstr "使用自定义 dtb 文件："
 
 msgid "Invalid dtb file."
 msgstr "无效的 dtb 文件。"
 
-msgid "Or enter the dtb file name: "
-msgstr "或者输入晶晨宝盒 dtb 文件名称："
-
-msgid "Use custom dtb file: "
-msgstr "使用自定义 dtb 文件："
-
-msgid "Invalid dtb file."
-msgstr "无效的 dtb 文件名称。"
+msgid "Install OpenWrt:"
+msgstr "安装 OpenWrt："
 
 msgid "Install OpenWrt to Amlogic EMMC, Please Select the Amlogic SoC, Or enter the dtb file name."
 msgstr "将 OpenWrt 安装到晶晨宝盒 EMMC，请选择宝盒型号，或输入 dtb 文件名。"
@@ -185,33 +185,6 @@ msgstr "支持的功能："
 msgid "Provide services such as install to EMMC / Backup and Recovery Config / Update Kernel for Amlogic STB."
 msgstr "为 Amlogic 系列盒子提供支持，例如将 OpenWrt 系统写入 EMMC、备份和恢复自定义配置、升级内核版本等。"
 
-msgid "Supported Amlogic SoC & STB:"
-msgstr "支持的 SoC 和 盒子："
-
-msgid "S922x --- [ belink, belinkpro, ugoos ]"
-msgstr "S922x --- [ belink, belinkpro, ugoos ]"
-
-msgid "S905x3 -- [ x96, hk1, h96, ugoosx3 ]"
-msgstr "S905x3 -- [ x96, hk1, h96, ugoosx3 ]"
-
-msgid "S905x2 -- [ x96max4g, x96max2g ]"
-msgstr "S905x2 -- [ x96max4g, x96max2g ]"
-
-msgid "S905x --- [ hg680p, b860h ]"
-msgstr "S905x --- [ hg680p, b860h ]"
-
-msgid "S912 ---- [ h96proplus, octopus ]"
-msgstr "S912 ---- [ h96proplus, octopus ]"
-
-msgid "S905d --- [ n1 ]"
-msgstr "S905d --- [ n1 ]"
-
-msgid "Other --- [ optional dtb ]"
-msgstr "Other --- [ optional dtb ]"
-
-msgid "Next version function:"
-msgstr "下一版本功能介绍："
-
 msgid "Script description:"
 msgstr "脚本说明："
 
@@ -232,6 +205,42 @@ msgstr "恢复配置：openwrt-backup -r"
 
 msgid "The plug-in uses the above commands for related operations, and these commands can also be used in terminals such as TTYD."
 msgstr "插件使用以上命令进行相关操作，这些命令也可以在 TTYD 等终端中使用。"
+
+msgid "Supported Amlogic SoC & STB:"
+msgstr "支持的 SoC 和 盒子："
+
+msgid "S922x --- [ belink, belinkpro, ugoos ]"
+msgstr "S922x --- [ belink, belinkpro, ugoos ]"
+
+msgid "S905x3 -- [ x96, hk1, h96, ugoosx3 ]"
+msgstr "S905x3 -- [ x96, hk1, h96, ugoosx3 ]"
+
+msgid "S905x2 -- [ x96max4g, x96max2g ]"
+msgstr "S905x2 -- [ x96max4g, x96max2g ]"
+
+msgid "S905x --- [ hg680p, b860h ]"
+msgstr "S905x --- [ 烽火HG680 & 中兴B860H ]"
+
+msgid "S912 ---- [ h96proplus, Octopus-Planet ]"
+msgstr "S912 ---- [ h96proplus, 章鱼星球 ]"
+
+msgid "S905d --- [ PhicommN1 ]"
+msgstr "S905d --- [ 斐讯N1 ]"
+
+msgid "Other --- [ optional dtb ]"
+msgstr "其他 --- [ 自定义 dtb 文件 ]"
+
+msgid "Next version function:"
+msgstr "下一版本功能介绍："
+
+msgid "Online update:"
+msgstr "在线升级："
+
+msgid "Increase the online query service of the latest version of the kernel, and you can choose to upgrade online."
+msgstr "增加最新版本内核的在线查询服务，您可以选择在线升级。"
+
+msgid "Fault tolerance:"
+msgstr "容错能力："
 
 msgid "More intelligent fault-tolerant processing, better user experience."
 msgstr "更加智能化的容错处理，更好的使用体验。"
