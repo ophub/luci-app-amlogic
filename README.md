@@ -30,7 +30,7 @@ make V=99
 
 ## Screenshot / 截图
 
-![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/117788651-27e4ea80-b27a-11eb-8a47-1a3133143705.gif)
+![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/118104028-30215f00-b40d-11eb-9612-6b3bb1742916.gif)
 
 ## Next version function / 下一版本功能预告
 
