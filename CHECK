@@ -1,2 +1,4 @@
+amlogic_plugin_version="0.1.0"
 amlogic_plugin_url="https://github.com/ophub/luci-app-amlogic"
+amlogic_kernel_version="5.4.118"
 amlogic_kernel_url="https://github.com/ophub/amlogic-s9xxx-openwrt"
