@@ -1,0 +1,2 @@
+amlogic_plugin_url="https://github.com/ophub/luci-app-amlogic"
+amlogic_kernel_url="https://github.com/ophub/amlogic-s9xxx-openwrt"
