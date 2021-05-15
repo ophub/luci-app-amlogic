@@ -3,7 +3,11 @@ local http = require "luci.http"
 local DISP = require "luci.dispatcher"
 local m, m_u, form, mlog
 
---SimpleForm for Install OpenWrt to EMMC
+--Clear the version check log
+luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
+luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
+
+--SimpleForm for nil
 m = SimpleForm("", "", nil)
 m.reset = false
 m.submit = false
@@ -160,7 +164,7 @@ btnis.write = function(self, section)
     elseif IsConfigFile(inits[section].name) then
         form.description =  ' <span style="color: green"><b> ' .. translate("Tip: The config is being restored, and it will automatically restart after completion.") .. ' </b></span> '
         local x = luci.sys.exec("chmod +x /usr/bin/openwrt-backup 2>/dev/null")
-        local r = luci.sys.exec("/usr/bin/openwrt-backup -r > /tmp/amlogic.log && sync 2>/dev/null")
+        local r = luci.sys.exec("/usr/bin/openwrt-backup -r > /tmp/amlogic/amlogic.log && sync 2>/dev/null")
     end
 end
 
@@ -178,7 +182,7 @@ end
 ksbtn.write = function(self, section, scope)
 	kum.value = translate("Tip: The kernel is being replaced, and it will automatically restart after completion.")
 	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-kernel 2>/dev/null")
-	local r = luci.sys.exec("/usr/bin/openwrt-kernel -r > /tmp/amlogic.log && sync 2>/dev/null")
+	local r = luci.sys.exec("/usr/bin/openwrt-kernel -r > /tmp/amlogic/amlogic.log && sync 2>/dev/null")
 end
 kum = btnkernel:option(DummyValue, "", nil)
 kum.template = "amlogic/other_dvalue"
