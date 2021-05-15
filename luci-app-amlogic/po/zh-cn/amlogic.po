@@ -146,8 +146,8 @@ msgstr "或者输入自定义 dtb 文件名："
 msgid "Use custom dtb file:"
 msgstr "使用自定义 dtb 文件："
 
-msgid "Invalid dtb file."
-msgstr "无效的 dtb 文件。"
+msgid "Invalid value."
+msgstr "无效值"
 
 msgid "Install OpenWrt:"
 msgstr "安装 OpenWrt："
@@ -175,9 +175,6 @@ msgstr "提示：上传目录里有内核文件，你可以替换当前 OpenWrt 
 
 msgid "Tip: The kernel is being replaced, and it will automatically restart after completion."
 msgstr "提示：正在替换内核，完成后将自动重启。"
-
-msgid "Existing function description:"
-msgstr "当前版本功能介绍："
 
 msgid "Supported functions:"
 msgstr "支持的功能："
@@ -230,27 +227,6 @@ msgstr "S905d --- [ 斐讯N1 ]"
 msgid "Other --- [ optional dtb ]"
 msgstr "其他 --- [ 自定义 dtb 文件 ]"
 
-msgid "Next version function:"
-msgstr "下一版本功能介绍："
-
-msgid "Online update:"
-msgstr "在线升级："
-
-msgid "Increase the online query service of the latest version of the kernel, and you can choose to upgrade online."
-msgstr "增加最新版本内核的在线查询服务，您可以选择在线升级。"
-
-msgid "Fault tolerance:"
-msgstr "容错能力："
-
-msgid "More intelligent fault-tolerant processing, better user experience."
-msgstr "更加智能化的容错处理，更好的使用体验。"
-
-msgid "Copyright Notice:"
-msgstr "版权申明："
-
-msgid "This plug-in integrates the file upload functions of luci-app-filetransfer, The kernel and scripts of Flippy, etc. Thanks hereby."
-msgstr "本插件整合了 luci-app-filetransfer 的文件上传等功能、Flippy 的内核及脚本等。特此鸣谢。"
-
 msgid "Install Ipk"
 msgstr "安装Ipk"
 
@@ -274,6 +250,66 @@ msgstr "配置文件"
 
 msgid "Tip: The config is being restored, and it will automatically restart after completion."
 msgstr "提示：正在还原配置，完成后将自动重启。"
+
+msgid "Config and Update"
+msgstr "配置与更新"
+
+msgid "Config Source"
+msgstr "配置来源"
+
+msgid "You can customize the storage site for plugin and kernel versions according to your needs."
+msgstr "可根据需要，自定义插件及内核版本的存放站点。"
+
+msgid "Plugin Website:"
+msgstr "插件网站："
+
+msgid "Use custom Plugin url:"
+msgstr "使用自定义插件网站："
+
+msgid "Kernel Website:"
+msgstr "内核网站："
+
+msgid "Use custom kernel url:"
+msgstr "使用自定义内核网站："
+
+msgid "Save Config:"
+msgstr "保存配置："
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Check All Components Update"
+msgstr "插件和内核检查更新"
+
+msgid "Provide Plugin and Kernel online check and update service."
+msgstr "提供插件和内核在线检查和更新服务。"
+
+msgid "Check Plugin Version"
+msgstr "检查插件版本"
+
+msgid "Check Kernel Version"
+msgstr "检查内核版本"
+
+msgid "Check Update"
+msgstr "检查更新"
+
+msgid "Checking..."
+msgstr "正在检查更新..."
+
+msgid "Current Version"
+msgstr "当前版本"
+
+msgid "Latest Version"
+msgstr "最新版本"
+
+msgid "We will recommend to you the kernel version with the same mainline as the current OPENWRT system."
+msgstr "我们将向您推荐与当前 OpenWrt 系统相同主线的内核版本。"
+
+msgid "Collecting data..."
+msgstr "正在收集数据…"
+
+msgid "Check All Components Update"
+msgstr "插件和内核检查更新"
 
 msgid "Server Logs"
 msgstr "操作日志"

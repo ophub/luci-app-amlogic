@@ -1,0 +1,131 @@
+<style>
+	#hid_btn {
+		display: block;
+		width: 18px;
+		margin:0 auto;
+	}
+	.rotate{
+    transform-origin:center center;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transition: transform 0.2s;
+    -moz-transition: -moz-transform 0.2s; 
+    -moz-transition: -moz-transform 0.2s; 
+    -o-transition: -o-transform 0.2s; 
+    -ms-transition: -ms-transform 0.2s; 
+}
+
+	.rotate1{
+    transform-origin:center center;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transition: transform 0.2s; 
+    -moz-transition: -moz-transform 0.2s; 
+    -moz-transition: -moz-transform 0.2s; 
+    -o-transition: -o-transform 0.2s; 
+    -ms-transition: -ms-transform 0.2s; 
+}
+	.rotate2{
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+}
+</style>
+<fieldset class="cbi-section">
+	<table width="100%">
+
+	  <tr><td width="100%" colspan="2">
+	  	<p align="center">
+	  		<b><%:We will recommend to you the kernel version with the same mainline as the current OpenWrt system.%> <span id="_openwrt_mainline_version"></span></b>
+	  	</p>
+	  </td></tr>
+	  <tr><td width="35%" align="right"><b><%:Check All Components Update%></b></td><td  width="65%" align="left"><b><%:Current Version%></b></td></tr>
+		<tr><td width="35%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Check Plugin Version%>" onclick="return b_check_plugin(this)"/></td><td  width="65%" align="left"><span id="_current_plugin_version"><%:Collecting data...%></span>　<span id="_check_plugin"></span></td></tr>
+		<tr><td width="35%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Check Kernel Version%>" onclick="return b_check_kernel(this)"/></td><td  width="65%" align="left"><span id="_current_kernel_version"><%:Collecting data...%></span>　<span id="_check_kernel"></span></td></tr>
+
+
+</table>
+</fieldset>
+<script type="text/javascript">//<![CDATA[
+
+    function b_check_plugin(btn)
+    {
+        btn.disabled = true;
+        btn.value    = '<%:Checking...%>';
+        XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "check_plugin")%>', null, function(x, status) {
+        if ( x && x.status == 200 ) {
+           btn.disabled = false;
+           btn.value    = '<%:Check Plugin Version%>';
+        }
+        else {
+        	btn.disabled = false;
+          btn.value    = '<%:Check Plugin Version%>';
+        }
+        return false;
+        });
+    }
+
+    function b_check_kernel(btn)
+    {
+        btn.disabled = true;
+        btn.value    = '<%:Checking...%>';
+        XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "check_kernel")%>', null, function(x, status) {
+        if ( x && x.status == 200 ) {
+           btn.disabled = false;
+           btn.value    = '<%:Check Kernel Version%>';
+        }
+        else {
+        	btn.disabled = false;
+          btn.value    = '<%:Check Kernel Version%>';
+        }
+        return false;
+        });
+    }
+
+    var start_check_plugin = document.getElementById('_check_plugin');
+	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_check_plugin")%>', status.start_check_plugin, function(x, status) {
+	  if ( x && x.status == 200 ) {
+		 if ( status.start_check_plugin != "\n" && status.start_check_plugin != "" ) {
+			 start_check_plugin.innerHTML = '<font color="blue"> <%:Latest Version%> [ '+status.start_check_plugin+' ]</font>';
+	     }
+		 if ( status.start_check_plugin == "\n" || status.start_check_plugin == "" ) {
+             start_check_plugin.innerHTML = '';
+		 }
+	  }
+	});
+
+    var start_check_kernel = document.getElementById('_check_kernel');
+	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_check_kernel")%>', status.start_check_kernel, function(x, status) {
+	  if ( x && x.status == 200 ) {
+		 if ( status.start_check_kernel != "\n" && status.start_check_kernel != "" ) {
+			 start_check_kernel.innerHTML = '<font color="blue"> [ '+status.start_check_kernel+' ]</font>';
+	     }
+		 if ( status.start_check_kernel == "\n" || status.start_check_kernel == "" ) {
+             start_check_kernel.innerHTML = '';
+		 }
+	  }
+	});
+
+	var current_plugin_version = document.getElementById('_current_plugin_version');
+	var current_kernel_version = document.getElementById('_current_kernel_version');
+	var openwrt_mainline_version = document.getElementById('_openwrt_mainline_version');
+
+	XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "state")%>', null, function(x, status) {
+		if ( x && x.status == 200 ) {
+			current_plugin_version.innerHTML = status.current_plugin_version ? "<b><font color=green><%:Current Version%> [ "+status.current_plugin_version+" ] </font></b>" : "<b><font color=red>"+"<%:Invalid value.%>"+"</font></b>";
+			current_kernel_version.innerHTML = status.current_kernel_version ? "<b><font color=green><%:Current Version%> [ "+status.current_kernel_version+" ] </font></b>" : "<b><font color=red>"+"<%:Invalid value.%>"+"</font></b>";
+
+			var str_kernel_version=status.current_kernel_version; var arr_kernel_version=str_kernel_version.split(".");
+			openwrt_mainline_version.innerHTML = status.current_kernel_version ? "<b> [ "+arr_kernel_version[0]+"."+arr_kernel_version[1]+".*** ] </b>" : "<b>"+"<%:Invalid value.%>"+"</b>";
+		}
+	});
+
+//]]></script>

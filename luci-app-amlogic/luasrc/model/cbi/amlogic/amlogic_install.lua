@@ -3,7 +3,7 @@ local http = require "luci.http"
 local DISP = require "luci.dispatcher"
 local m, b, mlog
 
---SimpleForm for Install OpenWrt to EMMC
+--SimpleForm for nil
 m = SimpleForm("", "", nil)
 m.reset = false
 m.submit = false
@@ -52,7 +52,7 @@ o.write = function(self, key, value)
         self.description = translate("Use custom dtb file:") .. value
         emmc_dtb = value
 	else
-        self.description = translate("Invalid dtb file.")
+        self.description = translate("Invalid value.")
         emmc_dtb = "no"
 	end
 end
@@ -73,7 +73,7 @@ o.write = function(self, section, scope)
 	    emmc_dtb = "no"
 	end
 	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-install 2>/dev/null")
-	local r = luci.sys.exec("/usr/bin/openwrt-install TEST-UBOOT YES " .. emmc_soc .. " " .. emmc_dtb .. " > /tmp/amlogic.log && sync 2>/dev/null")
+	local r = luci.sys.exec("/usr/bin/openwrt-install TEST-UBOOT YES " .. emmc_soc .. " " .. emmc_dtb .. " > /tmp/amlogic/amlogic.log && sync 2>/dev/null")
 	--self.description = "SOC: " .. emmc_soc .. " dtb: " .. emmc_dtb
 end
 
