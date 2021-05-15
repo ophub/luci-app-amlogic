@@ -32,24 +32,13 @@ make V=99
 
 ![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/118104028-30215f00-b40d-11eb-9612-6b3bb1742916.gif)
 
-## Next version function / 下一版本功能预告
-
-- Increase the online query service of the latest version of the kernel, and you can choose to upgrade online.
-- 提供内核版本在线提醒和选择安装。
-
-## Reference statement / 借鉴申明
-
-This plug-in mainly integrates the file upload functions of luci-app-filetransfer, Used Flippy's kernel and scripts, Drawing on the source code of multiple plug-ins, etc. Thanks hereby.
-
-本插件主要整合了 luci-app-filetransfer 的文件上传等功能，使用了 Flippy 的内核及脚本等，借鉴了多个插件的源码。特此鸣谢。
-
 ## Tip / 提示
 
 The Luci operation is a visual operation of the execution of the script. In theory, the result is exactly the same as the result of the execution of the script. However, since it is currently in the testing period, please use it with caution.
 
 Luci 操作是对执行脚本的可视化操作，理论上和执行脚本的结果是完全一样的，但鉴于当前属于测试期，请谨慎使用。
 
-## Acknowledgments
+## Acknowledgments / 鸣谢
 
 - [OpenWrt](https://github.com/openwrt/openwrt)
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
@@ -58,7 +47,14 @@ Luci 操作是对执行脚本的可视化操作，理论上和执行脚本的结
 - [tuanqing/mknop](https://github.com/tuanqing/mknop)
 - [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)
 
-## License
+## License / 许可
+
+- Upload functions by luci-app-filetransfer
+- Log viewing and version query functions by Vernesong
+- Kernel and scripts by Flippy
+
+- 文件上传下载等功能来自 luci-app-filetransfer
+- 日志查看和版本查询等功能来自 Vernesong
+- 内核及脚本等资源来自 Flippy
 
 [LICENSE](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE) © OPHUB
-
