@@ -57,4 +57,4 @@ Luci 操作是对执行脚本的可视化操作，理论上和执行脚本的结
 - 日志查看和版本查询等功能来自 Vernesong
 - 内核及脚本等资源来自 Flippy
 
-[LICENSE](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE) © OPHUB
+- [LICENSE](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE) © OPHUB
