@@ -60,7 +60,7 @@ tolog() {
 
     # 04. Move to the ${KERNEL_DOWNLOAD_PATH} directory to prepare for the update kernel
     gzip -df ${TMP_CHECK_DIR}/*.gz && sync
-    mv -f ${TMP_CHECK_DIR}/*.ipk ${KERNEL_DOWNLOAD_PATH} >/dev/null 2>&1
+    mv -f ${TMP_CHECK_DIR}/*.ipk ${KERNEL_DOWNLOAD_PATH} >/dev/null 2>&1 && sync
     tolog "04 The plug is ready, you can update."
     sleep 3
 
