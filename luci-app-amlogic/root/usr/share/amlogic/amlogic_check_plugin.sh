@@ -45,13 +45,16 @@ tolog() {
     if [[ "${CURRENT_PLUGIN_V}" == "${SERVER_PLUGIN_VERSION}" ]]; then
         tolog "03.01 The same version, no need to update." "1"
         sleep 5
-        echo "" >$START_LOG
+        tolog ""
     else
         tolog "03.02 Automatically download the latest plugin."
         # Download plugin file
         curl -sL --connect-timeout 10 --retry 2 "${SERVER_PLUGIN_URL}/${SERVER_PLUGIN_VERSION}/${SERVER_PLUGIN_FILE}" -o "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE}" >/dev/null 2>&1 && sync
-        [[ -s "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE}" ]] || tolog "03.05 The plugin file failed to download." "1"
-        tolog "03.03 ${SERVER_PLUGIN_FILE} complete."
+        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE}" ]]; then
+            tolog "03.03 ${SERVER_PLUGIN_FILE} complete."
+        else
+            tolog "03.04 The plugin file failed to download." "1"
+        fi
         sleep 3
     fi
 
