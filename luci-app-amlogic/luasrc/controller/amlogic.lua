@@ -26,7 +26,7 @@ function action_refresh_log()
     if not fs.access(logfile) then
         --luci.http.write(os.date() .. ": No log")
         luci.sys.exec("mkdir -p /tmp/amlogic && sync")
-        luci.sys.exec("cat /proc/version > /tmp/amlogic/amlogic.log && sync")
+        luci.sys.exec("uname -a > /tmp/amlogic/amlogic.log && sync")
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
         --return
