@@ -11,5 +11,4 @@ m.pageaction = false
 
 m:section(SimpleSection).template  = "amlogic/other_info"
 
-
 return m

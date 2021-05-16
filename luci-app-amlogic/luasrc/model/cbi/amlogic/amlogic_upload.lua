@@ -195,5 +195,4 @@ slog = mlog:section(SimpleSection, "", translate("Display the execution log of t
 olog = slog:option(TextValue, "")
 olog.template = "amlogic/other_log"
 
-
 return m, m_u, form, mlog

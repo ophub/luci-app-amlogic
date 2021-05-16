@@ -3,13 +3,9 @@ local http = require "luci.http"
 local DISP = require "luci.dispatcher"
 local m, b, c
 
-local amlogic_plugin_version = "0.1.0"
-local default_plugin_url = "https://github.com/ophub/luci-app-amlogic"
-local amlogic_kernel_version = "5.4.118"
-local default_kernel_url = "https://github.com/ophub/amlogic-s9xxx-openwrt"
-local amlogic_plugin_version = luci.sys.exec("uci get amlogic.config.amlogic_plugin_version 2>/dev/null") or default_plugin_url
+local default_plugin_url = "https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK"
+local default_kernel_url = "https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK"
 local amlogic_plugin_url = luci.sys.exec("uci get amlogic.config.amlogic_plugin_url 2>/dev/null") or default_plugin_url
-local amlogic_kernel_version = luci.sys.exec("uci get amlogic.config.amlogic_kernel_version 2>/dev/null") or default_kernel_url
 local amlogic_kernel_url = luci.sys.exec("uci get amlogic.config.amlogic_kernel_url 2>/dev/null") or default_kernel_url
 
 --SimpleForm for nil
@@ -17,29 +13,14 @@ m = SimpleForm("", "", nil)
 m.reset = false
 m.submit = false
 
-
 --SimpleForm for Config Source
 b = SimpleForm("amlogic_check", translate("Config Source"), nil)
-b.description = translate("You can customize the storage site for plugin and kernel versions according to your needs.")
+b.description = translate("You can customize the storage site for OpenWrt kernel and plugin according to your needs.")
 b.reset = false
 b.submit = false
 s = b:section(SimpleSection, "", "")
 
---1.Plugin
-o = s:option(Value, "amlogic_plugin", translate("Plugin Website:"))
-o.rmempty = true
-o.default = amlogic_plugin_url
-o.write = function(self, key, value)
-	if value == "" then
-        --self.description = translate("Invalid value.")
-        amlogic_plugin_url = default_plugin_url
-	else
-        --self.description = translate("Use custom Plugin url:") .. value
-        amlogic_plugin_url = value
-	end
-end
-
---2.Kernel
+--1.Kernel
 o = s:option(Value, "amlogic_kernel", translate("Kernel Website:"))
 o.rmempty = true
 o.default = amlogic_kernel_url
@@ -50,6 +31,20 @@ o.write = function(self, key, value)
 	else
         --self.description = translate("Use custom kernel url:") .. value
         amlogic_kernel_url = value
+	end
+end
+
+--2.Plugin
+o = s:option(Value, "amlogic_plugin", translate("Plugin Website:"))
+o.rmempty = true
+o.default = amlogic_plugin_url
+o.write = function(self, key, value)
+	if value == "" then
+        --self.description = translate("Invalid value.")
+        amlogic_plugin_url = default_plugin_url
+	else
+        --self.description = translate("Use custom Plugin url:") .. value
+        amlogic_plugin_url = value
 	end
 end
 
@@ -77,7 +72,7 @@ end
 --SimpleForm for Check
 c = Map("amlogic")
 c.title = translate("Check Update")
-c.description = translate("Provide Plugin and Kernel online check and update service.")
+c.description = translate("Provide OpenWrt Kernel and Plugin online check and update service.")
 c.pageaction = false
 
 c:section(SimpleSection).template  = "amlogic/other_check"
