@@ -107,7 +107,7 @@ tolog() {
     fi
 
     # 04. Move to the ${KERNEL_DOWNLOAD_PATH} directory to prepare for the update kernel
-    mv -f ${TMP_CHECK_DIR}/*.tar.gz ${KERNEL_DOWNLOAD_PATH} >/dev/null 2>&1
+    mv -f ${TMP_CHECK_DIR}/*.tar.gz ${KERNEL_DOWNLOAD_PATH} >/dev/null 2>&1 && sync
     tolog "04 The kernel is ready, you can update."
     sleep 3
 
