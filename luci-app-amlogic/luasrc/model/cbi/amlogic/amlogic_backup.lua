@@ -8,7 +8,6 @@ m = SimpleForm("", "", nil)
 m.reset = false
 m.submit = false
 
-
 --SimpleForm for Backup Config
 b = SimpleForm("backup", translate("Backup Config"), nil)
 b.description = translate("Backup Config (openwrt_config.tar.gz) for Amlogic OpenWrt. You can [upload] this file, and the [Restore Config] button will be displayed in the [Upload file list].")
@@ -69,6 +68,5 @@ mlog.submit = false
 slog = mlog:section(SimpleSection, "", translate("Display the execution log of the current operation."))
 olog = slog:option(TextValue, "")
 olog.template = "amlogic/other_log"
-
 
 return m, b, mlog

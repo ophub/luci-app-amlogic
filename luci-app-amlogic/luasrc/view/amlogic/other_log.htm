@@ -3,18 +3,10 @@
 <fieldset class="cbi-section">
 	<table width="100%">
 		<tr>
-			<td width="25%" align="center">
-				<input type="button" class="cbi-button cbi-button-apply" id="stop_refresh_button" value="<%:Stop Refresh Log%>" onclick=" return stop_refresh() "/>
-			</td>
-			<td width="25%" align="center">
-				<input type="button" class="cbi-button cbi-button-apply" id="start_refresh_button" value="<%:Start Refresh Log%>" onclick=" return start_refresh() "/>
-			</td>
-			<td width="25%" align="center">
-				<input type="button" class="cbi-button cbi-button-apply" id="del_log_button" value="<%:Clean Log%>" style=" display:inline;" onclick=" return del_log() " />
-			</td>
-			<td width="25%" align="center">
-				<input type="button" class="cbi-button cbi-button-apply" id="down_log_button" value="<%:Download Log%>" style=" display:inline;" onclick=" return download_log() " />
-			</td>
+			<td width="25%" align="center"><input type="button" class="cbi-button cbi-button-apply" id="stop_refresh_button" value="<%:Stop Refresh Log%>" onclick=" return stop_refresh() "/></td>
+			<td width="25%" align="center"><input type="button" class="cbi-button cbi-button-apply" id="start_refresh_button" value="<%:Start Refresh Log%>" onclick=" return start_refresh() "/></td>
+			<td width="25%" align="center"><input type="button" class="cbi-button cbi-button-apply" id="del_log_button" value="<%:Clean Log%>" style=" display:inline;" onclick=" return del_log() " /></td>
+			<td width="25%" align="center"><input type="button" class="cbi-button cbi-button-apply" id="down_log_button" value="<%:Download Log%>" style=" display:inline;" onclick=" return download_log() " /></td>
 		</tr>
 	</table>
 </fieldset>
@@ -34,13 +26,14 @@ function start_refresh() {
 }
 
 function createAndDownloadFile(fileName, content) {
-    var aTag = document.createElement('a');
-    var blob = new Blob([content]);
-    aTag.download = fileName;
-    aTag.href = URL.createObjectURL(blob);
-    aTag.click();
-    URL.revokeObjectURL(blob);
+	var aTag = document.createElement('a');
+	var blob = new Blob([content]);
+	aTag.download = fileName;
+	aTag.href = URL.createObjectURL(blob);
+	aTag.click();
+	URL.revokeObjectURL(blob);
 }
+
 function download_log(){
 	var lv = document.getElementById('amlogic.ophub.clog');
 	var dt = new Date();
@@ -51,10 +44,10 @@ function download_log(){
 
 function del_log() {
 	XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "del_log")%>',null,function(x, data){
-	var lv = document.getElementById('amlogic.ophub.clog');
-		lv.innerHTML="";
-	}
-		);
+		var lv = document.getElementById('amlogic.ophub.clog');
+			lv.innerHTML="";
+		}
+	);
 	return
 }
 
@@ -67,18 +60,18 @@ function line_tolocal(str){
 	str.trim().split('\n').forEach(function(v, i) {
 	var dt = new Date(v.substring(6,26));
 	if (dt != "Invalid Date"){
-	  strt[i]=dt.getFullYear()+"-"+p(dt.getMonth()+1)+"-"+p(dt.getDate())+" "+p(dt.getHours())+":"+p(dt.getMinutes())+":"+p(dt.getSeconds())+v.substring(27);
+		strt[i]=dt.getFullYear()+"-"+p(dt.getMonth()+1)+"-"+p(dt.getDate())+" "+p(dt.getHours())+":"+p(dt.getMinutes())+":"+p(dt.getSeconds())+v.substring(27);
 	}else{
-	  strt[i]=v;}})
+		strt[i]=v;}})
 	var old_log_line = sessionStorage.log_line;
 	if ( old_log_line != null && strt.length != null ) {
 		if (old_log_line - strt.length < 0) {
 			sessionStorage.log_line = strt.length;
 			return strt.slice('-'+(strt.length-old_log_line))
 		}
-		else if (old_log_line == strt.length) {
-			sessionStorage.log_line = strt.length;
-			return
+			else if (old_log_line == strt.length) {
+				sessionStorage.log_line = strt.length;
+				return
 		}
 		else if (old_log_line - strt.length > 0) {
 			sessionStorage.log_line = strt.length;
@@ -88,17 +81,17 @@ function line_tolocal(str){
 		}
 	}
 	else if ( strt.length != null ) {
-	   sessionStorage.log_line = strt.length;
-	   return strt
+		sessionStorage.log_line = strt.length;
+		return strt
 	}
 	else {
 		sessionStorage.log_line = "0";
-	  return strt
+		return strt
 	}
 }
 
 function poll_log(){
-XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "refresh_log")%>', null,
+	XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "refresh_log")%>', null,
 	function(x, data) {
 		if ( x && x.status == 200 ) {
 			var lv = document.getElementById('amlogic.ophub.clog');
@@ -111,13 +104,14 @@ XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "refresh_log
 			}
 		}
 	}
-);
+	);
 	r=setTimeout("poll_log()",1000*2);
 }
+
 sessionStorage.removeItem("log_line");
 poll_log();
+
 //]]>
 </script>
-
 
 <%+cbi/valuefooter%>

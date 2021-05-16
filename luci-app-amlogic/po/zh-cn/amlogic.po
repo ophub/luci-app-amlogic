@@ -257,8 +257,8 @@ msgstr "配置与更新"
 msgid "Config Source"
 msgstr "配置来源"
 
-msgid "You can customize the storage site for plugin and kernel versions according to your needs."
-msgstr "可根据需要，自定义插件及内核版本的存放站点。"
+msgid "You can customize the storage site for OpenWrt kernel and plugin according to your needs."
+msgstr "可根据需要，自定义 OpenWrt 内核及插件的存放站点。"
 
 msgid "Plugin Website:"
 msgstr "插件网站："
@@ -281,8 +281,8 @@ msgstr "保存"
 msgid "Check All Components Update"
 msgstr "插件和内核检查更新"
 
-msgid "Provide Plugin and Kernel online check and update service."
-msgstr "提供插件和内核在线检查和更新服务。"
+msgid "Provide OpenWrt Kernel and Plugin online check and update service."
+msgstr "提供 OpenWrt 内核和插件在线检查和更新服务。"
 
 msgid "Check Plugin Version"
 msgstr "检查插件版本"
@@ -302,7 +302,7 @@ msgstr "当前版本"
 msgid "Latest Version"
 msgstr "最新版本"
 
-msgid "We will recommend to you the kernel version with the same mainline as the current OPENWRT system."
+msgid "We will recommend to you the kernel version with the same mainline as the current OpenWrt system."
 msgstr "我们将向您推荐与当前 OpenWrt 系统相同主线的内核版本。"
 
 msgid "Collecting data..."

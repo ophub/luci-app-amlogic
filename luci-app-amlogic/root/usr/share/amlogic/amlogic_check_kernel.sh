@@ -74,27 +74,36 @@ tolog() {
     if [[ "${CURRENT_KERNEL_V}" == "${SERVER_KERNEL_VERSION}" ]]; then
         tolog "03.03 The same version, no need to update." "1"
         sleep 5
-        echo "" >$START_LOG
+        tolog ""
     else
         tolog "03.04 Automatically download the latest kernel."
+
         # Download boot file
         curl -sL --connect-timeout 10 --retry 2 "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_BOOT}" -o "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" >/dev/null 2>&1 && sync
-        [[ -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" ]] || tolog "03.05 The boot file failed to download." "1"
-        tolog "03.05 ${SERVER_KERNEL_BOOT} complete."
+        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" ]]; then
+            tolog "03.05 ${SERVER_KERNEL_BOOT} complete."
+        else
+            tolog "03.06 The boot file failed to download." "1"
+        fi
         sleep 3
 
         # Download dtb file
         curl -sL --connect-timeout 10 --retry 2 "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_DTB}" -o "${TMP_CHECK_DIR}/${SERVER_KERNEL_DTB}" >/dev/null 2>&1 && sync
-        [[ -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" ]] || tolog "03.05 The boot file failed to download." "1"
-        tolog "03.06 ${SERVER_KERNEL_DTB} complete."
+        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_DTB}" ]]; then
+            tolog "03.07 ${SERVER_KERNEL_DTB} complete."
+        else
+            tolog "03.08 The boot file failed to download." "1"
+        fi
         sleep 3
 
         # Download modules file
         curl -sL --connect-timeout 10 --retry 2 "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_MODULES}" -o "${TMP_CHECK_DIR}/${SERVER_KERNEL_MODULES}" >/dev/null 2>&1 && sync
-        [[ -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" ]] || tolog "03.05 The boot file failed to download." "1"
-        tolog "03.07 ${SERVER_KERNEL_MODULES} complete."
+        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_MODULES}" ]]; then
+            tolog "03.09 ${SERVER_KERNEL_MODULES} complete."
+        else
+            tolog "03.10 The modules file failed to download." "1"
+        fi
         sleep 3
-
     fi
 
     # 04. Move to the ${KERNEL_DOWNLOAD_PATH} directory to prepare for the update kernel
