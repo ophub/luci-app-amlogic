@@ -27,7 +27,7 @@ tolog() {
     CONFIG_PLUGIN_URL=$(uci get amlogic.config.amlogic_plugin_url 2>/dev/null)
     [[ ! -z "${CONFIG_PLUGIN_URL}" ]] || tolog "02.01 Invalid plugin download address." "1"
     rm -f "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
-    curl -sL --connect-timeout 10 --retry 2 "${CONFIG_PLUGIN_URL}" -o "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
+    curl -sL --connect-timeout 10 --retry 2 --retry-all-errors "${CONFIG_PLUGIN_URL}" -o "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
     [[ -s ${TMP_CHECK_SERVER_FILE} ]] || tolog "02.02 Invalid plugin detection file." "1"
 
     source ${TMP_CHECK_SERVER_FILE} 2>/dev/null
@@ -49,7 +49,7 @@ tolog() {
     else
         tolog "03.02 Automatically download the latest plugin."
         # Download plugin file
-        curl -sL --connect-timeout 10 --retry 2 "${SERVER_PLUGIN_URL}/${SERVER_PLUGIN_VERSION}/${SERVER_PLUGIN_FILE}" -o "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE}" >/dev/null 2>&1 && sync
+        curl -sL --connect-timeout 10 --retry 2 --retry-all-errors "${SERVER_PLUGIN_URL}/${SERVER_PLUGIN_VERSION}/${SERVER_PLUGIN_FILE}" -o "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE}" ]]; then
             tolog "03.03 ${SERVER_PLUGIN_FILE} complete."
         else
