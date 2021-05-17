@@ -27,7 +27,7 @@ tolog() {
     CONFIG_KERNEL_URL=$(uci get amlogic.config.amlogic_kernel_url 2>/dev/null)
     [[ ! -z "${CONFIG_KERNEL_URL}" ]] || tolog "02.01 Invalid kernel download address." "1"
     rm -f "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
-    curl -sL --connect-timeout 10 --retry 2 "${CONFIG_KERNEL_URL}" -o "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
+    curl -sL --connect-timeout 10 --retry 2 --retry-all-errors "${CONFIG_KERNEL_URL}" -o "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
     [[ -s ${TMP_CHECK_SERVER_FILE} ]] || tolog "02.02 Invalid kernel detection file." "1"
 
     source ${TMP_CHECK_SERVER_FILE} 2>/dev/null
@@ -79,7 +79,7 @@ tolog() {
         tolog "03.04 Automatically download the latest kernel."
 
         # Download boot file
-        curl -sL --connect-timeout 10 --retry 2 "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_BOOT}" -o "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" >/dev/null 2>&1 && sync
+        curl -sL --connect-timeout 10 --retry 2 --retry-all-errors "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_BOOT}" -o "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" ]]; then
             tolog "03.05 ${SERVER_KERNEL_BOOT} complete."
         else
@@ -88,7 +88,7 @@ tolog() {
         sleep 3
 
         # Download dtb file
-        curl -sL --connect-timeout 10 --retry 2 "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_DTB}" -o "${TMP_CHECK_DIR}/${SERVER_KERNEL_DTB}" >/dev/null 2>&1 && sync
+        curl -sL --connect-timeout 10 --retry 2 --retry-all-errors "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_DTB}" -o "${TMP_CHECK_DIR}/${SERVER_KERNEL_DTB}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_DTB}" ]]; then
             tolog "03.07 ${SERVER_KERNEL_DTB} complete."
         else
@@ -97,7 +97,7 @@ tolog() {
         sleep 3
 
         # Download modules file
-        curl -sL --connect-timeout 10 --retry 2 "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_MODULES}" -o "${TMP_CHECK_DIR}/${SERVER_KERNEL_MODULES}" >/dev/null 2>&1 && sync
+        curl -sL --connect-timeout 10 --retry 2 --retry-all-errors "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_MODULES}" -o "${TMP_CHECK_DIR}/${SERVER_KERNEL_MODULES}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_MODULES}" ]]; then
             tolog "03.09 ${SERVER_KERNEL_MODULES} complete."
         else
