@@ -72,7 +72,7 @@ msgid "There are kernel files in the upload directory, and you can replace the k
 msgstr "上传文件列表中有内核文件，你可以升级内核。"
 
 msgid "Upload the file. It will automatically recognize the [Backup Config File], [Kernel File] and [IPK File], and the operation buttons will be displayed automatically."
-msgstr "将文件上传到[ /tmp/upload/ ]。将自动识别备份的[配置文件]，[内核文件]和[IPK文件]，并自动显示相关操作按钮。"
+msgstr "将文件上传到[ /tmp/upload/ ]。将自动识别备份的 [配置文件]，[内核文件] 和 [IPK文件]，并自动显示相关操作按钮。"
 
 msgid "Amlogic Service"
 msgstr "晶晨宝盒"
@@ -81,7 +81,7 @@ msgid "OpenWrt for Amlogic S9xxx STB"
 msgstr "OpenWrt 之晶晨宝盒"
 
 msgid "Restore Config / Replace OpenWrt Kernel"
-msgstr "恢复配置 / 更换 OpenWrt 内核"
+msgstr "恢复配置 / 升级 OpenWrt 内核"
 
 msgid "Install OpenWrt"
 msgstr "安装 OpenWrt"
@@ -157,6 +157,15 @@ msgstr "将 OpenWrt 安装到晶晨宝盒 EMMC，请选择宝盒型号，或输�
 
 msgid "Tip: Writing is in progress, and it will automatically restart after completion."
 msgstr "提示：正在写入，完成后将自动重启。"
+
+msgid "Installing..."
+msgstr "正在安装..."
+
+msgid "Install Failed"
+msgstr "安装失败"
+
+msgid "Successful Install"
+msgstr "安装成功"
 
 msgid "Update"
 msgstr "升级"
