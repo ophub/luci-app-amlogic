@@ -15,11 +15,26 @@ function index()
     entry({"admin", "system", "amlogic", "del_log"},call("action_del_log"))
     entry({"admin", "system", "amlogic", "start_check_plugin"},call("action_start_check_plugin")).leaf=true
     entry({"admin", "system", "amlogic", "start_check_kernel"},call("action_start_check_kernel")).leaf=true
+    entry({"admin", "system", "amlogic", "start_amlogic_install"},call("action_start_amlogic_install")).leaf=true
     entry({"admin", "system", "amlogic", "state"},call("action_state")).leaf=true
 
 end
 
 local fs = require "luci.fs"
+
+function string.split(input, delimiter)
+    input = tostring(input)
+    delimiter = tostring(delimiter)
+    if (delimiter=='') then return false end
+    local pos,arr = 0, {}
+    -- for each divider found
+    for st,sp in function() return string.find(input, delimiter, pos, true) end do
+        table.insert(arr, string.sub(input, pos, st - 1))
+        pos = sp + 1
+    end
+    table.insert(arr, string.sub(input, pos))
+    return arr
+end
 
 function action_refresh_log()
     local logfile="/tmp/amlogic/amlogic.log"
@@ -54,13 +69,19 @@ function action_check_kernel()
     return luci.sys.call("/usr/share/amlogic/amlogic_check_kernel.sh >/dev/null 2>&1")
 end
 
-
 local function start_check_plugin()
     return luci.sys.exec("sed -n '$p' /tmp/amlogic/amlogic_check_plugin.log 2>/dev/null")
 end
 
 local function start_check_kernel()
     return luci.sys.exec("sed -n '$p' /tmp/amlogic/amlogic_check_kernel.log 2>/dev/null")
+end
+
+local function start_amlogic_install()
+    local amlogic_install_sel = luci.http.formvalue("amlogic_install_sel")
+    local res = string.split(amlogic_install_sel, "@")
+    local state = luci.sys.call("/usr/bin/openwrt-install TEST-UBOOT YES " .. res[1] .. " " .. res[2] .. " > /tmp/amlogic/amlogic.log && sync 2>/dev/null")
+    return state
 end
 
 function action_start_check_plugin()
@@ -74,6 +95,13 @@ function action_start_check_kernel()
     luci.http.prepare_content("application/json")
     luci.http.write_json({
         start_check_kernel = start_check_kernel();
+    })
+end
+
+function action_start_amlogic_install()
+    luci.http.prepare_content("application/json")
+    luci.http.write_json({
+        rule_install_status = start_amlogic_install();
     })
 end
 
