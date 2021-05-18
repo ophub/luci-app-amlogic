@@ -2,7 +2,7 @@
 # Current name: luci-app-amlogic
 # Description: Provide services such as instal/update/backup/kernel replacement for Amlogic STB
 # Modify: https://github.com/ophub/luci-app-amlogic
-# Borrow: luci-app-filetransfer, etc.
+# Borrow: luci-app-filetransfer, Vernesong, Flippy etc.
 #
 
 include $(TOPDIR)/rules.mk
