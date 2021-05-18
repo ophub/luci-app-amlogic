@@ -143,6 +143,9 @@ msgstr "烽火HG680 & 中兴B860H"
 msgid "Or enter the dtb file name:"
 msgstr "或者输入自定义 dtb 文件名："
 
+msgid "Enter the dtb file name"
+msgstr "输入自定义 dtb 文件名"
+
 msgid "Use custom dtb file:"
 msgstr "使用自定义 dtb 文件："
 
