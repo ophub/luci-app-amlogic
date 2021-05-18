@@ -74,7 +74,14 @@
 
 	function sel_dtb_input(soc_value){
 		// document.getElementById('_show_me').innerHTML = soc_value;
-		if ( soc_value == "99" ) { document.getElementById('tr_sel_dtb').style = ''; }
+		if ( soc_value == "99" )
+		{
+			document.getElementById('tr_sel_dtb').style = '';
+		}
+		else
+		{
+			document.getElementById('tr_sel_dtb').style = 'display:none;';
+		}
 	}
 
 	function amlogic_install(btn,amlogic_install_sel)
