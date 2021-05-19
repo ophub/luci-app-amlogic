@@ -13,7 +13,7 @@ m.submit = false
 
 --SimpleForm for Config Source
 b = SimpleForm("amlogic_check", translate("Config Source"), nil)
-b.description = translate("You can customize the storage site for OpenWrt kernel and plugin according to your needs.")
+b.description = translate("You can customize the check url for OpenWrt kernel and plugin according to your needs.")
 b.reset = false
 b.submit = false
 s = b:section(SimpleSection, "", "")
