@@ -4,7 +4,8 @@
 # 
 amlogic_plugin_url="https://github.com/ophub/luci-app-amlogic/releases/download"
 amlogic_plugin_version="v1.1"
-amlogic_plugin_file="luci-app-amlogic_v1.1_all.ipk.gz"
+amlogic_plugin_file_ipk="luci-app-amlogic_1-1_all.ipk.gz"
+amlogic_plugin_file_i18n="luci-i18n-amlogic-zh-cn_1-1_all.ipk.gz"
 #
 amlogic_kernel_url="https://raw.githubusercontent.com/ophub/amlogic-s9xxx-openwrt/main/amlogic-s9xxx/amlogic-kernel/kernel"
 #
