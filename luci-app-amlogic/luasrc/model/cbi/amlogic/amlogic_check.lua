@@ -19,7 +19,7 @@ b.submit = false
 s = b:section(SimpleSection, "", "")
 
 --1.Check URL
-o = s:option(Value, "amlogic_check", translate("Check URL:"))
+o = s:option(Value, "amlogic_check", translate("Version Check URL:"))
 o.rmempty = true
 o.default = amlogic_check_url
 o.write = function(self, key, value)
