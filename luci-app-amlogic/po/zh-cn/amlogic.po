@@ -269,20 +269,14 @@ msgstr "配置与更新"
 msgid "Config Source"
 msgstr "配置来源"
 
-msgid "You can customize the storage site for OpenWrt kernel and plugin according to your needs."
-msgstr "可根据需要，自定义 OpenWrt 内核及插件的存放站点。"
+msgid "You can customize the check url for OpenWrt kernel and plugin according to your needs."
+msgstr "可根据需要，自定义 OpenWrt 内核及插件的检查站点。"
 
-msgid "Plugin Website:"
-msgstr "插件网站："
+msgid "Check URL:"
+msgstr "检查网址："
 
-msgid "Use custom Plugin url:"
-msgstr "使用自定义插件网站："
-
-msgid "Kernel Website:"
-msgstr "内核网站："
-
-msgid "Use custom kernel url:"
-msgstr "使用自定义内核网站："
+msgid "Use custom check url:"
+msgstr "使用自定义检查网站："
 
 msgid "Save Config:"
 msgstr "保存配置："
