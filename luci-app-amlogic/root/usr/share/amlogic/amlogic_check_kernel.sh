@@ -19,6 +19,7 @@ tolog() {
     # 01. Query local version information
     tolog "01. Query version information."
     CURRENT_KERNEL_V=$(ls /lib/modules/  2>/dev/null | grep -oE '^[1-9].[0-9]{1,2}.[0-9]+')
+    uci set amlogic.config.amlogic_kernel_version="${CURRENT_KERNEL_V}" 2>/dev/null
     tolog "01.01 current version: ${CURRENT_KERNEL_V}"
     sleep 3
 
@@ -65,14 +66,14 @@ tolog() {
                 SERVER_KERNEL_MODULES=${amlogic_kernel_0504_modules}
                 ;;
         esac
-        uci set amlogic.config.amlogic_kernel_version="${CURRENT_KERNEL_V}" 2>/dev/null
-        tolog "03.01 current version: ${CURRENT_KERNEL_V}, Latest version: ${SERVER_KERNEL_VERSION}"
+        SERVER_KERNEL_VERSION_CODE=${SERVER_KERNEL_VERSION/.TF/}
+        tolog "03.01 current version: ${CURRENT_KERNEL_V}, Latest version: ${SERVER_KERNEL_VERSION_CODE}"
         sleep 3
     else
         tolog "03.02 Failed to check kernel version." "1"
     fi
 
-    if [[ "${CURRENT_KERNEL_V}" == "${SERVER_KERNEL_VERSION}" ]]; then
+    if [[ "${CURRENT_KERNEL_V}" == "${SERVER_KERNEL_VERSION_CODE}" ]]; then
         tolog "03.03 The same version, no need to update." "1"
         sleep 5
         tolog ""
