@@ -3,10 +3,8 @@ local http = require "luci.http"
 local DISP = require "luci.dispatcher"
 local m, b, c
 
-local default_plugin_url = "https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK"
-local default_kernel_url = "https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK"
-local amlogic_plugin_url = luci.sys.exec("uci get amlogic.config.amlogic_plugin_url 2>/dev/null") or default_plugin_url
-local amlogic_kernel_url = luci.sys.exec("uci get amlogic.config.amlogic_kernel_url 2>/dev/null") or default_kernel_url
+local default_check_url = "https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK"
+local amlogic_check_url = luci.sys.exec("uci get amlogic.config.amlogic_check_url 2>/dev/null") or default_check_url
 
 --SimpleForm for nil
 m = SimpleForm("", "", nil)
@@ -20,35 +18,21 @@ b.reset = false
 b.submit = false
 s = b:section(SimpleSection, "", "")
 
---1.Kernel
-o = s:option(Value, "amlogic_kernel", translate("Kernel Website:"))
+--1.Check URL
+o = s:option(Value, "amlogic_check", translate("Check URL:"))
 o.rmempty = true
-o.default = amlogic_kernel_url
+o.default = amlogic_check_url
 o.write = function(self, key, value)
 	if value == "" then
         --self.description = translate("Invalid value.")
-        amlogic_kernel_url = default_kernel_url
+        amlogic_check_url = default_check_url
 	else
-        --self.description = translate("Use custom kernel url:") .. value
-        amlogic_kernel_url = value
+        --self.description = translate("Use custom check url:") .. value
+        amlogic_check_url = value
 	end
 end
 
---2.Plugin
-o = s:option(Value, "amlogic_plugin", translate("Plugin Website:"))
-o.rmempty = true
-o.default = amlogic_plugin_url
-o.write = function(self, key, value)
-	if value == "" then
-        --self.description = translate("Invalid value.")
-        amlogic_plugin_url = default_plugin_url
-	else
-        --self.description = translate("Use custom Plugin url:") .. value
-        amlogic_plugin_url = value
-	end
-end
-
---3.Save button
+--2.Save button
 o = s:option(Button, "", translate("Save Config:"))
 o.template = "amlogic/other_button"
 o.render = function(self, section, scope)
@@ -59,14 +43,10 @@ o.render = function(self, section, scope)
 	Button.render(self, section, scope)
 end
 o.write = function(self, section, scope)
-	if not emmc_dtb then
-	    emmc_dtb = "no"
-	end
-	luci.sys.exec("uci set amlogic.config.amlogic_plugin_url=" .. amlogic_plugin_url .. " 2>/dev/null")
-	luci.sys.exec("uci set amlogic.config.amlogic_kernel_url=" .. amlogic_kernel_url .. " 2>/dev/null")
+	luci.sys.exec("uci set amlogic.config.amlogic_check_url=" .. amlogic_check_url .. " 2>/dev/null")
 	luci.sys.exec("uci commit amlogic 2>/dev/null")
 	http.redirect(DISP.build_url("admin", "system", "amlogic", "check"))
-	--self.description = "amlogic_plugin_url: " .. amlogic_plugin_url .. " amlogic_kernel_url: " .. amlogic_kernel_url
+	--self.description = "amlogic_check_url: " .. amlogic_check_url
 end
 
 --SimpleForm for Check
