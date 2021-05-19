@@ -24,7 +24,7 @@ tolog() {
 
     # 02. Download server version documentation
     tolog "02. Start checking the plugin version."
-    CONFIG_PLUGIN_URL=$(uci get amlogic.config.amlogic_plugin_url 2>/dev/null)
+    CONFIG_PLUGIN_URL=$(uci get amlogic.config.amlogic_check_url 2>/dev/null)
     [[ ! -z "${CONFIG_PLUGIN_URL}" ]] || tolog "02.01 Invalid plugin download address." "1"
     rm -f "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
     wget -c "${CONFIG_PLUGIN_URL}" -O "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
