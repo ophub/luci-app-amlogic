@@ -25,10 +25,10 @@ tolog() {
 
     # 02. Download server version documentation
     tolog "02. Start checking the kernel version."
-    CONFIG_KERNEL_URL=$(uci get amlogic.config.amlogic_check_url 2>/dev/null)
-    [[ ! -z "${CONFIG_KERNEL_URL}" ]] || tolog "02.01 Invalid kernel download address." "1"
+    CONFIG_CHECK_URL=$(uci get amlogic.config.amlogic_check_url 2>/dev/null)
+    [[ ! -z "${CONFIG_CHECK_URL}" ]] || tolog "02.01 Invalid kernel download address." "1"
     rm -f "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
-    wget -c "${CONFIG_KERNEL_URL}" -O "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
+    wget -c "${CONFIG_CHECK_URL}" -O "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
     [[ -s ${TMP_CHECK_SERVER_FILE} ]] || tolog "02.02 Invalid kernel detection file." "1"
 
     source ${TMP_CHECK_SERVER_FILE} 2>/dev/null
