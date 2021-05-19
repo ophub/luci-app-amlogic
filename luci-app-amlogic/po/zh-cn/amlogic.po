@@ -272,8 +272,8 @@ msgstr "配置来源"
 msgid "You can customize the check url for OpenWrt kernel and plugin according to your needs."
 msgstr "可根据需要，自定义 OpenWrt 内核及插件的检查站点。"
 
-msgid "Check URL:"
-msgstr "检查网址："
+msgid "Version Check URL:"
+msgstr "版本检查网址："
 
 msgid "Use custom check url:"
 msgstr "使用自定义检查网站："
