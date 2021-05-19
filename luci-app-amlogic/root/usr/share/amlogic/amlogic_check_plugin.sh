@@ -35,8 +35,10 @@ tolog() {
     [[ ! -z "${SERVER_PLUGIN_URL}" ]] || tolog "02.03 The custom plugin download address is invalid." "1"
     SERVER_PLUGIN_VERSION=${amlogic_plugin_version}
     [[ ! -z "${SERVER_PLUGIN_VERSION}" ]] || tolog "02.04 The custom plugin version is invalid." "1"
-    SERVER_PLUGIN_FILE=${amlogic_plugin_file}
-    [[ ! -z "${SERVER_PLUGIN_FILE}" ]] || tolog "02.05 The custom plugin file is invalid." "1"
+    SERVER_PLUGIN_FILE_IPK=${amlogic_plugin_file_ipk}
+    [[ ! -z "${SERVER_PLUGIN_FILE_IPK}" ]] || tolog "02.05 The custom plugin file is invalid." "1"
+    SERVER_PLUGIN_FILE_I18N=${amlogic_plugin_file_i18n}
+    [[ ! -z "${SERVER_PLUGIN_FILE_I18N}" ]] || tolog "02.06 The custom plugin i18n is invalid." "1"
 
     # 03. Version comparison
     tolog "03 current version: ${CURRENT_PLUGIN_V}, Latest version: ${SERVER_PLUGIN_VERSION}"
@@ -48,12 +50,20 @@ tolog() {
         tolog ""
     else
         tolog "03.02 Automatically download the latest plugin."
-        # Download plugin file
-        wget -c "${SERVER_PLUGIN_URL}/${SERVER_PLUGIN_VERSION}/${SERVER_PLUGIN_FILE}" -O "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE}" >/dev/null 2>&1 && sync
-        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE}" ]]; then
-            tolog "03.03 ${SERVER_PLUGIN_FILE} complete."
+        # Download plugin ipk file
+        wget -c "${SERVER_PLUGIN_URL}/${SERVER_PLUGIN_VERSION}/${SERVER_PLUGIN_FILE_IPK}" -O "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE_IPK}" >/dev/null 2>&1 && sync
+        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE_IPK}" ]]; then
+            tolog "03.03 ${SERVER_PLUGIN_FILE_IPK} complete."
         else
             tolog "03.04 The plugin file failed to download." "1"
+        fi
+        sleep 3
+        # Download plugin i18n file
+        wget -c "${SERVER_PLUGIN_URL}/${SERVER_PLUGIN_VERSION}/${SERVER_PLUGIN_FILE_I18N}" -O "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE_I18N}" >/dev/null 2>&1 && sync
+        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE_I18N}" ]]; then
+            tolog "03.05 ${SERVER_PLUGIN_FILE_I18N} complete."
+        else
+            tolog "03.06 The plugin i18n failed to download." "1"
         fi
         sleep 3
     fi
