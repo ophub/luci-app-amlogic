@@ -39,32 +39,33 @@ tolog() {
     MAIN_LINE_V=$(echo "${CURRENT_KERNEL_V}" | cut -d '.' -f2)
     if [[ "${MAIN_LINE_V}" -gt "0" ]]; then
         case "${MAIN_LINE_V}" in
-            10) uci set amlogic.config.amlogic_kernel_0510_version="${CURRENT_KERNEL_V}" 2>/dev/null
-                SERVER_KERNEL_VERSION=${amlogic_kernel_0510_version}
+            10) SERVER_KERNEL_VERSION=${amlogic_kernel_0510_version}
                 SERVER_KERNEL_BOOT=${amlogic_kernel_0510_boot}
                 SERVER_KERNEL_DTB=${amlogic_kernel_0510_dtb}
-                SERVER_KERNEL_MODULES=${amlogic_kernel_0510_modules} ;;
-            11) uci set amlogic.config.amlogic_kernel_0511_version="${CURRENT_KERNEL_V}" 2>/dev/null
-                SERVER_KERNEL_VERSION=${amlogic_kernel_0511_version}
+                SERVER_KERNEL_MODULES=${amlogic_kernel_0510_modules}
+                ;;
+            11) SERVER_KERNEL_VERSION=${amlogic_kernel_0511_version}
                 SERVER_KERNEL_BOOT=${amlogic_kernel_0511_boot}
                 SERVER_KERNEL_DTB=${amlogic_kernel_0511_dtb}
-                SERVER_KERNEL_MODULES=${amlogic_kernel_0511_modules} ;;
-            12) uci set amlogic.config.amlogic_kernel_0512_version="${CURRENT_KERNEL_V}" 2>/dev/null
-                SERVER_KERNEL_VERSION=${amlogic_kernel_0512_version}
+                SERVER_KERNEL_MODULES=${amlogic_kernel_0511_modules}
+                ;;
+            12) SERVER_KERNEL_VERSION=${amlogic_kernel_0512_version}
                 SERVER_KERNEL_BOOT=${amlogic_kernel_0512_boot}
                 SERVER_KERNEL_DTB=${amlogic_kernel_0512_dtb}
-                SERVER_KERNEL_MODULES=${amlogic_kernel_0512_modules} ;;
-            13) uci set amlogic.config.amlogic_kernel_0513_version="${CURRENT_KERNEL_V}" 2>/dev/null
-                SERVER_KERNEL_VERSION=${amlogic_kernel_0513_version}
+                SERVER_KERNEL_MODULES=${amlogic_kernel_0512_modules}
+                ;;
+            13) SERVER_KERNEL_VERSION=${amlogic_kernel_0513_version}
                 SERVER_KERNEL_BOOT=${amlogic_kernel_0513_boot}
                 SERVER_KERNEL_DTB=${amlogic_kernel_0513_dtb}
-                SERVER_KERNEL_MODULES=${amlogic_kernel_0513_modules} ;;
-             *) uci set amlogic.config.amlogic_kernel_0504_version="${CURRENT_KERNEL_V}" 2>/dev/null
-                SERVER_KERNEL_VERSION=${amlogic_kernel_0504_version}
+                SERVER_KERNEL_MODULES=${amlogic_kernel_0513_modules}
+                ;;
+             *) SERVER_KERNEL_VERSION=${amlogic_kernel_0504_version}
                 SERVER_KERNEL_BOOT=${amlogic_kernel_0504_boot}
                 SERVER_KERNEL_DTB=${amlogic_kernel_0504_dtb}
-                SERVER_KERNEL_MODULES=${amlogic_kernel_0504_modules} ;;
+                SERVER_KERNEL_MODULES=${amlogic_kernel_0504_modules}
+                ;;
         esac
+        uci set amlogic.config.amlogic_kernel_version="${CURRENT_KERNEL_V}" 2>/dev/null
         tolog "03.01 current version: ${CURRENT_KERNEL_V}, Latest version: ${SERVER_KERNEL_VERSION}"
         sleep 3
     else
