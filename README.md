@@ -39,16 +39,7 @@ The Luci operation is a visual operation of the execution of the script. In theo
 
 Luci 操作是对执行脚本的可视化操作，理论上和执行脚本的结果是完全一样的，但鉴于当前属于测试期，请谨慎使用。
 
-## Acknowledgments / 鸣谢
-
-- [OpenWrt](https://github.com/openwrt/openwrt)
-- [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
-- [Lienol/openwrt](https://github.com/Lienol/openwrt)
-- [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit)
-- [tuanqing/mknop](https://github.com/tuanqing/mknop)
-- [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)
-
-## License / 许可
+## Developer / 开发者
 
 - Upload functions by luci-app-filetransfer
 - Log viewing and version query functions by Vernesong
@@ -58,4 +49,5 @@ Luci 操作是对执行脚本的可视化操作，理论上和执行脚本的结
 - 日志查看和版本查询等功能来自 Vernesong
 - 内核及脚本等资源来自 Flippy
 
+## License / 许可
 - [LICENSE](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE) © OPHUB
