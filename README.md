@@ -49,5 +49,14 @@ Luci 操作是对执行脚本的可视化操作，理论上和执行脚本的结
 - 日志查看和版本查询等功能来自 Vernesong
 - 内核及脚本等资源来自 Flippy
 
+## Acknowledgments
+
+- [OpenWrt](https://github.com/openwrt/openwrt)
+- [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
+- [Lienol/openwrt](https://github.com/Lienol/openwrt)
+- [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit)
+- [tuanqing/mknop](https://github.com/tuanqing/mknop)
+- [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)
+
 ## License / 许可
 - [LICENSE](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE) © OPHUB
