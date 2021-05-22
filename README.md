@@ -39,7 +39,7 @@ The Luci operation is a visual operation of the execution of the script. In theo
 
 Luci 操作是对执行脚本的可视化操作，理论上和执行脚本的结果是完全一样的，但鉴于当前属于测试期，请谨慎使用。
 
-## Developer / 开发者
+## Borrow / 借鉴
 
 - Upload functions by luci-app-filetransfer
 - Log viewing and version query functions by Vernesong
