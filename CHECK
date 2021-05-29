@@ -1,0 +1,42 @@
+# 
+# Version Check URL: https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK
+#
+#
+#
+######### [ Set plugin info for luci-app-amlogic online check and update ] #########
+amlogic_plugin_url="https://github.com/ophub/luci-app-amlogic/releases/download"
+amlogic_plugin_version="v1.1"
+amlogic_plugin_file_ipk="luci-app-amlogic_1-1_all.ipk.gz"
+amlogic_plugin_file_i18n="luci-i18n-amlogic-zh-cn_1-1_all.ipk.gz"
+#
+#
+#
+######### [ Set kernel info for luci-app-amlogic online check and update ] #########
+amlogic_kernel_url="https://raw.githubusercontent.com/ophub/amlogic-s9xxx-openwrt/main/amlogic-s9xxx/amlogic-kernel/kernel"
+#
+amlogic_kernel_0504_version="5.4.123"
+amlogic_kernel_0504_boot="boot-5.4.123-flippy-59+o.tar.gz"
+amlogic_kernel_0504_dtb="dtb-amlogic-5.4.123-flippy-59+o.tar.gz"
+amlogic_kernel_0504_modules="modules-5.4.123-flippy-59+o.tar.gz"
+#
+amlogic_kernel_0510_version="5.10.41.TF"
+amlogic_kernel_0510_boot="boot-5.10.41-flippy-59+.tar.gz"
+amlogic_kernel_0510_dtb="dtb-amlogic-5.10.41-flippy-59+.tar.gz"
+amlogic_kernel_0510_modules="modules-5.10.41-flippy-59+.tar.gz"
+#
+amlogic_kernel_0511_version="5.11.21.TF"
+amlogic_kernel_0511_boot=""
+amlogic_kernel_0511_dtb=""
+amlogic_kernel_0511_modules=""
+#
+amlogic_kernel_0512_version="5.12.8.TF"
+amlogic_kernel_0512_boot="boot-5.12.8-flippy-59+.tar.gz"
+amlogic_kernel_0512_dtb="dtb-amlogic-5.12.8-flippy-59+.tar.gz"
+amlogic_kernel_0512_modules="modules-5.12.8-flippy-59+.tar.gz"
+#
+amlogic_kernel_0513_version="5.13.1.TF"
+amlogic_kernel_0513_boot=""
+amlogic_kernel_0513_dtb=""
+amlogic_kernel_0513_modules=""
+#
+
