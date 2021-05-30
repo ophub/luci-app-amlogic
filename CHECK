@@ -12,7 +12,7 @@ amlogic_plugin_file_i18n="luci-i18n-amlogic-zh-cn_1-1_all.ipk.gz"
 #
 #
 ######### [ Set kernel info for luci-app-amlogic online check and update ] #########
-amlogic_kernel_url="https://raw.githubusercontent.com/ophub/amlogic-s9xxx-openwrt/main/amlogic-s9xxx/amlogic-kernel/kernel"
+amlogic_kernel_url="https://raw.githubusercontent.com/ophub/amlogic-s9xxx-openwrt/main/amlogic-s9xxx/amlogic-kernel"
 #
 amlogic_kernel_0504_version="5.4.123"
 amlogic_kernel_0504_boot="boot-5.4.123-flippy-59+o.tar.gz"
