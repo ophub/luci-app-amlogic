@@ -71,8 +71,8 @@ msgstr "上传文件列表中有配置文件，你可以恢复配置。"
 msgid "There are kernel files in the upload directory, and you can replace the kernel."
 msgstr "上传文件列表中有内核文件，你可以升级内核。"
 
-msgid "Upload the file. It will automatically recognize the [Backup Config File], [Kernel File] and [IPK File], and the operation buttons will be displayed automatically."
-msgstr "将文件上传到[ /tmp/upload/ ]。将自动识别备份的 [配置文件]，[内核文件] 和 [IPK文件]，并自动显示相关操作按钮。"
+msgid "Upload the file. It will automatically recognize the [Backup Config File], [Kernel File], [Firmware File] and [IPK File], and the operation buttons will be displayed automatically."
+msgstr "将文件上传到[ /tmp/upload/ ]。将自动识别备份的 [配置文件]，[固件文件], [内核文件] 和 [IPK文件]，并自动显示相关操作按钮。"
 
 msgid "Amlogic Service"
 msgstr "晶晨宝盒"
@@ -82,6 +82,9 @@ msgstr "OpenWrt 之晶晨宝盒"
 
 msgid "Restore Config / Replace OpenWrt Kernel"
 msgstr "恢复配置 / 升级 OpenWrt 内核"
+
+msgid "Manually Upload Updates"
+msgstr "手动上传更新"
 
 msgid "Install OpenWrt"
 msgstr "安装 OpenWrt"
@@ -173,6 +176,15 @@ msgstr "安装成功"
 msgid "Update"
 msgstr "升级"
 
+msgid "Updating..."
+msgstr "正在更新..."
+
+msgid "Update Failed"
+msgstr "更新失败"
+
+msgid "Successful Update"
+msgstr "更新成功"
+
 msgid "Update OpenWrt firmware"
 msgstr "升级 OpenWrt 固件"
 
@@ -191,8 +203,8 @@ msgstr "提示：正在替换内核，完成后将自动重启。"
 msgid "Supported functions:"
 msgstr "支持的功能："
 
-msgid "Provide services such as install to EMMC / Backup and Recovery Config / Update Kernel for Amlogic STB."
-msgstr "为 Amlogic 系列盒子提供支持，例如将 OpenWrt 系统写入 EMMC、备份和恢复自定义配置、升级内核版本等。"
+msgid "Provide services such as install to EMMC, Update Firmware or Kernel, Backup and Recovery Config for Amlogic STB."
+msgstr "为 Amlogic 系列盒子提供支持，例如将 OpenWrt 系统写入 EMMC、升级固件或内核，备份与恢复自定义配置等功能。"
 
 msgid "Script description:"
 msgstr "脚本说明："
@@ -218,26 +230,26 @@ msgstr "插件使用以上命令进行相关操作，这些命令也可以在 TT
 msgid "Supported Amlogic SoC & STB:"
 msgstr "支持的 SoC 和 盒子："
 
-msgid "S922x --- [ belink, belinkpro, ugoos ]"
-msgstr "S922x --- [ belink, belinkpro, ugoos ]"
+msgid "S922x --- [ Belink, Belink Pro, Ugoos ]"
+msgstr "S922x --- [ Belink, Belink Pro, Ugoos ]"
 
-msgid "S905x3 -- [ x96, hk1, h96, ugoosx3 ]"
-msgstr "S905x3 -- [ x96, hk1, h96, ugoosx3 ]"
+msgid "S905x3 -- [ X96, HK1, H96, Ugoos X3, X96 Air, A95XF3 Air ]"
+msgstr "S905x3 -- [ X96, HK1, H96, Ugoos X3, X96 Air, A95XF3 Air ]"
 
-msgid "S905x2 -- [ x96max4g, x96max2g ]"
-msgstr "S905x2 -- [ x96max4g, x96max2g ]"
+msgid "S905x2 -- [ X96Max 4G, X96Max 2G ]"
+msgstr "S905x2 -- [ X96Max 4G, X96Max 2G ]"
 
-msgid "S905x --- [ hg680p, b860h ]"
+msgid "S905x --- [ HG680P, B860H ]"
 msgstr "S905x --- [ 烽火HG680 & 中兴B860H ]"
 
-msgid "S912 ---- [ h96proplus, Octopus-Planet ]"
-msgstr "S912 ---- [ h96proplus, 章鱼星球 ]"
+msgid "S912 ---- [ H96 Pro Plus, Octopus Planet ]"
+msgstr "S912 ---- [ H96 Pro Plus, 章鱼星球 ]"
 
-msgid "S905d --- [ PhicommN1 ]"
-msgstr "S905d --- [ 斐讯N1 ]"
+msgid "S905d --- [ Phicomm N1 ]"
+msgstr "S905d --- [ 斐讯 N1 ]"
 
-msgid "Other --- [ optional dtb ]"
-msgstr "其他 --- [ 自定义 dtb 文件 ]"
+msgid "Other --- [ Optional DTB ]"
+msgstr "其他 --- [ 自定义 DTB 文件 ]"
 
 msgid "Install Ipk"
 msgstr "安装Ipk"
@@ -263,8 +275,8 @@ msgstr "配置文件"
 msgid "Tip: The config is being restored, and it will automatically restart after completion."
 msgstr "提示：正在还原配置，完成后将自动重启。"
 
-msgid "Config and Update"
-msgstr "配置与更新"
+msgid "Download Updates Online"
+msgstr "在线下载更新"
 
 msgid "Config Source"
 msgstr "配置来源"
@@ -287,8 +299,11 @@ msgstr "保存"
 msgid "Check All Components Update"
 msgstr "插件和内核检查更新"
 
-msgid "Provide OpenWrt Kernel and Plugin online check and update service."
-msgstr "提供 OpenWrt 内核和插件在线检查和更新服务。"
+msgid "Provide OpenWrt Firmware, Kernel and Plugin online check, download and update service."
+msgstr "提供 OpenWrt 固件，内核和插件在线检查，下载和更新服务。"
+
+msgid "Check Firmware Version"
+msgstr "检查固件版本"
 
 msgid "Check Plugin Version"
 msgstr "检查插件版本"
