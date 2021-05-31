@@ -11,6 +11,11 @@ amlogic_plugin_file_i18n="luci-i18n-amlogic-zh-cn_1-1_all.ipk.gz"
 #
 #
 #
+######### [ Set openwrt firmware info for luci-app-amlogic online check and update ] #########
+amlogic_firmware_github_repository="ophub/amlogic-s9xxx-openwrt"
+#
+#
+#
 ######### [ Set kernel info for luci-app-amlogic online check and update ] #########
 amlogic_kernel_url="https://raw.githubusercontent.com/ophub/amlogic-s9xxx-openwrt/main/amlogic-s9xxx/amlogic-kernel"
 #
