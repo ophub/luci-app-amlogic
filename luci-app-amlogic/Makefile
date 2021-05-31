@@ -9,7 +9,7 @@ LUCI_TITLE:= LuCI support for Amlogic S9xxx STB
 LUCI_DEPENDS:=@aarch64 +luci-lib-fs +block-mount +blkid +parted +dosfstools +e2fsprogs +lsblk +pv +resize2fs +tune2fs +losetup +uuidgen
 PKG_NAME:=luci-app-amlogic
 PKG_MAINTAINER:=ophub <https://github.com/ophub/luci-app-amlogic>
-PKG_VERSION:=1
+PKG_VERSION:=1.1
 PKG_RELEASE:=1
 
 include $(TOPDIR)/feeds/luci/luci.mk
