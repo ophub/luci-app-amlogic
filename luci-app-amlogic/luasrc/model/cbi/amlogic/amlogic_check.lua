@@ -52,7 +52,7 @@ end
 --SimpleForm for Check
 c = Map("amlogic")
 c.title = translate("Check Update")
-c.description = translate("Provide OpenWrt Kernel and Plugin online check and update service.")
+c.description = translate("Provide OpenWrt Firmware, Kernel and Plugin online check, download and update service.")
 c.pageaction = false
 
 c:section(SimpleSection).template  = "amlogic/other_check"

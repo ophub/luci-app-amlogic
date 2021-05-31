@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # Set a fixed value
+KERNEL_DOWNLOAD_PATH="/tmp/upload"
 TMP_CHECK_DIR="/tmp/amlogic"
 START_LOG=${TMP_CHECK_DIR}"/amlogic_check_kernel.log"
 LOG_FILE=${TMP_CHECK_DIR}"/amlogic.log"
 TMP_CHECK_SERVER_FILE=${TMP_CHECK_DIR}"/amlogic_check_server_kernel_file.txt"
-KERNEL_DOWNLOAD_PATH="/tmp/upload"
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
+[[ -d ${KERNEL_DOWNLOAD_PATH} ]] || mkdir -p ${KERNEL_DOWNLOAD_PATH}
 [[ -d ${TMP_CHECK_DIR} ]] || mkdir -p ${TMP_CHECK_DIR}
 
 # Log function
@@ -81,8 +82,8 @@ tolog() {
         tolog "03.04 Automatically download the latest kernel."
 
         # Download boot file
-        wget -c "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_BOOT}" -O "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" >/dev/null 2>&1 && sync
-        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_BOOT}" ]]; then
+        wget -c "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_BOOT}" -O "${KERNEL_DOWNLOAD_PATH}/${SERVER_KERNEL_BOOT}" >/dev/null 2>&1 && sync
+        if [[ "$?" -eq "0" && -s "${KERNEL_DOWNLOAD_PATH}/${SERVER_KERNEL_BOOT}" ]]; then
             tolog "03.05 ${SERVER_KERNEL_BOOT} complete."
         else
             tolog "03.06 The boot file failed to download." "1"
@@ -90,17 +91,17 @@ tolog() {
         sleep 3
 
         # Download dtb file
-        wget -c "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_DTB}" -O "${TMP_CHECK_DIR}/${SERVER_KERNEL_DTB}" >/dev/null 2>&1 && sync
-        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_DTB}" ]]; then
+        wget -c "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_DTB}" -O "${KERNEL_DOWNLOAD_PATH}/${SERVER_KERNEL_DTB}" >/dev/null 2>&1 && sync
+        if [[ "$?" -eq "0" && -s "${KERNEL_DOWNLOAD_PATH}/${SERVER_KERNEL_DTB}" ]]; then
             tolog "03.07 ${SERVER_KERNEL_DTB} complete."
         else
-            tolog "03.08 The boot file failed to download." "1"
+            tolog "03.08 The dtb file failed to download." "1"
         fi
         sleep 3
 
         # Download modules file
-        wget -c "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_MODULES}" -O "${TMP_CHECK_DIR}/${SERVER_KERNEL_MODULES}" >/dev/null 2>&1 && sync
-        if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_KERNEL_MODULES}" ]]; then
+        wget -c "${SERVER_KERNEL_URL}/${SERVER_KERNEL_VERSION}/${SERVER_KERNEL_MODULES}" -O "${KERNEL_DOWNLOAD_PATH}/${SERVER_KERNEL_MODULES}" >/dev/null 2>&1 && sync
+        if [[ "$?" -eq "0" && -s "${KERNEL_DOWNLOAD_PATH}/${SERVER_KERNEL_MODULES}" ]]; then
             tolog "03.09 ${SERVER_KERNEL_MODULES} complete."
         else
             tolog "03.10 The modules file failed to download." "1"
@@ -108,12 +109,11 @@ tolog() {
         sleep 3
     fi
 
-    # 04. Move to the ${KERNEL_DOWNLOAD_PATH} directory to prepare for the update kernel
-    mv -f ${TMP_CHECK_DIR}/*.tar.gz ${KERNEL_DOWNLOAD_PATH} >/dev/null 2>&1 && sync
     tolog "04 The kernel is ready, you can update."
     sleep 3
 
     rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1
-    echo '<a href=upload>Update</a>' >$START_LOG
+    echo '<a href="javascript:;" onclick="return amlogic_kernel(this)">Update</a>' >$START_LOG
+
 
     #luci.http.redirect(luci.dispatcher.build_url("admin", "system", "amlogic", "upload"))
