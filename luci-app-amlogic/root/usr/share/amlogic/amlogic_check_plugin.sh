@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # Set a fixed value
+KERNEL_DOWNLOAD_PATH="/tmp/upload"
 TMP_CHECK_DIR="/tmp/amlogic"
 START_LOG=${TMP_CHECK_DIR}"/amlogic_check_plugin.log"
 LOG_FILE=${TMP_CHECK_DIR}"/amlogic.log"
 TMP_CHECK_SERVER_FILE=${TMP_CHECK_DIR}"/amlogic_check_server_plugin_file.txt"
-KERNEL_DOWNLOAD_PATH="/tmp/upload"
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
+[[ -d ${KERNEL_DOWNLOAD_PATH} ]] || mkdir -p ${KERNEL_DOWNLOAD_PATH}
 [[ -d ${TMP_CHECK_DIR} ]] || mkdir -p ${TMP_CHECK_DIR}
 
 # Log function

@@ -14,7 +14,7 @@ m.submit = false
 
 --SimpleForm for Update OpenWrt firmware/kernel
 m_u = SimpleForm("upload", translate("Upload"), nil)
-m_u.description = translate("Upload the file. It will automatically recognize the [Backup Config File], [Kernel File] and [IPK File], and the operation buttons will be displayed automatically.")
+m_u.description = translate("Upload the file. It will automatically recognize the [Backup Config File], [Kernel File], [Firmware File] and [IPK File], and the operation buttons will be displayed automatically.")
 m_u.reset = false
 m_u.submit = false
 s = m_u:section(SimpleSection, "", "")
