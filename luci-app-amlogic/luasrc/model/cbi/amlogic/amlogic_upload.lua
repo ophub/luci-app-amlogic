@@ -1,7 +1,7 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local m, m_u, form, mlog
+local m, m_u, form, c
 
 --Clear the version check log
 luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
@@ -66,33 +66,42 @@ end
 
 local inits, attr = {}
 for i, f in ipairs(fs.glob("/tmp/upload/*")) do
-	attr = fs.stat(f)
-	if attr then
-		inits[i] = {}
-		inits[i].name = fs.basename(f)
-		inits[i].mtime = os.date("%Y-%m-%d %H:%M:%S", attr.mtime)
-		inits[i].modestr = attr.modestr
-		inits[i].size = getSizeStr(attr.size)
-		inits[i].remove = 0
-		inits[i].ipk = false
-        --Check whether the kernel file
+    attr = fs.stat(f)
+    if attr then
+        inits[i] = {}
+        inits[i].name = fs.basename(f)
+        inits[i].mtime = os.date("%Y-%m-%d %H:%M:%S", attr.mtime)
+        inits[i].modestr = attr.modestr
+        inits[i].size = getSizeStr(attr.size)
+        inits[i].remove = 0
+        inits[i].ipk = false
+
+        --Check whether the openwrt firmware file
+        -- openwrt_s905d_v5.10.16_2021.05.31.1958.img.gz
+        if (string.lower(string.sub(fs.basename(f), -7, -1)) == ".img.gz") then
+            openwrt_firmware_file = true
+        end
+
+        --Check whether the three kernel files
         -- boot-5.10.16-flippy-53+.tar.gz
         if (string.lower(string.sub(fs.basename(f), 1, 5)) == "boot-") then
-           boot_file = true
+            boot_file = true
         end
         -- dtb-amlogic-5.10.16-flippy-53+.tar.gz
         if (string.lower(string.sub(fs.basename(f), 1, 12)) == "dtb-amlogic-") then
-           dtb_file = true
+            dtb_file = true
         end
         -- modules-5.10.16-flippy-53+.tar.gz
         if (string.lower(string.sub(fs.basename(f), 1, 8)) == "modules-") then
-           modules_file = true
+            modules_file = true
         end
-        -- modules-5.10.16-flippy-53+.tar.gz
+
+        --Check whether the backup file
+        -- openwrt_config.tar.gz
         if (string.lower(string.sub(fs.basename(f), 1, -1)) == "openwrt_config.tar.gz") then
-           backup_config_file = true
+            backup_config_file = true
         end
-	end
+    end
 end
 
 --SimpleForm for Upload file list
@@ -101,14 +110,24 @@ form.reset = false
 form.submit = false
 
 description_info = ""
+luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_upfiles.log && sync >/dev/null 2>&1")
+
 if backup_config_file then
     description_info = description_info .. translate("There are config file in the upload directory, and you can restore the config. ")
 end
+
 if boot_file and dtb_file and modules_file then
     description_info = description_info .. translate("There are kernel files in the upload directory, and you can replace the kernel.")
+    luci.sys.exec("echo 'kernel' > /tmp/amlogic/amlogic_check_upfiles.log && sync >/dev/null 2>&1")
 end
+
+if openwrt_firmware_file then
+    description_info = description_info .. translate("There are openwrt firmware file in the upload directory, and you can update the openwrt.")
+    luci.sys.exec("echo 'firmware' > /tmp/amlogic/amlogic_check_upfiles.log && sync >/dev/null 2>&1")
+end
+
 if description_info ~= "" then
-	form.description =  ' <span style="color: green"><b> Tip: ' .. description_info .. ' </b></span> '
+    form.description =  ' <span style="color: green"><b> Tip: ' .. description_info .. ' </b></span> '
 end
 
 tb = form:section(Table, inits)
@@ -168,31 +187,9 @@ btnis.write = function(self, section)
     end
 end
 
---Add Button for Replace OpenWrt kernel
-btnkernel = form:section(SimpleSection, "")
-ksbtn = btnkernel:option(Button, "")
-ksbtn.template = "amlogic/other_button"
-ksbtn.render = function(self, section, scope)
-	if not boot_file or not dtb_file or not modules_file then return false end
-	scope.display = ""
-	self.inputtitle = translate("Replace OpenWrt Kernel")
-	self.inputstyle = "apply"
-	Button.render(self, section, scope)
-end
-ksbtn.write = function(self, section, scope)
-	kum.value = translate("Tip: The kernel is being replaced, and it will automatically restart after completion.")
-	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-kernel 2>/dev/null")
-	local r = luci.sys.exec("/usr/bin/openwrt-kernel -r > /tmp/amlogic/amlogic.log && sync 2>/dev/null")
-end
-kum = btnkernel:option(DummyValue, "", nil)
-kum.template = "amlogic/other_dvalue"
+--SimpleForm for Check upload files
+c = Map("amlogic")
+c.pageaction = false
+c:section(SimpleSection).template  = "amlogic/other_upfiles"
 
---SimpleForm for Server Logs
-mlog = SimpleForm("amlogic_log", translate("Server Logs"), nil)
-mlog.reset = false
-mlog.submit = false
-slog = mlog:section(SimpleSection, "", translate("Display the execution log of the current operation."))
-olog = slog:option(TextValue, "")
-olog.template = "amlogic/other_log"
-
-return m, m_u, form, mlog
+return m, m_u, form, c

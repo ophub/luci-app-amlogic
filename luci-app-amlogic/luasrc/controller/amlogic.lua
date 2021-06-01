@@ -17,6 +17,7 @@ function index()
     entry({"admin", "system", "amlogic", "start_check_firmware"},call("action_start_check_firmware")).leaf=true
     entry({"admin", "system", "amlogic", "start_check_plugin"},call("action_start_check_plugin")).leaf=true
     entry({"admin", "system", "amlogic", "start_check_kernel"},call("action_start_check_kernel")).leaf=true
+    entry({"admin", "system", "amlogic", "start_check_upfiles"},call("action_start_check_upfiles")).leaf=true
     entry({"admin", "system", "amlogic", "start_amlogic_install"},call("action_start_amlogic_install")).leaf=true
     entry({"admin", "system", "amlogic", "start_amlogic_update"},call("action_start_amlogic_update")).leaf=true
     entry({"admin", "system", "amlogic", "start_amlogic_kernel"},call("action_start_amlogic_kernel")).leaf=true
@@ -46,6 +47,7 @@ function action_refresh_log()
     local logfile="/tmp/amlogic/amlogic.log"
     if not fs.access(logfile) then
         luci.sys.exec("uname -a > /tmp/amlogic/amlogic.log && sync")
+        luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_upfiles.log && sync >/dev/null 2>&1")
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
     end
@@ -95,6 +97,10 @@ end
 function action_check_firmware()
     luci.sys.exec("chmod +x /usr/share/amlogic/amlogic_check_firmware.sh >/dev/null 2>&1")
     return luci.sys.call("/usr/share/amlogic/amlogic_check_firmware.sh >/dev/null 2>&1")
+end
+
+local function start_check_upfiles()
+    return luci.sys.exec("sed -n '$p' /tmp/amlogic/amlogic_check_upfiles.log 2>/dev/null")
 end
 
 local function start_check_plugin()
@@ -151,6 +157,13 @@ function action_start_amlogic_kernel()
     })
 end
 
+function action_start_check_upfiles()
+    luci.http.prepare_content("application/json")
+    luci.http.write_json({
+        start_check_upfiles = start_check_upfiles();
+    })
+end
+
 local function current_firmware_version()
     return luci.sys.exec("ls /lib/modules/  2>/dev/null | grep -oE '^[1-9].[0-9]{1,2}.[0-9]+'") or "Invalid value."
 end
@@ -160,7 +173,6 @@ local function current_plugin_version()
 end
 
 local function current_kernel_version()
-    --return luci.sys.exec("uci get amlogic.config.amlogic_kernel_version 2>/dev/null") or "Invalid value."
     return luci.sys.exec("ls /lib/modules/  2>/dev/null | grep -oE '^[1-9].[0-9]{1,2}.[0-9]+'") or "Invalid value."
 end
 
@@ -172,3 +184,4 @@ function action_state()
         current_kernel_version = current_kernel_version();
     })
 end
+
