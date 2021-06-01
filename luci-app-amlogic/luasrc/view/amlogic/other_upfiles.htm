@@ -44,7 +44,11 @@
 </style>
 <fieldset class="cbi-section">
 	<table width="100%">
-		<tr><td width="100%" colspan="2"><p align="center"><%:When there is a whole set of OpenWrt firmware file(.img.gz suffix) or kernel files(Three kernel) in the upload file list, the relevant operation buttons will be displayed automatically.%></p></td></tr>
+		<tr><td width="100%" colspan="2">
+			<p align="center">
+				<%:After uploading firmware (.img.gz suffix) or kernel files (3 kernel files), the update button will be displayed.%>
+			</p>
+		</td></tr>
 		<tr id="_have_firmware" style="display:none"><td width="30%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Update OpenWrt firmware%>" onclick="return amlogic_update(this, 'auto')"/></td><td  width="70%" align="left"><span id="_current_firmware_version"><%:Collecting data...%></span>　<span id="_check_firmware"></span></td></tr>
 		<tr id="_have_kernel" style="display:none"><td width="30%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Replace OpenWrt Kernel%>" onclick="return amlogic_kernel(this)"/></td><td  width="70%" align="left"><span id="_current_kernel_version"><%:Collecting data...%></span>　<span id="_check_kernel"></span></td></tr>
 	</table>

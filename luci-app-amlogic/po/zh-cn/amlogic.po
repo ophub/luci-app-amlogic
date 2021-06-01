@@ -74,10 +74,10 @@ msgstr "上传文件列表中有内核文件，你可以升级内核。"
 msgid "There are openwrt firmware file in the upload directory, and you can update the openwrt."
 msgstr "上传文件列表中有 OpenWrt 固件文件，你可以升级 OpenWrt。"
 
-msgid "Upload the file. It will automatically recognize the [Backup Config File], [Kernel File], [Firmware File] and [IPK File], and the operation buttons will be displayed automatically."
-msgstr "将文件上传到[ /tmp/upload/ ]。将自动识别备份的 [配置文件]，[固件文件], [内核文件] 和 [IPK文件]，并自动显示相关操作按钮。"
+msgid "After uploading [Firmware], [Kernel], [IPK] or [Backup Config], the operation buttons will be displayed."
+msgstr "当上传[固件文件]，[内核文件]，[IPK文件]或[配置文件]后，将自动显示相关操作按钮。"
 
-msgid "When there is a whole set of OpenWrt firmware file(.img.gz suffix) or kernel files(Three kernel) in the upload file list, the relevant operation buttons will be displayed automatically."
+msgid "After uploading firmware (.img.gz suffix) or kernel files (3 kernel files), the update button will be displayed."
 msgstr "当上传文件列表中有 OpenWrt 固件（.img.gz 后缀）或内核文件（3个内核文件）时，将自动显示相关操作按钮。"
 
 msgid "Amlogic Service"
@@ -230,7 +230,7 @@ msgstr "备份配置：openwrt-backup -b"
 msgid "Restore Config: openwrt-backup -r"
 msgstr "恢复配置：openwrt-backup -r"
 
-msgid "The plug-in uses the above commands for related operations, and these commands can also be used in terminals such as TTYD."
+msgid "The plug-in uses the above commands for related operations, and these commands can also be used in terminals."
 msgstr "插件使用以上命令进行相关操作，这些命令也可以在 TTYD 等终端中使用。"
 
 msgid "Supported Amlogic SoC & STB:"
@@ -263,8 +263,8 @@ msgstr "安装Ipk"
 msgid "Backup Config"
 msgstr "备份配置"
 
-msgid "Backup Config (openwrt_config.tar.gz) for Amlogic OpenWrt. You can [upload] this file, and the [Restore Config] button will be displayed in the [Upload file list]."
-msgstr "备份晶晨宝盒中 OpenWrt 软件的相关配置信息(openwrt_config.tar.gz)。可将此文件[上传]，文件列表中将显示[恢复]按钮。"
+msgid "Backup config (openwrt_config.tar.gz). You can upload this file to restore the config."
+msgstr "备份晶晨宝盒中 OpenWrt 软件的相关配置信息(openwrt_config.tar.gz)。可将此文件上传，恢复配置。"
 
 msgid "Restore"
 msgstr "恢复"
