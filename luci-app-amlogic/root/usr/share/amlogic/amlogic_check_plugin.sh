@@ -77,5 +77,3 @@ tolog() {
 
     rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1
     echo '<a href=upload>Update</a>' >$START_LOG
-
-    #luci.http.redirect(luci.dispatcher.build_url("admin", "system", "amlogic", "upload"))

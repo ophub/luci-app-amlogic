@@ -71,8 +71,14 @@ msgstr "上传文件列表中有配置文件，你可以恢复配置。"
 msgid "There are kernel files in the upload directory, and you can replace the kernel."
 msgstr "上传文件列表中有内核文件，你可以升级内核。"
 
+msgid "There are openwrt firmware file in the upload directory, and you can update the openwrt."
+msgstr "上传文件列表中有 OpenWrt 固件文件，你可以升级 OpenWrt。"
+
 msgid "Upload the file. It will automatically recognize the [Backup Config File], [Kernel File], [Firmware File] and [IPK File], and the operation buttons will be displayed automatically."
 msgstr "将文件上传到[ /tmp/upload/ ]。将自动识别备份的 [配置文件]，[固件文件], [内核文件] 和 [IPK文件]，并自动显示相关操作按钮。"
+
+msgid "When there is a whole set of OpenWrt firmware file(.img.gz suffix) or kernel files(Three kernel) in the upload file list, the relevant operation buttons will be displayed automatically."
+msgstr "当上传文件列表中有 OpenWrt 固件（.img.gz 后缀）或内核文件（3个内核文件）时，将自动显示相关操作按钮。"
 
 msgid "Amlogic Service"
 msgstr "晶晨宝盒"

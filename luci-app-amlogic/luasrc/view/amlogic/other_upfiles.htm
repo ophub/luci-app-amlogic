@@ -44,14 +44,9 @@
 </style>
 <fieldset class="cbi-section">
 	<table width="100%">
-		<tr><td width="100%" colspan="2">
-			<p align="center">
-				<%:We will recommend to you the kernel version with the same mainline as the current OpenWrt system.%> <span id="_openwrt_mainline_version"></span>
-			</p>
-		</td></tr>
-		<tr><td width="30%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Check Firmware Version%>" onclick="return b_check_firmware(this)"/></td><td  width="70%" align="left"><span id="_current_firmware_version"><%:Collecting data...%></span>　<span id="_check_firmware"></span></td></tr>
-		<tr><td width="30%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Check Kernel Version%>" onclick="return b_check_kernel(this)"/></td><td  width="70%" align="left"><span id="_current_kernel_version"><%:Collecting data...%></span>　<span id="_check_kernel"></span></td></tr>
-		<tr><td width="30%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Check Plugin Version%>" onclick="return b_check_plugin(this)"/></td><td  width="70%" align="left"><span id="_current_plugin_version"><%:Collecting data...%></span>　<span id="_check_plugin"></span></td></tr>
+		<tr><td width="100%" colspan="2"><p align="center"><%:When there is a whole set of OpenWrt firmware file(.img.gz suffix) or kernel files(Three kernel) in the upload file list, the relevant operation buttons will be displayed automatically.%></p></td></tr>
+		<tr id="_have_firmware" style="display:none"><td width="30%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Update OpenWrt firmware%>" onclick="return amlogic_update(this, 'auto')"/></td><td  width="70%" align="left"><span id="_current_firmware_version"><%:Collecting data...%></span>　<span id="_check_firmware"></span></td></tr>
+		<tr id="_have_kernel" style="display:none"><td width="30%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Replace OpenWrt Kernel%>" onclick="return amlogic_kernel(this)"/></td><td  width="70%" align="left"><span id="_current_kernel_version"><%:Collecting data...%></span>　<span id="_check_kernel"></span></td></tr>
 	</table>
 </fieldset>
 <script type="text/javascript">//<![CDATA[
@@ -78,7 +73,7 @@
 					}
 				}
 				else {
-					btn.value = '<%:Update%>';
+					btn.value = '<%:Update OpenWrt firmware%>';
 				}
 			}
 		);
@@ -103,7 +98,7 @@
 					}
 				}
 				else {
-					btn.value = '<%:Update%>';
+					btn.value = '<%:Replace OpenWrt Kernel%>';
 				}
 			}
 		);
@@ -111,56 +106,19 @@
 		return false;
 	}
 
-	function b_check_firmware(btn)
-	{
-		btn.disabled = true;
-		btn.value = '<%:Checking...%>';
-		XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "check_firmware")%>', null, function(x, status) {
-		if ( x && x.status == 200 ) {
-			btn.disabled = false;
-			btn.value = '<%:Check Firmware Version%>';
+	var have_firmware = document.getElementById('_have_firmware');
+	var have_kernel = document.getElementById('_have_kernel');
+	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_check_upfiles")%>', status.start_check_upfiles, function(x, status) {
+	if ( x && x.status == 200 ) {
+		if ( status.start_check_upfiles == "firmware\n" || status.start_check_upfiles == "firmware" ) {
+			have_firmware.style.display = 'block';
 		}
-		else {
-			btn.disabled = false;
-			btn.value = '<%:Check Firmware Version%>';
-		}
-		return false;
-		});
-	}
 
-	function b_check_plugin(btn)
-	{
-		btn.disabled = true;
-		btn.value = '<%:Checking...%>';
-		XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "check_plugin")%>', null, function(x, status) {
-		if ( x && x.status == 200 ) {
-			btn.disabled = false;
-			btn.value = '<%:Check Plugin Version%>';
+		if ( status.start_check_upfiles == "kernel\n" || status.start_check_upfiles == "kernel" ) {
+			have_kernel.style.display = 'block';
 		}
-		else {
-			btn.disabled = false;
-			btn.value = '<%:Check Plugin Version%>';
-		}
-		return false;
-		});
 	}
-
-	function b_check_kernel(btn)
-	{
-		btn.disabled = true;
-		btn.value = '<%:Checking...%>';
-		XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "check_kernel")%>', null, function(x, status) {
-		if ( x && x.status == 200 ) {
-			btn.disabled = false;
-			btn.value = '<%:Check Kernel Version%>';
-		}
-		else {
-			btn.disabled = false;
-			btn.value = '<%:Check Kernel Version%>';
-		}
-		return false;
-		});
-	}
+	});
 
 	var start_check_firmware = document.getElementById('_check_firmware');
 	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_check_firmware")%>', status.start_check_firmware, function(x, status) {
@@ -170,18 +128,6 @@
 		}
 		if ( status.start_check_firmware == "\n" || status.start_check_firmware == "" ) {
 			start_check_firmware.innerHTML = '';
-		}
-	}
-	});
-
-	var start_check_plugin = document.getElementById('_check_plugin');
-	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_check_plugin")%>', status.start_check_plugin, function(x, status) {
-	if ( x && x.status == 200 ) {
-		if ( status.start_check_plugin != "\n" && status.start_check_plugin != "" ) {
-			start_check_plugin.innerHTML = '<font color="blue"> '+status.start_check_plugin+'</font>';
-		}
-		if ( status.start_check_plugin == "\n" || status.start_check_plugin == "" ) {
-			start_check_plugin.innerHTML = '';
 		}
 	}
 	});
@@ -199,17 +145,11 @@
 	});
 
 	var current_firmware_version = document.getElementById('_current_firmware_version');
-	var current_plugin_version = document.getElementById('_current_plugin_version');
 	var current_kernel_version = document.getElementById('_current_kernel_version');
-	var openwrt_mainline_version = document.getElementById('_openwrt_mainline_version');
 	XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "state")%>', null, function(x, status) {
 	if ( x && x.status == 200 ) {
 		current_firmware_version.innerHTML = status.current_firmware_version ? "<font color=green><%:Current Version%> [ "+status.current_firmware_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
-		current_plugin_version.innerHTML = status.current_plugin_version ? "<font color=green><%:Current Version%> [ "+status.current_plugin_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
 		current_kernel_version.innerHTML = status.current_kernel_version ? "<font color=green><%:Current Version%> [ "+status.current_kernel_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
-
-		var str_kernel_version=status.current_kernel_version; var arr_kernel_version=str_kernel_version.split(".");
-		openwrt_mainline_version.innerHTML = status.current_kernel_version ? " [ "+arr_kernel_version[0]+"."+arr_kernel_version[1]+".*** ] " : "[ "+"<%:Invalid value.%>"+" ]";
 	}
 	});
 

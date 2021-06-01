@@ -20,7 +20,6 @@ tolog() {
     # 01. Query local version information
     tolog "01. Query version information."
     CURRENT_KERNEL_V=$(ls /lib/modules/  2>/dev/null | grep -oE '^[1-9].[0-9]{1,2}.[0-9]+')
-    uci set amlogic.config.amlogic_kernel_version="${CURRENT_KERNEL_V}" 2>/dev/null
     tolog "01.01 current version: ${CURRENT_KERNEL_V}"
     sleep 3
 
@@ -115,5 +114,3 @@ tolog() {
     rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1
     echo '<a href="javascript:;" onclick="return amlogic_kernel(this)">Update</a>' >$START_LOG
 
-
-    #luci.http.redirect(luci.dispatcher.build_url("admin", "system", "amlogic", "upload"))
