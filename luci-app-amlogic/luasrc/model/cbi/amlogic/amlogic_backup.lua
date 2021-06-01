@@ -10,7 +10,7 @@ m.submit = false
 
 --SimpleForm for Backup Config
 b = SimpleForm("backup", translate("Backup Config"), nil)
-b.description = translate("Backup Config (openwrt_config.tar.gz) for Amlogic OpenWrt. You can [upload] this file, and the [Restore Config] button will be displayed in the [Upload file list].")
+b.description = translate("Backup config (openwrt_config.tar.gz). You can upload this file to restore the config.")
 b.reset = false
 b.submit = false
 s = b:section(SimpleSection, "", "")
