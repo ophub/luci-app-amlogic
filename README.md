@@ -32,12 +32,6 @@ make V=99
 
 ![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/120589293-35515700-c46b-11eb-9f6d-745cc7e9423e.gif)
 
-## Tip / 提示
-
-The Luci operation is a visual operation of the execution of the script. In theory, the result is exactly the same as the result of the execution of the script. However, since it is currently in the testing period, please use it with caution.
-
-Luci 操作是对执行脚本的可视化操作，理论上和执行脚本的结果是完全一样的，但鉴于当前属于测试期，请谨慎使用。
-
 ## Borrow / 借鉴
 
 - Upload functions by luci-app-filetransfer
