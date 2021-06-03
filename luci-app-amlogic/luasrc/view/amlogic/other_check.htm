@@ -162,54 +162,54 @@
 		});
 	}
 
-	var start_check_firmware = document.getElementById('_check_firmware');
+	var _check_firmware = document.getElementById('_check_firmware');
 	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_check_firmware")%>', status.start_check_firmware, function(x, status) {
 	if ( x && x.status == 200 ) {
 		if ( status.start_check_firmware != "\n" && status.start_check_firmware != "" ) {
-			start_check_firmware.innerHTML = '<font color="blue"> '+status.start_check_firmware+'</font>';
+			_check_firmware.innerHTML = '<font color="blue"> '+status.start_check_firmware+'</font>';
 		}
 		if ( status.start_check_firmware == "\n" || status.start_check_firmware == "" ) {
-			start_check_firmware.innerHTML = '';
+			_check_firmware.innerHTML = '';
 		}
 	}
 	});
 
-	var start_check_plugin = document.getElementById('_check_plugin');
+	var _check_plugin = document.getElementById('_check_plugin');
 	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_check_plugin")%>', status.start_check_plugin, function(x, status) {
 	if ( x && x.status == 200 ) {
 		if ( status.start_check_plugin != "\n" && status.start_check_plugin != "" ) {
-			start_check_plugin.innerHTML = '<font color="blue"> '+status.start_check_plugin+'</font>';
+			_check_plugin.innerHTML = '<font color="blue"> '+status.start_check_plugin+'</font>';
 		}
 		if ( status.start_check_plugin == "\n" || status.start_check_plugin == "" ) {
-			start_check_plugin.innerHTML = '';
+			_check_plugin.innerHTML = '';
 		}
 	}
 	});
 
-	var start_check_kernel = document.getElementById('_check_kernel');
+	var _check_kernel = document.getElementById('_check_kernel');
 	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_check_kernel")%>', status.start_check_kernel, function(x, status) {
 	if ( x && x.status == 200 ) {
 		if ( status.start_check_kernel != "\n" && status.start_check_kernel != "" ) {
-			start_check_kernel.innerHTML = '<font color="blue"> '+status.start_check_kernel+'</font>';
+			_check_kernel.innerHTML = '<font color="blue"> '+status.start_check_kernel+'</font>';
 		}
 		if ( status.start_check_kernel == "\n" || status.start_check_kernel == "" ) {
-			start_check_kernel.innerHTML = '';
+			_check_kernel.innerHTML = '';
 		}
 	}
 	});
 
-	var current_firmware_version = document.getElementById('_current_firmware_version');
-	var current_plugin_version = document.getElementById('_current_plugin_version');
-	var current_kernel_version = document.getElementById('_current_kernel_version');
-	var openwrt_mainline_version = document.getElementById('_openwrt_mainline_version');
+	var _current_firmware_version = document.getElementById('_current_firmware_version');
+	var _current_plugin_version = document.getElementById('_current_plugin_version');
+	var _current_kernel_version = document.getElementById('_current_kernel_version');
+	var _openwrt_mainline_version = document.getElementById('_openwrt_mainline_version');
 	XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "state")%>', null, function(x, status) {
 	if ( x && x.status == 200 ) {
-		current_firmware_version.innerHTML = status.current_firmware_version ? "<font color=green><%:Current Version%> [ "+status.current_firmware_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
-		current_plugin_version.innerHTML = status.current_plugin_version ? "<font color=green><%:Current Version%> [ "+status.current_plugin_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
-		current_kernel_version.innerHTML = status.current_kernel_version ? "<font color=green><%:Current Version%> [ "+status.current_kernel_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
+		_current_firmware_version.innerHTML = status.current_firmware_version ? "<font color=green><%:Current Version%> [ "+status.current_firmware_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
+		_current_plugin_version.innerHTML = status.current_plugin_version ? "<font color=green><%:Current Version%> [ "+status.current_plugin_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
+		_current_kernel_version.innerHTML = status.current_kernel_version ? "<font color=green><%:Current Version%> [ "+status.current_kernel_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
 
 		var str_kernel_version=status.current_kernel_version; var arr_kernel_version=str_kernel_version.split(".");
-		openwrt_mainline_version.innerHTML = status.current_kernel_version ? " [ "+arr_kernel_version[0]+"."+arr_kernel_version[1]+".*** ] " : "[ "+"<%:Invalid value.%>"+" ]";
+		_openwrt_mainline_version.innerHTML = status.current_kernel_version ? " [ "+arr_kernel_version[0]+"."+arr_kernel_version[1]+".*** ] " : "[ "+"<%:Invalid value.%>"+" ]";
 	}
 	});
 
