@@ -1,7 +1,7 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local m, c, mlog
+local m, c
 
 --SimpleForm for nil
 m = SimpleForm("", "", nil)
@@ -15,12 +15,4 @@ c.description = translate("Install OpenWrt to Amlogic EMMC, Please Select the Am
 c.pageaction = false
 c:section(SimpleSection).template  = "amlogic/other_install"
 
---SimpleForm for Server Logs
-mlog = SimpleForm("amlogic_log", translate("Server Logs"), nil)
-mlog.reset = false
-mlog.submit = false
-slog = mlog:section(SimpleSection, "", translate("Display the execution log of the current operation."))
-olog = slog:option(TextValue, "")
-olog.template = "amlogic/other_log"
-
-return m, c, mlog
+return m, c

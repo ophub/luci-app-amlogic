@@ -59,6 +59,7 @@ tolog() {
     sleep 3
 
     rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1
-    echo '<a href="javascript:;" onclick="return amlogic_update(this, '"'${FIRMWARE_DOWNLOAD_NAME}'"')">Update</a>' >$START_LOG
+    #echo '<a href="javascript:;" onclick="return amlogic_update(this, '"'${FIRMWARE_DOWNLOAD_NAME}'"')">Update</a>' >$START_LOG
+    echo '<input type="button" class="cbi-button cbi-button-reload" value="Update" onclick="return amlogic_update(this, '"'${FIRMWARE_DOWNLOAD_NAME}'"')"/>' >$START_LOG
 
     sleep 3
