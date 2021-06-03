@@ -9,11 +9,13 @@ function index()
     entry({"admin", "system", "amlogic", "upload"},cbi("amlogic/amlogic_upload"),_("Manually Upload Updates"), 3).leaf = true
     entry({"admin", "system", "amlogic", "check"},cbi("amlogic/amlogic_check"),_("Download Updates Online"), 4).leaf = true
     entry({"admin", "system", "amlogic", "backup"},cbi("amlogic/amlogic_backup"),_("Backup Config"), 5).leaf = true
+    entry({"admin", "system", "amlogic", "log"},cbi("amlogic/amlogic_log"),_("Server Logs"), 6).leaf = true
     entry({"admin", "system", "amlogic", "check_firmware"},call("action_check_firmware"))
     entry({"admin", "system", "amlogic", "check_plugin"},call("action_check_plugin"))
     entry({"admin", "system", "amlogic", "check_kernel"},call("action_check_kernel"))
     entry({"admin", "system", "amlogic", "refresh_log"},call("action_refresh_log"))
     entry({"admin", "system", "amlogic", "del_log"},call("action_del_log"))
+    entry({"admin", "system", "amlogic", "start_check_install"},call("action_start_check_install")).leaf=true
     entry({"admin", "system", "amlogic", "start_check_firmware"},call("action_start_check_firmware")).leaf=true
     entry({"admin", "system", "amlogic", "start_check_plugin"},call("action_start_check_plugin")).leaf=true
     entry({"admin", "system", "amlogic", "start_check_kernel"},call("action_start_check_kernel")).leaf=true
@@ -47,6 +49,7 @@ function action_refresh_log()
     local logfile="/tmp/amlogic/amlogic.log"
     if not fs.access(logfile) then
         luci.sys.exec("uname -a > /tmp/amlogic/amlogic.log && sync")
+        luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_install.log && sync >/dev/null 2>&1")
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_upfiles.log && sync >/dev/null 2>&1")
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
@@ -80,7 +83,7 @@ end
 function start_amlogic_install()
     local amlogic_install_sel = luci.http.formvalue("amlogic_install_sel")
     local res = string.split(amlogic_install_sel, "@")
-    local state = luci.sys.call("/usr/bin/openwrt-install TEST-UBOOT YES " .. res[1] .. " " .. res[2] .. " > /tmp/amlogic/amlogic.log && sync 2>/dev/null")
+    local state = luci.sys.call("/usr/bin/openwrt-install TEST-UBOOT YES " .. res[1] .. " " .. res[2] .. " > /tmp/amlogic/amlogic_check_install.log && sync 2>/dev/null")
     return state
 end
 
@@ -115,6 +118,10 @@ local function start_check_firmware()
     return luci.sys.exec("sed -n '$p' /tmp/amlogic/amlogic_check_firmware.log 2>/dev/null")
 end
 
+local function start_check_install()
+    return luci.sys.exec("sed -n '$p' /tmp/amlogic/amlogic_check_install.log 2>/dev/null")
+end
+
 function action_start_check_plugin()
     luci.http.prepare_content("application/json")
     luci.http.write_json({
@@ -133,6 +140,13 @@ function action_start_check_firmware()
     luci.http.prepare_content("application/json")
     luci.http.write_json({
         start_check_firmware = start_check_firmware();
+    })
+end
+
+function action_start_check_install()
+    luci.http.prepare_content("application/json")
+    luci.http.write_json({
+        start_check_install = start_check_install();
     })
 end
 

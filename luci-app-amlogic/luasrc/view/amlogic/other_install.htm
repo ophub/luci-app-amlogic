@@ -66,8 +66,8 @@
 			<option value="99"><%:Enter the dtb file name%></option>
 			</select>
 		</td></tr>
-		<tr id="tr_sel_dtb" style="display:none;"><td width="35%" align="right"><%:Or enter the dtb file name:%></td><td  width="65%" align="left"><input class="cbi-input-file" style="width: 235px" type="text" id="amlogic_dtb" name="amlogic_dtb" /></td></tr>
-		<tr><td width="35%" align="right"><%:Install OpenWrt:%></td><td  width="65%" align="left"><input type="button" class="cbi-button cbi-button-reload" value="<%:Install%>" onclick="return amlogic_install(this, '<%=self:cfgvalue(section)%>')"/> <span id="_show_me"></span></td></tr>
+		<tr id="tr_sel_dtb" style="display:none;"><td width="30%" align="right"><%:Or enter the dtb file name:%></td><td  width="70%" align="left"><input class="cbi-input-file" style="width: 235px" type="text" id="amlogic_dtb" name="amlogic_dtb" /></td></tr>
+		<tr><td width="30%" align="right"><%:Install OpenWrt:%></td><td  width="70%" align="left"><input type="button" class="cbi-button cbi-button-reload" value="<%:Install%>" onclick="return amlogic_install(this, '<%=self:cfgvalue(section)%>')"/>　<span id="_check_install"></span>　<span id="_show_me"></span></td></tr>
 	</table>
 </fieldset>
 <script type="text/javascript">//<![CDATA[
@@ -127,4 +127,15 @@
 		return false;
 	}
 
+	var start_check_install = document.getElementById('_check_install');
+	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_check_install")%>', status.start_check_install, function(x, status) {
+	if ( x && x.status == 200 ) {
+		if ( status.start_check_install != "\n" && status.start_check_install != "" ) {
+			start_check_install.innerHTML = '<font color="blue"> '+status.start_check_install+'</font>';
+		}
+		if ( status.start_check_install == "\n" || status.start_check_install == "" ) {
+			start_check_install.innerHTML = '';
+		}
+	}
+	});
 //]]></script>
