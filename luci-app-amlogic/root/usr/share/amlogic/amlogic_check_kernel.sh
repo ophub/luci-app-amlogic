@@ -111,7 +111,9 @@ tolog() {
     tolog "04 The kernel is ready, you can update."
     sleep 3
 
-    rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1
+    rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1 && sync
     #echo '<a href="javascript:;" onclick="return amlogic_kernel(this)">Update</a>' >$START_LOG
     echo '<input type="button" class="cbi-button cbi-button-reload" value="Update" onclick="return amlogic_kernel(this)"/>' >$START_LOG
+
+    exit 0
 
