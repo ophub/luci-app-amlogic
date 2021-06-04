@@ -1,7 +1,7 @@
 #!/bin/bash
 
-
-echo $(curl -i -u ophub:${{ secrets.GITHUB_TOKEN }} https://api.github.com/ophub/amlogic-s9xxx-openwrt)
+test_api=$(curl -i -u "ophub:${{ secrets.GITHUB_TOKEN }}" -s "https://api.github.com/repos/ophub/amlogic-s9xxx-openwrt/contents/amlogic-s9xxx/amlogic-kernel/kernel/5.4.108" | grep "download_url" | grep -o "https.*/boot-.*.tar.gz")
+echo ${test_api}
 
 exit 0
 
