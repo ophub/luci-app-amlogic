@@ -255,7 +255,7 @@ msgid "S905d --- [ Phicomm N1 ]"
 msgstr "S905d --- [ 斐讯 N1 ]"
 
 msgid "Other --- [ Optional DTB ]"
-msgstr "其他 --- [ 自定义 DTB 文件 ]"
+msgstr "其他 ----- [ 自定义 DTB 文件 ]"
 
 msgid "Install Ipk"
 msgstr "安装Ipk"
