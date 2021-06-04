@@ -75,5 +75,8 @@ tolog() {
     tolog "04 The plug is ready, you can update."
     sleep 3
 
-    rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1
+    rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1 && sync
     echo '<a href=upload>Update</a>' >$START_LOG
+
+    exit 0
+

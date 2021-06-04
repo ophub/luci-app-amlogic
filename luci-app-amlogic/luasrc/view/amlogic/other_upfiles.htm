@@ -50,10 +50,16 @@
 				<%:After uploading firmware (.img.gz suffix) or kernel files (3 kernel files), the update button will be displayed.%>
 			</p>
 		</td></tr>
-		<tr id="_have_firmware" style="display:none"><td width="30%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Update OpenWrt firmware%>" onclick="return amlogic_update(this, 'auto')"/></td><td  width="70%" align="left"><span id="_current_firmware_version"><%:Collecting data...%></span>　<span id="_check_firmware"></span></td></tr>
-		<tr id="_have_kernel" style="display:none"><td width="30%" align="right"><input type="button" class="cbi-button cbi-button-reload" value="<%:Replace OpenWrt Kernel%>" onclick="return amlogic_kernel(this)"/></td><td  width="70%" align="left"><span id="_current_kernel_version"><%:Collecting data...%></span>　<span id="_check_kernel"></span></td></tr>
+		<tr><td width="30%" align="right">
+			<input id="_have_firmware" type="button" class="cbi-button cbi-button-reload" value="<%:Update OpenWrt firmware%>" onclick="return amlogic_update(this, 'auto')"/>
+			<input id="_have_kernel" type="button" class="cbi-button cbi-button-reload" value="<%:Replace OpenWrt Kernel%>" onclick="return amlogic_kernel(this)"/>
+		</td><td  width="70%" align="left">
+			<span id="_current_firmware_version"><%:Collecting data...%></span>　
+			<span id="_check_firmware"></span><span id="_check_kernel"></span>
+		</td></tr>
 	</table>
 </fieldset>
+</div>
 
 <script type="text/javascript">//<![CDATA[
 
@@ -118,10 +124,14 @@
 	if ( x && x.status == 200 ) {
 		if ( status.start_check_upfiles == "firmware\n" || status.start_check_upfiles == "firmware" ) {
 			_have_firmware.style.display = 'block';
+		} else {
+			_have_firmware.style.display = 'none';
 		}
 
 		if ( status.start_check_upfiles == "kernel\n" || status.start_check_upfiles == "kernel" ) {
 			_have_kernel.style.display = 'block';
+		} else {
+			_have_kernel.style.display = 'none';
 		}
 	}
 	});
@@ -151,11 +161,11 @@
 	});
 
 	var _current_firmware_version = document.getElementById('_current_firmware_version');
-	var _current_kernel_version = document.getElementById('_current_kernel_version');
+	//var _current_kernel_version = document.getElementById('_current_kernel_version');
 	XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "state")%>', null, function(x, status) {
 	if ( x && x.status == 200 ) {
 		_current_firmware_version.innerHTML = status.current_firmware_version ? "<font color=green><%:Current Version%> [ "+status.current_firmware_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
-		_current_kernel_version.innerHTML = status.current_kernel_version ? "<font color=green><%:Current Version%> [ "+status.current_kernel_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
+		//_current_kernel_version.innerHTML = status.current_kernel_version ? "<font color=green><%:Current Version%> [ "+status.current_kernel_version+" ] </font>" : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
 	}
 	});
 
