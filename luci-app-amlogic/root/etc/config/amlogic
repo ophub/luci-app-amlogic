@@ -1,4 +1,4 @@
 config amlogic 'config'
 	option enable '1'
 	option amlogic_check_url 'https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK'
-	option amlogic_plugin_version 'v1.2'
+	option amlogic_plugin_version 'v1.5'
