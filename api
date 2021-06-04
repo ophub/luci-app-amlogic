@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+echo $(curl -i -u username:${{ secrets.GITHUB_TOKEN }} https://api.github.com/ophub/amlogic-s9xxx-openwrt)
+
+exit 0
+
