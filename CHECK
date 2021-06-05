@@ -1,5 +1,6 @@
 # 
-# Version Check URL: https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK
+# Set the URL for luci-app-amlogic to check and update openwrt firmware, kernel and plugin
+# https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK
 #
 #
 #
