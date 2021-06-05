@@ -5,7 +5,7 @@
 #
 ######### [ Set plugin info for luci-app-amlogic online check and update ] #########
 amlogic_plugin_url="https://github.com/ophub/luci-app-amlogic/releases/download"
-amlogic_plugin_version="v1.5"
+amlogic_plugin_version="v1.5-1"
 amlogic_plugin_file_ipk="luci-app-amlogic_1.5-1_all.ipk.gz"
 amlogic_plugin_file_i18n="luci-i18n-amlogic-zh-cn_1.5-1_all.ipk.gz"
 #
