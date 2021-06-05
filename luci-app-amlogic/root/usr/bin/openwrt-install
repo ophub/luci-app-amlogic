@@ -378,13 +378,13 @@ done
 # you can change ROOT size(MB) >= 320
 ROOT1=1024
 ROOT2=1024
-if [[ "${AMLOGIC_SOC}" = "s912" || "${AMLOGIC_SOC}" = "s905d" ]]; then
+if [[ "${AMLOGIC_SOC}" == "s912" || "${AMLOGIC_SOC}" == "s905d" ]]; then
     BOOT=512
     BLANK1=68
     BLANK2=184
     BLANK3=0
     BLANK4=0
-elif [[ "${AMLOGIC_SOC}" = "s905x" ]]; then
+elif [[ "${AMLOGIC_SOC}" == "s905x" ]]; then
     BOOT=160
     BLANK1=700
     BLANK2=0
