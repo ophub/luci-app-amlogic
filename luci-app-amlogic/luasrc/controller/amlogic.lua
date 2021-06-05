@@ -179,15 +179,15 @@ function action_start_check_upfiles()
 end
 
 local function current_firmware_version()
-    return luci.sys.exec("ls /lib/modules/  2>/dev/null | grep -oE '^[1-9].[0-9]{1,2}.[0-9]+'") or "Invalid value."
+    return luci.sys.exec("ls /lib/modules/ 2>/dev/null | grep -oE '^[1-9].[0-9]{1,2}.[0-9]+'") or "Invalid value."
 end
 
 local function current_plugin_version()
-    return luci.sys.exec("uci get amlogic.config.amlogic_plugin_version 2>/dev/null") or "Invalid value."
+    return luci.sys.exec("opkg list-installed | grep 'luci-app-amlogic' | awk '{print $3}'") or "Invalid value."
 end
 
 local function current_kernel_version()
-    return luci.sys.exec("ls /lib/modules/  2>/dev/null | grep -oE '^[1-9].[0-9]{1,2}.[0-9]+'") or "Invalid value."
+    return luci.sys.exec("ls /lib/modules/ 2>/dev/null | grep -oE '^[1-9].[0-9]{1,2}.[0-9]+'") or "Invalid value."
 end
 
 function action_state()
