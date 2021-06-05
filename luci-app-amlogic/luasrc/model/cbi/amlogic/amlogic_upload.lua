@@ -178,7 +178,7 @@ btnis.render = function(self, section, scope)
 end
 btnis.write = function(self, section)
     if IsIpkFile(inits[section].name) then
-        local r = luci.sys.exec(string.format('opkg --force-depends install "/tmp/upload/%s"', inits[section].name))
+        local r = luci.sys.exec(string.format('opkg --force-reinstall install "/tmp/upload/%s"', inits[section].name))
         form.description = string.format('<span style="color: red">%s</span>', r)
     elseif IsConfigFile(inits[section].name) then
         form.description =  ' <span style="color: green"><b> ' .. translate("Tip: The config is being restored, and it will automatically restart after completion.") .. ' </b></span> '
@@ -193,3 +193,4 @@ c.pageaction = false
 c:section(SimpleSection).template  = "amlogic/other_upfiles"
 
 return m, m_u, form, c
+
