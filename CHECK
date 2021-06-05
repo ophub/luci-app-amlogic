@@ -3,7 +3,7 @@
 #
 #
 #
-######### [ Set plugin info for luci-app-amlogic online check and update ] #########
+######### [ 01. Set this plugin download repository for luci-app-amlogic online check and update ] #########
 amlogic_plugin_url="https://github.com/ophub/luci-app-amlogic/releases/download"
 amlogic_plugin_version="1.6-1"
 amlogic_plugin_file_ipk="luci-app-amlogic_1.6-1_all.ipk.gz"
@@ -11,12 +11,12 @@ amlogic_plugin_file_i18n="luci-i18n-amlogic-zh-cn_1.6-1_all.ipk.gz"
 #
 #
 #
-######### [ Set openwrt firmware info for luci-app-amlogic online check and update ] #########
+######### [ 02. Set openwrt firmware download repository for luci-app-amlogic online check and update ] #########
 amlogic_firmware_github_repository="ophub/amlogic-s9xxx-openwrt"
 #
 #
 #
-######### [ Set kernel info for luci-app-amlogic online check and update ] #########
+######### [ 03. Set openwrt kernel download repository for luci-app-amlogic online check and update ] #########
 amlogic_kernel_url="https://raw.githubusercontent.com/ophub/amlogic-s9xxx-openwrt/main/amlogic-s9xxx/amlogic-kernel"
 #
 amlogic_kernel_0504_version="5.4.123"
