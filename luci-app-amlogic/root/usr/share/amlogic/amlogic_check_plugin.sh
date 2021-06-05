@@ -19,7 +19,7 @@ tolog() {
 
     # 01. Query local version information
     tolog "01. Query version information."
-    CURRENT_PLUGIN_V=$(uci get amlogic.config.amlogic_plugin_version 2>/dev/null)
+    CURRENT_PLUGIN_V="$(opkg list-installed | grep 'luci-app-amlogic' | awk '{print $3}')"
     tolog "01.01 current version: ${CURRENT_PLUGIN_V}"
     sleep 3
 
