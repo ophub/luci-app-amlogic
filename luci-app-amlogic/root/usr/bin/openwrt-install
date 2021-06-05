@@ -90,7 +90,6 @@ if [ "$(echo $emmc | grep mmcblk)" = "" ]; then
     exit 1
 fi
 
-echo "==================[ 10% ]=================="
 # EMMC DEVICE NAME
 EMMC_NAME="$emmc"
 EMMC_DEVPATH="/dev/$EMMC_NAME"
@@ -362,7 +361,6 @@ for mnt in $MOUNTS; do
     fi
 done
 
-echo "==================[ 30% ]=================="
 # Delete old partition if exists
 p=$(lsblk -l | grep -e "${EMMC_NAME}p" | wc -l)
 echo "A total of [ $p ] old partitions on EMMC will be deleted"
@@ -524,7 +522,6 @@ if [ -x /usr/bin/fix_wifi_macaddr.sh ]; then
 fi
 
 # mkfs
-echo "==================[ 50% ]=================="
 echo "Start creating file system ... "
 echo "Create a boot file system ... "
 
@@ -604,7 +601,6 @@ EOF
 done
 echo "complete."
 
-echo "==================[ 90% ]=================="
 echo "Wait for the rootfs file system to mount ... "
 i=1
 while [ $i -le $max_try ]; do
@@ -709,6 +705,5 @@ esac
 mkdir -p /mnt/${EMMC_NAME}p4/docker /mnt/${EMMC_NAME}p4/AdGuardHome
 sync
 
-echo "==================[ 100% ]=================="
 echo "Install completed, Please unplug the USB disk and [ reboot ] the system!"
 exit 0
