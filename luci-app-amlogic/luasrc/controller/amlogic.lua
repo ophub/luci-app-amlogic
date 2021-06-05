@@ -81,6 +81,7 @@ function start_amlogic_update()
 end
 
 function start_amlogic_install()
+    luci.sys.exec("chmod +x /usr/bin/openwrt-install >/dev/null 2>&1")
     local amlogic_install_sel = luci.http.formvalue("amlogic_install_sel")
     local res = string.split(amlogic_install_sel, "@")
     local state = luci.sys.call("/usr/bin/openwrt-install TEST-UBOOT YES " .. res[1] .. " " .. res[2] .. " > /tmp/amlogic/amlogic_check_install.log && sync 2>/dev/null")
