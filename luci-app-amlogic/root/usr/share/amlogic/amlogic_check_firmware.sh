@@ -42,7 +42,7 @@ tolog() {
     # 03. Version comparison
     tolog "03. Compare versions."
     source ${AMLOGIC_SOC_FILE} 2>/dev/null
-    AMLOGIC_SOC=${AMLOGIC_SOC}
+    AMLOGIC_SOC=${SOC}
     [[ ! -z "${AMLOGIC_SOC}" ]] || tolog "03.01 The custom firmware soc is invalid." "1"
     tolog "03.02 Start downloading firmware ..."
     FIRMWARE_RELEASES_PATH=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | grep -o "openwrt_s9xxx_.*/.*_${AMLOGIC_SOC}_v${MAIN_LINE_VERSION}.*.img.gz" | head -n 1)
