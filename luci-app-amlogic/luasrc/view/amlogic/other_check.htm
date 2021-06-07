@@ -111,6 +111,31 @@
 		return false;
 	}
 
+	function amlogic_plugin(btn)
+	{
+		btn.disabled = true;
+		btn.value    = '<%:Updating...%> ';
+
+		XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic","start_amlogic_plugin")%>', null, function(x, status) {
+				if ( x && x.status == 200 ) {
+					if(status.rule_plugin_status=="1")
+					{
+						btn.value = '<%:Update Failed%>';
+					}
+					else
+					{
+						btn.value = '<%:Successful Update%>';
+					}
+				}
+				else {
+					btn.value = '<%:Update%>';
+				}
+			}
+		);
+		btn.disabled = false;
+		return false;
+	}
+
 	function b_check_firmware(btn)
 	{
 		btn.disabled = true;

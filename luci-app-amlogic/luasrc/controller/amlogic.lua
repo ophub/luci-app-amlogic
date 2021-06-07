@@ -23,6 +23,7 @@ function index()
     entry({"admin", "system", "amlogic", "start_amlogic_install"},call("action_start_amlogic_install")).leaf=true
     entry({"admin", "system", "amlogic", "start_amlogic_update"},call("action_start_amlogic_update")).leaf=true
     entry({"admin", "system", "amlogic", "start_amlogic_kernel"},call("action_start_amlogic_kernel")).leaf=true
+    entry({"admin", "system", "amlogic", "start_amlogic_plugin"},call("action_start_amlogic_plugin")).leaf=true
     entry({"admin", "system", "amlogic", "state"},call("action_state")).leaf=true
 
 end
@@ -70,6 +71,12 @@ end
 function start_amlogic_kernel()
     luci.sys.exec("chmod +x /usr/bin/openwrt-kernel >/dev/null 2>&1")
     local state = luci.sys.call("/usr/bin/openwrt-kernel -r > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
+    return state
+end
+
+function start_amlogic_plugin()
+    local ipk_state = luci.sys.call("opkg --force-reinstall install /tmp/upload/*.ipk > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
+    local state = luci.sys.call("echo 'Successful Update' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
     return state
 end
 
@@ -169,6 +176,13 @@ function action_start_amlogic_kernel()
     luci.http.prepare_content("application/json")
     luci.http.write_json({
         rule_kernel_status = start_amlogic_kernel();
+    })
+end
+
+function action_start_amlogic_plugin()
+    luci.http.prepare_content("application/json")
+    luci.http.write_json({
+        rule_plugin_status = start_amlogic_plugin();
     })
 end
 
