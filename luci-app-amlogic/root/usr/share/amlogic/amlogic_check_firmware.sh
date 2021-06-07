@@ -4,7 +4,7 @@
 EMMC_NAME=$(lsblk | grep -oE '(mmcblk[0-9])' | sort | uniq)
 FIRMWARE_DOWNLOAD_PATH="/mnt/${EMMC_NAME}p4"
 TMP_CHECK_DIR="/tmp/amlogic"
-AMLOGIC_SOC_FILE="/lib/u-boot/openwrt-env"
+AMLOGIC_SOC_FILE="/etc/flippy-openwrt-release"
 START_LOG=${TMP_CHECK_DIR}"/amlogic_check_firmware.log"
 LOG_FILE=${TMP_CHECK_DIR}"/amlogic.log"
 TMP_CHECK_SERVER_FILE=${TMP_CHECK_DIR}"/amlogic_check_server_firmware_file.txt"
