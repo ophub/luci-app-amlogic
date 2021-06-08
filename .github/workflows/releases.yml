@@ -52,7 +52,7 @@ jobs:
         [ -d ${TMP_IPK_DIR} ] || mkdir -p ${TMP_IPK_DIR}/releases
         
         echo "01. Ready to download the ipk package."
-        IPK_DOWNLOAD_PATH=$(curl -s "https://api.github.com/repos/${GITHUB_BUILD_REPOSITORY}/releases" | grep "browser_download_url" | grep -o "https.*/ipk.tar.gz" | head -n 1)
+        IPK_DOWNLOAD_PATH=$(curl -s "https://api.github.com/repos/${GITHUB_BUILD_REPOSITORY}/releases" | grep "browser_download_url" | grep -o "https.*/openwrt_s9xxx_lede_.*/ipk.tar.gz" | head -n 1)
         IPK_DOWNLOAD_NAME="${IPK_DOWNLOAD_PATH##*/}"
         wget -c "${IPK_DOWNLOAD_PATH}" -O "${TMP_IPK_DIR}/${IPK_DOWNLOAD_NAME}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" ]]; then
