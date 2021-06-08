@@ -45,7 +45,7 @@ tolog() {
     SOC=${SOC}
     [[ ! -z "${SOC}" ]] || tolog "03.01 The custom firmware soc is invalid." "1"
     tolog "03.02 Start downloading firmware ..."
-    FIRMWARE_RELEASES_PATH=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | grep -o "openwrt_s9xxx_.*/.*_${SOC}_v${MAIN_LINE_VERSION}.*.img.gz" | head -n 1)
+    FIRMWARE_RELEASES_PATH=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | grep -o "openwrt_s9xxx_lede_.*/.*_${SOC}_v${MAIN_LINE_VERSION}.*.img.gz" | head -n 1)
     FIRMWARE_DOWNLOAD_NAME="openwrt_${SOC}_v${MAIN_LINE_VERSION}_update.img.gz"
     wget -c "https://github.com/${SERVER_FIRMWARE_URL}/releases/download/${FIRMWARE_RELEASES_PATH}" -O "${FIRMWARE_DOWNLOAD_PATH}/${FIRMWARE_DOWNLOAD_NAME}" >/dev/null 2>&1 && sync
     if [[ "$?" -eq "0" && -s "${FIRMWARE_DOWNLOAD_PATH}/${FIRMWARE_DOWNLOAD_NAME}" ]]; then
