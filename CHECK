@@ -1,48 +1,14 @@
-# 
+#
+#
 # Set the URL for luci-app-amlogic to check and update openwrt firmware, kernel and plugin
 # https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/CHECK
 #
 #
-#
-######### [ 01. Set this plugin download repository for luci-app-amlogic online check and update ] #########
-amlogic_plugin_url="https://github.com/ophub/luci-app-amlogic/releases/download"
-amlogic_plugin_version="1.6-5"
-amlogic_plugin_file_ipk="luci-app-amlogic_1.6-5_all.ipk.gz"
-amlogic_plugin_file_i18n="luci-i18n-amlogic-zh-cn_1.6-5_all.ipk.gz"
-#
-#
-#
-######### [ 02. Set openwrt firmware download repository for luci-app-amlogic online check and update ] #########
+######### [ 01. Set openwrt firmware download repository for luci-app-amlogic online check and update ] #########
 amlogic_firmware_github_repository="ophub/amlogic-s9xxx-openwrt"
 #
 #
+######### [ 02. Set openwrt kernel download repository for luci-app-amlogic online check and update ] #########
+amlogic_kernel_github_repository="https://api.github.com/repos/ophub/amlogic-s9xxx-openwrt/contents/amlogic-s9xxx/amlogic-kernel"
 #
-######### [ 03. Set openwrt kernel download repository for luci-app-amlogic online check and update ] #########
-amlogic_kernel_url="https://raw.githubusercontent.com/ophub/amlogic-s9xxx-openwrt/main/amlogic-s9xxx/amlogic-kernel"
 #
-amlogic_kernel_0504_version="5.4.124"
-amlogic_kernel_0504_boot="boot-5.4.124-flippy-60+o.tar.gz"
-amlogic_kernel_0504_dtb="dtb-amlogic-5.4.124-flippy-60+o.tar.gz"
-amlogic_kernel_0504_modules="modules-5.4.124-flippy-60+o.tar.gz"
-#
-amlogic_kernel_0510_version="5.10.42.TF"
-amlogic_kernel_0510_boot="boot-5.10.42-flippy-60+.tar.gz"
-amlogic_kernel_0510_dtb="dtb-amlogic-5.10.42-flippy-60+.tar.gz"
-amlogic_kernel_0510_modules="modules-5.10.42-flippy-60+.tar.gz"
-#
-amlogic_kernel_0511_version="5.11.21.TF"
-amlogic_kernel_0511_boot=""
-amlogic_kernel_0511_dtb=""
-amlogic_kernel_0511_modules=""
-#
-amlogic_kernel_0512_version="5.12.9.TF"
-amlogic_kernel_0512_boot="boot-5.12.9-flippy-60+.tar.gz"
-amlogic_kernel_0512_dtb="dtb-amlogic-5.12.9-flippy-60+.tar.gz"
-amlogic_kernel_0512_modules="modules-5.12.9-flippy-60+.tar.gz"
-#
-amlogic_kernel_0513_version="5.13.1.TF"
-amlogic_kernel_0513_boot=""
-amlogic_kernel_0513_dtb=""
-amlogic_kernel_0513_modules=""
-#
-
