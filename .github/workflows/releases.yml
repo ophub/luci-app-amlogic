@@ -41,6 +41,7 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         echo "COMPILE_STARTINGTIME=$(date +"%Y.%m.%d.%H%M")" >> $GITHUB_ENV
         echo "RELEASES_BRANCH=${RELEASES_BRANCH}" >> $GITHUB_ENV
+        
     - name: Publish Releases
       id: publish
       if: (!cancelled())
@@ -76,6 +77,7 @@ jobs:
             echo "::set-output name=status::failure"
             exit 1
         fi
+        
     - name: Upload ipk to Release
       uses: softprops/action-gh-release@v1
       if: steps.publish.outputs.status == 'success' && !cancelled()
@@ -86,7 +88,7 @@ jobs:
         tag_name: ${{ env.PACKAGED_OUTVERSION }}
         files: ${{ env.PACKAGED_OUTPUTPATH }}/*
         
-     - name: Delete older releases
+    - name: Delete older releases
       uses: dev-drprasad/delete-older-releases@master
       if: env.DELETE_RELEASE == 'true'
       with:
@@ -103,5 +105,4 @@ jobs:
         repository: ${{ github.repository }}
         retain_days: ${{ env.KEEP_DAY }}
         keep_minimum_runs: ${{ env.KEEP_MININUM_RUNS }}
-        
         
