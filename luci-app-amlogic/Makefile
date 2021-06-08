@@ -10,7 +10,7 @@ LUCI_DEPENDS:=@aarch64 +luci-lib-fs +block-mount +blkid +parted +dosfstools +e2f
 PKG_NAME:=luci-app-amlogic
 PKG_MAINTAINER:=ophub <https://github.com/ophub/luci-app-amlogic>
 PKG_VERSION:=1.6
-PKG_RELEASE:=5
+PKG_RELEASE:=6
 
 include $(TOPDIR)/feeds/luci/luci.mk
 

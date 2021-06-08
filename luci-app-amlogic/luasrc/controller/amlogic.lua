@@ -65,6 +65,10 @@ end
 
 function action_del_log()
     luci.sys.exec(": > /tmp/amlogic/amlogic.log")
+    luci.sys.exec(": > /tmp/amlogic/amlogic_check_install.log")
+    luci.sys.exec(": > /tmp/amlogic/amlogic_check_upfiles.log")
+    luci.sys.exec(": > /tmp/amlogic/amlogic_check_plugin.log")
+    luci.sys.exec(": > /tmp/amlogic/amlogic_check_kernel.log")
     return
 end
 
