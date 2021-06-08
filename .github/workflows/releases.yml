@@ -53,15 +53,15 @@ jobs:
         
         echo "01. Ready to download the ipk package."
         IPK_DOWNLOAD_PATH=$(curl -s "https://api.github.com/repos/${GITHUB_BUILD_REPOSITORY}/releases" | grep "browser_download_url" | grep -o "https.*/ipk.tar.gz" | head -n 1)
-        IPK_DOWNLOAD_PATH_NAME="${IPK_DOWNLOAD_PATH##*/}"
-        wget -c "${IPK_DOWNLOAD_PATH}" -O "${TMP_IPK_DIR}/${IPK_DOWNLOAD_PATH_NAME}" >/dev/null 2>&1 && sync
+        IPK_DOWNLOAD_NAME="${IPK_DOWNLOAD_PATH##*/}"
+        wget -c "${IPK_DOWNLOAD_PATH}" -O "${TMP_IPK_DIR}/${IPK_DOWNLOAD_NAME}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" ]]; then
             echo "02.01 Download the ipk.tar.gz file complete."
-            sudo tar -xzf ${TMP_IPK_DIR}/${IPK_DOWNLOAD_PATH_NAME} -C ${TMP_IPK_DIR}/
+            sudo tar -xzf ${TMP_IPK_DIR}/${IPK_DOWNLOAD_NAME} -C ${TMP_IPK_DIR}/
             sudo gzip ${TMP_IPK_DIR}/ipk/luci-app-amlogic_*.ipk
             sudo gzip ${TMP_IPK_DIR}/ipk/luci-i18n-amlogic-*.ipk
             sudo gzip ${TMP_IPK_DIR}/ipk/luci-lib-fs_*.ipk
-            sudo mv ${TMP_IPK_DIR}/ipk/*.ipk.gz ${TMP_IPK_DIR}/releases/
+            sudo mv -f ${TMP_IPK_DIR}/ipk/*.ipk.gz ${TMP_IPK_DIR}/releases/
             IPK_VERSION_RELEASE=$( ls ${TMP_IPK_DIR}/releases/luci-app-amlogic* | grep -oE "[0-9]{1,3}.[0-9]{1,3}-[0-9]+" )
             if [ -n ${IPK_VERSION_RELEASE} ]; then
                 echo "02.02 The ipk version is [ ${IPK_VERSION_RELEASE} ]"
