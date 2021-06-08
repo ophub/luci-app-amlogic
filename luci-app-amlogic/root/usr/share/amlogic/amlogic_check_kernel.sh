@@ -51,7 +51,7 @@ tolog() {
     sleep 3
 
     if [[ "${LATEST_VERSION}" -le "${MAIN_LINE_S}" ]]; then
-        tolog "03.02 Already the latest version, no need to upgrade." "1"
+        tolog "03.02 Already the latest version, no need to update." "1"
         sleep 5
         tolog ""
     else
