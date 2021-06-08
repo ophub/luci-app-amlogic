@@ -30,7 +30,7 @@ tolog() {
     sleep 3
 
     if [[ "${CURRENT_PLUGIN_V}" == "${SERVER_PLUGIN_VERSION}" ]]; then
-        tolog "02.03 The same version, no need to update." "1"
+        tolog "02.03 Already the latest version, no need to update." "1"
         sleep 5
         tolog ""
     else
