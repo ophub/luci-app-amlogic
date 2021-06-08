@@ -84,7 +84,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: ipk
+        name: ipk_${{ env.PACKAGED_OUTVERSION }}
         tag_name: ${{ env.PACKAGED_OUTVERSION }}
         files: ${{ env.PACKAGED_OUTPUTPATH }}/*
         
