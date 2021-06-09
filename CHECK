@@ -6,6 +6,8 @@
 #
 ######### [ 01. Set openwrt firmware download repository for luci-app-amlogic online check and update ] #########
 amlogic_firmware_github_repository="ophub/amlogic-s9xxx-openwrt"
+amlogic_firmware_tag_kerwords="s9xxx_lede"
+amlogic_firmware_suffix=".img.gz"
 #
 #
 ######### [ 02. Set openwrt kernel download repository for luci-app-amlogic online check and update ] #########
