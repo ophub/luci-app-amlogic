@@ -296,6 +296,27 @@ msgstr "版本检查网址："
 msgid "Use custom check url:"
 msgstr "使用自定义检查网站："
 
+msgid "OpenWrt Firmware DownLoad URL:"
+msgstr "OpenWrt 固件下载地址："
+
+msgid "The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.12) will automatically match the current openwrt firmware."
+msgstr "OpenWrt 固件的型号（如：s905d）和内核的主线版本（如：5.12）将根据当前固件自动适配。"
+
+msgid "OpenWrt Kernel DownLoad URL:"
+msgstr "OpenWrt 内核下载地址："
+
+msgid "OpenWrt Firmware Repository:"
+msgstr "OpenWrt 固件下载仓库："
+
+msgid "Releases Tag Keywords:"
+msgstr "OpenWrt Tag 关键字："
+
+msgid "OpenWrt Firmware Suffix:"
+msgstr "OpenWrt 固件文件后缀："
+
+msgid "OpenWrt Kernel Path:"
+msgstr "OpenWrt 内核下载路径："
+
 msgid "Save Config:"
 msgstr "保存配置："
 
