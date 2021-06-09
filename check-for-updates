@@ -1,22 +1,19 @@
-#
-#
 # Set the URL for luci-app-amlogic to check and update openwrt firmware, kernel and plugin
 # https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/check-for-updates
-#
-#
+
+
 ######### [ 01. Set openwrt firmware download repository for luci-app-amlogic online check and update ] #########
 # When pointing to your repository, the tag and firmware naming of Releases can refer to: https://github.com/ophub/amlogic-s9xxx-openwrt/releases
 # It has been tested repeatedly on the firmware packaged by ophub, it is recommended that you use it: https://github.com/ophub/amlogic-s9xxx-openwrt
 # It also supports Flippy packaging scripts. It is recommended to use https://github.com/ophub/flippy-openwrt-actions for Flippy firmware packaging.
-#
+
 amlogic_firmware_github_repository="ophub/amlogic-s9xxx-openwrt"
 amlogic_firmware_tag_kerwords="s9xxx_lede"
 amlogic_firmware_suffix=".img.gz"
-#
-#
+
+
 ######### [ 02. Set openwrt kernel download repository for luci-app-amlogic online check and update ] #########
 # When pointing to your repository, The storage directory and naming of the kernel file refer to amlogic-kernel.
-#
+
 amlogic_kernel_github_repository="https://api.github.com/repos/ophub/amlogic-s9xxx-openwrt/contents/amlogic-s9xxx/amlogic-kernel"
-#
-#
+
