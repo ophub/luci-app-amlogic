@@ -40,6 +40,8 @@ tolog() {
     RELEASES_TAG_KEYWORDS=${amlogic_firmware_tag_kerwords}
     FIRMWARE_SUFFIX=${amlogic_firmware_suffix}
     [[ ! -z "${SERVER_FIRMWARE_URL}" ]] || tolog "02.03 The custom firmware download address is invalid." "1"
+    [[ ! -z "${RELEASES_TAG_KEYWORDS}" ]] || tolog "02.04 The custom firmware tag key words is invalid." "1"
+    [[ ! -z "${FIRMWARE_SUFFIX}" ]] || tolog "02.05 The custom firmware suffix is invalid." "1"
 
     # 03. Version comparison
     tolog "03. Compare versions."
