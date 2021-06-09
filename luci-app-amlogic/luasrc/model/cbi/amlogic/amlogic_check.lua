@@ -28,7 +28,7 @@ b.description = translate("You can customize the check url for OpenWrt kernel an
                 'https://github.com/<span style="color: green"><b>ophub/amlogic-s9xxx-openwrt</b></span>/releases/download/openwrt_<span style="color: green"><b>s9xxx_lede</b></span>_2021.06/openwrt_<span style="color: blue">s905d</span>_v<span style="color: blue">5.12</span>.9_2021.06<span style="color: green"><b>.img.gz</b></span>' .. '<br>' ..
                 translate("The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.12) will automatically match the current openwrt firmware.") .. '<br><br>' ..
                 translate("OpenWrt Kernel DownLoad URL:") .. '<br>' ..
-                'https://api.github.com/repos/<span style="color: green"><b>ophub/amlogic-s9xxx-openwrt</b></span>/contents/<span style="color: green"><b>amlogic-s9xxx/amlogic-kernel</b></span>'
+                'https://github.com/<span style="color: green"><b>ophub/amlogic-s9xxx-openwrt</b></span>/tree/main/<span style="color: green"><b>amlogic-s9xxx/amlogic-kernel</b></span>'
 b.reset = false
 b.submit = false
 s = b:section(SimpleSection, "", "")
