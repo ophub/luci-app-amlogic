@@ -4,7 +4,8 @@
 
 ######### [ 01. Set openwrt firmware download repository for luci-app-amlogic online check and update ] #########
 # E.g: https://github.com/ophub/amlogic-s9xxx-openwrt/releases/download/openwrt_s9xxx_lede_2021.06.09/openwrt_s905d_v5.12.9_2021.06.09.img.gz
-# Set these three keywords according to the openwrt firmware download address.
+# Set these three keywords according to the openwrt firmware releases download address.
+# The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.12) will automatically match the current openwrt firmware.
 # When pointing to your repository, the tag and firmware naming of Releases can refer to: https://github.com/ophub/amlogic-s9xxx-openwrt/releases
 # It has been tested repeatedly on the firmware packaged by ophub, it is recommended that you use it: https://github.com/ophub/amlogic-s9xxx-openwrt
 # It also supports Flippy packaging scripts. It is recommended to use https://github.com/ophub/flippy-openwrt-actions for Flippy firmware packaging.
