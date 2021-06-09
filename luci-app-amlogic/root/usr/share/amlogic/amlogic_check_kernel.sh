@@ -6,7 +6,6 @@ KERNEL_DOWNLOAD_PATH="/mnt/${EMMC_NAME}p4"
 TMP_CHECK_DIR="/tmp/amlogic"
 START_LOG=${TMP_CHECK_DIR}"/amlogic_check_kernel.log"
 LOG_FILE=${TMP_CHECK_DIR}"/amlogic.log"
-TMP_CHECK_SERVER_FILE=${TMP_CHECK_DIR}"/amlogic_check_server_kernel_file.txt"
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 [[ -d ${TMP_CHECK_DIR} ]] || mkdir -p ${TMP_CHECK_DIR}
 
@@ -25,16 +24,12 @@ tolog() {
 
     # 02. Download server version documentation
     tolog "02. Start checking the kernel version."
-    CONFIG_CHECK_URL=$(uci get amlogic.config.amlogic_check_url 2>/dev/null)
-    [[ ! -z "${CONFIG_CHECK_URL}" ]] || tolog "02.01 Invalid kernel download address." "1"
-    rm -f "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
-    wget -c "${CONFIG_CHECK_URL}" -O "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
-    [[ -s ${TMP_CHECK_SERVER_FILE} ]] || tolog "02.02 Invalid kernel detection file." "1"
+    SERVER_FIRMWARE_URL=$(uci get amlogic.config.amlogic_firmware_repo 2>/dev/null)
+    [[ ! -z "${SERVER_FIRMWARE_URL}" ]] || tolog "02.01 The custom kernel download repo is invalid." "1"
+    SERVER_KERNEL_PATH=$(uci get amlogic.config.amlogic_kernel_path 2>/dev/null)
+    [[ ! -z "${SERVER_KERNEL_PATH}" ]] || tolog "02.02 The custom kernel download path is invalid." "1"
 
-    source ${TMP_CHECK_SERVER_FILE} 2>/dev/null
-    SERVER_KERNEL_URL=${amlogic_kernel_github_repository}
-    #SERVER_KERNEL_URL="https://api.github.com/repos/ophub/amlogic-s9xxx-openwrt/contents/amlogic-s9xxx/amlogic-kernel"
-    [[ ! -z "${SERVER_KERNEL_URL}" ]] || tolog "02.03 The custom kernel download address is invalid." "1"
+    SERVER_KERNEL_URL="https://api.github.com/repos/${SERVER_FIRMWARE_URL}/contents/${SERVER_KERNEL_PATH}"
 
     # 03. Version comparison
     tolog "03. Compare versions."
@@ -95,7 +90,6 @@ tolog() {
     tolog "04 The kernel is ready, you can update."
     sleep 3
 
-    rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1 && sync
     #echo '<a href="javascript:;" onclick="return amlogic_kernel(this)">Update</a>' >$START_LOG
     tolog '<input type="button" class="cbi-button cbi-button-reload" value="Update" onclick="return amlogic_kernel(this)"/>'
 

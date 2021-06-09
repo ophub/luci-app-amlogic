@@ -7,7 +7,6 @@ TMP_CHECK_DIR="/tmp/amlogic"
 AMLOGIC_SOC_FILE="/etc/flippy-openwrt-release"
 START_LOG=${TMP_CHECK_DIR}"/amlogic_check_firmware.log"
 LOG_FILE=${TMP_CHECK_DIR}"/amlogic.log"
-TMP_CHECK_SERVER_FILE=${TMP_CHECK_DIR}"/amlogic_check_server_firmware_file.txt"
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 [[ -d ${TMP_CHECK_DIR} ]] || mkdir -p ${TMP_CHECK_DIR}
 
@@ -29,19 +28,12 @@ tolog() {
 
     # 02. Download server version documentation
     tolog "02. Start checking the firmware version."
-    CONFIG_CHECK_URL=$(uci get amlogic.config.amlogic_check_url 2>/dev/null)
-    [[ ! -z "${CONFIG_CHECK_URL}" ]] || tolog "02.01 Invalid firmware download address." "1"
-    rm -f "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
-    wget -c "${CONFIG_CHECK_URL}" -O "${TMP_CHECK_SERVER_FILE}" >/dev/null 2>&1 && sync
-    [[ -s ${TMP_CHECK_SERVER_FILE} ]] || tolog "02.02 Invalid firmware detection file." "1"
-
-    source ${TMP_CHECK_SERVER_FILE} 2>/dev/null
-    SERVER_FIRMWARE_URL=${amlogic_firmware_github_repository}
-    RELEASES_TAG_KEYWORDS=${amlogic_firmware_tag_kerwords}
-    FIRMWARE_SUFFIX=${amlogic_firmware_suffix}
-    [[ ! -z "${SERVER_FIRMWARE_URL}" ]] || tolog "02.03 The custom firmware download address is invalid." "1"
-    [[ ! -z "${RELEASES_TAG_KEYWORDS}" ]] || tolog "02.04 The custom firmware tag key words is invalid." "1"
-    [[ ! -z "${FIRMWARE_SUFFIX}" ]] || tolog "02.05 The custom firmware suffix is invalid." "1"
+    SERVER_FIRMWARE_URL=$(uci get amlogic.config.amlogic_firmware_repo 2>/dev/null)
+    [[ ! -z "${SERVER_FIRMWARE_URL}" ]] || tolog "02.01 The custom firmware download repo is invalid." "1"
+    RELEASES_TAG_KEYWORDS=$(uci get amlogic.config.amlogic_firmware_tag 2>/dev/null)
+    [[ ! -z "${RELEASES_TAG_KEYWORDS}" ]] || tolog "02.02 The custom firmware tag keywords is invalid." "1"
+    FIRMWARE_SUFFIX=$(uci get amlogic.config.amlogic_firmware_suffix 2>/dev/null)
+    [[ ! -z "${FIRMWARE_SUFFIX}" ]] || tolog "02.03 The custom firmware suffix is invalid." "1"
 
     # 03. Version comparison
     tolog "03. Compare versions."
@@ -65,7 +57,6 @@ tolog() {
     tolog "04 The firmware is ready, you can update."
     sleep 3
 
-    rm -rf ${TMP_CHECK_SERVER_FILE} >/dev/null 2>&1 && sync
     #echo '<a href="javascript:;" onclick="return amlogic_update(this, '"'${FIRMWARE_DOWNLOAD_NAME}'"')">Update</a>' >$START_LOG
     tolog '<input type="button" class="cbi-button cbi-button-reload" value="Update" onclick="return amlogic_update(this, '"'${FIRMWARE_DOWNLOAD_NAME}'"')"/>'
 

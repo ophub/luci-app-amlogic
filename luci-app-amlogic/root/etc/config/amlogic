@@ -1,3 +1,8 @@
+
 config amlogic 'config'
 	option enable '1'
-	option amlogic_check_url 'https://raw.githubusercontent.com/ophub/luci-app-amlogic/main/check-for-updates'
+	option amlogic_firmware_repo 'ophub/amlogic-s9xxx-openwrt'
+	option amlogic_firmware_tag 's9xxx_lede'
+	option amlogic_firmware_suffix '.img.gz'
+	option amlogic_kernel_path 'amlogic-s9xxx/amlogic-kernel'
+
