@@ -53,7 +53,7 @@ tolog() {
     FIRMWARE_DOWNLOAD_URL="https:.*${RELEASES_TAG_NAME}.*${SOC}.*${MAIN_LINE_VERSION}.*${FIRMWARE_SUFFIX}"
 
     FIRMWARE_RELEASES_PATH=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | grep "browser_download_url" | grep -o "${FIRMWARE_DOWNLOAD_URL}" | head -n 1)
-    FIRMWARE_DOWNLOAD_NAME="openwrt_${SOC}_v${MAIN_LINE_VERSION}_update.img.gz"
+    FIRMWARE_DOWNLOAD_NAME="openwrt_${SOC}_v${MAIN_LINE_VERSION}_update${FIRMWARE_SUFFIX}"
     wget -c "${FIRMWARE_RELEASES_PATH}" -O "${FIRMWARE_DOWNLOAD_PATH}/${FIRMWARE_DOWNLOAD_NAME}" >/dev/null 2>&1 && sync
     if [[ "$?" -eq "0" && -s "${FIRMWARE_DOWNLOAD_PATH}/${FIRMWARE_DOWNLOAD_NAME}" ]]; then
         tolog "03.03 ${FIRMWARE_DOWNLOAD_NAME} download complete."
