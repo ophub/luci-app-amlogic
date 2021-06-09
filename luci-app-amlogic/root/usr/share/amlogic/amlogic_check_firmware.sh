@@ -37,6 +37,8 @@ tolog() {
 
     source ${TMP_CHECK_SERVER_FILE} 2>/dev/null
     SERVER_FIRMWARE_URL=${amlogic_firmware_github_repository}
+    RELEASES_TAG_KEYWORDS=${amlogic_firmware_tag_kerwords}
+    FIRMWARE_SUFFIX=${amlogic_firmware_suffix}
     [[ ! -z "${SERVER_FIRMWARE_URL}" ]] || tolog "02.03 The custom firmware download address is invalid." "1"
 
     # 03. Version comparison
@@ -46,11 +48,7 @@ tolog() {
     [[ ! -z "${SOC}" ]] || tolog "03.01 The custom firmware soc is invalid." "1"
     tolog "03.02 Start downloading firmware ..."
 
-    # The specific version can be specified by tag keywords
-    RELEASES_TAG_NAME="s9xxx_lede"
-    # Can specify firmware suffix
-    FIRMWARE_SUFFIX=".img.gz"
-    FIRMWARE_DOWNLOAD_URL="https:.*${RELEASES_TAG_NAME}.*${SOC}.*${MAIN_LINE_VERSION}.*${FIRMWARE_SUFFIX}"
+    FIRMWARE_DOWNLOAD_URL="https:.*${RELEASES_TAG_KEYWORDS}.*${SOC}.*${MAIN_LINE_VERSION}.*${FIRMWARE_SUFFIX}"
 
     FIRMWARE_RELEASES_PATH=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | grep "browser_download_url" | grep -o "${FIRMWARE_DOWNLOAD_URL}" | head -n 1)
     FIRMWARE_DOWNLOAD_NAME="openwrt_${SOC}_v${MAIN_LINE_VERSION}_update${FIRMWARE_SUFFIX}"
