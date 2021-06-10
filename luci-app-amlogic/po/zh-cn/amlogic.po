@@ -233,8 +233,8 @@ msgstr "恢复配置：openwrt-backup -r"
 msgid "The plug-in uses the above commands for related operations, and these commands can also be used in terminals."
 msgstr "插件使用以上命令进行相关操作，这些命令也可以在 TTYD 等终端中使用。"
 
-msgid "Supported Amlogic SoC & STB:"
-msgstr "支持的 SoC 和 盒子："
+msgid "Supported Amlogic STB:"
+msgstr "支持的盒子："
 
 msgid "S922x --- [ Belink, Belink Pro, Ugoos ]"
 msgstr "S922x --- [ Belink, Belink Pro, Ugoos ]"
@@ -287,14 +287,8 @@ msgstr "在线下载更新"
 msgid "Config Source"
 msgstr "配置来源"
 
-msgid "You can customize the check url for OpenWrt kernel and plugin according to your needs."
-msgstr "可根据需要，自定义 OpenWrt 内核及插件的检查站点。"
-
-msgid "Version Check URL:"
-msgstr "版本检查网址："
-
-msgid "Use custom check url:"
-msgstr "使用自定义检查网站："
+msgid "You can customize the download site of OpenWrt firmware and kernel according to your needs."
+msgstr "可根据需要，自定义 OpenWrt 固件和内核的下载站点。"
 
 msgid "OpenWrt Firmware DownLoad URL:"
 msgstr "OpenWrt 固件下载地址："
@@ -308,13 +302,13 @@ msgstr "OpenWrt 内核下载地址："
 msgid "OpenWrt Firmware Repository:"
 msgstr "OpenWrt 固件下载仓库："
 
-msgid "Releases Tag Keywords:"
-msgstr "OpenWrt Tag 关键字："
+msgid "OpenWrt Releases Tag Keywords:"
+msgstr "OpenWrt 固件标签关键字："
 
 msgid "OpenWrt Firmware Suffix:"
 msgstr "OpenWrt 固件文件后缀："
 
-msgid "OpenWrt Kernel Path:"
+msgid "OpenWrt Kernel DownLoad Path:"
 msgstr "OpenWrt 内核下载路径："
 
 msgid "Save Config:"
