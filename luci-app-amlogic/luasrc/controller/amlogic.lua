@@ -54,6 +54,7 @@ function action_refresh_log()
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_upfiles.log && sync >/dev/null 2>&1")
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
         luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
+        luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_firmware.log && sync >/dev/null 2>&1")
     end
     luci.http.prepare_content("text/plain; charset=utf-8")
     local f=io.open(logfile, "r+")
@@ -69,6 +70,7 @@ function action_del_log()
     luci.sys.exec(": > /tmp/amlogic/amlogic_check_upfiles.log")
     luci.sys.exec(": > /tmp/amlogic/amlogic_check_plugin.log")
     luci.sys.exec(": > /tmp/amlogic/amlogic_check_kernel.log")
+    luci.sys.exec(": > /tmp/amlogic/amlogic_check_firmware.log")
     return
 end
 
