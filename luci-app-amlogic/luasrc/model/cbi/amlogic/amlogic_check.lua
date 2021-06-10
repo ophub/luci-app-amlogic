@@ -23,7 +23,7 @@ m.submit = false
 
 --SimpleForm for Config Source
 b = SimpleForm("amlogic_check", translate("Config Source"), nil)
-b.description = translate("You can customize the check url for OpenWrt kernel and plugin according to your needs.") .. '<br><br>' ..
+b.description = translate("You can customize the download site of OpenWrt firmware and kernel according to your needs.") .. '<br><br>' ..
                 translate("OpenWrt Firmware DownLoad URL:") .. '<br>' ..
                 'https://github.com/<span style="color: green"><b>ophub/amlogic-s9xxx-openwrt</b></span>/releases/download/openwrt_<span style="color: green"><b>s9xxx_lede</b></span>_2021.06/openwrt_<span style="color: blue">s905d</span>_v<span style="color: blue">5.12</span>.9_2021.06<span style="color: green"><b>.img.gz</b></span>' .. '<br>' ..
                 translate("The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.12) will automatically match the current openwrt firmware.") .. '<br><br>' ..
@@ -48,7 +48,7 @@ o.write = function(self, key, value)
 end
 
 --2.Set Releases Tag key words
-o = s:option(Value, "firmware_tag", translate("Releases Tag Keywords:"))
+o = s:option(Value, "firmware_tag", translate("OpenWrt Releases Tag Keywords:"))
 o.rmempty = true
 o.default = amlogic_firmware_tag
 o.write = function(self, key, value)
@@ -76,7 +76,7 @@ o.write = function(self, key, value)
 end
 
 --4.Set OpenWrt Kernel Path
-o = s:option(Value, "kernel_repo", translate("OpenWrt Kernel Path:"))
+o = s:option(Value, "kernel_repo", translate("OpenWrt Kernel DownLoad Path:"))
 o.rmempty = true
 o.default = amlogic_kernel_path
 o.write = function(self, key, value)
