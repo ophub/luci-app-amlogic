@@ -71,6 +71,7 @@ tolog() {
 
     # 03. Move to the ${PLUGIN_DOWNLOAD_PATH} directory to prepare for the update plugin
     gzip -df ${TMP_CHECK_DIR}/*.gz && sync
+    rm -f ${PLUGIN_DOWNLOAD_PATH}/*.ipk && sync
     mv -f ${TMP_CHECK_DIR}/*.ipk ${PLUGIN_DOWNLOAD_PATH} >/dev/null 2>&1 && sync
     tolog "03. The plug is ready, you can update."
     sleep 3
