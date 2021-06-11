@@ -32,6 +32,13 @@ make V=99
 
 ![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/121277810-f9ebd800-c903-11eb-9bf4-7c2b11f9a1d3.gif)
 
+
+## Config / 配置
+
+Supports OpenWrt firmware packaged by [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) and [flippy](https://github.com/ophub/flippy-openwrt-actions) scripts. The online update file download url of `OpenWrt firmware` and `kernel` can be customized as your own repository, and the config information is stored in the `/etc/config/amlogic` file of the OpenWrt system.
+
+支持 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 和 [flippy](https://github.com/ophub/flippy-openwrt-actions) 脚本打包的 OpenWrt 固件。`OpenWrt 固件`及`内核`的在线升级文件的下载地址支持自定义为自己的仓库，配置信息保存在 OpenWrt 系统的 `/etc/config/amlogic` 文件中。
+
 ## Borrow / 借鉴
 
 - Upload functions by luci-app-filetransfer
