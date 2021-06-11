@@ -42,6 +42,10 @@ tolog() {
     [[ ! -z "${SOC}" ]] || tolog "03.01 The custom firmware soc is invalid." "1"
     tolog "03.02 Start downloading firmware ..."
 
+    # Delete other residual firmware files
+    rm -f ${FIRMWARE_DOWNLOAD_PATH}/*${FIRMWARE_SUFFIX} && sync
+    rm -f ${FIRMWARE_DOWNLOAD_PATH}/*.img && sync
+
     FIRMWARE_DOWNLOAD_URL="https:.*${RELEASES_TAG_KEYWORDS}.*${SOC}.*${MAIN_LINE_VERSION}.*${FIRMWARE_SUFFIX}"
 
     FIRMWARE_RELEASES_PATH=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | grep "browser_download_url" | grep -o "${FIRMWARE_DOWNLOAD_URL}" | head -n 1)
