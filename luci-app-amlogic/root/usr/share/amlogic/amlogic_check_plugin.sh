@@ -41,6 +41,11 @@ tolog() {
         SERVER_PLUGIN_FILE_I18N="luci-i18n-amlogic-zh-cn_${SERVER_PLUGIN_VERSION}_all.ipk.gz"
         SERVER_PLUGIN_FILE_LIBFS="luci-lib-fs_1.0-1_all.ipk.gz"
 
+        # Delete other residual ipk files
+        rm -f ${TMP_CHECK_DIR}/*.ipk.gz && sync
+        rm -f ${TMP_CHECK_DIR}/*.ipk && sync
+        rm -f ${PLUGIN_DOWNLOAD_PATH}/*.ipk && sync
+
         # Download plugin ipk file
         wget -c "${SERVER_PLUGIN_URL}/${SERVER_PLUGIN_VERSION}/${SERVER_PLUGIN_FILE_IPK}" -O "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE_IPK}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" && -s "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE_IPK}" ]]; then
@@ -71,7 +76,6 @@ tolog() {
 
     # 03. Move to the ${PLUGIN_DOWNLOAD_PATH} directory to prepare for the update plugin
     gzip -df ${TMP_CHECK_DIR}/*.gz && sync
-    rm -f ${PLUGIN_DOWNLOAD_PATH}/*.ipk && sync
     mv -f ${TMP_CHECK_DIR}/*.ipk ${PLUGIN_DOWNLOAD_PATH} >/dev/null 2>&1 && sync
     tolog "03. The plug is ready, you can update."
     sleep 3
