@@ -53,6 +53,11 @@ tolog() {
         tolog "03.03 Automatically download the latest kernel."
         sleep 3
 
+        # Delete other residual kernel files
+        rm -f ${KERNEL_DOWNLOAD_PATH}/boot-*.tar.gz && sync
+        rm -f ${KERNEL_DOWNLOAD_PATH}/dtb-amlogic-*.tar.gz && sync
+        rm -f ${KERNEL_DOWNLOAD_PATH}/modules-*.tar.gz && sync
+
         # Download boot file
         SERVER_KERNEL_BOOT="$(curl -s "${SERVER_KERNEL_URL}/${MAIN_LINE}.${LATEST_VERSION}" | grep "download_url" | grep -o "https.*/boot-.*.tar.gz" | head -n 1)"
         SERVER_KERNEL_BOOT_NAME="${SERVER_KERNEL_BOOT##*/}"
