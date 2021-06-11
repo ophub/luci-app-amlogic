@@ -56,6 +56,7 @@ tolog() {
         # Download boot file
         SERVER_KERNEL_BOOT="$(curl -s "${SERVER_KERNEL_URL}/${MAIN_LINE}.${LATEST_VERSION}" | grep "download_url" | grep -o "https.*/boot-.*.tar.gz" | head -n 1)"
         SERVER_KERNEL_BOOT_NAME="${SERVER_KERNEL_BOOT##*/}"
+        SERVER_KERNEL_BOOT_NAME="${SERVER_KERNEL_BOOT_NAME//%2B/+}"
         wget -c "${SERVER_KERNEL_BOOT}" -O "${KERNEL_DOWNLOAD_PATH}/${SERVER_KERNEL_BOOT_NAME}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" ]]; then
             tolog "03.04 The boot file complete."
@@ -67,6 +68,7 @@ tolog() {
         # Download dtb file
         SERVER_KERNEL_DTB="$(curl -s "${SERVER_KERNEL_URL}/${MAIN_LINE}.${LATEST_VERSION}" | grep "download_url" | grep -o "https.*/dtb-amlogic-.*.tar.gz" | head -n 1)"
         SERVER_KERNEL_DTB_NAME="${SERVER_KERNEL_DTB##*/}"
+        SERVER_KERNEL_DTB_NAME="${SERVER_KERNEL_DTB_NAME//%2B/+}"
         wget -c "${SERVER_KERNEL_DTB}" -O "${KERNEL_DOWNLOAD_PATH}/${SERVER_KERNEL_DTB_NAME}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" ]]; then
             tolog "03.06 The dtb file complete."
@@ -78,6 +80,7 @@ tolog() {
         # Download modules file
         SERVER_KERNEL_MODULES="$(curl -s "${SERVER_KERNEL_URL}/${MAIN_LINE}.${LATEST_VERSION}" | grep "download_url" | grep -o "https.*/modules-.*.tar.gz" | head -n 1)"
         SERVER_KERNEL_MODULES_NAME="${SERVER_KERNEL_MODULES##*/}"
+        SERVER_KERNEL_MODULES_NAME="${SERVER_KERNEL_MODULES_NAME//%2B/+}"
         wget -c "${SERVER_KERNEL_MODULES}" -O "${KERNEL_DOWNLOAD_PATH}/${SERVER_KERNEL_MODULES_NAME}" >/dev/null 2>&1 && sync
         if [[ "$?" -eq "0" ]]; then
             tolog "03.08 The modules file complete."
