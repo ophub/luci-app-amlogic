@@ -35,9 +35,9 @@ make V=99
 
 ## Config / 配置
 
-Supports OpenWrt firmware packaged by [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) and [flippy](https://github.com/ophub/flippy-openwrt-actions) scripts. The online update file download url of `OpenWrt firmware` and `kernel` can be customized as your own repository, and the config information is stored in the `/etc/config/amlogic` file of the OpenWrt system.
+The online update file download url of `OpenWrt firmware` and `kernel` can be customized as your own repository, and the config information is stored in the `/etc/config/amlogic` file of the OpenWrt system. Supports OpenWrt firmware packaged by [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) and [flippy](https://github.com/unifreq/openwrt_packit) scripts. It is recommended to use [flippy-openwrt-actions](https://github.com/ophub/flippy-openwrt-actions) for packaging when using the `flippy` script to package on `Github Actions`, which is simple and efficient.
 
-支持 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 和 [flippy](https://github.com/ophub/flippy-openwrt-actions) 脚本打包的 OpenWrt 固件。`OpenWrt 固件`及`内核`的在线升级文件的下载地址支持自定义为自己的仓库，配置信息保存在 OpenWrt 系统的 `/etc/config/amlogic` 文件中。
+插件里 `在线下载更新` 中的 `OpenWrt 固件` 及 `内核` 文件的下载地址支持自定义为自己的仓库，配置信息保存在 OpenWrt 系统的 `/etc/config/amlogic` 文件中。支持 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 和 [flippy](https://github.com/unifreq/openwrt_packit) 脚本打包的 OpenWrt 固件，使用 `flippy` 脚本在 `Github Actions` 打包时推荐使用 [flippy-openwrt-actions](https://github.com/ophub/flippy-openwrt-actions) 进行打包，简单高效。
 
 ## Borrow / 借鉴
 
