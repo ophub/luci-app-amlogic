@@ -3,8 +3,8 @@
 # Set a fixed value
 PLUGIN_DOWNLOAD_PATH="/tmp/upload"
 TMP_CHECK_DIR="/tmp/amlogic"
-START_LOG=${TMP_CHECK_DIR}"/amlogic_check_plugin.log"
-LOG_FILE=${TMP_CHECK_DIR}"/amlogic.log"
+START_LOG="${TMP_CHECK_DIR}/amlogic_check_plugin.log"
+LOG_FILE="${TMP_CHECK_DIR}/amlogic.log"
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 [[ -d ${PLUGIN_DOWNLOAD_PATH} ]] || mkdir -p ${PLUGIN_DOWNLOAD_PATH}
 [[ -d ${TMP_CHECK_DIR} ]] || mkdir -p ${TMP_CHECK_DIR}
