@@ -24,10 +24,10 @@ m.submit = false
 --SimpleForm for Config Source
 b = SimpleForm("amlogic_check", translate("Config Source"), nil)
 b.description = translate("You can customize the download site of OpenWrt firmware and kernel according to your needs.") .. '<br><br>' ..
-                translate("OpenWrt Firmware DownLoad URL:") .. '<br>' ..
+                translate("OpenWrt firmware download url example:") .. '<br>' ..
                 'https://github.com/<span style="color: green"><b>ophub/amlogic-s9xxx-openwrt</b></span>/releases/download/openwrt_<span style="color: green"><b>s9xxx_lede</b></span>_2021.06/openwrt_<span style="color: blue">s905d</span>_v<span style="color: blue">5.12</span>.9_2021.06<span style="color: green"><b>.img.gz</b></span>' .. '<br>' ..
                 translate("The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.12) will automatically match the current openwrt firmware.") .. '<br><br>' ..
-                translate("OpenWrt Kernel DownLoad URL:") .. '<br>' ..
+                translate("OpenWrt kernel download url example:") .. '<br>' ..
                 'https://github.com/<span style="color: green"><b>ophub/amlogic-s9xxx-openwrt</b></span>/tree/main/<span style="color: green"><b>amlogic-s9xxx/amlogic-kernel</b></span>'
 b.reset = false
 b.submit = false
@@ -47,7 +47,7 @@ o.write = function(self, key, value)
 	end
 end
 
---2.Set Releases Tag key words
+--2.Set OpenWrt Releases Tag Keywords
 o = s:option(Value, "firmware_tag", translate("OpenWrt Releases Tag Keywords:"))
 o.rmempty = true
 o.default = amlogic_firmware_tag
@@ -56,7 +56,7 @@ o.write = function(self, key, value)
         --self.description = translate("Invalid value.")
         amlogic_firmware_tag = default_firmware_tag
 	else
-        --self.description = translate("Releases Tag Keywords:") .. value
+        --self.description = translate("OpenWrt Releases Tag Keywords:") .. value
         amlogic_firmware_tag = value
 	end
 end
@@ -75,7 +75,7 @@ o.write = function(self, key, value)
 	end
 end
 
---4.Set OpenWrt Kernel Path
+--4.Set OpenWrt Kernel DownLoad Path
 o = s:option(Value, "kernel_repo", translate("OpenWrt Kernel DownLoad Path:"))
 o.rmempty = true
 o.default = amlogic_kernel_path
@@ -84,7 +84,7 @@ o.write = function(self, key, value)
         --self.description = translate("Invalid value.")
         amlogic_kernel_path = default_kernel_path
 	else
-        --self.description = translate("OpenWrt Kernel Path:") .. value
+        --self.description = translate("OpenWrt Kernel DownLoad Path:") .. value
         amlogic_kernel_path = value
 	end
 end
@@ -106,7 +106,7 @@ o.write = function(self, section, scope)
 	luci.sys.exec("uci set amlogic.config.amlogic_kernel_path=" .. amlogic_kernel_path .. " 2>/dev/null")
 	luci.sys.exec("uci commit amlogic 2>/dev/null")
 	http.redirect(DISP.build_url("admin", "system", "amlogic", "check"))
-	--self.description = "amlogic_check_url: " .. amlogic_check_url
+	--self.description = "amlogic_firmware_repo: " .. amlogic_firmware_repo
 end
 
 --SimpleForm for Check
