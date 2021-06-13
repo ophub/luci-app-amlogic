@@ -170,6 +170,12 @@ msgstr "将 OpenWrt 安装到晶晨宝盒 EMMC，请选择宝盒型号，或输�
 msgid "Tip: Writing is in progress, and it will automatically restart after completion."
 msgstr "提示：正在写入，完成后将自动重启。"
 
+msgid "You have chosen:"
+msgstr "你选择了："
+
+msgid "Start install?"
+msgstr "开始安装吗？"
+
 msgid "Installing..."
 msgstr "正在安装..."
 

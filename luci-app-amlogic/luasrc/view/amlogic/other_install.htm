@@ -86,12 +86,10 @@
 
 	function amlogic_install(btn,amlogic_install_sel)
 	{
-		btn.disabled = true;
-		btn.value    = '<%:Installing...%> ';
-
 		var amlogic_soc_id = document.getElementById('amlogic_soc');
 		var amlogic_soc_index = amlogic_soc_id.selectedIndex;
 		var amlogic_soc_value = amlogic_soc_id.options[amlogic_soc_index].value;
+		var amlogic_soc_text = amlogic_soc_id.options[amlogic_soc_index].text;
 
 		var amlogic_dtb_id = document.getElementById('amlogic_dtb');
 		var amlogic_dtb_value = amlogic_dtb_id.value;
@@ -101,6 +99,11 @@
 		if ( amlogic_dtb_value != "" ) { show_me_value = show_me_value + ', DTB_file_name: ' + amlogic_dtb_value }
 		show_me_value = show_me_value + ' ]'
 		// amlogic_show.innerHTML = show_me_value;
+
+		if (confirm('<%:You have chosen:%> [ ' + amlogic_soc_text + ' ] , <%:Start install?%>') != true) { return false; }
+
+		btn.disabled = true;
+		btn.value    = '<%:Installing...%> ';
 
 		XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic","start_amlogic_install")%>',
 			{
