@@ -137,14 +137,14 @@ msgstr "Belink-GT-King"
 msgid "Belink-GT-King-Pro"
 msgstr "Belink-GT-King-Pro"
 
-msgid "UGOOS-AM6-Plus"
-msgstr "UGOOS-AM6-Plus"
+msgid "Ugoos-AM6-Plus"
+msgstr "Ugoos-AM6-Plus"
 
 msgid "Octopus-Planet"
 msgstr "章鱼星球"
 
-msgid "PhicommN1"
-msgstr "斐讯N1"
+msgid "Phicomm-N1"
+msgstr "斐讯-N1"
 
 msgid "HG680P & B860H"
 msgstr "烽火HG680 & 中兴B860H"
@@ -242,23 +242,23 @@ msgstr "插件使用以上命令进行相关操作，这些命令也可以在 TT
 msgid "Supported Amlogic STB:"
 msgstr "支持的盒子："
 
-msgid "S922x --- [ Belink, Belink Pro, Ugoos ]"
-msgstr "S922x --- [ Belink, Belink Pro, Ugoos ]"
+msgid "S922x --- [ Belink, Belink-Pro, Ugoos-AM6-Plus ]"
+msgstr "S922x --- [ Belink, Belink-Pro, Ugoos-AM6-Plus ]"
 
-msgid "S905x3 -- [ X96, HK1, H96, Ugoos X3, X96 Air, A95XF3 Air ]"
-msgstr "S905x3 -- [ X96, HK1, H96, Ugoos X3, X96 Air, A95XF3 Air ]"
+msgid "S905x3 -- [ X96, HK1, H96, Ugoos-X3, X96-Air, A95XF3-Air ]"
+msgstr "S905x3 -- [ X96, HK1, H96, Ugoos-X3, X96-Air, A95XF3-Air ]"
 
-msgid "S905x2 -- [ X96Max 4G, X96Max 2G ]"
-msgstr "S905x2 -- [ X96Max 4G, X96Max 2G ]"
+msgid "S905x2 -- [ X96Max-4G, X96Max-2G ]"
+msgstr "S905x2 -- [ X96Max-4G, X96Max-2G ]"
 
 msgid "S905x --- [ HG680P, B860H ]"
 msgstr "S905x --- [ 烽火HG680 & 中兴B860H ]"
 
-msgid "S912 ---- [ H96 Pro Plus, Octopus Planet ]"
-msgstr "S912 ---- [ H96 Pro Plus, 章鱼星球 ]"
+msgid "S912 ---- [ H96-Pro-Plus, Octopus-Planet ]"
+msgstr "S912 ---- [ H96-Pro-Plus, 章鱼星球 ]"
 
-msgid "S905d --- [ Phicomm N1 ]"
-msgstr "S905d --- [ 斐讯 N1 ]"
+msgid "S905d --- [ Phicomm-N1 ]"
+msgstr "S905d --- [ 斐讯-N1 ]"
 
 msgid "Other --- [ Optional DTB ]"
 msgstr "其他 ----- [ 自定义 DTB 文件 ]"
