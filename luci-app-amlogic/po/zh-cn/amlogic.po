@@ -305,8 +305,8 @@ msgstr "OpenWrt 固件下载地址示例："
 msgid "Tips: The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.12) will automatically match the current openwrt firmware."
 msgstr "提示：OpenWrt 固件的型号（如：s905d）和内核的主线版本（如：5.12）将根据当前固件自动适配。"
 
-msgid "OpenWrt firmware download url example:"
-msgstr "OpenWrt 固件下载地址示例："
+msgid "OpenWrt kernel download url example:"
+msgstr "OpenWrt 内核下载地址示例："
 
 msgid "Tips: The OpenWrt kernel download repository is the same as the firmware."
 msgstr "提示：OpenWrt 内核下载仓库与固件相同。"
