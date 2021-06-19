@@ -1,13 +1,12 @@
 #!/bin/bash
 
 # Set a fixed value
-PLUGIN_DOWNLOAD_PATH="/tmp/upload"
 TMP_CHECK_DIR="/tmp/amlogic"
 START_LOG="${TMP_CHECK_DIR}/amlogic_check_plugin.log"
 LOG_FILE="${TMP_CHECK_DIR}/amlogic.log"
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
-[[ -d ${PLUGIN_DOWNLOAD_PATH} ]] || mkdir -p ${PLUGIN_DOWNLOAD_PATH}
 [[ -d ${TMP_CHECK_DIR} ]] || mkdir -p ${TMP_CHECK_DIR}
+rm -f ${TMP_CHECK_DIR}/*.ipk && sync
 
 # Log function
 tolog() {
@@ -37,14 +36,9 @@ tolog() {
         tolog "02.04 Automatically download the latest plugin."
 
         SERVER_PLUGIN_URL="https://github.com/ophub/luci-app-amlogic/releases/download"
-        SERVER_PLUGIN_FILE_IPK="luci-app-amlogic_${SERVER_PLUGIN_VERSION}_all.ipk.gz"
-        SERVER_PLUGIN_FILE_I18N="luci-i18n-amlogic-zh-cn_${SERVER_PLUGIN_VERSION}_all.ipk.gz"
-        SERVER_PLUGIN_FILE_LIBFS="luci-lib-fs_1.0-1_all.ipk.gz"
-
-        # Delete other residual ipk files
-        rm -f ${TMP_CHECK_DIR}/*.ipk.gz && sync
-        rm -f ${TMP_CHECK_DIR}/*.ipk && sync
-        rm -f ${PLUGIN_DOWNLOAD_PATH}/*.ipk && sync
+        SERVER_PLUGIN_FILE_IPK="luci-app-amlogic_${SERVER_PLUGIN_VERSION}_all.ipk"
+        SERVER_PLUGIN_FILE_I18N="luci-i18n-amlogic-zh-cn_${SERVER_PLUGIN_VERSION}_all.ipk"
+        SERVER_PLUGIN_FILE_LIBFS="luci-lib-fs_1.0-1_all.ipk"
 
         # Download plugin ipk file
         wget -c "${SERVER_PLUGIN_URL}/${SERVER_PLUGIN_VERSION}/${SERVER_PLUGIN_FILE_IPK}" -O "${TMP_CHECK_DIR}/${SERVER_PLUGIN_FILE_IPK}" >/dev/null 2>&1 && sync
@@ -74,9 +68,6 @@ tolog() {
         sleep 3
     fi
 
-    # 03. Move to the ${PLUGIN_DOWNLOAD_PATH} directory to prepare for the update plugin
-    gzip -df ${TMP_CHECK_DIR}/*.gz && sync
-    mv -f ${TMP_CHECK_DIR}/*.ipk ${PLUGIN_DOWNLOAD_PATH} >/dev/null 2>&1 && sync
     tolog "03. The plug is ready, you can update."
     sleep 3
 
