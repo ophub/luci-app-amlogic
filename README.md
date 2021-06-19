@@ -30,9 +30,9 @@ make V=99
 
 ## Manual install / 手动安装
 
-- It is recommended to use the above compilation method to integrate during OpenWrt firmware compilation. The plug-in can be installed manually if it is not integrated in the OpenWrt firmware. First download the three ipk files of the latest plug-in in [Releases](https://github.com/ophub/luci-app-amlogic/releases), Upload these 3 ipk files to any directory in the OpenWrt system (such as `/tmp/upload/`), and then enter the following command to install (The directory `/tmp/upload/` in the following command should be replaced with the actual directory where the plug-in is located according to the actual situation): 
+- It is recommended to use the above compilation method to integrate during OpenWrt firmware compilation. The plug-in can be installed manually if it is not integrated in the OpenWrt firmware. First download the 3 ipk files of the latest plug-in in [Releases](https://github.com/ophub/luci-app-amlogic/releases), Upload these 3 ipk files to any directory in the OpenWrt system (such as `/tmp/upload/`), and then enter the following command to install (The directory `/tmp/upload/` in the following command should be replaced with the actual directory where the plug-in is located according to the actual situation): 
 
-- 推荐使用上面的编译方法，在 OpenWrt 固件编译时集成。如果当前 OpenWrt 固件中未集成的也可以手动安装本插件。首先在 [Releases](https://github.com/ophub/luci-app-amlogic/releases) 中下载最新插件的 3 个 ipk 文件，并将此 3 个压缩包上传至 OpenWrt 系统的任意目录（如 `/tmp/upload/`），然后输入以下安装命令进行安装（下面命令中的目录 `/tmp/upload/` 请根据实际情况替换为插件压缩包所在的实际目录）：
+- 推荐使用上面的编译方法，在 OpenWrt 固件编译时集成。如果当前 OpenWrt 固件中未集成的也可以手动安装本插件。首先在 [Releases](https://github.com/ophub/luci-app-amlogic/releases) 中下载最新插件的 3 个 ipk 文件，并将这 3 个 ipk 文件上传至 OpenWrt 系统的任意目录（如 `/tmp/upload/`），然后输入以下安装命令进行安装（下面命令中的目录 `/tmp/upload/` 请根据实际情况替换为插件压缩包所在的实际目录）：
 
 ```yaml
 opkg --force-reinstall install /tmp/upload/*.ipk
