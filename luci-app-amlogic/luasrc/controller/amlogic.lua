@@ -81,7 +81,7 @@ function start_amlogic_kernel()
 end
 
 function start_amlogic_plugin()
-    local ipk_state = luci.sys.call("opkg --force-reinstall install /tmp/upload/*.ipk > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
+    local ipk_state = luci.sys.call("opkg --force-reinstall install /tmp/amlogic/*.ipk > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
     local state = luci.sys.call("echo 'Successful Update' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
     return state
 end
