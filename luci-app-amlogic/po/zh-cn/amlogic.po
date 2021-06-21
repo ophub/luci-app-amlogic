@@ -245,8 +245,8 @@ msgstr "支持的盒子："
 msgid "S922x --- [ Belink, Belink-Pro, Ugoos-AM6-Plus ]"
 msgstr "S922x --- [ Belink, Belink-Pro, Ugoos-AM6-Plus ]"
 
-msgid "S905x3 -- [ X96, HK1, H96, Ugoos-X3, X96-Air, A95XF3-Air ]"
-msgstr "S905x3 -- [ X96, HK1, H96, Ugoos-X3, X96-Air, A95XF3-Air ]"
+msgid "S905x3 -- [ X96-Max+, HK1-Box, H96-Max-X3, Ugoos-X3, X96-Air, A95XF3-Air ]"
+msgstr "S905x3 -- [ X96-Max+, HK1-Box, H96-Max-X3, Ugoos-X3, X96-Air, A95XF3-Air ]"
 
 msgid "S905x2 -- [ X96Max-4G, X96Max-2G ]"
 msgstr "S905x2 -- [ X96Max-4G, X96Max-2G ]"
