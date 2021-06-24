@@ -1,9 +1,9 @@
 
 # luci-app-amlogic
 
-Provide luci operation support for Amlogic STB. The current functions include `install OpenWrt to EMMC`, `update the OpenWrt firmware or kernel`, and `backup/restore config`.
+Provide luci operation support for Amlogic STB. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config` and `Custom firmware / kernel download site`, etc.
 
-为 Amlogic 系列盒子提供 luci 操作支持。目前的功能有 `安装 OpenWrt 至 EMMC`，`升级 OpenWrt 固件或内核版本`，`备份/恢复个性化配置`。
+为 Amlogic 系列盒子提供 luci 操作支持。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新 OpenWrt 固件或内核版本`，`备份/恢复固件配置` 及 `自定义固件/内核下载站点`等功能。
 
 ## Depends / 依赖
 
@@ -65,8 +65,6 @@ The online update file download url of `OpenWrt firmware` and `kernel` can be cu
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
 - [Lienol/openwrt](https://github.com/Lienol/openwrt)
 - [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit)
-- [tuanqing/mknop](https://github.com/tuanqing/mknop)
-- [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)
 
 ## License / 许可
 - [LICENSE](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE) © OPHUB
