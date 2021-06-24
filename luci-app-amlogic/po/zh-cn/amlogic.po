@@ -266,11 +266,20 @@ msgstr "其他 ----- [ 自定义 DTB 文件 ]"
 msgid "Install Ipk"
 msgstr "安装Ipk"
 
-msgid "Backup Config"
-msgstr "备份配置"
+msgid "Plugin Settings"
+msgstr "插件设置"
 
-msgid "Backup config (openwrt_config.tar.gz). You can upload this file to restore the config."
-msgstr "备份晶晨宝盒中 OpenWrt 软件的相关配置信息(openwrt_config.tar.gz)。可将此文件上传，恢复配置。"
+msgid "Backup Firmware Config"
+msgstr "备份固件配置"
+
+msgid "Backup Config:"
+msgstr "备份配置："
+
+msgid "Download Backup"
+msgstr "下载备份"
+
+msgid "Backup firmware config (openwrt_config.tar.gz). Use this file to restore the config in [Manually Upload Updates]."
+msgstr "备份晶晨宝盒中 OpenWrt 固件的相关配置信息(openwrt_config.tar.gz)。使用此文件可在[手动上传更新]中恢复配置。"
 
 msgid "Restore"
 msgstr "恢复"
@@ -293,8 +302,8 @@ msgstr "在线下载更新"
 msgid "Config Source"
 msgstr "配置来源"
 
-msgid "You can customize the download site of OpenWrt firmware and kernel according to your needs."
-msgstr "可根据需要，自定义 OpenWrt 固件和内核的下载站点。"
+msgid "You can customize the download site of OpenWrt firmware and kernel in [Download Updates Online]."
+msgstr "您可以自定义[在线下载和更新]中 OpenWrt 固件和内核的下载站点。"
 
 msgid "Display config instructions:"
 msgstr "显示配置说明："

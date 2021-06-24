@@ -9,17 +9,17 @@ m.reset = false
 m.submit = false
 
 --SimpleForm for Backup Config
-b = SimpleForm("backup", translate("Backup Config"), nil)
-b.description = translate("Backup config (openwrt_config.tar.gz). You can upload this file to restore the config.")
+b = SimpleForm("backup", translate("Backup Firmware Config"), nil)
+b.description = translate("Backup firmware config (openwrt_config.tar.gz). Use this file to restore the config in [Manually Upload Updates].")
 b.reset = false
 b.submit = false
 s = b:section(SimpleSection, "", "")
-o = s:option(Button, "", translate("Backup Config"))
+o = s:option(Button, "", translate("Backup Config:"))
 o.template = "amlogic/other_button"
 o.render = function(self, section, scope)
 	self.section = true
 	scope.display = ""
-	self.inputtitle = translate("Backup")
+	self.inputtitle = translate("Download Backup")
 	self.inputstyle = "apply"
 	Button.render(self, section, scope)
 end
