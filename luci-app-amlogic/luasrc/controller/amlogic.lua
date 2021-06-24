@@ -8,8 +8,9 @@ function index()
     entry({"admin", "system", "amlogic", "install"},cbi("amlogic/amlogic_install"),_("Install OpenWrt"), 2).leaf = true
     entry({"admin", "system", "amlogic", "upload"},cbi("amlogic/amlogic_upload"),_("Manually Upload Updates"), 3).leaf = true
     entry({"admin", "system", "amlogic", "check"},cbi("amlogic/amlogic_check"),_("Download Updates Online"), 4).leaf = true
-    entry({"admin", "system", "amlogic", "backup"},cbi("amlogic/amlogic_backup"),_("Backup Config"), 5).leaf = true
-    entry({"admin", "system", "amlogic", "log"},cbi("amlogic/amlogic_log"),_("Server Logs"), 6).leaf = true
+    entry({"admin", "system", "amlogic", "backup"},cbi("amlogic/amlogic_backup"),_("Backup Firmware Config"), 5).leaf = true
+    entry({"admin", "system", "amlogic", "config"},cbi("amlogic/amlogic_config"),_("Plugin Settings"), 6).leaf = true
+    entry({"admin", "system", "amlogic", "log"},cbi("amlogic/amlogic_log"),_("Server Logs"), 7).leaf = true
     entry({"admin", "system", "amlogic", "check_firmware"},call("action_check_firmware"))
     entry({"admin", "system", "amlogic", "check_plugin"},call("action_check_plugin"))
     entry({"admin", "system", "amlogic", "check_kernel"},call("action_check_kernel"))
