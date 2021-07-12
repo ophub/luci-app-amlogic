@@ -32,6 +32,12 @@ end
 local fs = require "luci.fs"
 local tmp_upload_dir = luci.sys.exec("[ -d /tmp/upload ] || mkdir -p /tmp/upload >/dev/null")
 local tmp_amlogic_dir = luci.sys.exec("[ -d /tmp/amlogic ] || mkdir -p /tmp/amlogic >/dev/null")
+local amlogic_firmware_config = luci.sys.exec("uci get amlogic.config.amlogic_firmware_config 2>/dev/null") or "1"
+if tonumber(amlogic_firmware_config) == 0 then
+    update_restore_config = "NO-RESTORE"
+else
+    update_restore_config = "RESTORE"
+end
 
 function string.split(input, delimiter)
     input = tostring(input)
@@ -91,7 +97,7 @@ end
 function start_amlogic_update()
     luci.sys.exec("chmod +x /usr/bin/openwrt-update >/dev/null 2>&1")
     local amlogic_update_sel = luci.http.formvalue("amlogic_update_sel")
-    local state = luci.sys.call("/usr/bin/openwrt-update " .. amlogic_update_sel .. " YES RESTORE > /tmp/amlogic/amlogic_check_firmware.log && sync 2>/dev/null")
+    local state = luci.sys.call("/usr/bin/openwrt-update " .. amlogic_update_sel .. " YES " .. update_restore_config .. " > /tmp/amlogic/amlogic_check_firmware.log && sync 2>/dev/null")
     return state
 end
 

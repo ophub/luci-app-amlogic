@@ -1,18 +1,15 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local m, c
+local b
 
---SimpleForm for nil
-m = SimpleForm("", "", nil)
-m.reset = false
-m.submit = false
+--SimpleForm for Check
+b = SimpleForm("amlogic", translate("Check Update"), nil)
+b.description = translate("Provide OpenWrt Firmware, Kernel and Plugin online check, download and update service.")
+b.reset = false
+b.submit = false
+b:section(SimpleSection).template  = "amlogic/other_check"
 
---8.SimpleForm for Check
-c = Map("amlogic")
-c.title = translate("Check Update")
-c.description = translate("Provide OpenWrt Firmware, Kernel and Plugin online check, download and update service.")
-c.pageaction = false
-c:section(SimpleSection).template  = "amlogic/other_check"
 
-return m, c
+return b
+

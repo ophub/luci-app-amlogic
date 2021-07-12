@@ -83,9 +83,6 @@ msgstr "当上传文件列表中有 OpenWrt 固件（.img.gz 后缀）或内核�
 msgid "Amlogic Service"
 msgstr "晶晨宝盒"
 
-msgid "OpenWrt for Amlogic S9xxx STB"
-msgstr "OpenWrt 之晶晨宝盒"
-
 msgid "Restore Config / Replace OpenWrt Kernel"
 msgstr "恢复配置 / 升级 OpenWrt 内核"
 
@@ -328,6 +325,9 @@ msgstr "OpenWrt 固件标签关键字："
 
 msgid "OpenWrt Firmware Suffix:"
 msgstr "OpenWrt 固件文件后缀："
+
+msgid "Restore config when updating:"
+msgstr "更新时恢复配置："
 
 msgid "OpenWrt Kernel DownLoad Path:"
 msgstr "OpenWrt 内核下载路径："
