@@ -6,4 +6,5 @@ config amlogic 'config'
 	option amlogic_firmware_suffix '.img.gz'
 	option amlogic_firmware_config '1'
 	option amlogic_kernel_path 'amlogic-s9xxx/amlogic-kernel'
+	option amlogic_write_bootloader '1'
 

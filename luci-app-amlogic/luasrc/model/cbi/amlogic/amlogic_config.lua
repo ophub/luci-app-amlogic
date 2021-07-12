@@ -19,15 +19,18 @@ local amlogic_firmware_config = luci.sys.exec("uci get amlogic.config.amlogic_fi
 default_kernel_path="amlogic-s9xxx/amlogic-kernel"
 local amlogic_kernel_path = luci.sys.exec("uci get amlogic.config.amlogic_kernel_path 2>/dev/null") or default_kernel_path
 
+default_write_bootloader="1"
+local amlogic_write_bootloader = luci.sys.exec("uci get amlogic.config.amlogic_write_bootloader 2>/dev/null") or default_write_bootloader
+
 --SimpleForm for Config Source
 b = SimpleForm("amlogic_check", translate("Plugin Settings"), nil)
-b.description = translate("You can customize the download site of OpenWrt firmware and kernel in [Download Updates Online].")
+b.description = translate("You can customize the download site of OpenWrt firmware and kernel in [Download Update Online].")
 b.reset = false
 b.submit = false
 s = b:section(SimpleSection, "", nil)
 
 --1.Display config instructions
-o=s:option(Flag,"more",translate("Display config instructions:"))
+o=s:option(Flag,"more",translate("View example description:"))
 o.rmempty=false
 
 --2.SimpleForm for Check
@@ -37,6 +40,7 @@ o:depends("more", "1")
 
 --3.Set OpenWrt Firmware Repository
 o = s:option(Value, "firmware_repo", translate("OpenWrt Firmware Repository:"))
+o.description = translate("Set up the github.com repository of [Download Update Online].")
 o.rmempty = true
 o.default = amlogic_firmware_repo
 o.write = function(self, key, value)
@@ -51,6 +55,7 @@ end
 
 --4.Set OpenWrt Releases Tag Keywords
 o = s:option(Value, "firmware_tag", translate("OpenWrt Releases Tag Keywords:"))
+o.description = translate("Set the keywords of the Releases tag in github.com of [Download Update Online].")
 o.rmempty = true
 o.default = amlogic_firmware_tag
 o.write = function(self, key, value)
@@ -65,6 +70,7 @@ end
 
 --5.Set OpenWrt Firmware Suffix
 o = s:option(Value, "firmware_suffix", translate("OpenWrt Firmware Suffix:"))
+o.description = translate("Set the suffix of OpenWrt firmware in github.com of [Download Update Online].")
 o.rmempty = true
 o.default = amlogic_firmware_suffix
 o.write = function(self, key, value)
@@ -77,8 +83,24 @@ o.write = function(self, key, value)
 	end
 end
 
---6.Restore configuration
-o = s:option(Flag,"restore_config",translate("Restore config when updating:"))
+--6.Set OpenWrt Kernel DownLoad Path
+o = s:option(Value, "kernel_repo", translate("OpenWrt Kernel DownLoad Path:"))
+o.description = translate("Set the kernel download path in github.com repository of [Download Update Online].")
+o.rmempty = true
+o.default = amlogic_kernel_path
+o.write = function(self, key, value)
+	if value == "" then
+        --self.description = translate("Invalid value.")
+        amlogic_kernel_path = default_kernel_path
+	else
+        --self.description = translate("OpenWrt Kernel DownLoad Path:") .. value
+        amlogic_kernel_path = value
+	end
+end
+
+--7.Restore configuration
+o = s:option(Flag,"restore_config",translate("Keep config update:"))
+o.description = translate("Set whether to restore the current config during [Download Update Online] and [Manually Upload Update].")
 o.rmempty = false
 if tonumber(amlogic_firmware_config) == 0 then
     o.default = "0"
@@ -93,17 +115,20 @@ o.write = function(self, key, value)
 	end
 end
 
---7.Set OpenWrt Kernel DownLoad Path
-o = s:option(Value, "kernel_repo", translate("OpenWrt Kernel DownLoad Path:"))
-o.rmempty = true
-o.default = amlogic_kernel_path
+--7.Write bootloader
+o = s:option(Flag,"auto_write_bootloader",translate("Auto write bootloader:"))
+o.description = translate("Set whether to auto write bootloader during install and update OpenWrt.")
+o.rmempty = false
+if tonumber(amlogic_write_bootloader) == 0 then
+    o.default = "0"
+else
+    o.default = "1"
+end
 o.write = function(self, key, value)
-	if value == "" then
-        --self.description = translate("Invalid value.")
-        amlogic_kernel_path = default_kernel_path
+	if value == "1" then
+		amlogic_write_bootloader = "1"
 	else
-        --self.description = translate("OpenWrt Kernel DownLoad Path:") .. value
-        amlogic_kernel_path = value
+		amlogic_write_bootloader = "0"
 	end
 end
 
@@ -123,6 +148,7 @@ o.write = function(self, section, scope)
 	luci.sys.exec("uci set amlogic.config.amlogic_firmware_suffix=" .. amlogic_firmware_suffix .. " 2>/dev/null")
 	luci.sys.exec("uci set amlogic.config.amlogic_firmware_config=" .. amlogic_firmware_config .. " 2>/dev/null")
 	luci.sys.exec("uci set amlogic.config.amlogic_kernel_path=" .. amlogic_kernel_path .. " 2>/dev/null")
+	luci.sys.exec("uci set amlogic.config.amlogic_write_bootloader=" .. amlogic_write_bootloader .. " 2>/dev/null")
 	luci.sys.exec("uci commit amlogic 2>/dev/null")
 	http.redirect(DISP.build_url("admin", "system", "amlogic", "config"))
 	--self.description = "amlogic_firmware_repo: " .. amlogic_firmware_repo

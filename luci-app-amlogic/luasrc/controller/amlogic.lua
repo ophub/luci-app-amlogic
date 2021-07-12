@@ -6,8 +6,8 @@ function index()
     page.dependent = true
     entry({"admin", "system", "amlogic", "info"},cbi("amlogic/amlogic_info"),_("Amlogic Service"), 1).leaf = true
     entry({"admin", "system", "amlogic", "install"},cbi("amlogic/amlogic_install"),_("Install OpenWrt"), 2).leaf = true
-    entry({"admin", "system", "amlogic", "upload"},cbi("amlogic/amlogic_upload"),_("Manually Upload Updates"), 3).leaf = true
-    entry({"admin", "system", "amlogic", "check"},cbi("amlogic/amlogic_check"),_("Download Updates Online"), 4).leaf = true
+    entry({"admin", "system", "amlogic", "upload"},cbi("amlogic/amlogic_upload"),_("Manually Upload Update"), 3).leaf = true
+    entry({"admin", "system", "amlogic", "check"},cbi("amlogic/amlogic_check"),_("Download Update Online"), 4).leaf = true
     entry({"admin", "system", "amlogic", "backup"},cbi("amlogic/amlogic_backup"),_("Backup Firmware Config"), 5).leaf = true
     entry({"admin", "system", "amlogic", "config"},cbi("amlogic/amlogic_config"),_("Plugin Settings"), 6).leaf = true
     entry({"admin", "system", "amlogic", "log"},cbi("amlogic/amlogic_log"),_("Server Logs"), 7).leaf = true
@@ -37,6 +37,12 @@ if tonumber(amlogic_firmware_config) == 0 then
     update_restore_config = "NO-RESTORE"
 else
     update_restore_config = "RESTORE"
+end
+local amlogic_write_bootloader = luci.sys.exec("uci get amlogic.config.amlogic_write_bootloader 2>/dev/null") or "1"
+if tonumber(amlogic_write_bootloader) == 0 then
+    auto_write_bootloader = "NO"
+else
+    auto_write_bootloader = "YES"
 end
 
 function string.split(input, delimiter)
@@ -97,7 +103,7 @@ end
 function start_amlogic_update()
     luci.sys.exec("chmod +x /usr/bin/openwrt-update >/dev/null 2>&1")
     local amlogic_update_sel = luci.http.formvalue("amlogic_update_sel")
-    local state = luci.sys.call("/usr/bin/openwrt-update " .. amlogic_update_sel .. " YES " .. update_restore_config .. " > /tmp/amlogic/amlogic_check_firmware.log && sync 2>/dev/null")
+    local state = luci.sys.call("/usr/bin/openwrt-update " .. amlogic_update_sel .. " " .. auto_write_bootloader .. " " .. update_restore_config .. " > /tmp/amlogic/amlogic_check_firmware.log && sync 2>/dev/null")
     return state
 end
 
@@ -105,7 +111,7 @@ function start_amlogic_install()
     luci.sys.exec("chmod +x /usr/bin/openwrt-install >/dev/null 2>&1")
     local amlogic_install_sel = luci.http.formvalue("amlogic_install_sel")
     local res = string.split(amlogic_install_sel, "@")
-    local state = luci.sys.call("/usr/bin/openwrt-install YES " .. res[1] .. " " .. res[2] .. " > /tmp/amlogic/amlogic_check_install.log && sync 2>/dev/null")
+    local state = luci.sys.call("/usr/bin/openwrt-install " .. auto_write_bootloader .. " " .. res[1] .. " " .. res[2] .. " > /tmp/amlogic/amlogic_check_install.log && sync 2>/dev/null")
     return state
 end
 
