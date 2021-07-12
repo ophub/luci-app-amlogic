@@ -1,18 +1,15 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local m, c
-
---SimpleForm for nil
-m = SimpleForm("", "", nil)
-m.reset = false
-m.submit = false
+local b
 
 --SimpleForm for Install OpenWrt to Amlogic EMMC
-c = Map("amlogic_install")
-c.title = translate("Install OpenWrt")
-c.description = translate("Install OpenWrt to Amlogic EMMC, Please Select the Amlogic SoC, Or enter the dtb file name.")
-c.pageaction = false
-c:section(SimpleSection).template  = "amlogic/other_install"
+b = SimpleForm("amlogic_install", translate("Install OpenWrt"), nil)
+b.description = translate("Install OpenWrt to Amlogic EMMC, Please Select the Amlogic SoC, Or enter the dtb file name.")
+b.reset = false
+b.submit = false
+b:section(SimpleSection).template  = "amlogic/other_install"
 
-return m, c
+
+return b
+

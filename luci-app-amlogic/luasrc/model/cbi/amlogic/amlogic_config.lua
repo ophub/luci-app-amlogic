@@ -1,7 +1,7 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local m, b
+local b
 
 --Set Default value
 default_firmware_repo="ophub/amlogic-s9xxx-openwrt"
@@ -13,20 +13,18 @@ local amlogic_firmware_tag = luci.sys.exec("uci get amlogic.config.amlogic_firmw
 default_firmware_suffix=".img.gz"
 local amlogic_firmware_suffix = luci.sys.exec("uci get amlogic.config.amlogic_firmware_suffix 2>/dev/null") or default_firmware_suffix
 
+default_firmware_config="1"
+local amlogic_firmware_config = luci.sys.exec("uci get amlogic.config.amlogic_firmware_config 2>/dev/null") or default_firmware_config
+
 default_kernel_path="amlogic-s9xxx/amlogic-kernel"
 local amlogic_kernel_path = luci.sys.exec("uci get amlogic.config.amlogic_kernel_path 2>/dev/null") or default_kernel_path
-
---SimpleForm for nil
-m = SimpleForm("", "", nil)
-m.reset = false
-m.submit = false
 
 --SimpleForm for Config Source
 b = SimpleForm("amlogic_check", translate("Plugin Settings"), nil)
 b.description = translate("You can customize the download site of OpenWrt firmware and kernel in [Download Updates Online].")
 b.reset = false
 b.submit = false
-s = b:section(SimpleSection, "", "")
+s = b:section(SimpleSection, "", nil)
 
 --1.Display config instructions
 o=s:option(Flag,"more",translate("Display config instructions:"))
@@ -79,7 +77,23 @@ o.write = function(self, key, value)
 	end
 end
 
---6.Set OpenWrt Kernel DownLoad Path
+--6.Restore configuration
+o = s:option(Flag,"restore_config",translate("Restore config when updating:"))
+o.rmempty = false
+if tonumber(amlogic_firmware_config) == 0 then
+    o.default = "0"
+else
+    o.default = "1"
+end
+o.write = function(self, key, value)
+	if value == "1" then
+		amlogic_firmware_config = "1"
+	else
+		amlogic_firmware_config = "0"
+	end
+end
+
+--7.Set OpenWrt Kernel DownLoad Path
 o = s:option(Value, "kernel_repo", translate("OpenWrt Kernel DownLoad Path:"))
 o.rmempty = true
 o.default = amlogic_kernel_path
@@ -93,7 +107,7 @@ o.write = function(self, key, value)
 	end
 end
 
---7.Save button
+--8.Save button
 o = s:option(Button, "", translate("Save Config:"))
 o.template = "amlogic/other_button"
 o.render = function(self, section, scope)
@@ -107,6 +121,7 @@ o.write = function(self, section, scope)
 	luci.sys.exec("uci set amlogic.config.amlogic_firmware_repo=" .. amlogic_firmware_repo .. " 2>/dev/null")
 	luci.sys.exec("uci set amlogic.config.amlogic_firmware_tag=" .. amlogic_firmware_tag .. " 2>/dev/null")
 	luci.sys.exec("uci set amlogic.config.amlogic_firmware_suffix=" .. amlogic_firmware_suffix .. " 2>/dev/null")
+	luci.sys.exec("uci set amlogic.config.amlogic_firmware_config=" .. amlogic_firmware_config .. " 2>/dev/null")
 	luci.sys.exec("uci set amlogic.config.amlogic_kernel_path=" .. amlogic_kernel_path .. " 2>/dev/null")
 	luci.sys.exec("uci commit amlogic 2>/dev/null")
 	http.redirect(DISP.build_url("admin", "system", "amlogic", "config"))
@@ -114,4 +129,5 @@ o.write = function(self, section, scope)
 end
 
 
-return m, b
+return b
+
