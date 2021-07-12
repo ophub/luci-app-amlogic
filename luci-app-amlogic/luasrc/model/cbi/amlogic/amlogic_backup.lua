@@ -1,12 +1,7 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local m, b
-
---SimpleForm for nil
-m = SimpleForm("", "", nil)
-m.reset = false
-m.submit = false
+local b
 
 --SimpleForm for Backup Config
 b = SimpleForm("backup", translate("Backup Firmware Config"), nil)
@@ -61,4 +56,6 @@ end
 backupm = s:option(DummyValue, "", nil)
 backupm.template = "amlogic/other_dvalue"
 
-return m, b
+
+return b
+

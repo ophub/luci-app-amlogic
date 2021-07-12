@@ -1,14 +1,15 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local m
+local b
 
 --SimpleForm for Info
-m = Map("amlogic")
-m.title = translate("OpenWrt for Amlogic S9xxx STB")
-m.description = translate("Provide services such as install to EMMC, Update Firmware or Kernel, Backup and Recovery Config for Amlogic STB.")
-m.pageaction = false
+b = SimpleForm("amlogic", translate("Amlogic Service"), nil)
+b.description = translate("Provide services such as install to EMMC, Update Firmware or Kernel, Backup and Recovery Config for Amlogic STB.")
+b.reset = false
+b.submit = false
+b:section(SimpleSection).template  = "amlogic/other_info"
 
-m:section(SimpleSection).template  = "amlogic/other_info"
 
-return m
+return b
+

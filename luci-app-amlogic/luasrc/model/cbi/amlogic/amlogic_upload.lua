@@ -1,23 +1,18 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local m, m_u, form, c
+local b, form, c
 
 --Clear the version check log
 luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
 luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
 
---SimpleForm for nil
-m = SimpleForm("", "", nil)
-m.reset = false
-m.submit = false
-
 --SimpleForm for Update OpenWrt firmware/kernel
-m_u = SimpleForm("upload", translate("Upload"), nil)
-m_u.description = translate("After uploading [Firmware], [Kernel], [IPK] or [Backup Config], the operation buttons will be displayed.")
-m_u.reset = false
-m_u.submit = false
-s = m_u:section(SimpleSection, "", "")
+b = SimpleForm("upload", translate("Upload"), nil)
+b.description = translate("After uploading [Firmware], [Kernel], [IPK] or [Backup Config], the operation buttons will be displayed.")
+b.reset = false
+b.submit = false
+s = b:section(SimpleSection, "", "")
 o = s:option(FileUpload, "")
 o.template = "amlogic/other_upload"
 um = s:option(DummyValue, "", nil)
@@ -189,9 +184,11 @@ btnis.write = function(self, section)
 end
 
 --SimpleForm for Check upload files
-c = Map("amlogic")
-c.pageaction = false
+c = SimpleForm("amlogic", "", nil)
+c.reset = false
+c.submit = false
 c:section(SimpleSection).template  = "amlogic/other_upfiles"
 
-return m, m_u, form, c
+
+return b, form, c
 

@@ -1,19 +1,17 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local m, mlog
-
---SimpleForm for nil
-m = SimpleForm("", "", nil)
-m.reset = false
-m.submit = false
+local b
 
 --SimpleForm for Server Logs
-mlog = SimpleForm("amlogic_log", translate("Server Logs"), nil)
-mlog.reset = false
-mlog.submit = false
-slog = mlog:section(SimpleSection, "", translate("Display the execution log of the current operation."))
-olog = slog:option(TextValue, "")
-olog.template = "amlogic/other_log"
+b = SimpleForm("amlogic_log", translate("Server Logs"), nil)
+b.description = translate("Display the execution log of the current operation.")
+b.reset = false
+b.submit = false
+s = b:section(SimpleSection, "", nil)
+o = s:option(TextValue, "")
+o.template = "amlogic/other_log"
 
-return m, mlog
+
+return b
+
