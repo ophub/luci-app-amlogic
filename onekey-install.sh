@@ -8,7 +8,6 @@
 TMP_CHECK_DIR="/root"
 LOG_FILE="${TMP_CHECK_DIR}/amlogic.log"
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
-[[ -d ${TMP_CHECK_DIR} ]] || mkdir -p ${TMP_CHECK_DIR}
 rm -f ${TMP_CHECK_DIR}/*.ipk && sync
 
 # Log function
