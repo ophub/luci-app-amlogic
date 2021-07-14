@@ -115,7 +115,7 @@ o.write = function(self, key, value)
 	end
 end
 
---7.Write bootloader
+--8.Write bootloader
 o = s:option(Flag,"auto_write_bootloader",translate("Auto write bootloader:"))
 o.description = translate("Set whether to auto write bootloader during install and update OpenWrt.")
 o.rmempty = false
@@ -132,7 +132,7 @@ o.write = function(self, key, value)
 	end
 end
 
---8.Save button
+--9.Save button
 o = s:option(Button, "", translate("Save Config:"))
 o.template = "amlogic/other_button"
 o.render = function(self, section, scope)
