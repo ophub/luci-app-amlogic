@@ -5,7 +5,7 @@
 #=================================================================================================================
 
 # Set a fixed value
-TMP_CHECK_DIR="/tmp/amlogic"
+TMP_CHECK_DIR="/root"
 LOG_FILE="${TMP_CHECK_DIR}/amlogic.log"
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 [[ -d ${TMP_CHECK_DIR} ]] || mkdir -p ${TMP_CHECK_DIR}
