@@ -58,6 +58,7 @@ tolog() {
     tolog "03. Start automatic installation."
     opkg --force-reinstall install ${TMP_CHECK_DIR}/*.ipk >/dev/null 2>&1
     rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/* >/dev/null 2>&1
+    rm -f ${TMP_CHECK_DIR}/*.ipk >/dev/null 2>&1
     tolog "03.01 The plugin has been installed successfully."
     tolog "03.02 Please login to OpenWrt -> system -> Amlogic Service."
 
