@@ -22,7 +22,6 @@ LUCI_DEPENDS:=@(aarch64||arm) \
 	    +lsblk \
 	    +pv \
 	    +resize2fs \
-	    +tune2fs \
 	    +losetup \
 	    +uuidgen
 LUCI_PKGARCH:=all
