@@ -6,13 +6,10 @@
 
 # Set a fixed value
 TMP_CHECK_DIR="/root"
-LOG_FILE="${TMP_CHECK_DIR}/amlogic.log"
-LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 rm -f ${TMP_CHECK_DIR}/*.ipk && sync
 
 # Log function
 tolog() {
-    echo -e "${LOGTIME} ${1}" >>$LOG_FILE
     echo -e "${1}"
     [[ -z "${2}" ]] || exit 1
 }
