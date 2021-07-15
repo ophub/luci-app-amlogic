@@ -24,21 +24,14 @@ local amlogic_write_bootloader = luci.sys.exec("uci get amlogic.config.amlogic_w
 
 --SimpleForm for Config Source
 b = SimpleForm("amlogic_check", translate("Plugin Settings"), nil)
-b.description = translate("You can customize the download site of OpenWrt firmware and kernel in [Download Update Online].")
+local des_content = translate("You can customize the download site of OpenWrt firmware and kernel in [Download Update Online].")
+local des_content = des_content .. "<br />" .. translate("Tips: The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.13) will automatically match the current openwrt firmware.")
+b.description = des_content
 b.reset = false
 b.submit = false
 s = b:section(SimpleSection, "", nil)
 
---1.Display config instructions
-o=s:option(Flag,"more",translate("View example description:"))
-o.rmempty=false
-
---2.SimpleForm for Check
-o = s:option(TextValue, "display_config", nil)
-o.template = "amlogic/other_config"
-o:depends("more", "1")
-
---3.Set OpenWrt Firmware Repository
+--1.Set OpenWrt Firmware Repository
 o = s:option(Value, "firmware_repo", translate("OpenWrt Firmware Repository:"))
 o.description = translate("Set up the github.com repository of [Download Update Online].")
 o.rmempty = true
@@ -53,7 +46,7 @@ o.write = function(self, key, value)
 	end
 end
 
---4.Set OpenWrt Releases Tag Keywords
+--2.Set OpenWrt Releases Tag Keywords
 o = s:option(Value, "firmware_tag", translate("OpenWrt Releases Tag Keywords:"))
 o.description = translate("Set the keywords of the Releases tag in github.com of [Download Update Online].")
 o.rmempty = true
@@ -68,7 +61,7 @@ o.write = function(self, key, value)
 	end
 end
 
---5.Set OpenWrt Firmware Suffix
+--3.Set OpenWrt Firmware Suffix
 o = s:option(Value, "firmware_suffix", translate("OpenWrt Firmware Suffix:"))
 o.description = translate("Set the suffix of OpenWrt firmware in github.com of [Download Update Online].")
 o.rmempty = true
@@ -83,7 +76,7 @@ o.write = function(self, key, value)
 	end
 end
 
---6.Set OpenWrt Kernel DownLoad Path
+--4.Set OpenWrt Kernel DownLoad Path
 o = s:option(Value, "kernel_repo", translate("OpenWrt Kernel DownLoad Path:"))
 o.description = translate("Set the kernel download path in github.com repository of [Download Update Online].")
 o.rmempty = true
@@ -98,7 +91,7 @@ o.write = function(self, key, value)
 	end
 end
 
---7.Restore configuration
+--5.Restore configuration
 o = s:option(Flag,"restore_config",translate("Keep config update:"))
 o.description = translate("Set whether to restore the current config during [Download Update Online] and [Manually Upload Update].")
 o.rmempty = false
@@ -115,7 +108,7 @@ o.write = function(self, key, value)
 	end
 end
 
---8.Write bootloader
+--6.Write bootloader
 o = s:option(Flag,"auto_write_bootloader",translate("Auto write bootloader:"))
 o.description = translate("Set whether to auto write bootloader during install and update OpenWrt.")
 o.rmempty = false
@@ -132,7 +125,7 @@ o.write = function(self, key, value)
 	end
 end
 
---9.Save button
+--7.Save button
 o = s:option(Button, "", translate("Save Config:"))
 o.template = "amlogic/other_button"
 o.render = function(self, section, scope)
