@@ -75,10 +75,10 @@ msgid "There are openwrt firmware file in the upload directory, and you can upda
 msgstr "上传文件列表中有 OpenWrt 固件文件，你可以升级 OpenWrt。"
 
 msgid "After uploading [Firmware], [Kernel], [IPK] or [Backup Config], the operation buttons will be displayed."
-msgstr "当上传[固件文件]，[内核文件]，[IPK文件]或[配置文件]后，将自动显示相关操作按钮。"
+msgstr "当上传 [固件文件]，[内核文件]，[IPK文件]，[配置文件] 后，将自动显示相关操作按钮。"
 
-msgid "After uploading firmware (.img.gz suffix) or kernel files (3 kernel files), the update button will be displayed."
-msgstr "当上传文件列表中有 OpenWrt 固件（.img.gz 后缀）或内核文件（3个内核文件）时，将自动显示相关操作按钮。"
+msgid "After uploading firmware (.img.gz or .7z suffix) or kernel files (3 kernel files), the update button will be displayed."
+msgstr "当上传文件列表中有 OpenWrt 固件（.img.gz 或 .7z 后缀）或内核文件（3个内核文件）时，将自动显示相关操作按钮。"
 
 msgid "Amlogic Service"
 msgstr "晶晨宝盒"
@@ -276,7 +276,7 @@ msgid "Download Backup"
 msgstr "下载备份"
 
 msgid "Backup firmware config (openwrt_config.tar.gz). Use this file to restore the config in [Manually Upload Update]."
-msgstr "备份晶晨宝盒中 OpenWrt 固件的相关配置信息(openwrt_config.tar.gz)。使用此文件可在[手动上传更新]中恢复配置。"
+msgstr "备份晶晨宝盒中 OpenWrt 固件的相关配置信息(openwrt_config.tar.gz)。使用此文件可在 [手动上传更新] 中恢复配置。"
 
 msgid "Restore"
 msgstr "恢复"
@@ -303,58 +303,49 @@ msgid "Config Source"
 msgstr "配置来源"
 
 msgid "You can customize the download site of OpenWrt firmware and kernel in [Download Update Online]."
-msgstr "您可以自定义[在线下载和更新]中 OpenWrt 固件和内核的下载站点。"
+msgstr "您可以自定义 [在线下载和更新] 中 OpenWrt 固件和内核的下载站点。"
 
 msgid "View example description:"
 msgstr "查看示例说明："
 
-msgid "OpenWrt firmware download url example:"
-msgstr "OpenWrt 固件下载地址示例："
-
-msgid "Tips: The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.12) will automatically match the current openwrt firmware."
-msgstr "提示：OpenWrt 固件的型号（如：s905d）和内核的主线版本（如：5.12）将根据当前固件自动适配。"
-
-msgid "OpenWrt kernel download url example:"
-msgstr "OpenWrt 内核下载地址示例："
-
-msgid "Tips: The OpenWrt kernel download repository is the same as the firmware."
-msgstr "提示：OpenWrt 内核下载仓库与固件相同。"
+msgid "Tips: The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.13) will automatically match the current openwrt firmware."
+msgstr "提示：OpenWrt 固件的型号（如：s905d）和内核的主线版本（如：5.13）将根据当前固件自动适配。"
 
 msgid "OpenWrt Firmware Repository:"
 msgstr "OpenWrt 固件下载仓库："
 
 msgid "Set up the github.com repository of [Download Update Online]."
-msgstr "设置[在线下载更新]的 github.com 仓库。"
+msgstr "设置 [在线下载更新] 的 github.com 仓库。"
 
 msgid "OpenWrt Releases Tag Keywords:"
 msgstr "OpenWrt 固件标签关键字："
 
 msgid "Set the keywords of the Releases tag in github.com of [Download Update Online]."
-msgstr "设置[在线下载更新]的 github.com 里 Releases 标签的关键字。"
+msgstr "设置 [在线下载更新] 的 github.com 里 Releases 标签的关键字。"
 
 msgid "OpenWrt Firmware Suffix:"
 msgstr "OpenWrt 固件文件后缀："
 
 msgid "Set the suffix of OpenWrt firmware in github.com of [Download Update Online]."
-msgstr "设置[在线下载更新]的 github.com 里 OpenWrt 固件的后缀。"
+msgstr "设置 [在线下载更新] 的 github.com 里 OpenWrt 固件文件的后缀。"
 
 msgid "Keep config update:"
 msgstr "保留配置更新："
 
 msgid "Set whether to restore the current config during [Download Update Online] and [Manually Upload Update]."
-msgstr "设置是否在[在线下载更新]和[手动上传更新]时恢复当前配置。"
+msgstr "设置是否在 [在线下载更新] 和 [手动上传更新] 时恢复当前配置。"
 
 msgid "OpenWrt Kernel DownLoad Path:"
 msgstr "OpenWrt 内核下载路径："
 
 msgid "Set the kernel download path in github.com repository of [Download Update Online]."
-msgstr "设置[在线下载更新]的 github.com 仓库中内核下载路径。"
+msgstr "设置 [在线下载更新] 的 github.com 仓库中内核下载路径。"
 
 msgid "Auto write bootloader:"
 msgstr "自动写入 bootloader："
 
 msgid "Set whether to auto write bootloader during install and update OpenWrt."
-msgstr "设置在安装和更新 OpenWrt 固件时是否自动写入 bootloader."
+msgstr "设置在安装和更新 OpenWrt 固件时是否自动写入 bootloader 文件。"
 
 msgid "Save Config:"
 msgstr "保存配置："
