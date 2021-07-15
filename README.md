@@ -50,7 +50,7 @@ wget git.io/luci-app-amlogic -O ./amlogic.sh && chmod +x amlogic.sh && ./amlogic
 
 ## Screenshot / 截图
 
-![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/121277810-f9ebd800-c903-11eb-9bf4-7c2b11f9a1d3.gif)
+![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/125813243-7a91ae65-2091-41cb-bb2b-848e19d7473a.gif)
 
 ## Borrow / 借鉴
 
