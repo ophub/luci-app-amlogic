@@ -317,11 +317,11 @@ msgstr "OpenWrt 固件下载仓库："
 msgid "Set up the github.com repository of [Download Update Online]."
 msgstr "设置 [在线下载更新] 的 github.com 仓库。"
 
-msgid "OpenWrt Releases Tag Keywords:"
-msgstr "OpenWrt 固件标签关键字："
+msgid "Releases's Tags Keywords:"
+msgstr "Releases 里 Tags 的关键字："
 
-msgid "Set the keywords of the Releases tag in github.com of [Download Update Online]."
-msgstr "设置 [在线下载更新] 的 github.com 里 Releases 标签的关键字。"
+msgid "Set the keywords of Releases's Tags in github.com of [Download Update Online]."
+msgstr "设置 [在线下载更新] 的 github.com 里 Releases 里 Tags 的关键字。"
 
 msgid "OpenWrt Firmware Suffix:"
 msgstr "OpenWrt 固件文件后缀："
