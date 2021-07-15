@@ -46,9 +46,9 @@ o.write = function(self, key, value)
 	end
 end
 
---2.Set OpenWrt Releases Tag Keywords
-o = s:option(Value, "firmware_tag", translate("OpenWrt Releases Tag Keywords:"))
-o.description = translate("Set the keywords of the Releases tag in github.com of [Download Update Online].")
+--2.Set OpenWrt Releases's Tag Keywords
+o = s:option(Value, "releases_tag", translate("Releases's Tags Keywords:"))
+o.description = translate("Set the keywords of Releases's Tags in github.com of [Download Update Online].")
 o.rmempty = true
 o.default = amlogic_firmware_tag
 o.write = function(self, key, value)
