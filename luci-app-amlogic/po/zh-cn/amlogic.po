@@ -293,7 +293,7 @@ msgstr "配置文件"
 msgid "Tip: The config is being restored, and it will automatically restart after completion."
 msgstr "提示：正在还原配置，完成后将自动重启。"
 
-msgid "Download Update Online"
+msgid "Online Download Update"
 msgstr "在线下载更新"
 
 msgid "Example"
@@ -302,50 +302,47 @@ msgstr "示例"
 msgid "Config Source"
 msgstr "配置来源"
 
-msgid "You can customize the download site of OpenWrt firmware and kernel in [Download Update Online]."
-msgstr "您可以自定义 [在线下载和更新] 中 OpenWrt 固件和内核的下载站点。"
-
-msgid "View example description:"
-msgstr "查看示例说明："
+msgid "You can customize the github.com download repository of OpenWrt files and kernels in [Online Download Update]."
+msgstr "您可以自定义 [在线下载和更新] 中 OpenWrt 文件和内核的 github.com 下载仓库。"
 
 msgid "Tips: The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.13) will automatically match the current openwrt firmware."
 msgstr "提示：OpenWrt 固件的型号（如：s905d）和内核的主线版本（如：5.13）将根据当前固件自动适配。"
 
-msgid "OpenWrt Firmware Repository:"
-msgstr "OpenWrt 固件下载仓库："
+msgid "Download repository of OpenWrt files:"
+msgstr "OpenWrt 文件的下载仓库："
 
-msgid "Set up the github.com repository of [Download Update Online]."
-msgstr "设置 [在线下载更新] 的 github.com 仓库。"
+msgid "Set the OpenWrt file download repository of github.com in [Online Download Update]."
+msgstr "设置 [在线下载更新] 中 github.com 的 OpenWrt 文件下载仓库。"
 
-msgid "Releases's Tags Keywords:"
+msgid "Download path of OpenWrt kernel:"
+msgstr "OpenWrt 内核的下载路径："
+
+msgid "Set the download path of the kernel in the github.com repository in [Online Download Update]."
+msgstr "设置 [在线下载更新] 中 github.com 仓库里内核的下载路径。"
+
+msgid "Keywords of Tags in Releases:"
 msgstr "Releases 里 Tags 的关键字："
 
-msgid "Set the keywords of Releases's Tags in github.com of [Download Update Online]."
-msgstr "设置 [在线下载更新] 的 github.com 里 Releases 里 Tags 的关键字。"
+msgid "Set the keywords of Tags in Releases of github.com in [Online Download Update]."
+msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 Tags 的关键字。"
 
-msgid "OpenWrt Firmware Suffix:"
-msgstr "OpenWrt 固件文件后缀："
+msgid "Suffix of OpenWrt files in Releases:"
+msgstr "Releases 里 OpenWrt 文件的后缀："
 
-msgid "Set the suffix of OpenWrt firmware in github.com of [Download Update Online]."
-msgstr "设置 [在线下载更新] 的 github.com 里 OpenWrt 固件文件的后缀。"
+msgid "Set the suffix of the OpenWrt files in Releases of github.com in [Online Download Update]."
+msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 OpenWrt 文件的后缀。"
 
 msgid "Keep config update:"
 msgstr "保留配置更新："
 
-msgid "Set whether to restore the current config during [Download Update Online] and [Manually Upload Update]."
-msgstr "设置是否在 [在线下载更新] 和 [手动上传更新] 时恢复当前配置。"
-
-msgid "OpenWrt Kernel DownLoad Path:"
-msgstr "OpenWrt 内核下载路径："
-
-msgid "Set the kernel download path in github.com repository of [Download Update Online]."
-msgstr "设置 [在线下载更新] 的 github.com 仓库中内核下载路径。"
+msgid "Set whether to keep the current config during [Online Download Update] and [Manually Upload Update]."
+msgstr "设置是否在 [在线下载更新] 和 [手动上传更新] 时保留当前的配置。"
 
 msgid "Auto write bootloader:"
 msgstr "自动写入 bootloader："
 
-msgid "Set whether to auto write bootloader during install and update OpenWrt."
-msgstr "设置在安装和更新 OpenWrt 固件时是否自动写入 bootloader 文件。"
+msgid "[Recommended choice] Set whether to auto write bootloader during install and update OpenWrt."
+msgstr "[推荐选择] 设置在安装和更新 OpenWrt 固件时是否自动写入 bootloader 文件。"
 
 msgid "Save Config:"
 msgstr "保存配置："
