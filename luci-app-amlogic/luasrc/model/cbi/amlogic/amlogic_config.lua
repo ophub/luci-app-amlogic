@@ -32,8 +32,8 @@ b.submit = false
 s = b:section(SimpleSection, "", nil)
 
 --1.Set OpenWrt Firmware Repository
-o = s:option(Value, "firmware_repo", translate("Download repository of OpenWrt files:"))
-o.description = translate("Set the OpenWrt file download repository of github.com in [Online Download Update].")
+o = s:option(Value, "firmware_repo", translate("Download repository of OpenWrt:"))
+o.description = translate("Set the download repository of the OpenWrt files on github.com in [Online Download Update].")
 o.rmempty = true
 o.default = amlogic_firmware_repo
 o.write = function(self, key, value)
