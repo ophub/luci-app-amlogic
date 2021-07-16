@@ -61,7 +61,7 @@ o.write = function(self, key, value)
 	end
 end
 
---2.Set OpenWrt Releases's Tag Keywords
+--3.Set OpenWrt Releases's Tag Keywords
 o = s:option(Value, "releases_tag", translate("Keywords of Tags in Releases:"))
 o.description = translate("Set the keywords of Tags in Releases of github.com in [Online Download Update].")
 o.rmempty = true
@@ -76,7 +76,7 @@ o.write = function(self, key, value)
 	end
 end
 
---3.Set OpenWrt Firmware Suffix
+--4.Set OpenWrt Firmware Suffix
 o = s:option(Value, "firmware_suffix", translate("Suffix of OpenWrt files in Releases:"))
 o.description = translate("Set the suffix of the OpenWrt files in Releases of github.com in [Online Download Update].")
 o.rmempty = true
