@@ -35,7 +35,7 @@ make V=99
 - 使用 SSH 登录 OpenWrt 系统的任意目录，如 `cd /root`，然后运行一键安装命令，即可自动下载安装本插件。
 
 ```yaml
-wget git.io/luci-app-amlogic -O ./amlogic.sh && chmod +x amlogic.sh && ./amlogic.sh
+curl -fsSL git.io/luci-app-amlogic | bash
 ```
 
 ## Config / 配置
