@@ -30,9 +30,9 @@ make V=99
 
 ## Manual install / 手动安装
 
-- Use SSH to log in to any directory of OpenWrt system, such as `cd /root`, and then run the onekey install command to automatically download and install this plugin.
+- Use SSH to log in to any directory of OpenWrt system, Or in the `System menu` → `TTYD terminal`, Run the onekey install command to automatically download and install this plugin.
 
-- 使用 SSH 登录 OpenWrt 系统的任意目录，如 `cd /root`，然后运行一键安装命令，即可自动下载安装本插件。
+- 使用 SSH 登录 OpenWrt 系统的任意目录，或者在 `系统菜单` → `TTYD 终端` 里，运行一键安装命令，即可自动下载安装本插件。
 
 ```yaml
 curl -fsSL git.io/luci-app-amlogic | bash
