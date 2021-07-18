@@ -215,27 +215,6 @@ msgstr "支持的功能："
 msgid "Provide services such as install to EMMC, Update Firmware or Kernel, Backup and Recovery Config for Amlogic STB."
 msgstr "为 Amlogic 系列盒子提供支持，例如将 OpenWrt 系统写入 EMMC、升级固件或内核，备份与恢复自定义配置等功能。"
 
-msgid "Script description:"
-msgstr "脚本说明："
-
-msgid "Install OpenWrt: openwrt-install"
-msgstr "安装 OpenWrt：openwrt-install"
-
-msgid "Update OpenWrt firmware: openwrt-update"
-msgstr "升级 OpenWrt 固件：openwrt-update"
-
-msgid "Replace OpenWrt kernel: openwrt-kernel -r"
-msgstr "更换 OpenWrt 内核：openwrt-kernel -r"
-
-msgid "Backup Config: openwrt-backup -b"
-msgstr "备份配置：openwrt-backup -b"
-
-msgid "Restore Config: openwrt-backup -r"
-msgstr "恢复配置：openwrt-backup -r"
-
-msgid "The plug-in uses the above commands for related operations, and these commands can also be used in terminals."
-msgstr "插件使用以上命令进行相关操作，这些命令也可以在 TTYD 等终端中使用。"
-
 msgid "Supported Amlogic STB:"
 msgstr "支持的盒子："
 
