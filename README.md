@@ -36,17 +36,20 @@ make V=99
 
 
 ```shell
-# Set the download repository of the OpenWrt files to your github.com
+# 1.Set the download repository of the OpenWrt files to your github.com （OpenWrt 文件的下载仓库）
 sed -i "s|ophub/amlogic-s9xxx-openwrt|USERNAME/REPOSITORY|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-# Set the download path of the kernel in your github.com repository
+# 2.Set the download path of the kernel in your github.com repository （OpenWrt 内核的下载路径）
 sed -i "s|amlogic-s9xxx/amlogic-kernel|ROOTDIR/KERNEL|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-# Modify the keywords of Tags in your github.com Releases
+# 3.Modify the keywords of Tags in your github.com Releases （Releases 里 Tags 的关键字）
 sed -i "s|s9xxx_lede|RELEASES_TAGS_KEYWORD|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-# Modify the suffix of the OPENWRT files in your github.com Releases
+# 4.Modify the suffix of the OPENWRT files in your github.com Releases （Releases 里 OpenWrt 文件的后缀）
 sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
+
+# Tips: When compiling OpenWrt on github.com, modify the above 4 points to realize customization. The above information can also be modified in the settings of the plug-in after log in to the openwrt `System` → `Amlogic Service`.
+# 提示：当你在 github.com 编译 OpenWrt 时，修改以上4点即可实现自定义。以上信息也可以登录 OpenWrt 系统后，在 `系统` → `晶晨宝盒` 的设置中修改。
 ```
 
 ## Manual install / 手动安装
