@@ -24,7 +24,7 @@ make package/luci-app-amlogic/compile V=99
 
 # Or integrate this plugin when fully compiling OpenWrt （或者在完整编译 OpenWrt 时集成此插件）
 make menuconfig
-# choose LuCI ---> 3. Applications  ---> <*> luci-app-amlogic..... LuCI support for Amlogic S9xxx STB ----> save
+# choose LuCI ---> 3. Applications  ---> <*> luci-app-amlogic ----> save
 make V=99
 ```
 
