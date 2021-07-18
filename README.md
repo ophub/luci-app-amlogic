@@ -28,16 +28,6 @@ make menuconfig
 make V=99
 ```
 
-## Manual install / 手动安装
-
-- Use SSH to log in to any directory of OpenWrt system, Or in the `System menu` → `TTYD terminal`, Run the onekey install command to automatically download and install this plugin.
-
-- 使用 SSH 登录 OpenWrt 系统的任意目录，或者在 `系统菜单` → `TTYD 终端` 里，运行一键安装命令，即可自动下载安装本插件。
-
-```yaml
-curl -fsSL git.io/luci-app-amlogic | bash
-```
-
 ## Custom config / 自定义配置
 
 - Supports OpenWrt firmware packaged by [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) and [flippy](https://github.com/unifreq/openwrt_packit) related scripts. The online update file download url of `OpenWrt firmware` and `kernel` can be customized as your own repository. An example of OpenWrt's github.com download URL: [ophub/amlogic-s9xxx-openwrt](https://github.com/ophub/amlogic-s9xxx-openwrt/releases), an example of a kernel download URL: [amlogic-s9xxx/amlogic -kernel](https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel) . The config information is stored in the [/etc/config/amlogic](https://github.com/ophub/luci-app-amlogic/blob/main/luci-app-amlogic/root/etc/config/amlogic) file. When the firmware is compiled, directly modify the value in this file to realize the setting of custom OpenWrt firmware and kernel download url:
@@ -57,6 +47,16 @@ sed -i "s|s9xxx_lede|RELEASES_TAGS_KEYWORD|g" package/luci-app-amlogic/root/etc/
 
 # Modify the suffix of the OPENWRT files in your github.com Releases
 sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
+```
+
+## Manual install / 手动安装
+
+- If the OpenWrt you are using does not have this plugin, you can also install it manually. Use SSH to log in to any directory of OpenWrt system, Or in the `System menu` → `TTYD terminal`, Run the onekey install command to automatically download and install this plugin.
+
+- 如果你正在使用的 OpenWrt 没有这个插件，也可以手动安装。使用 SSH 登录 OpenWrt 系统的任意目录，或者在 `系统菜单` → `TTYD 终端` 里，运行一键安装命令，即可自动下载安装本插件。
+
+```yaml
+curl -fsSL git.io/luci-app-amlogic | bash
 ```
 
 ## Screenshot / 截图
