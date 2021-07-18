@@ -16,13 +16,13 @@ Tip: It is included when compiling with [coolsnowwolf/lean](https://github.com/c
 ## Compile / 编译
 
 ```yaml
-# Add luci-app-amlogic
+# Add luci-app-amlogic （添加插件）
 svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
 
-# Compile package only
+# This plugin can be compiled separately （可以单独编译此插件）
 make package/luci-app-amlogic/compile V=99
 
-# Compile
+# Or integrate this plugin when fully compiling OpenWrt （或者在完整编译 OpenWrt 时集成此插件）
 make menuconfig
 # choose LuCI ---> 3. Applications  ---> <*> luci-app-amlogic..... LuCI support for Amlogic S9xxx STB ----> save
 make V=99
