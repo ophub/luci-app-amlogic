@@ -203,14 +203,11 @@ msgstr "内核"
 msgid "Replace OpenWrt Kernel"
 msgstr "更换 OpenWrt 内核"
 
-msgid "Supports related operations on Amlogic series boxes through the panel."
-msgstr "支持通过面板对 Amlogic 系列盒子进行相关操作。"
-
 msgid "Tip: The kernel is being replaced, and it will automatically restart after completion."
 msgstr "提示：正在替换内核，完成后将自动重启。"
 
-msgid "Supported functions:"
-msgstr "支持的功能："
+msgid "Supports related operations on Amlogic series boxes through the panel."
+msgstr "支持通过面板对 Amlogic 系列盒子进行相关操作。"
 
 msgid "Supported functions:"
 msgstr "支持的功能："
