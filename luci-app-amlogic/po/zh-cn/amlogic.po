@@ -203,11 +203,14 @@ msgstr "内核"
 msgid "Replace OpenWrt Kernel"
 msgstr "更换 OpenWrt 内核"
 
-msgid "Tip: There are kernel files in the upload directory, and you can replace the kernel."
-msgstr "提示：上传目录里有内核文件，你可以替换当前 OpenWrt 中正在使用的内核。"
+msgid "Supports related operations on Amlogic series boxes through the panel."
+msgstr "支持通过面板对 Amlogic 系列盒子进行相关操作。"
 
 msgid "Tip: The kernel is being replaced, and it will automatically restart after completion."
 msgstr "提示：正在替换内核，完成后将自动重启。"
+
+msgid "Supported functions:"
+msgstr "支持的功能："
 
 msgid "Supported functions:"
 msgstr "支持的功能："
@@ -305,8 +308,8 @@ msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 Tags 的关�
 msgid "Suffix of OpenWrt files in Releases:"
 msgstr "Releases 里 OpenWrt 文件的后缀："
 
-msgid "Set the suffix (.img.gz/.img.xz/.7z) of the OpenWrt in Releases of github.com in [Online Download Update]."
-msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 OpenWrt 文件的后缀（.img.gz/.img.xz/.7z）。"
+msgid "Set the suffix of the OpenWrt in Releases of github.com in [Online Download Update]."
+msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 OpenWrt 文件的后缀。"
 
 msgid "Keep config update:"
 msgstr "保留配置更新："

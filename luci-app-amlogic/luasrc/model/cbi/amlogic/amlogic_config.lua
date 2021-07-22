@@ -37,13 +37,13 @@ o.description = translate("Set the download repository of the OpenWrt files on g
 o.rmempty = true
 o.default = amlogic_firmware_repo
 o.write = function(self, key, value)
-	if value == "" then
+    if value == "" then
         --self.description = translate("Invalid value.")
         amlogic_firmware_repo = default_firmware_repo
-	else
+    else
         --self.description = translate("OpenWrt Firmware Repository:") .. value
         amlogic_firmware_repo = value
-	end
+    end
 end
 
 --2.Set OpenWrt Kernel DownLoad Path
@@ -52,13 +52,13 @@ o.description = translate("Set the download path of the kernel in the github.com
 o.rmempty = true
 o.default = amlogic_kernel_path
 o.write = function(self, key, value)
-	if value == "" then
+    if value == "" then
         --self.description = translate("Invalid value.")
         amlogic_kernel_path = default_kernel_path
-	else
+    else
         --self.description = translate("OpenWrt Kernel DownLoad Path:") .. value
         amlogic_kernel_path = value
-	end
+    end
 end
 
 --3.Set OpenWrt Releases's Tag Keywords
@@ -67,28 +67,28 @@ o.description = translate("Set the keywords of Tags in Releases of github.com in
 o.rmempty = true
 o.default = amlogic_firmware_tag
 o.write = function(self, key, value)
-	if value == "" then
+    if value == "" then
         --self.description = translate("Invalid value.")
         amlogic_firmware_tag = default_firmware_tag
-	else
+    else
         --self.description = translate("OpenWrt Releases Tag Keywords:") .. value
         amlogic_firmware_tag = value
-	end
+    end
 end
 
 --4.Set OpenWrt Firmware Suffix
 o = s:option(Value, "firmware_suffix", translate("Suffix of OpenWrt files in Releases:"))
-o.description = translate("Set the suffix (.img.gz/.img.xz/.7z) of the OpenWrt in Releases of github.com in [Online Download Update].")
+o.description = translate("Set the suffix of the OpenWrt in Releases of github.com in [Online Download Update].")
 o.rmempty = true
 o.default = amlogic_firmware_suffix
 o.write = function(self, key, value)
-	if value == "" then
+    if value == "" then
         --self.description = translate("Invalid value.")
         amlogic_firmware_suffix = default_firmware_suffix
-	else
+    else
         --self.description = translate("OpenWrt Firmware Suffix:") .. value
         amlogic_firmware_suffix = value
-	end
+    end
 end
 
 --5.Restore configuration
@@ -101,11 +101,11 @@ else
     o.default = "1"
 end
 o.write = function(self, key, value)
-	if value == "1" then
-		amlogic_firmware_config = "1"
-	else
-		amlogic_firmware_config = "0"
-	end
+    if value == "1" then
+        amlogic_firmware_config = "1"
+    else
+        amlogic_firmware_config = "0"
+    end
 end
 
 --6.Write bootloader
@@ -118,11 +118,11 @@ else
     o.default = "1"
 end
 o.write = function(self, key, value)
-	if value == "1" then
-		amlogic_write_bootloader = "1"
-	else
-		amlogic_write_bootloader = "0"
-	end
+    if value == "1" then
+        amlogic_write_bootloader = "1"
+    else
+        amlogic_write_bootloader = "0"
+    end
 end
 
 --7.Save button
