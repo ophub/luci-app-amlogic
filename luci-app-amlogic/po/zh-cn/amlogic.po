@@ -275,9 +275,6 @@ msgstr "提示：正在还原配置，完成后将自动重启。"
 msgid "Online Download Update"
 msgstr "在线下载更新"
 
-msgid "Example"
-msgstr "示例"
-
 msgid "Config Source"
 msgstr "配置来源"
 
@@ -308,7 +305,7 @@ msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 Tags 的关�
 msgid "Suffix of OpenWrt files in Releases:"
 msgstr "Releases 里 OpenWrt 文件的后缀："
 
-msgid "Set the suffix (.img.gz/.img.xz/.7z) of the OpenWrt files in Releases of github.com in [Online Download Update]."
+msgid "Set the suffix (.img.gz/.img.xz/.7z) of the OpenWrt in Releases of github.com in [Online Download Update]."
 msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 OpenWrt 文件的后缀（.img.gz/.img.xz/.7z）。"
 
 msgid "Keep config update:"
