@@ -94,8 +94,10 @@ function start_amlogic_kernel()
 end
 
 function start_amlogic_plugin()
+    local ipk_state = luci.sys.call("[ -f /etc/config/amlogic ] && cp -vf /etc/config/amlogic /etc/config/amlogic_bak > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
     local ipk_state = luci.sys.call("opkg --force-reinstall install /tmp/amlogic/*.ipk > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
-    local ipk_state = luci.sys.call("rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/* >/dev/null 2>&1")
+    local ipk_state = luci.sys.call("[ -f /etc/config/amlogic_bak ] && cp -vf /etc/config/amlogic_bak /etc/config/amlogic > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
+    local ipk_state = luci.sys.call("rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/* /etc/config/amlogic_bak >/dev/null 2>&1")
     local state = luci.sys.call("echo 'Successful Update' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
     return state
 end
