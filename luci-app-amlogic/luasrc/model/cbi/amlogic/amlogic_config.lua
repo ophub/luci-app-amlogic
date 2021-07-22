@@ -78,7 +78,7 @@ end
 
 --4.Set OpenWrt Firmware Suffix
 o = s:option(Value, "firmware_suffix", translate("Suffix of OpenWrt files in Releases:"))
-o.description = translate("Set the suffix of the OpenWrt files in Releases of github.com in [Online Download Update].")
+o.description = translate("Set the suffix (.img.gz/.img.xz/.7z) of the OpenWrt files in Releases of github.com in [Online Download Update].")
 o.rmempty = true
 o.default = amlogic_firmware_suffix
 o.write = function(self, key, value)
