@@ -76,6 +76,10 @@ for i, f in ipairs(fs.glob("/tmp/upload/*")) do
         if (string.lower(string.sub(fs.basename(f), -7, -1)) == ".img.gz") then
             openwrt_firmware_file = true
         end
+        -- openwrt_s905d_n1_R21.7.15_k5.4.134-flippy-62+o.img.xz
+        if (string.lower(string.sub(fs.basename(f), -7, -1)) == ".img.xz") then
+            openwrt_firmware_file = true
+        end
         -- openwrt_s905d_n1_R21.7.15_k5.13.2-flippy-62+.7z
         if (string.lower(string.sub(fs.basename(f), -3, -1)) == ".7z") then
             openwrt_firmware_file = true
