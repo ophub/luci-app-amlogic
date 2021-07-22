@@ -1,5 +1,5 @@
 
-# luci-app-amlogic
+# luci-app-amlogic / 晶晨宝盒
 
 Provide luci operation support for Amlogic STB. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config` and `Custom firmware / kernel download site`, etc.
 
