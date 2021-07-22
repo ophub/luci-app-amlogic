@@ -129,22 +129,22 @@ end
 o = s:option(Button, "", translate("Save Config:"))
 o.template = "amlogic/other_button"
 o.render = function(self, section, scope)
-	self.section = true
-	scope.display = ""
-	self.inputtitle = translate("Save")
-	self.inputstyle = "apply"
-	Button.render(self, section, scope)
+    self.section = true
+    scope.display = ""
+    self.inputtitle = translate("Save")
+    self.inputstyle = "apply"
+    Button.render(self, section, scope)
 end
 o.write = function(self, section, scope)
-	luci.sys.exec("uci set amlogic.config.amlogic_firmware_repo=" .. amlogic_firmware_repo .. " 2>/dev/null")
-	luci.sys.exec("uci set amlogic.config.amlogic_firmware_tag=" .. amlogic_firmware_tag .. " 2>/dev/null")
-	luci.sys.exec("uci set amlogic.config.amlogic_firmware_suffix=" .. amlogic_firmware_suffix .. " 2>/dev/null")
-	luci.sys.exec("uci set amlogic.config.amlogic_firmware_config=" .. amlogic_firmware_config .. " 2>/dev/null")
-	luci.sys.exec("uci set amlogic.config.amlogic_kernel_path=" .. amlogic_kernel_path .. " 2>/dev/null")
-	luci.sys.exec("uci set amlogic.config.amlogic_write_bootloader=" .. amlogic_write_bootloader .. " 2>/dev/null")
-	luci.sys.exec("uci commit amlogic 2>/dev/null")
-	http.redirect(DISP.build_url("admin", "system", "amlogic", "config"))
-	--self.description = "amlogic_firmware_repo: " .. amlogic_firmware_repo
+    luci.sys.exec("uci set amlogic.config.amlogic_firmware_repo=" .. amlogic_firmware_repo .. " 2>/dev/null")
+    luci.sys.exec("uci set amlogic.config.amlogic_firmware_tag=" .. amlogic_firmware_tag .. " 2>/dev/null")
+    luci.sys.exec("uci set amlogic.config.amlogic_firmware_suffix=" .. amlogic_firmware_suffix .. " 2>/dev/null")
+    luci.sys.exec("uci set amlogic.config.amlogic_firmware_config=" .. amlogic_firmware_config .. " 2>/dev/null")
+    luci.sys.exec("uci set amlogic.config.amlogic_kernel_path=" .. amlogic_kernel_path .. " 2>/dev/null")
+    luci.sys.exec("uci set amlogic.config.amlogic_write_bootloader=" .. amlogic_write_bootloader .. " 2>/dev/null")
+    luci.sys.exec("uci commit amlogic 2>/dev/null")
+    http.redirect(DISP.build_url("admin", "system", "amlogic", "config"))
+    --self.description = "amlogic_firmware_repo: " .. amlogic_firmware_repo
 end
 
 
