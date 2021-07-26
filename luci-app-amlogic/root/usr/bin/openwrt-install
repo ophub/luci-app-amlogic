@@ -55,7 +55,7 @@ if [ "$(echo ${emmc} | grep mmcblk)" == "" ]; then
 fi
 
 if [[ "$(echo "${emmc}" | awk -F 'mmcblk' '{print NF-1}' | head -n 1)" -ne "1" ]]; then
-    echo "There seems to be no EMMC device on your system!"
+    echo "Please remove the more SD-card and try again!"
     exit 1
 fi
 
