@@ -335,9 +335,11 @@ for entry in $ENTRYS; do
 done
 
 echo "Create folder ... "
-mkdir -p .reserved bin boot dev etc lib opt mnt overlay proc rom root run sbin sys tmp usr www
+btrfs subvolume create etc
+mkdir -p .snapshots .reserved bin boot dev lib opt mnt overlay proc rom root run sbin sys tmp usr www
 ln -sf lib/ lib64
 ln -sf tmp/ var
+sync
 
 COPY_SRC="root etc bin sbin lib opt usr www"
 echo "Copy data brgin ... "
@@ -347,43 +349,6 @@ for src in $COPY_SRC; do
     sync
 done
 wait
-
-[ -d /mnt/${EMMC_NAME}p4/docker ] || mkdir -p /mnt/${EMMC_NAME}p4/docker
-rm -rf opt/docker && ln -sf /mnt/${EMMC_NAME}p4/docker/ opt/docker
-
-if  [ -f /mnt/${NEW_ROOT_NAME}/etc/config/AdGuardHome ]; then
-    [ -d /mnt/${EMMC_NAME}p4/AdGuardHome/data ] || mkdir -p /mnt/${EMMC_NAME}p4/AdGuardHome/data
-    if  [ ! -L /usr/bin/AdGuardHome ]; then
-        [ -d /usr/bin/AdGuardHome ] && \
-        cp -a /usr/bin/AdGuardHome/* /mnt/${EMMC_NAME}p4/AdGuardHome/
-    fi
-    ln -sf /mnt/${EMMC_NAME}p4/AdGuardHome /mnt/${NEW_ROOT_NAME}/usr/bin/AdGuardHome
-fi
-
-#rm -f /mnt/${NEW_ROOT_NAME}/usr/bin/openwrt-install
-#rm -f /mnt/${NEW_ROOT_NAME}/usr/bin/openwrt-update
-sync
-echo "Copy data complete ..."
-
-BACKUP_LIST=$(${P2}/usr/bin/openwrt-backup -p)
-if [[ "${BR_FLAG}" -eq "1" && -n "${BACKUP_LIST}" ]];then
-    echo -n "Start restoring configuration files ... "
-    (
-      cd /
-      eval tar czf ${NEW_ROOT_MP}/.reserved/openwrt_config.tar.gz "${BACKUP_LIST}" 2>/dev/null
-    )
-    tar xzf ${NEW_ROOT_MP}/.reserved/openwrt_config.tar.gz
-
-    [ -f ./etc/config/dockerman ] && sed -e "s/option wan_mode 'false'/option wan_mode 'true'/" -i ./etc/config/dockerman 2>/dev/null
-    [ -f ./etc/config/dockerd ] && sed -e "s/option wan_mode '0'/option wan_mode '1'/" -i ./etc/config/dockerd 2>/dev/null
-    [ -f ./etc/config/verysync ] && sed -e 's/config setting/config verysync/' -i ./etc/config/verysync 2>/dev/null
-    sync
-    echo "Restore configuration information complete."
-fi
-
-echo "Modify the configuration file ... "
-rm -f "./etc/rc.local.orig" "./usr/bin/mk_newpart.sh" "./etc/part_size"
-rm -rf "./opt/docker" && ln -sf "/mnt/${EMMC_NAME}p4/docker" "./opt/docker"
 
 cat > ./etc/fstab <<EOF
 UUID=${NEW_ROOT_UUID} / btrfs compress=zstd 0 1
@@ -414,8 +379,54 @@ config  mount
         option enabled '1'
         option enabled_fsck '1'
         option fstype 'vfat'
-                
+
 EOF
+sync
+
+echo "Create initial etc snapshot -> .snapshots/etc-000"
+btrfs subvolume snapshot -r etc .snapshots/etc-000
+sync
+
+[ -d /mnt/${EMMC_NAME}p4/docker ] || mkdir -p /mnt/${EMMC_NAME}p4/docker
+rm -rf opt/docker && ln -sf /mnt/${EMMC_NAME}p4/docker/ opt/docker
+
+if  [ -f /mnt/${NEW_ROOT_NAME}/etc/config/AdGuardHome ]; then
+    [ -d /mnt/${EMMC_NAME}p4/AdGuardHome/data ] || mkdir -p /mnt/${EMMC_NAME}p4/AdGuardHome/data
+    if  [ ! -L /usr/bin/AdGuardHome ]; then
+        [ -d /usr/bin/AdGuardHome ] && \
+        cp -a /usr/bin/AdGuardHome/* /mnt/${EMMC_NAME}p4/AdGuardHome/
+    fi
+    ln -sf /mnt/${EMMC_NAME}p4/AdGuardHome /mnt/${NEW_ROOT_NAME}/usr/bin/AdGuardHome
+fi
+
+#rm -f /mnt/${NEW_ROOT_NAME}/usr/bin/openwrt-install
+#rm -f /mnt/${NEW_ROOT_NAME}/usr/bin/openwrt-update
+sync
+echo "Copy data complete ..."
+
+BACKUP_LIST=$(${P2}/usr/bin/openwrt-backup -p)
+if [[ "${BR_FLAG}" -eq "1" && -n "${BACKUP_LIST}" ]];then
+    echo -n "Start restoring configuration files ... "
+    (
+      cd /
+      eval tar czf ${NEW_ROOT_MP}/.reserved/openwrt_config.tar.gz "${BACKUP_LIST}" 2>/dev/null
+    )
+    tar xzf ${NEW_ROOT_MP}/.reserved/openwrt_config.tar.gz
+
+    [ -f ./etc/config/dockerman ] && sed -e "s/option wan_mode 'false'/option wan_mode 'true'/" -i ./etc/config/dockerman 2>/dev/null
+    [ -f ./etc/config/dockerd ] && sed -e "s/option wan_mode '0'/option wan_mode '1'/" -i ./etc/config/dockerd 2>/dev/null
+    [ -f ./etc/config/verysync ] && sed -e 's/config setting/config verysync/' -i ./etc/config/verysync 2>/dev/null
+
+    # Restore fstab
+    cp -f .snapshots/etc-000/fstab ./etc/fstab
+    cp -f .snapshots/etc-000/config/fstab ./etc/config/fstab
+    sync
+    echo "Restore configuration information complete."
+fi
+
+echo "Modify the configuration file ... "
+rm -f "./etc/rc.local.orig" "./usr/bin/mk_newpart.sh" "./etc/part_size"
+rm -rf "./opt/docker" && ln -sf "/mnt/${EMMC_NAME}p4/docker" "./opt/docker"
 
 rm -f ./etc/bench.log
 cat >> ./etc/crontabs/root << EOF
@@ -496,6 +507,9 @@ elif [[ -n "${ANDROID_UBOOT}" && -f "${P2}${ANDROID_UBOOT}" ]]; then
 else
     echo "Did not change the original bootloader."
 fi
+
+echo "Create etc snapshot -> .snapshots/etc-001"
+btrfs subvolume snapshot -r etc .snapshots/etc-001
 
 cd ${WORK_DIR}
  
