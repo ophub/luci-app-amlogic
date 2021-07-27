@@ -278,14 +278,17 @@ msgstr "快照管理"
 msgid "Create Snapshot"
 msgstr "创建快照"
 
+msgid "Creating..."
+msgstr "正在创建"
+
 msgid "Initialize Snapshot"
 msgstr "初始化快照"
 
 msgid "Update Point Snapshot"
 msgstr "更新点快照"
 
-msgid "Creating..."
-msgstr "正在创建"
+msgid "Restore Snapshot"
+msgstr "还原快照"
 
 msgid "Restoring..."
 msgstr "正在还原"
