@@ -272,6 +272,60 @@ msgstr "配置文件"
 msgid "Tip: The config is being restored, and it will automatically restart after completion."
 msgstr "提示：正在还原配置，完成后将自动重启。"
 
+msgid "Snapshot Management"
+msgstr "快照管理"
+
+msgid "Create Snapshot"
+msgstr "创建快照"
+
+msgid "Initialize Snapshot"
+msgstr "初始化快照"
+
+msgid "Update Point Snapshot"
+msgstr "更新点快照"
+
+msgid "Creating..."
+msgstr "正在创建"
+
+msgid "Restoring..."
+msgstr "正在还原"
+
+msgid "Restore Failed"
+msgstr "还原失败"
+
+msgid "Successfully Restored"
+msgstr "还原成功"
+
+msgid "Delete Snapshot"
+msgstr "删除快照"
+
+msgid "You selected a snapshot:"
+msgstr "你选择了快照："
+
+msgid "Confirm delete?"
+msgstr "确定删除吗？"
+
+msgid "Confirm recovery and restart OpenWrt?"
+msgstr "确定恢复并重启 OpenWrt 吗？"
+
+msgid "Delete Failed"
+msgstr "删除失败"
+
+msgid "Successfully Deleted"
+msgstr "删除成功"
+
+msgid "Create a snapshot of the current system configuration, or restore to a snapshot."
+msgstr "创建当前系统配置的快照，或还原到某个快照。"
+
+msgid "Currently OpenWrt does not support the snapshot function."
+msgstr "当前 OpenWrt 不支持快照功能。"
+
+msgid "Please use this plugin to reinstall or upgrade OpenWrt to enable the snapshot function."
+msgstr "请使用本插件重新安装或升级 OpenWrt 开启快照功能。"
+
+msgid "Deleting..."
+msgstr "正在删除..."
+
 msgid "Online Download Update"
 msgstr "在线下载更新"
 
@@ -302,8 +356,8 @@ msgstr "Releases 里 Tags 的关键字："
 msgid "Set the keywords of Tags in Releases of github.com in [Online Download Update]."
 msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 Tags 的关键字。"
 
-msgid "Suffix of OpenWrt files in Releases:"
-msgstr "Releases 里 OpenWrt 文件的后缀："
+msgid "Suffix of OpenWrt files:"
+msgstr "OpenWrt 文件的后缀："
 
 msgid "Set the suffix of the OpenWrt in Releases of github.com in [Online Download Update]."
 msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 OpenWrt 文件的后缀。"

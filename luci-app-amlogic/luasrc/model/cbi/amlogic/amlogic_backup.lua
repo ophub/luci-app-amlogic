@@ -1,7 +1,7 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local b
+local b, c
 
 --SimpleForm for Backup Config
 b = SimpleForm("backup", translate("Backup Firmware Config"), nil)
@@ -11,6 +11,8 @@ b.submit = false
 s = b:section(SimpleSection, "", "")
 o = s:option(Button, "", translate("Backup Config:"))
 o.template = "amlogic/other_button"
+um = s:option(DummyValue, "", nil)
+um.template = "amlogic/other_dvalue"
 o.render = function(self, section, scope)
 	self.section = true
 	scope.display = ""
@@ -34,10 +36,10 @@ o.write = function(self, section, scope)
 		fd = nixio.open(sPath, "r")
 	end
 	if not fd then
-		backupm.value = translate("Couldn't open file:") .. sPath
+		um.value = translate("Couldn't open file:") .. sPath
 		return
 	else
-        backupm.value = translate("The file Will download automatically.") .. sPath
+        um.value = translate("The file Will download automatically.") .. sPath
 	end
 
 	http.header('Content-Disposition', 'attachment; filename="%s"' % {sFile})
@@ -53,9 +55,13 @@ o.write = function(self, section, scope)
 	fd:close()
 	http.close()
 end
-backupm = s:option(DummyValue, "", nil)
-backupm.template = "amlogic/other_dvalue"
 
+--SimpleForm for Snapshot management
+c = SimpleForm("snapshot", translate("Snapshot Management"), nil)
+c.description = translate("Create a snapshot of the current system configuration, or restore to a snapshot.")
+c.reset = false
+c.submit = false
+c:section(SimpleSection).template  = "amlogic/other_snapshot"
 
-return b
+return b, c
 
