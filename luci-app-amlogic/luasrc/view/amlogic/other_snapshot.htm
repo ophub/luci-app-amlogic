@@ -137,8 +137,8 @@
 
 			_div_codes = _div_codes + '<div class="item" id="snapshots_div_' + mycars[j] + '">';
 			_div_codes = _div_codes + '<div class="SnapshotsTitHeight">' + _snapshots_tit + '</div>'
-			_div_codes = _div_codes + '<div class="SnapshotsTitHeight"><input type="button" class="cbi-button cbi-button-apply" value="<%:Restore%>" onclick="return restore_snapshot(this, \'' + mycars[j] + '\')"/></div>'
-			if ( mycars[j] != "etc-000" && mycars[j] != "etc-001" ) { _div_codes = _div_codes + '<div class="SnapshotsTitHeight"><input type="button" class="cbi-button cbi-button-remove" value="<%:Delete%>" onclick="return delete_snapshot(this, \'' + mycars[j] + '\')"/></div>' }
+			_div_codes = _div_codes + '<div class="SnapshotsTitHeight"><input type="button" class="cbi-button cbi-button-apply" value="<%:Restore Snap%>" onclick="return restore_snapshot(this, \'' + mycars[j] + '\')"/></div>'
+			if ( mycars[j] != "etc-000" && mycars[j] != "etc-001" ) { _div_codes = _div_codes + '<div class="SnapshotsTitHeight"><input type="button" class="cbi-button cbi-button-remove" value="<%:Delete Snap%>" onclick="return delete_snapshot(this, \'' + mycars[j] + '\')"/></div>' }
 			_div_codes = _div_codes + '</div>';
 
 		}
