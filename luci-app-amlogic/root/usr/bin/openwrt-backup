@@ -186,7 +186,7 @@ list_snapshot() {
 }
 
 create_snapshot() {
-    default_snap_name="etc-$(date +"%Y%m%d%H%M%S")"
+    default_snap_name="etc-$(date +"%m.%d.%H%M%S")"
     echo "The default snapshot name is: ${default_snap_name}"
     echo "If you want to modify the snapshot name, please enter it below. Cannot contain spaces."
     echo "If you do not want to modify it, just press [ Enter ]. Or press the [ q ] key to go back directly."

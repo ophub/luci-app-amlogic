@@ -17,10 +17,9 @@ o.render = function(self, section, scope)
 	self.section = true
 	scope.display = ""
 	self.inputtitle = translate("Download Backup")
-	self.inputstyle = "apply"
+	self.inputstyle = "save"
 	Button.render(self, section, scope)
 end
-
 o.write = function(self, section, scope)
 
 	local x = luci.sys.exec("chmod +x /usr/bin/openwrt-backup 2>/dev/null")
@@ -56,12 +55,27 @@ o.write = function(self, section, scope)
 	http.close()
 end
 
---SimpleForm for Snapshot management
+-- SimpleForm for Create Snapshot
 c = SimpleForm("snapshot", translate("Snapshot Management"), nil)
 c.description = translate("Create a snapshot of the current system configuration, or restore to a snapshot.")
 c.reset = false
 c.submit = false
-c:section(SimpleSection).template  = "amlogic/other_snapshot"
+d = c:section(SimpleSection, "", nil)
+w = d:option(Button, "", "")
+w.template = "amlogic/other_button"
+w.render = function(self, section, scope)
+	self.section = true
+	scope.display = ""
+	self.inputtitle = translate("Create Snapshot")
+	self.inputstyle = "save"
+	Button.render(self, section, scope)
+end
+w.write = function(self, section, scope)
+    local x = luci.sys.exec("btrfs subvolume snapshot -r /etc /.snapshots/etc-" .. os.date("%m.%d.%H%M%S") .. " 2>/dev/null && sync")
+    http.redirect(DISP.build_url("admin", "system", "amlogic", "backup"))
+end
+w = d:option(TextValue, "snapshot_list", nil)
+w.template = "amlogic/other_snapshot"
 
 return b, c
 

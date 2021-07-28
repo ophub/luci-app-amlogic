@@ -27,8 +27,7 @@ function index()
     entry({"admin", "system", "amlogic", "start_amlogic_plugin"},call("action_start_amlogic_plugin")).leaf=true
     entry({"admin", "system", "amlogic", "start_snapshot_delete"},call("action_start_snapshot_delete")).leaf=true
     entry({"admin", "system", "amlogic", "start_snapshot_restore"},call("action_start_snapshot_restore")).leaf=true
-    entry({"admin", "system", "amlogic", "check_snapshot"},call("action_check_snapshot")).leaf=true
-    entry({"admin", "system", "amlogic", "create_snapshot"},call("action_create_snapshot")).leaf=true
+    entry({"admin", "system", "amlogic", "start_snapshot_list"},call("action_check_snapshot")).leaf=true
     entry({"admin", "system", "amlogic", "state"},call("action_state")).leaf=true
 
 end
@@ -123,14 +122,14 @@ end
 
 function start_snapshot_delete()
     local snapshot_delete_sel = luci.http.formvalue("snapshot_delete_sel")
-    local state = luci.sys.call("btrfs subvolume delete -c /.snapshots/" .. snapshot_delete_sel .. " 2>/dev/null && sync")
+    local state = luci.sys.exec("btrfs subvolume delete -c /.snapshots/" .. snapshot_delete_sel .. " 2>/dev/null && sync")
     return state
 end
 
 function start_snapshot_restore()
     local snapshot_restore_sel = luci.http.formvalue("snapshot_restore_sel")
-    local state = luci.sys.call("btrfs subvolume snapshot /.snapshots/etc-" .. snapshot_restore_sel .. " /etc 2>/dev/null && sync")
-    local state = luci.sys.call("echo 'b' > /proc/sysrq-trigger 2>/dev/null")
+    local state = luci.sys.exec("btrfs subvolume snapshot /.snapshots/etc-" .. snapshot_restore_sel .. " /etc 2>/dev/null && sync")
+    local state_nowreboot = luci.sys.exec("echo 'b' > /proc/sysrq-trigger 2>/dev/null")
     return state
 end
 
@@ -276,10 +275,5 @@ function action_check_snapshot()
     luci.http.write_json({
         current_snapshot = current_snapshot();
     })
-end
-
-function action_create_snapshot()
-    luci.sys.exec("btrfs subvolume snapshot -r /etc /.snapshots/etc-" .. os.date("%Y%m%d%H%M%S") .. " 2>/dev/null && sync")
-    return
 end
 

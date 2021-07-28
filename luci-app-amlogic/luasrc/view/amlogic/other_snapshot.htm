@@ -13,29 +13,23 @@
 .item{
     border: 1px solid #CACACA;
     color: #888;
-    font-size: 15px;
-    width: 220px;
+    font-size: 14px;
+    width: 150px;
     height: 130px;
-    margin:10px;
+    margin:8px;
     text-align: center;
     align-items:center;
 }
 .item:hover{background:#e5f3f6;}
 .item:not(:nth-child(3n)){
     content: "";
-    width: 220px;
+    width: 150px;
 }
 .list:after {
     content: "";
-    width: 220px;
+    width: 150px;
 }
 </style>
-
-<div class="SnapshotsTitHeight">
-	<p align="left">
-		<input id="_cs" type="button" class="cbi-button cbi-button-add" value="<%:Create Snapshot%>" onclick="return create_snapshot(this)"/>
-	</p>
-</div>
 
 <div class="list" id="_check_snapshot">
 	<%:Collecting data...%>
@@ -43,6 +37,7 @@
 
 <script type="text/javascript">//<![CDATA[
 
+    // Delete snapshot function
 	function delete_snapshot(btn,snapshot_delete_sel)
 	{
 
@@ -72,11 +67,14 @@
 				}
 			}
 		);
-		window.location.reload();
+		var sdiv = 'snapshots_div_' + snapshot_delete_sel;
+		document.getElementById(sdiv).style.display = 'none';
 		btn.disabled = false;
 		return false;
+
 	}
 
+	// Restore snapshot function
 	function restore_snapshot(btn,snapshot_restore_sel)
 	{
 
@@ -106,34 +104,16 @@
 				}
 			}
 		);
-		window.location.reload();
 		btn.disabled = false;
 		return false;
 	}
 
-	function create_snapshot(btn)
-	{
-		btn.disabled = true;
-		btn.value = '<%:Creating...%>';
-		XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "create_snapshot")%>', null, function(x, status) {
-		if ( x && x.status == 200 ) {
-			btn.disabled = false;
-			btn.value = '<%:Create Snapshot%>';
-		}
-		else {
-			btn.disabled = false;
-			btn.value = '<%:Create Snapshot%>';
-		}
-		return false;
-		});
-		window.location.reload();
-	}
-
+	// Show current snapshot list
 	mycars_arrlen = 0;
 	_no_snapshots = "<%:Currently OpenWrt does not support the snapshot function.%>";
 	_no_snapshots = _no_snapshots + "<%:Please use this plugin to reinstall or upgrade OpenWrt to enable the snapshot function.%>";
 	var _check_snapshot = document.getElementById('_check_snapshot');
-	XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "check_snapshot")%>', null, function(x, status) {
+	XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_snapshot_list")%>', null, function(x, status) {
 	if ( x && x.status == 200 ) {
 
 		let userArer = status.current_snapshot;
@@ -150,15 +130,15 @@
 			if ( mycars[j] == "etc-000" ) {
 				_snapshots_tit = "<%:Initialize Snapshot%>";
 			} else if ( mycars[j] == "etc-001" ) {
-				_snapshots_tit = "<%:Update Point Snapshot%>";
+				_snapshots_tit = "<%:Update Snapshot%>";
 			} else {
 				_snapshots_tit = mycars[j];
 			}
 
-			_div_codes = _div_codes + '<div class="item">';
-			_div_codes = _div_codes + '<div class="SnapshotsTitHeight">' + _snapshots_tit +'</div>'
-			_div_codes = _div_codes + '<div class="SnapshotsTitHeight"><input id="_rs" type="button" class="cbi-button cbi-button-apply" value="<%:Restore Snapshot%>" onclick="return restore_snapshot(this, \'' + mycars[j] + '\')"/></div>'
-			if ( mycars[j] != "etc-000" && mycars[j] != "etc-001" ) { _div_codes = _div_codes + '<div class="SnapshotsTitHeight"><input id="_ds" type="button" class="cbi-button cbi-button-remove" value="<%:Delete Snapshot%>" onclick="return delete_snapshot(this, \'' + mycars[j] + '\')"/></div>' }
+			_div_codes = _div_codes + '<div class="item" id="snapshots_div_' + mycars[j] + '">';
+			_div_codes = _div_codes + '<div class="SnapshotsTitHeight">' + _snapshots_tit + '</div>'
+			_div_codes = _div_codes + '<div class="SnapshotsTitHeight"><input type="button" class="cbi-button cbi-button-apply" value="<%:Restore%>" onclick="return restore_snapshot(this, \'' + mycars[j] + '\')"/></div>'
+			if ( mycars[j] != "etc-000" && mycars[j] != "etc-001" ) { _div_codes = _div_codes + '<div class="SnapshotsTitHeight"><input type="button" class="cbi-button cbi-button-remove" value="<%:Delete%>" onclick="return delete_snapshot(this, \'' + mycars[j] + '\')"/></div>' }
 			_div_codes = _div_codes + '</div>';
 
 		}
@@ -166,12 +146,6 @@
 	} else {
 		_check_snapshot.innerHTML = "<font color=red>"+ _no_snapshots +"</font>";
 	}
-
-		if ( mycars_arrlen != 0 ) {
-			_cs.style.display = 'block';
-		} else {
-			_cs.style.display = 'none';
-		}
 
 	});
 

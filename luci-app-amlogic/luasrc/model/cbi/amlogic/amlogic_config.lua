@@ -132,7 +132,7 @@ o.render = function(self, section, scope)
     self.section = true
     scope.display = ""
     self.inputtitle = translate("Save")
-    self.inputstyle = "apply"
+    self.inputstyle = "save"
     Button.render(self, section, scope)
 end
 o.write = function(self, section, scope)
