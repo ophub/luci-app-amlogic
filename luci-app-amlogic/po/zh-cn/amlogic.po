@@ -293,7 +293,7 @@ msgstr "初始化快照"
 msgid "Update Snapshot"
 msgstr "更新点快照"
 
-msgid "Restore"
+msgid "Restore Snap"
 msgstr "还原快照"
 
 msgid "Restoring..."
@@ -305,7 +305,7 @@ msgstr "还原失败"
 msgid "Successfully Restored"
 msgstr "还原成功"
 
-msgid "Delete"
+msgid "Delete Snap"
 msgstr "删除快照"
 
 msgid "You selected a snapshot:"
