@@ -35,6 +35,13 @@ tolog() {
     FIRMWARE_SUFFIX=$(uci get amlogic.config.amlogic_firmware_suffix 2>/dev/null)
     [[ ! -z "${FIRMWARE_SUFFIX}" ]] || tolog "02.03 The custom firmware suffix is invalid." "1"
 
+    # Supported format:
+    # SERVER_FIRMWARE_URL="https://github.com/ophub/amlogic-s9xxx-openwrt"
+    # SERVER_FIRMWARE_URL="ophub/amlogic-s9xxx-openwrt"
+    if [[ ${SERVER_FIRMWARE_URL} == http* ]]; then
+        SERVER_FIRMWARE_URL=${SERVER_FIRMWARE_URL#*com\/}
+    fi
+
     # 03. Version comparison
     tolog "03. Compare versions."
     source ${AMLOGIC_SOC_FILE} 2>/dev/null
