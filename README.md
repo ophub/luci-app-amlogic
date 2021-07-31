@@ -71,7 +71,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 1. OpenWrt firmware download address: It can be the full path of the repository `https://github.com/ophub/amlogic-s9xxx-openwrt` or the abbreviation of the repository without domain name `ophub/amlogic-s9xxx-openwrt`
 
-2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in [ophub/op/releases](https://github.com/ophub/op/releases) There are many firmwares for different routers, The OpenWrt firmware belonging to the Agmlgic series can be found by including the keyword `s9xxx_lede`..
+2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in [ophub/op/releases](https://github.com/ophub/op/releases) There are many firmwares for different routers, The OpenWrt firmware belonging to the Agmlgic series can be found by including the keyword `s9xxx_lede`.
 
 3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z` / `.zip`. But .img is not supported, because it is too large to download and slow.
 
