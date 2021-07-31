@@ -63,6 +63,49 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 curl -fsSL git.io/luci-app-amlogic | bash
 ```
 
+## Plugin setup instructions / 插件设置说明
+
+Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, whether to keep the configuration when update, whether to automatically enter the main line U-BOOT when install and update.
+
+插件设置 4 项内容：OpenWrt 固件下载地址、内核下载地址、更新时是否保留配置、安装与更新时是否自动输入主线 U-BOOT。
+
+#### The firmware download contains three options / 固件下载包含三个选项
+
+1. OpenWrt firmware download address: It can be the full path of the repository `https://github.com/ophub/amlogic-s9xxx-openwrt` or the abbreviation of the repository without domain name `ophub/amlogic-s9xxx-openwrt`
+
+2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in (https://github.com/ophub/op/releases)[https://github.com/ophub/op/releases] There are many firmwares for different routers, you can use the `s9xxx_lede` keyword to find the OpenWrt firmware belonging to the Agmlgic series.
+
+3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z` / `.zip`. But .img is not supported, because it is too large to download and slow.
+
+- The firmware file name should include the SOC standard name of the box to ensure that the corresponding firmware is accurately found. The supported SOCs are: `s905x3`, `s905x2`, `s905x`, `s905d`, `s912`, `s922x`
+
+- The firmware file name should include the kernel version series name to ensure that the corresponding series can be accurately found. The supported kernel series include `5.4.xxx`, `5.10.xxx`, `5.12.xxx`, `5.13.xxx`, etc.
+
+1. OpenWrt 固件下载地址：可以是仓库的完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt` 或者是不含域名的仓库简写 `ophub/amlogic-s9xxx-openwrt`
+
+2. Releases 里 Tags 的关键字：要可以区分其他 x86，R2S 等固件，如在 (https://github.com/ophub/op/releases)[https://github.com/ophub/op/releases] 里有很多不同路由器的固件，可以使用 `s9xxx_lede` 关键词找到属于 Agmlgic 系列的 OpenWrt 固件。
+
+3. OpenWrt 文件的后缀：支持的格式有 `.img.gz` / `.img.xz` / `.7z` / `.zip` 。但是不支持 .img，因为太大下载太慢。
+- 固件文件名中要包含盒子的 SOC 标准名称，确保准确找到对应的固件，支持的 SOC 有：`s905x3`、`s905x2`、`s905x`、`s905d`、`s912`、`s922x`
+
+- 固件文件名中要包含内核版本系列名称，确保能准确找到对应的系列，支持的内核系列有 `5.4.xxx`、`5.10.xxx`、`5.12.xxx`、`5.13.xxx` 等。
+
+#### The download of the kernel contains an option / 内核的下载包含一个选项
+
+- You can fill in the full path `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel`. If it is in the same repository as the OpenWrt firmware, the path can also be abbreviated `amlogic-s9xxx/amlogic-kernel`. It can also independently point to the kernel storage path in any repository  `https://github.com/ophub/flippy-kernel/tree/main/library`
+
+- 可以填写完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel` 。如果和 OpenWrt 固件是同仓库的情况下，也可以简写路径 `amlogic-s9xxx/amlogic-kernel` 。也可以独立指向到任意仓库中内核存放路径 `https://github.com/ophub/flippy-kernel/tree/main/library`
+
+#### 其他选项
+
+- Keep configuration updates: Modify as needed. If checked, the current configuration will be retained when the firmware is updated.
+
+- Automatically write bootloader: It is recommended to check, there are many features.
+
+- 保留配置更新：根据需要进行修改，如果勾选，在更新固件固件时将保留当前配置。
+
+- 自动写入 bootloader：推荐勾选，有很多特性。
+
 ## Screenshot / 截图
 
 ![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/127464473-056eb275-c2ec-4623-bd2f-d310acf63ccf.gif)
