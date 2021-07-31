@@ -67,9 +67,7 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 
 Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, whether to keep the configuration when update, whether to automatically enter the main line U-BOOT when install and update.
 
-插件设置 4 项内容：OpenWrt 固件下载地址、内核下载地址、更新时是否保留配置、安装与更新时是否自动输入主线 U-BOOT。
-
-#### The firmware download contains three options / 固件下载包含三个选项
+#### The firmware download contains three options
 
 1. OpenWrt firmware download address: It can be the full path of the repository `https://github.com/ophub/amlogic-s9xxx-openwrt` or the abbreviation of the repository without domain name `ophub/amlogic-s9xxx-openwrt`
 
@@ -81,6 +79,20 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 - The firmware file name should include the kernel version series name to ensure that the corresponding series can be accurately found. The supported kernel series include `5.4.xxx`, `5.10.xxx`, `5.12.xxx`, `5.13.xxx`, etc.
 
+#### The download of the kernel contains an option
+
+- You can fill in the full path `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel`. If it is in the same repository as the OpenWrt firmware, the path can also be abbreviated `amlogic-s9xxx/amlogic-kernel`. It can also independently point to the kernel storage path in any repository  `https://github.com/ophub/flippy-kernel/tree/main/library`
+
+#### Other options
+
+- Keep configuration updates: Modify as needed. If checked, the current configuration will be retained when the firmware is updated.
+
+- Automatically write bootloader: It is recommended to check, there are many features.
+
+插件设置 4 项内容：OpenWrt 固件下载地址、内核下载地址、更新时是否保留配置、安装与更新时是否自动输入主线 U-BOOT。
+
+####  固件下载包含三个选项
+
 1. OpenWrt 固件下载地址：可以是仓库的完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt` 或者是不含域名的仓库简写 `ophub/amlogic-s9xxx-openwrt`
 
 2. Releases 里 Tags 的关键字：要可以区分其他 x86，R2S 等固件，如在 [ophub/op/releases](https://github.com/ophub/op/releases) 里有很多不同路由器的固件，可以使用 `s9xxx_lede` 关键词找到属于 Agmlgic 系列的 OpenWrt 固件。
@@ -90,17 +102,11 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 - 固件文件名中要包含内核版本系列名称，确保能准确找到对应的系列，支持的内核系列有 `5.4.xxx`、`5.10.xxx`、`5.12.xxx`、`5.13.xxx` 等。
 
-#### The download of the kernel contains an option / 内核的下载包含一个选项
-
-- You can fill in the full path `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel`. If it is in the same repository as the OpenWrt firmware, the path can also be abbreviated `amlogic-s9xxx/amlogic-kernel`. It can also independently point to the kernel storage path in any repository  `https://github.com/ophub/flippy-kernel/tree/main/library`
+#### 内核的下载包含一个选项
 
 - 可以填写完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel` 。如果和 OpenWrt 固件是同仓库的情况下，也可以简写路径 `amlogic-s9xxx/amlogic-kernel` 。也可以独立指向到任意仓库中内核存放路径 `https://github.com/ophub/flippy-kernel/tree/main/library`
 
 #### 其他选项
-
-- Keep configuration updates: Modify as needed. If checked, the current configuration will be retained when the firmware is updated.
-
-- Automatically write bootloader: It is recommended to check, there are many features.
 
 - 保留配置更新：根据需要进行修改，如果勾选，在更新固件固件时将保留当前配置。
 
