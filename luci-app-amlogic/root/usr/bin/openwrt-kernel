@@ -509,11 +509,11 @@ EOF
         echo -ne "please select: [ ]\b\b"
         read select
             case $select in
-            e | extract)     extract_kernel;;
-            r | replace)     replace_kernel;;
-            d | dtb)         dtb_update;;
-            h | help)        print_help;;
-            q | quit)        exit 0;;
+                e | extract)     extract_kernel;;
+                r | replace)     replace_kernel;;
+                d | dtb)         dtb_update;;
+                h | help)        print_help;;
+                q | quit)        exit 0;;
             esac
     done
 }

@@ -46,22 +46,7 @@ o.write = function(self, key, value)
     end
 end
 
---2.Set OpenWrt Kernel DownLoad Path
-o = s:option(Value, "kernel_repo", translate("Download path of OpenWrt kernel:"))
-o.description = translate("Set the download path of the kernel in the github.com repository in [Online Download Update].")
-o.rmempty = true
-o.default = amlogic_kernel_path
-o.write = function(self, key, value)
-    if value == "" then
-        --self.description = translate("Invalid value.")
-        amlogic_kernel_path = default_kernel_path
-    else
-        --self.description = translate("OpenWrt Kernel DownLoad Path:") .. value
-        amlogic_kernel_path = value
-    end
-end
-
---3.Set OpenWrt Releases's Tag Keywords
+--2.Set OpenWrt Releases's Tag Keywords
 o = s:option(Value, "releases_tag", translate("Keywords of Tags in Releases:"))
 o.description = translate("Set the keywords of Tags in Releases of github.com in [Online Download Update].")
 o.rmempty = true
@@ -76,7 +61,7 @@ o.write = function(self, key, value)
     end
 end
 
---4.Set OpenWrt Firmware Suffix
+--3.Set OpenWrt Firmware Suffix
 o = s:option(Value, "firmware_suffix", translate("Suffix of OpenWrt files:"))
 o.description = translate("Set the suffix of the OpenWrt in Releases of github.com in [Online Download Update].")
 o.rmempty = true
@@ -88,6 +73,21 @@ o.write = function(self, key, value)
     else
         --self.description = translate("OpenWrt Firmware Suffix:") .. value
         amlogic_firmware_suffix = value
+    end
+end
+
+--4.Set OpenWrt Kernel DownLoad Path
+o = s:option(Value, "kernel_repo", translate("Download path of OpenWrt kernel:"))
+o.description = translate("Set the download path of the kernel in the github.com repository in [Online Download Update].")
+o.rmempty = true
+o.default = amlogic_kernel_path
+o.write = function(self, key, value)
+    if value == "" then
+        --self.description = translate("Invalid value.")
+        amlogic_kernel_path = default_kernel_path
+    else
+        --self.description = translate("OpenWrt Kernel DownLoad Path:") .. value
+        amlogic_kernel_path = value
     end
 end
 
