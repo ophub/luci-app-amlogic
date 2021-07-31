@@ -138,9 +138,22 @@ function action_check_plugin()
     return luci.sys.call("/usr/share/amlogic/amlogic_check_plugin.sh >/dev/null 2>&1")
 end
 
-function action_check_kernel()
+function check_plugin()
     luci.sys.exec("chmod +x /usr/share/amlogic/amlogic_check_kernel.sh >/dev/null 2>&1")
-    return luci.sys.call("/usr/share/amlogic/amlogic_check_kernel.sh >/dev/null 2>&1")
+    local kernel_options = luci.http.formvalue("kernel_options")
+    if kernel_options == "check" then
+        local state = luci.sys.call("/usr/share/amlogic/amlogic_check_kernel.sh -check >/dev/null 2>&1")
+    else
+        local state = luci.sys.call("/usr/share/amlogic/amlogic_check_kernel.sh -download " .. kernel_options .. " >/dev/null 2>&1")
+    end
+    return state
+end
+
+function action_check_kernel()
+    luci.http.prepare_content("application/json")
+    luci.http.write_json({
+        check_kernel_status = check_plugin();
+    })
 end
 
 function action_check_firmware()
