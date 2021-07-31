@@ -71,7 +71,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 1. OpenWrt firmware download address: It can be the full path of the repository `https://github.com/ophub/amlogic-s9xxx-openwrt` or the abbreviation of the repository without domain name `ophub/amlogic-s9xxx-openwrt`
 
-2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in [ophub/op/releases](https://github.com/ophub/op/releases) There are many firmwares for different routers, you can use the `s9xxx_lede` keyword to find the OpenWrt firmware belonging to the Agmlgic series.
+2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in [ophub/op/releases](https://github.com/ophub/op/releases) There are many firmwares for different routers, The OpenWrt firmware belonging to the Agmlgic series can be found by including the keyword `s9xxx_lede`..
 
 3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z` / `.zip`. But .img is not supported, because it is too large to download and slow.
 
@@ -95,7 +95,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 1. OpenWrt 固件下载地址：可以是仓库的完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt` 或者是不含域名的仓库简写 `ophub/amlogic-s9xxx-openwrt`
 
-2. Releases 里 Tags 的关键字：要可以区分其他 x86，R2S 等固件，如在 [ophub/op/releases](https://github.com/ophub/op/releases) 里有很多不同路由器的固件，可以使用 `s9xxx_lede` 关键词找到属于 Agmlgic 系列的 OpenWrt 固件。
+2. Releases 里 Tags 的关键字：要可以区分其他 x86，R2S 等固件，如在 [ophub/op/releases](https://github.com/ophub/op/releases) 里有很多不同路由器的固件，可以使用包含 `s9xxx_lede` 关键词找到属于 Agmlgic 系列的 OpenWrt 固件。
 
 3. OpenWrt 文件的后缀：支持的格式有 `.img.gz` / `.img.xz` / `.7z` / `.zip` 。但是不支持 .img，因为太大下载太慢。
 - 固件文件名中要包含盒子的 SOC 标准名称，确保准确找到对应的固件，支持的 SOC 有：`s905x3`、`s905x2`、`s905x`、`s905d`、`s912`、`s922x`
