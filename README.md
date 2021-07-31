@@ -47,7 +47,7 @@ curl -fsSL git.io/luci-app-amlogic | bash
 
 ```shell
 # 1.Set the download repository of the OpenWrt files to your github.com （OpenWrt 文件的下载仓库）
-sed -i sed -i "s|https.*/amlogic-s9xxx-openwrt|https://github.com/USERNAME/REPOSITORY|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|https.*/amlogic-s9xxx-openwrt|https://github.com/USERNAME/REPOSITORY|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 2.Modify the keywords of Tags in your github.com Releases （Releases 里 Tags 的关键字）
 sed -i "s|s9xxx_lede|RELEASES_TAGS_KEYWORD|g" package/luci-app-amlogic/root/etc/config/amlogic
@@ -56,7 +56,7 @@ sed -i "s|s9xxx_lede|RELEASES_TAGS_KEYWORD|g" package/luci-app-amlogic/root/etc/
 sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 4.Set the download path of the kernel in your github.com repository （OpenWrt 内核的下载路径）
-sed -i "s|http.*/library|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|https.*/library|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
 - Tips: When compiling OpenWrt on github.com, modify the above 4 points to realize customization. The above information can also be modified in the settings of the plug-in after log in to the openwrt `System` → `Amlogic Service`.
