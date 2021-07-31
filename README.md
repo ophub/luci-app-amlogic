@@ -81,7 +81,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 #### The download of the kernel contains an option
 
-- You can fill in the full path `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel`. If it is in the same repository as the OpenWrt firmware, the path can also be abbreviated `amlogic-s9xxx/amlogic-kernel`. It can also independently point to the kernel storage path in any repository  `https://github.com/ophub/flippy-kernel/tree/main/library`
+- Download path of OpenWrt kernel: You can fill in the full path `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel`. If it is in the same repository as the OpenWrt firmware, the path can also be abbreviated `amlogic-s9xxx/amlogic-kernel`. It can also independently point to the kernel storage path in any repository  `https://github.com/ophub/flippy-kernel/tree/main/library`
 
 #### Other options
 
@@ -104,7 +104,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 #### 内核的下载包含一个选项
 
-- 可以填写完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel` 。如果和 OpenWrt 固件是同仓库的情况下，也可以简写路径 `amlogic-s9xxx/amlogic-kernel` 。也可以独立指向到任意仓库中内核存放路径 `https://github.com/ophub/flippy-kernel/tree/main/library`
+- OpenWrt 内核的下载路径：可以填写完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel` 。如果和 OpenWrt 固件是同仓库的情况下，也可以简写路径 `amlogic-s9xxx/amlogic-kernel` 。也可以独立指向到任意仓库中内核存放路径 `https://github.com/ophub/flippy-kernel/tree/main/library`
 
 #### 其他选项
 
