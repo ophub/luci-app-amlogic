@@ -667,5 +667,5 @@ esac
 mkdir -p /mnt/${EMMC_NAME}p4/docker /mnt/${EMMC_NAME}p4/AdGuardHome
 sync
 
-echo "Install completed, Please unplug the USB disk and [ reboot ] the system!"
+echo "Successful installed, please unplug the USB, re-insert the power supply to start the openwrt."
 exit 0

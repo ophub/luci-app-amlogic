@@ -1,7 +1,7 @@
 local fs = require "luci.fs"
 local http = require "luci.http"
 local DISP = require "luci.dispatcher"
-local b, form, c
+local b, form
 
 --Clear the version check log
 luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
@@ -192,11 +192,7 @@ btnis.write = function(self, section)
 end
 
 --SimpleForm for Check upload files
-c = SimpleForm("amlogic", "", nil)
-c.reset = false
-c.submit = false
-c:section(SimpleSection).template  = "amlogic/other_upfiles"
+form:section(SimpleSection).template  = "amlogic/other_upfiles"
 
-
-return b, form, c
+return b, form
 
