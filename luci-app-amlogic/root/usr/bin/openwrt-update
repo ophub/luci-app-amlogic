@@ -609,7 +609,7 @@ rm -f ${IMG_NAME} 2>/dev/null
 sync
 wait
 
-echo "The update is complete, Will start automatically, please refresh later!"
+echo "Successfully updated, automatic restarting..."
 sleep 3
 echo 'b' > /proc/sysrq-trigger
 

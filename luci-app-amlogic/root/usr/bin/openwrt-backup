@@ -190,18 +190,18 @@ create_snapshot() {
     echo "The default snapshot name is: ${default_snap_name}"
     echo "If you want to modify the snapshot name, please enter it below. Cannot contain spaces."
     echo "If you do not want to modify it, just press [ Enter ]. Or press the [ q ] key to go back directly."
-    while :;do
+    while :; do
         read -p "[${default_snap_name}] : " nname
-        if [ "${nname}" == "" ];then
+        if [ "${nname}" == "" ]; then
             snap_name="${default_snap_name}"
             break
-        elif echo "${nname}" | grep -E "\s+" > /dev/null;then
+        elif echo "${nname}" | grep -E "\s+" > /dev/null; then
             echo "The name [${nname}] contains spaces, please re-enter!"
             continue
-        elif [ "${nname}" == "q" ] || [ "${nname}" == "Q" ];then
+        elif [ "${nname}" == "q" ] || [ "${nname}" == "Q" ]; then
             return
         else
-            if btrfs subvolume list -rt / | awk '{print $4}' | grep "^\\${SNAPSHOT_PRESTR}${nname}$" >/dev/null;then
+            if btrfs subvolume list -rt / | awk '{print $4}' | grep "^\\${SNAPSHOT_PRESTR}${nname}$" >/dev/null; then
                 echo "Name: [ ${nname} ] has been used, please re-enter!"
                 continue
             else
@@ -214,7 +214,7 @@ create_snapshot() {
     (  cd /
     chattr -ia etc/config/fstab
     btrfs subvolume snapshot -r /etc "${SNAPSHOT_PRESTR}${snap_name}"
-    if [ $? -eq 0 ];then
+    if [[ "$?" -eq "0" ]]; then
         echo "The snapshot is created successfully: ${snap_name}"
     else
         echo "Snapshot creation failed!"
@@ -231,8 +231,8 @@ restore_snapshot() {
     btrfs subvolume list -rt /
     echo "----------------------------------------------------------------"
     read -p "Please enter the name of the snapshot to be restored (only the part after ${SNAPSHOT_PRESTR} needs to be entered): " snap_name
-    if btrfs subvolume list -rt / | grep "${SNAPSHOT_PRESTR}${snap_name}" > /dev/null;then
-        while :;do
+    if btrfs subvolume list -rt / | grep "${SNAPSHOT_PRESTR}${snap_name}" > /dev/null; then
+        while :; do
             echo "Once the snapshot is restored, the current [ /etc ] will be overwritten!"
             read -p "Are you sure you want to restore the snapshot: [$snap_name]? y/n [n] " yn
             case $yn in
@@ -242,9 +242,9 @@ restore_snapshot() {
                         chattr -ia etc/config/fstab
                         mv etc etc.backup
                         btrfs subvolume snapshot "${SNAPSHOT_PRESTR}${snap_name}" etc
-                        if [ $? -eq 0 ];then
+                        if [[ "$?" -eq "0" ]]; then
                             btrfs subvolume delete -c etc.backup
-                            echo "The recovery is successful, please enter [ reboot ] to restart the system!"
+                            echo "Successfully restored, please enter [ reboot ] to restart the openwrt."
                         else
                             rm -rf etc
                             mv etc.backup etc
@@ -271,19 +271,19 @@ delete_snapshot() {
     btrfs subvolume list -rt /
     echo "----------------------------------------------------------------"
     read -p "Please enter the name of the snapshot to be deleted (only the part after ${SNAPSHOT_PRESTR} needs to be entered): " snap_name
-    if [ "${snap_name}" == "etc-000" ] || [ "${snap_name}" == "etc-001" ];then
+    if [ "${snap_name}" == "etc-000" ] || [ "${snap_name}" == "etc-001" ]; then
         read -p "The key snapshot cannot be deleted! Press [ enter ] to return." q
-    elif [ "${snap_name}" == "" ];then
+    elif [ "${snap_name}" == "" ]; then
         read -p "Name is empty! Press [ enter ] to return." q
     else
-        if btrfs subvolume list -rt / | grep "${SNAPSHOT_PRESTR}${snap_name}" > /dev/null;then
+        if btrfs subvolume list -rt / | grep "${SNAPSHOT_PRESTR}${snap_name}" > /dev/null; then
             read -p "Are you sure you want to delete ${snap_name}? y/n [n] " yn
             case $yn in
                 y|Y)
                     (
                         cd /
                         btrfs subvolume delete -c "${SNAPSHOT_PRESTR}${snap_name}"
-                        if [ $? -eq 0 ];then
+                        if [[ "$?" -eq "0" ]]; then
                             echo "Snapshot [ ${snap_name} ] has been deleted."
                         else
                             echo "Snapshot [ ${snap_name} ] failed to delete!"
