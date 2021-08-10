@@ -111,7 +111,7 @@ download_kernel() {
     rm -f ${KERNEL_DOWNLOAD_PATH}/modules-*.tar.gz && sync
 
     # Download boot file from the kernel directory under the path: ${SERVER_KERNEL_URL}/${DOWNLOAD_VERSION}/
-    SERVER_KERNEL_BOOT="$(curl -s "${SERVER_KERNEL_URL}/${DOWNLOAD_VERSION}" | grep "download_url" | grep -o "boot-${DOWNLOAD_VERSION}.*.tar.gz" | head -n 1)"
+    SERVER_KERNEL_BOOT="$(curl -s "${SERVER_KERNEL_URL}/${DOWNLOAD_VERSION}" | grep "download_url" | grep -o "https.*/boot-${DOWNLOAD_VERSION}.*.tar.gz" | head -n 1)"
     # Download boot file from current path: ${SERVER_KERNEL_URL}/
     if [ -z "${SERVER_KERNEL_BOOT}" ]; then
         SERVER_KERNEL_BOOT="$(curl -s "${SERVER_KERNEL_URL}" | grep "download_url" | grep -o "https.*/boot-${DOWNLOAD_VERSION}.*.tar.gz" | head -n 1)"
