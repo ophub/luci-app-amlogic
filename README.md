@@ -59,9 +59,9 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 sed -i "s|https.*/library|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
-- Tips: When compiling OpenWrt on github.com, modify the above 4 points to realize customization. The above information can also be modified in the settings of the plug-in after log in to the openwrt `System` → `Amlogic Service`.
+- Tips: When compiling OpenWrt, modify the above 4 points to realize customization. The above information can also be modified in the settings of the plug-in after log in to the openwrt `System` → `Amlogic Service`.
 
-- 提示：当你在 github.com 编译 OpenWrt 时，修改以上 4 点即可实现自定义。以上信息也可以登录 OpenWrt 系统后，在 `系统` → `晶晨宝盒` 的设置中修改。
+- 提示：当你在编译 OpenWrt 时，修改以上 4 点即可实现自定义。以上信息也可以登录 OpenWrt 系统后，在 `系统` → `晶晨宝盒` 的设置中修改。
 
 ## Plugin setup instructions / 插件设置说明
 
@@ -73,7 +73,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in [ophub/op/releases](https://github.com/ophub/op/releases) There are many firmwares for different routers, The OpenWrt firmware belonging to the Agmlgic series can be found by including the keyword `s9xxx_lede`.
 
-3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z` / `.zip`. But .img is not supported, because it is too large to download and slow.
+3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z`. But .img is not supported, because it is too large to download and slow.
 
 - The firmware file name should include the SOC standard name of the box to ensure that the corresponding firmware is accurately found. The supported SOCs are: `s905x3`, `s905x2`, `s905x`, `s905d`, `s912`, `s922x`
 
@@ -97,7 +97,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 2. Releases 里 Tags 的关键字：要可以区分其他 x86，R2S 等固件，如在 [ophub/op/releases](https://github.com/ophub/op/releases) 里有很多不同路由器的固件，可以使用包含 `s9xxx_lede` 关键词找到属于 Agmlgic 系列的 OpenWrt 固件。
 
-3. OpenWrt 文件的后缀：支持的格式有 `.img.gz` / `.img.xz` / `.7z` / `.zip` 。但是不支持 .img，因为太大下载太慢。
+3. OpenWrt 文件的后缀：支持的格式有 `.img.gz` / `.img.xz` / `.7z` 。但是不支持 .img，因为太大下载太慢。
 - 固件文件名中要包含盒子的 SOC 标准名称，确保准确找到对应的固件，支持的 SOC 有：`s905x3`、`s905x2`、`s905x`、`s905d`、`s912`、`s922x`
 
 - 固件文件名中要包含内核版本系列名称，确保能准确找到对应的系列，支持的内核系列有 `5.4.xxx`、`5.10.xxx`、`5.12.xxx`、`5.13.xxx` 等。
