@@ -81,7 +81,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 #### The download of the kernel contains an option
 
-- Download path of OpenWrt kernel: You can fill in the full path `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel`. If it is in the same repository as the OpenWrt firmware, the path can also be abbreviated `amlogic-s9xxx/amlogic-kernel`. It can also independently point to the kernel storage path in any repository  `https://github.com/ophub/flippy-kernel/tree/main/library`. It is recommended to use the kernel library path maintained for a long time by [breakings](https://github.com/breakings/OpenWrt/tree/main/opt/kernel).
+- Download path of OpenWrt kernel: You can fill in the full path `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel`. If it is in the same repository as the OpenWrt firmware, the path can also be abbreviated `amlogic-s9xxx/amlogic-kernel`. It can also independently point to the kernel storage path in any repository  `https://github.com/ophub/flippy-kernel/tree/main/library`. The kernel files can be stored in the specified path in the form of a folder or a list. It is recommended to use the kernel library path maintained for a long time by [breakings](https://github.com/breakings/OpenWrt/tree/main/opt/kernel).
 
 #### Other options
 
@@ -104,7 +104,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 #### 内核的下载包含一个选项
 
-- OpenWrt 内核的下载路径：可以填写完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel` 。如果和 OpenWrt 固件是同仓库的情况下，也可以简写路径 `amlogic-s9xxx/amlogic-kernel` 。也可以独立指向到任意仓库中内核存放路径 `https://github.com/ophub/flippy-kernel/tree/main/library`。推荐使用由 [breakings](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) 长期维护的内核库路径。
+- OpenWrt 内核的下载路径：可以填写完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel` 。如果和 OpenWrt 固件是同仓库的情况下，也可以简写路径 `amlogic-s9xxx/amlogic-kernel` 。也可以独立指向到任意仓库中内核存放路径 `https://github.com/ophub/flippy-kernel/tree/main/library`。内核文件支持以文件夹或列表的形式存储在指定的路径下。推荐使用由 [breakings](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) 长期维护的内核库路径。
 
 #### 其他选项
 
