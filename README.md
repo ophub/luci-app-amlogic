@@ -75,7 +75,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z`. But .img is not supported, because it is too large to download and slow.
 
-- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version` : openwrt_`{soc}`_xxx_`{kernel}`_xxx.img.gz, for example: openwrt_`s905d`_n1_R21.8.6_k`5.4.138`-flippy-62+o. 7z. The supported `SOC` are: `s905x3`, `s905x2`, `s905x`, `s905d`, `s912`, `s922x`. The supported `kernel version` are `5.4.xxx`, `5.10.xxx`, `5.12.xxx`, `5.13.xxx`, etc.
+- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version` : openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z. The supported `SOC` are: `s905x3`, `s905x2`, `s905x`, `s905d`, `s912`, `s922x`. The supported `kernel version` are `5.4.xxx`, `5.10.xxx`, `5.12.xxx`, `5.13.xxx`, etc.
 
 #### The download of the kernel contains an option
 
@@ -97,7 +97,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 3. OpenWrt 文件的后缀：支持的格式有 `.img.gz` / `.img.xz` / `.7z` 。但是不支持 .img，因为太大下载太慢。
 
-- 在 Releases 里的 `OpenWrt` 固件命名时请包含 `SOC型号` 和 `内核版本` ：openwrt_`{soc}`_xxx_`{kernel}`_xxx.img.gz，例如：openwrt_`s905d`_n1_R21.8.6_k`5.4.138`-flippy-62+o.7z。支持的 `SOC` 有：`s905x3`、`s905x2`、`s905x`、`s905d`、`s912`、`s922x`。支持的`内核版本`有 `5.4.xxx`、`5.10.xxx`、`5.12.xxx`、`5.13.xxx` 等。
+- 在 Releases 里的 `OpenWrt` 固件命名时请包含 `SOC型号` 和 `内核版本` ：openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz，例如：openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z。支持的 `SOC` 有：`s905x3`、`s905x2`、`s905x`、`s905d`、`s912`、`s922x`。支持的`内核版本`有 `5.4.xxx`、`5.10.xxx`、`5.12.xxx`、`5.13.xxx` 等。
 
 #### 内核的下载包含一个选项
 
