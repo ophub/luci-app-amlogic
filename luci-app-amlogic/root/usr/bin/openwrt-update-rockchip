@@ -13,6 +13,19 @@
 # You can also execute the script directly, and interactively select related functions
 # E.g: openwrt-update-rockchip
 
+# Current device model
+MYDEVICE_NAME=$(cat /proc/device-tree/model 2>/dev/null)
+if [ -z "${MYDEVICE_NAME}" ]; then
+    echo "Unknown device"
+    exit 1
+elif [ "${MYDEVICE_NAME}" == "Chainedbox L1 Pro" ]; then
+    MYDTB_DTBFILE="rk3328-l1pro-1296mhz.dtb"
+else
+    MYDTB_DTBFILE="k3328-beikeyun-1296mhz.dtb"
+fi
+echo "Current device: ${MYDEVICE_NAME}"
+sleep 3
+
 IMG_NAME=${1}
 AUTO_MAINLINE_UBOOT=${2}
 BACKUP_RESTORE_CONFIG=${3}
@@ -425,7 +438,7 @@ rootfstype=btrfs
 rootflags=compress=zstd
 extraargs=usbcore.autosuspend=-1
 extraboardargs=
-fdtfile=/dtb/rockchip/rk3328-beikeyun-1296mhz.dtb
+fdtfile=/dtb/rockchip/${MYDTB_DTBFILE}
 EOF
 sync
 echo "done"
