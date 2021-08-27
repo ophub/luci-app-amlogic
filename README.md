@@ -47,10 +47,10 @@ curl -fsSL git.io/luci-app-amlogic | bash
 
 ```shell
 # 1.Set the download repository of the OpenWrt files to your github.com （OpenWrt 文件的下载仓库）
-sed -i "s|https.*/amlogic-s9xxx-openwrt|https://github.com/USERNAME/REPOSITORY|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|https.*/OpenWrt|https://github.com/USERNAME/REPOSITORY|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 2.Set the keywords of Tags in your github.com Releases （Releases 里 Tags 的关键字）
-sed -i "s|s9xxx_lede|RELEASES_TAGS_KEYWORD|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|ARMv8|RELEASES_TAGS_KEYWORD|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 3.Set the suffix of the OPENWRT files in your github.com Releases （Releases 里 OpenWrt 文件的后缀）
 sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
@@ -69,7 +69,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 #### The firmware download contains three options
 
-1. OpenWrt firmware download address: It can be the full path of the repository `https://github.com/ophub/amlogic-s9xxx-openwrt` or the abbreviation of the repository without domain name `ophub/amlogic-s9xxx-openwrt`
+1. OpenWrt firmware download address: Fill in the URL of the OpenWrt compiler's github repository, such as `https://github.com/breakings/OpenWrt`. The first button of the plug-in welcome homepage `OpenWrt Author website` will link to the website filled in here, so that everyone can find the author of the firmware for communication and learning.
 
 2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in [ophub/op/releases](https://github.com/ophub/op/releases) There are many firmwares for different routers, The OpenWrt firmware belonging to the Agmlgic series can be found by including the keyword `s9xxx_lede`.
 
@@ -91,7 +91,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 ####  固件下载包含三个选项
 
-1. OpenWrt 固件下载地址：可以是仓库的完整路径 `https://github.com/ophub/amlogic-s9xxx-openwrt` 或者是不含域名的仓库简写 `ophub/amlogic-s9xxx-openwrt`
+1. OpenWrt 固件下载地址：填写 OpenWrt 编译者的 github 仓库网址，如：`https://github.com/breakings/OpenWrt` 。插件欢迎首页的第一个按钮 OpenWrt Author website 将链接至此处填写的网站，方便大家找到固件编译作者进行交流学习。
 
 2. Releases 里 Tags 的关键字：要可以区分其他 x86，R2S 等固件，如在 [ophub/op/releases](https://github.com/ophub/op/releases) 里有很多不同路由器的固件，可以使用包含 `s9xxx_lede` 关键词找到属于 Agmlgic 系列的 OpenWrt 固件。
 
