@@ -1,9 +1,9 @@
 
 # luci-app-amlogic / 晶晨宝盒
 
-Provide luci operation support for Amlogic STB. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config`, `Snapshot management` and `Custom firmware / kernel download site`, etc.
+Supports management of Amlogic s9xxx, Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox L1 Pro) boxes. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config`, `Snapshot management` and `Custom firmware / kernel download site`, etc.
 
-为 Amlogic 系列盒子提供 luci 操作支持。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新 OpenWrt 固件或内核版本`，`备份/恢复固件配置`，`快照管理` 及 `自定义固件/内核下载站点`等功能。
+支持对晶晨 s9xxx 系列（斐讯N1、HK1等），全志（微加云），以及瑞芯微（贝壳云、我家云）的盒子进行在线管理。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新 OpenWrt 固件或内核版本`，`备份/恢复固件配置`，`快照管理` 及 `自定义固件/内核下载站点`等功能。
 
 ## Depends / 依赖
 
@@ -40,9 +40,9 @@ curl -fsSL git.io/luci-app-amlogic | bash
 
 ## Custom config / 自定义配置
 
-- Supports OpenWrt firmware packaged by [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) and [flippy](https://github.com/unifreq/openwrt_packit) related scripts. The online update file download url of `OpenWrt firmware` and `kernel` can be customized as your own github.com repository. The config information is stored in the [/etc/config/amlogic](https://github.com/ophub/luci-app-amlogic/blob/main/luci-app-amlogic/root/etc/config/amlogic) file. When the OpenWrt firmware is compiled, you can directly modify the relevant values in this file to specify:
+- Supports OpenWrt firmware packaged by [flippy](https://github.com/unifreq/openwrt_packit) and [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) related scripts. The online update file download url of `OpenWrt firmware` and `kernel` can be customized as your own github.com repository. The config information is stored in the [/etc/config/amlogic](https://github.com/ophub/luci-app-amlogic/blob/main/luci-app-amlogic/root/etc/config/amlogic) file. When the OpenWrt firmware is compiled, you can directly modify the relevant values in this file to specify:
 
-- 支持 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 和 [flippy](https://github.com/unifreq/openwrt_packit) 相关脚本打包的 OpenWrt 固件。插件里 `在线下载更新` 中的 `OpenWrt 固件` 及 `内核` 文件的下载地址支持自定义为自己的 github.com 的仓库。配置信息保存在 [/etc/config/amlogic](https://github.com/ophub/luci-app-amlogic/blob/main/luci-app-amlogic/root/etc/config/amlogic) 文件中。OpenWrt 固件编译时可以直接修改这个文件里的相关值来进行指定：
+- 支持 [flippy](https://github.com/unifreq/openwrt_packit) 和 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 相关脚本打包的 OpenWrt 固件。插件里 `在线下载更新` 中的 `OpenWrt 固件` 及 `内核` 文件的下载地址支持自定义为自己的 github.com 的仓库。配置信息保存在 [/etc/config/amlogic](https://github.com/ophub/luci-app-amlogic/blob/main/luci-app-amlogic/root/etc/config/amlogic) 文件中。OpenWrt 固件编译时可以直接修改这个文件里的相关值来进行指定：
 
 
 ```shell
@@ -75,7 +75,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z`. But .img is not supported, because it is too large to download and slow.
 
-- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version` : openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z. The supported `SOC` are: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`. The supported `kernel version` are `5.4.xxx`, `5.10.xxx`, `5.12.xxx`, `5.13.xxx`, etc.
+- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version` : openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z. The supported `SOC` are: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. The supported `kernel version` are `5.4.xxx`, `5.10.xxx`, `5.12.xxx`, `5.13.xxx`, etc.
 
 #### The download of the kernel contains an option
 
@@ -97,7 +97,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 3. OpenWrt 文件的后缀：支持的格式有 `.img.gz` / `.img.xz` / `.7z` 。但是不支持 .img，因为太大下载太慢。
 
-- 在 Releases 里的 `OpenWrt` 固件命名时请包含 `SOC型号` 和 `内核版本` ：openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz，例如：openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z。支持的 `SOC` 有：`s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`。支持的`内核版本`有 `5.4.xxx`、`5.10.xxx`、`5.12.xxx`、`5.13.xxx` 等。
+- 在 Releases 里的 `OpenWrt` 固件命名时请包含 `SOC型号` 和 `内核版本` ：openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz，例如：openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z。支持的 `SOC` 有：`s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`。支持的`内核版本`有 `5.4.xxx`、`5.10.xxx`、`5.12.xxx`、`5.13.xxx` 等。
 
 #### 内核的下载包含一个选项
 
