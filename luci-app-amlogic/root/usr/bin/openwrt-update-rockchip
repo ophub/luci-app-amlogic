@@ -21,7 +21,7 @@ if [ -z "${MYDEVICE_NAME}" ]; then
 elif [ "${MYDEVICE_NAME}" == "Chainedbox L1 Pro" ]; then
     MYDTB_DTBFILE="rk3328-l1pro-1296mhz.dtb"
 else
-    MYDTB_DTBFILE="k3328-beikeyun-1296mhz.dtb"
+    MYDTB_DTBFILE="rk3328-beikeyun-1296mhz.dtb"
 fi
 echo "Current device: ${MYDEVICE_NAME}"
 sleep 3
