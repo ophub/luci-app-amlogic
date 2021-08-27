@@ -28,6 +28,7 @@ function index()
     entry({"admin", "system", "amlogic", "start_snapshot_delete"},call("action_start_snapshot_delete")).leaf=true
     entry({"admin", "system", "amlogic", "start_snapshot_restore"},call("action_start_snapshot_restore")).leaf=true
     entry({"admin", "system", "amlogic", "start_snapshot_list"},call("action_check_snapshot")).leaf=true
+    entry({"admin", "system", "amlogic", "start_openwrt_author"},call("action_openwrt_author")).leaf=true
     entry({"admin", "system", "amlogic", "state"},call("action_state")).leaf=true
 
 end
@@ -352,3 +353,15 @@ function action_check_snapshot()
     })
 end
 
+--Return the openwrt compile author
+local function openwrt_author()
+    return luci.sys.exec("uci get amlogic.config.amlogic_firmware_repo 2>/dev/null") or "Invalid value."
+end
+
+--Return current snapshot information
+function action_openwrt_author()
+    luci.http.prepare_content("application/json")
+    luci.http.write_json({
+        openwrt_author = openwrt_author();
+    })
+end

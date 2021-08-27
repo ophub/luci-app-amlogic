@@ -7,9 +7,11 @@
 			<img id="logo_amlogic" src="https://hdmiforum.org/wp-content/uploads/2017/08/logo_Amlogic.jpg" width="200" />
 		</td></tr>
 		<tr><td colspan="2" width="100%" align="center">
-			<img id="openwrt" src="https://img.shields.io/badge/OpenWrt-Packit%20by%20Flippy-blueviolet?logo=github" loading="lazy" alt="OpenWrt" width="170px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return homepage('flippy')" />
+			<img id="OpenWrt" src="https://img.shields.io/badge/OpenWrt-Author%20website-greenviolet?logo=github" loading="lazy" alt="OpenWrt" width="168px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return author_homepage('author')" />
 			&nbsp;&nbsp;
-			<img id="luci-app-amlogic" src="https://img.shields.io/badge/Plugin-luci--app--amlogic-blue?logo=github" loading="lazy" alt="luci-app-amlogic" width="170px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return homepage('app')" />
+			<img id="Packit" src="https://img.shields.io/badge/Packit-Official%20repository%20of%20flippy-blueviolet?logo=github" loading="lazy" alt="OpenWrt" width="216px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return homepage('flippy')" />
+			&nbsp;&nbsp;
+			<img id="Plugin" src="https://img.shields.io/badge/Plugin-luci--app--amlogic-blue?logo=github" loading="lazy" alt="luci-app-amlogic" width="160px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return homepage('app')" />
 		</td></tr>
 		<tr><td width="25%" align="right"><%:Supported functions:%></td><td  width="75%" align="left" id="_clash">
 			<%:Provide services such as install to EMMC, Update Firmware or Kernel, Backup and Recovery Config, Snapshot management, etc.%>
@@ -39,9 +41,24 @@
 	function homepage(website)
 	{
 		var url = "";
-		if( website == 'app' ) { url = 'https://github.com/ophub/luci-app-amlogic'; }
 		if( website == 'flippy' ) { url = 'https://github.com/unifreq/openwrt_packit'; }
+		if( website == 'app' ) { url = 'https://github.com/ophub/luci-app-amlogic'; }
 		if ( url != "" ) { winOpen(url); }
+	}
+
+	function author_homepage(website)
+	{
+		var openwrt_author_repo = "";
+		XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_openwrt_author")%>', null, function(x, status) {
+		if ( x && x.status == 200 ) {
+
+			let openwrt_author_repo = status.openwrt_author;
+			let trimstr_au = openwrt_author_repo.replace(/(^\s*)|(\s*$)/g, "");
+			if ( trimstr_au != "" ) { winOpen(trimstr_au); }
+
+			_check_snapshot.innerHTML = _div_codes ? _div_codes : "<font color=red>"+"<%:Invalid value.%>"+"</font>";
+		}
+		});
 	}
 
 //]]></script>
