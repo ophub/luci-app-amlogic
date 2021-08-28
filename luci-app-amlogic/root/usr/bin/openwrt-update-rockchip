@@ -6,7 +6,7 @@
 #======================================================================================
 
 # The script supports directly setting parameters for update, skipping interactive selection
-# openwrt-update-amlogic ${OPENWRT_FILE} ${AUTO_MAINLINE_UBOOT} ${RESTORE_CONFIG}
+# openwrt-update-rockchip ${OPENWRT_FILE} ${AUTO_MAINLINE_UBOOT} ${RESTORE_CONFIG}
 # E.g: openwrt-update-rockchip openwrt_s905d.img.gz yes restore
 # E.g: openwrt-update-rockchip openwrt_s905d.img.gz no no-restore
 
