@@ -13,6 +13,11 @@
 # You can also execute the script directly, and interactively select related functions
 # E.g: openwrt-update-rockchip
 
+# Receive one-key command related parameters
+IMG_NAME=${1}
+AUTO_MAINLINE_UBOOT=${2}
+BACKUP_RESTORE_CONFIG=${3}
+
 # Current device model
 MYDEVICE_NAME=$(cat /proc/device-tree/model 2>/dev/null)
 if [ -z "${MYDEVICE_NAME}" ]; then
@@ -20,15 +25,16 @@ if [ -z "${MYDEVICE_NAME}" ]; then
     exit 1
 elif [ "${MYDEVICE_NAME}" == "Chainedbox L1 Pro" ]; then
     MYDTB_FTDFILE="rk3328-l1pro-1296mhz.dtb"
-else
+    SOC="l1pro"
+elif [ "${MYDEVICE_NAME}" == "BeikeYun" ]; then
     MYDTB_FTDFILE="rk3328-beikeyun-1296mhz.dtb"
+    SOC="beikeyun"
+else
+    echo "Unknown device: [ ${MYDEVICE_NAME} ], Not supported."
+    exit 1
 fi
-echo "Current device: ${MYDEVICE_NAME}"
+echo -e "Current device: ${MYDEVICE_NAME} [ ${SOC} ]"
 sleep 3
-
-IMG_NAME=${1}
-AUTO_MAINLINE_UBOOT=${2}
-BACKUP_RESTORE_CONFIG=${3}
 
 EMMC_NAME=$(lsblk | grep -oE '(mmcblk[0-9])' | sort | uniq)
 if [ "${EMMC_NAME}" == "" ]; then
