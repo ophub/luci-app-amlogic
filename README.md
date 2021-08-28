@@ -54,8 +54,6 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 - When compiling OpenWrt, modify the above 4 points to realize customization. The above information can also be modified in the settings of the plug-in after log in to the openwrt `System` → `Amlogic Service`.
 
-- The default [OpenWrt](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) firmware and [kernel](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) download service of the plug-in is supported by `breakings`. He is an active and enthusiastic manager of the Flippy community, familiar with OpenWrt compilation, and familiar with the installation and use of various boxes supported by `Flippy`.
-
 ## Plugin setup instructions
 
 Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, whether to keep the configuration when update, whether to automatically enter the main line U-BOOT when install and update.
@@ -79,6 +77,10 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 - Keep configuration updates: Modify as needed. If checked, the current configuration will be retained when the firmware is updated.
 
 - Automatically write bootloader: It is recommended to check, there are many features.
+
+#### Description of default settings
+
+- The default [OpenWrt](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) firmware and [kernel](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) download service of the plug-in is supported by `breakings`. He is an active and enthusiastic manager of the Flippy community, familiar with OpenWrt compilation, and familiar with the installation and use of various boxes supported by `Flippy`, Recommended Use.
 
 ## Screenshot
 

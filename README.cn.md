@@ -54,8 +54,6 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 - 当你在编译 OpenWrt 时，修改以上 4 点即可实现自定义。以上信息也可以登录 OpenWrt 系统后，在 `系统` → `晶晨宝盒` 的设置中修改。
 
-- 插件默认的 [OpenWrt](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) 固件与 [内核](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) 下载服务由 `breakings` 提供支持，他是 Flippy 社群活跃且热心的管理者，熟悉 OpenWrt 编译，通晓 `Flippy` 提供支持的各系列盒子的安装和使用。
-
 ## 插件设置说明
 
 插件设置 4 项内容：OpenWrt 固件下载地址、内核下载地址、更新时是否保留配置、安装与更新时是否自动输入主线 U-BOOT。
@@ -79,6 +77,10 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 - 保留配置更新：根据需要进行修改，如果勾选，在更新固件固件时将保留当前配置。
 
 - 自动写入 bootloader：推荐勾选，有很多特性。
+
+#### 默认设置说明
+
+- 插件默认的 [OpenWrt](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) 固件与 [内核](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) 下载服务由 `breakings` 提供支持，他是 Flippy 社群活跃且热心的管理者，熟悉 OpenWrt 编译，通晓 `Flippy` 提供支持的各系列盒子的安装和使用，推荐使用。
 
 ## 插件界面
 
