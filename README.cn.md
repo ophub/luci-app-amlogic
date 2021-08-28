@@ -96,6 +96,7 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
 - [Lienol/openwrt](https://github.com/Lienol/openwrt)
 - [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit)
+- [breakings/OpenWrt](https://github.com/breakings/OpenWrt)
 
 ## 许可
 - [LICENSE](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE) © OPHUB
