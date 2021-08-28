@@ -72,7 +72,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 #### The download of the kernel contains an option
 
-- Download path of OpenWrt kernel: You can fill in the full path `https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/amlogic-s9xxx/amlogic-kernel`. If it is in the same repository as the OpenWrt firmware, the path can also be abbreviated `amlogic-s9xxx/amlogic-kernel`. It can also independently point to the kernel storage path in any repository  `https://github.com/ophub/flippy-kernel/tree/main/library`. The kernel files can be stored in the specified path in the form of a folder or a list.
+- Download path of OpenWrt kernel: You can fill in the full path `https://github.com/breakings/OpenWrt/tree/main/opt/kernel`. If it is in the same repository as the OpenWrt firmware, the path can also be abbreviated `opt/kernel`. It can also independently point to the kernel storage path in any repository  `https://github.com/ophub/flippy-kernel/tree/main/library`. The kernel files can be stored in the specified path in the form of a folder or a list.
 
 #### Other options
 
