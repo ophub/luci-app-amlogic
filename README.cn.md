@@ -84,7 +84,7 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 ## 插件界面
 
-![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/131235403-6280b3e2-30f5-4ff3-93ad-3265338cfe83.gif)
+![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/131235501-f1f4352f-8b17-4643-b438-efd0ef628452.gif)
 
 ## 借鉴
 
