@@ -85,7 +85,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, wh
 
 ## Screenshot
 
-![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/131235491-b20060de-ae4d-4047-959f-bf4c09b49a6f.gif)
+![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/131629289-1fc43ac5-fa95-48e9-b409-94d4e7210a34.gif)
 
 ## Borrow
 
