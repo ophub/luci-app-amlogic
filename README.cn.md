@@ -57,9 +57,9 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 ## 插件设置说明
 
-插件设置 4 项内容：OpenWrt 固件下载地址、内核下载地址、版本分支选择、更新时是否保留配置、安装与更新时是否自动输入主线 U-BOOT。
+插件设置 4 项内容：OpenWrt 固件下载地址、内核下载地址、版本分支选择、其他。
 
-####  固件下载包含三个选项
+####  OpenWrt 固件下载包含三个选项
 
 1. OpenWrt 固件下载地址：填写您在 github 编译 OpenWrt 的仓库（或其他编译者的仓库），如：`https://github.com/breakings/OpenWrt` 。插件欢迎首页的第一个按钮 `OpenWrt Author website` 将链接至此处填写的网站（根据填写的网站自动更新链接），方便大家找到固件编译作者进行交流学习。
 
@@ -69,11 +69,11 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 - 在 Releases 里的 `OpenWrt` 固件命名时请包含 `SOC型号` 和 `内核版本` ：openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz，例如：openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z。支持的 `SOC` 有：`s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`。支持的`内核版本`有 `5.4.xxx`、`5.10.xxx`、`5.12.xxx`、`5.13.xxx` 等。
 
-#### 内核下载为一个选项
+#### 内核下载地址为一个选项
 
 - OpenWrt 内核的下载路径：可以填写完整路径 `https://github.com/breakings/OpenWrt/tree/main/opt/kernel` 。如果和 OpenWrt 固件是同仓库的情况下，也可以简写路径 `opt/kernel` 。也可以独立指向到任意仓库中内核存放路径 `https://github.com/ophub/flippy-kernel/tree/main/library` 。内核文件支持以文件夹或列表的形式存储在指定的路径下。
 
-#### 版本分支为一个选项
+#### 版本分支选择为一个选项
 
 - 设置版本分支：默认为当前 OpenWrt 固件的分支，你可以自由选择其他分支，也可以自定义分支，如 `5.4`，`5.10`，`5.13`，`5.14` 等。`OpenWrt` 和 `内核` `[在线下载更新]` 时，将根据你选择的分支进行下载与更新。
 
