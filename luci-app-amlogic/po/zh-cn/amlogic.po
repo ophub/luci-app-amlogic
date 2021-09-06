@@ -365,12 +365,6 @@ msgstr "OpenWrt 文件的下载仓库："
 msgid "Set the download repository of the OpenWrt files on github.com in [Online Download Update]."
 msgstr "设置 [在线下载更新] 中 github.com 的 OpenWrt 文件的下载仓库。"
 
-msgid "Download path of OpenWrt kernel:"
-msgstr "OpenWrt 内核的下载路径："
-
-msgid "Set the download path of the kernel in the github.com repository in [Online Download Update]."
-msgstr "设置 [在线下载更新] 中 github.com 仓库里内核的下载路径。"
-
 msgid "Keywords of Tags in Releases:"
 msgstr "Releases 里 Tags 的关键字："
 
@@ -382,6 +376,18 @@ msgstr "OpenWrt 文件的后缀："
 
 msgid "Set the suffix of the OpenWrt in Releases of github.com in [Online Download Update]."
 msgstr "设置 [在线下载更新] 中 github.com 的 Releases 里 OpenWrt 文件的后缀。"
+
+msgid "Download path of OpenWrt kernel:"
+msgstr "OpenWrt 内核的下载路径："
+
+msgid "Set the download path of the kernel in the github.com repository in [Online Download Update]."
+msgstr "设置 [在线下载更新] 中 github.com 仓库里内核的下载路径。"
+
+msgid "Set version branch:"
+msgstr "设置版本分支："
+
+msgid "Set the version branch of the openwrt firmware and kernel selected in [Online Download Update]."
+msgstr "设置 [在线下载更新] 时 OpenWrt 与内核所选用的版本分支。"
 
 msgid "Keep config update:"
 msgstr "保留配置更新："
@@ -434,8 +440,8 @@ msgstr "当前设备："
 msgid "If the current device shows (Unknown device), please report to github."
 msgstr "如果当前设备显示无法识别（Unknown device），请到 github 反馈。"
 
-msgid "We will recommend to you the kernel version with the same mainline as the current OpenWrt system."
-msgstr "我们将向您推荐与当前 OpenWrt 系统相同主线的内核版本。"
+msgid "The OpenWrt and kernel will be downloaded and updated according to your selection in [Plugin Settings]."
+msgstr "OpenWrt 和内核将根据你在 [插件设置] 的选择进行下载与更新。"
 
 msgid "Collecting data..."
 msgstr "正在收集数据…"
