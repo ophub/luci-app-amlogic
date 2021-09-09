@@ -88,10 +88,10 @@ check_updated() {
     tolog "02. Start checking the updated ..."
 
     # Get the openwrt firmware updated_at
-    FIRMWARE_RELEASES_DATE=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | grep -n "${FIRMWARE_DOWNLOAD_URL}" | awk -F ":" '{print $1}' | head -n 1)
-    if [ -n "${FIRMWARE_RELEASES_DATE}" ]; then
-        FIRMWARE_RELEASES_LINE=$(( FIRMWARE_RELEASES_DATE - 1 ))
-        FIRMWARE_RELEASES_UPDATED=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | sed -n "${FIRMWARE_RELEASES_LINE}p" | cut -d '"' -f4 | cut -d 'T' -f1)
+    FIRMWARE_BROWSER_DOWNLOAD_LINE=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | grep -n "${FIRMWARE_DOWNLOAD_URL}" | awk -F ":" '{print $1}' | head -n 1)
+    if [[ -n "${FIRMWARE_BROWSER_DOWNLOAD_LINE}" && "${FIRMWARE_BROWSER_DOWNLOAD_LINE}" -gt "0" ]]; then
+        FIRMWARE_UPDATED_LINE=$(( FIRMWARE_BROWSER_DOWNLOAD_LINE - 1 ))
+        FIRMWARE_RELEASES_UPDATED=$(curl -s "https://api.github.com/repos/${SERVER_FIRMWARE_URL}/releases" | sed -n "${FIRMWARE_UPDATED_LINE}p" | cut -d '"' -f4 | cut -d 'T' -f1)
         tolog '<input type="button" class="cbi-button cbi-button-reload" value="Download" onclick="return b_check_firmware(this, '"'download'"')"/> Latest updated: '${FIRMWARE_RELEASES_UPDATED}''
     else
         tolog "02.02 Invalid firmware check." "1"
