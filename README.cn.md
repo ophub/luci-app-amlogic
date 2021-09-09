@@ -1,4 +1,4 @@
-![logo](https://i.niupic.com/images/2021/09/01/9u0P.png)
+![logo](https://user-images.githubusercontent.com/68696949/132637519-614c96b0-4b51-4215-8a6e-fce14ade82df.png)
 
 # luci-app-amlogic / 晶晨宝盒
 
@@ -89,7 +89,7 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 ## 插件界面
 
-![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/131629472-39a665cc-d359-4e3f-ae1e-013750d5e265.gif)
+![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/132637410-59e511e9-8534-4512-9938-f18ca2b8bc0e.gif)
 
 ## 借鉴
 
