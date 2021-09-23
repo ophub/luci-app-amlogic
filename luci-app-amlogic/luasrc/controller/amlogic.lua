@@ -129,8 +129,8 @@ end
 
 --Upgrade the kernel
 function start_amlogic_kernel()
-    luci.sys.exec("chmod +x /usr/bin/" .. device_kernel_script .. " >/dev/null 2>&1")
-    local state = luci.sys.call("/usr/bin/" .. device_kernel_script .. " > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
+    luci.sys.exec("chmod +x /usr/sbin/" .. device_kernel_script .. " >/dev/null 2>&1")
+    local state = luci.sys.call("/usr/sbin/" .. device_kernel_script .. " > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
     return state
 end
 
@@ -146,18 +146,18 @@ end
 
 --Upgrade amlogic openwrt firmware
 function start_amlogic_update()
-    luci.sys.exec("chmod +x /usr/bin/" .. device_update_script .. " >/dev/null 2>&1")
+    luci.sys.exec("chmod +x /usr/sbin/" .. device_update_script .. " >/dev/null 2>&1")
     local amlogic_update_sel = luci.http.formvalue("amlogic_update_sel")
-    local state = luci.sys.call("/usr/bin/" .. device_update_script .. " " .. amlogic_update_sel .. " " .. auto_write_bootloader .. " " .. update_restore_config .. " > /tmp/amlogic/amlogic_check_firmware.log && sync 2>/dev/null")
+    local state = luci.sys.call("/usr/sbin/" .. device_update_script .. " " .. amlogic_update_sel .. " " .. auto_write_bootloader .. " " .. update_restore_config .. " > /tmp/amlogic/amlogic_check_firmware.log && sync 2>/dev/null")
     return state
 end
 
 --Install amlogic openwrt firmware
 function start_amlogic_install()
-    luci.sys.exec("chmod +x /usr/bin/" .. device_install_script .. " >/dev/null 2>&1")
+    luci.sys.exec("chmod +x /usr/sbin/" .. device_install_script .. " >/dev/null 2>&1")
     local amlogic_install_sel = luci.http.formvalue("amlogic_install_sel")
     local res = string.split(amlogic_install_sel, "@")
-    local state = luci.sys.call("/usr/bin/" .. device_install_script .. " " .. auto_write_bootloader .. " " .. res[1] .. " " .. res[2] .. " > /tmp/amlogic/amlogic_check_install.log && sync 2>/dev/null")
+    local state = luci.sys.call("/usr/sbin/" .. device_install_script .. " " .. auto_write_bootloader .. " " .. res[1] .. " " .. res[2] .. " > /tmp/amlogic/amlogic_check_install.log && sync 2>/dev/null")
     return state
 end
 
