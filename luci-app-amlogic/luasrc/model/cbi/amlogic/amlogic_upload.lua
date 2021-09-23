@@ -202,8 +202,8 @@ btnis.write = function(self, section)
         form.description = string.format('<span style="color: red">%s</span>', r)
     elseif IsConfigFile(inits[section].name) then
         form.description =  ' <span style="color: green"><b> ' .. translate("Tip: The config is being restored, and it will automatically restart after completion.") .. ' </b></span> '
-        local x = luci.sys.exec("chmod +x /usr/bin/openwrt-backup 2>/dev/null")
-        local r = luci.sys.exec("/usr/bin/openwrt-backup -r > /tmp/amlogic/amlogic.log && sync 2>/dev/null")
+        local x = luci.sys.exec("chmod +x /usr/sbin/openwrt-backup 2>/dev/null")
+        local r = luci.sys.exec("/usr/sbin/openwrt-backup -r > /tmp/amlogic/amlogic.log && sync 2>/dev/null")
     end
 end
 
