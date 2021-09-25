@@ -401,6 +401,12 @@ msgstr "自动写入 bootloader："
 msgid "[Recommended choice] Set whether to auto write bootloader during install and update OpenWrt."
 msgstr "[推荐选择] 设置在安装和更新 OpenWrt 固件时是否自动写入 bootloader 文件。"
 
+msgid "Set the file system type:"
+msgstr "设置文件系统类型："
+
+msgid "[Default ext4] Set the file system type of the shared partition(/mnt/mmcblk*p4)."
+msgstr "[默认 ext4] 设置共享分区(/mnt/mmcblk*p4)的文件系统类型。"
+
 msgid "Save Config:"
 msgstr "保存配置："
 
