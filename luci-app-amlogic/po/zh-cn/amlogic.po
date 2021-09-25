@@ -404,8 +404,8 @@ msgstr "[推荐选择] 设置在安装和更新 OpenWrt 固件时是否自动写
 msgid "Set the file system type:"
 msgstr "设置文件系统类型："
 
-msgid "[Default ext4] Set the file system type of the shared partition(/mnt/mmcblk*p4)."
-msgstr "[默认 ext4] 设置共享分区(/mnt/mmcblk*p4)的文件系统类型。"
+msgid "[Default ext4] Set the file system type of the shared partition (/mnt/mmcblk*p4) when install OpenWrt."
+msgstr "[默认 ext4] 设置安装 OpenWrt 时共享分区 (/mnt/mmcblk*p4) 的文件系统类型。"
 
 msgid "Save Config:"
 msgstr "保存配置："

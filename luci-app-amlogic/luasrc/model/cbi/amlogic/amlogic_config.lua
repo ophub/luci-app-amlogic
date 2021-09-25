@@ -169,7 +169,7 @@ end
 
 --9.Set the file system type of the shared partition
 o = s:option(ListValue,"shared_fstype",translate("Set the file system type:"))
-o.description = translate("[Default ext4] Set the file system type of the shared partition(/mnt/mmcblk*p4).")
+o.description = translate("[Default ext4] Set the file system type of the shared partition (/mnt/mmcblk*p4) when install OpenWrt.")
 o:value("ext4", translate("ext4"))
 o:value("f2fs", translate("f2fs"))
 o:value("btrfs", translate("btrfs"))

@@ -699,7 +699,6 @@ case $TARGET_SHARED_FSTYPE in
         mount -t ext4 /dev/${EMMC_NAME}p4 /mnt/${EMMC_NAME}p4
         ;;
 esac
-echo "Shared file system format: ${TARGET_SHARED_FSTYPE}"
 mkdir -p /mnt/${EMMC_NAME}p4/docker /mnt/${EMMC_NAME}p4/AdGuardHome
 sync
 
