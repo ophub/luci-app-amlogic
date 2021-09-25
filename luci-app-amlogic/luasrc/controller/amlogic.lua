@@ -61,6 +61,14 @@ else
     auto_write_bootloader = "yes"
 end
 
+--Set the file system type of the shared partition
+local amlogic_shared_fstype = luci.sys.exec("uci get amlogic.config.amlogic_shared_fstype 2>/dev/null") or ""
+if trim(amlogic_shared_fstype) == "" then
+    auto_shared_fstype = "ext4"
+else
+    auto_shared_fstype = trim(amlogic_shared_fstype)
+end
+
 --Device identification
 mydevice_logs = luci.sys.exec("cat /proc/device-tree/model | tr -d '\000') > /tmp/amlogic/amlogic_mydevice_name.log && sync")
 mydevice_name = luci.sys.exec("cat /proc/device-tree/model | tr -d '\000')") or "Unknown device"
@@ -157,7 +165,13 @@ function start_amlogic_install()
     luci.sys.exec("chmod +x /usr/sbin/" .. device_install_script .. " >/dev/null 2>&1")
     local amlogic_install_sel = luci.http.formvalue("amlogic_install_sel")
     local res = string.split(amlogic_install_sel, "@")
-    local state = luci.sys.call("/usr/sbin/" .. device_install_script .. " " .. auto_write_bootloader .. " " .. res[1] .. " " .. res[2] .. " > /tmp/amlogic/amlogic_check_install.log && sync 2>/dev/null")
+    soc_id = res[1]
+    if tonumber(res[1]) == 99 then
+        dtb_filename = res[2]
+    else
+        dtb_filename = "auto_dtb"
+    end
+    local state = luci.sys.call("/usr/sbin/" .. device_install_script .. " " .. auto_write_bootloader .. " " .. soc_id .. " " .. dtb_filename .. " " .. auto_shared_fstype .. " > /tmp/amlogic/amlogic_check_install.log && sync 2>/dev/null")
     return state
 end
 
