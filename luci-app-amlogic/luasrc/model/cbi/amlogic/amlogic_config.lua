@@ -52,7 +52,7 @@ s = b:section(SimpleSection, "", nil)
 o = s:option(DummyValue, "mydevice", translate("Current Device:"))
 o.description = translate("If the current device shows (Unknown device), please report to github.")
 o.rmempty = true
-o.default = luci.sys.exec("cat /proc/device-tree/model 2>/dev/null") or "Unknown device"
+o.default = luci.sys.exec("cat /proc/device-tree/model | tr -d \'\\000\'") or "Unknown device"
 
 --2.Set OpenWrt Firmware Repository
 o = s:option(Value, "firmware_repo", translate("Download repository of OpenWrt:"))
