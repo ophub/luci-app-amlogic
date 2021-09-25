@@ -36,6 +36,9 @@ local amlogic_firmware_config = luci.sys.exec("uci get amlogic.config.amlogic_fi
 default_write_bootloader="1"
 local amlogic_write_bootloader = luci.sys.exec("uci get amlogic.config.amlogic_write_bootloader 2>/dev/null") or default_write_bootloader
 
+default_shared_fstype="ext4"
+local amlogic_shared_fstype = luci.sys.exec("uci get amlogic.config.amlogic_shared_fstype 2>/dev/null") or default_shared_fstype
+
 --SimpleForm for Config Source
 b = SimpleForm("amlogic_check", translate("Plugin Settings"), nil)
 local des_content = translate("You can customize the github.com download repository of OpenWrt files and kernels in [Online Download Update].")
@@ -55,7 +58,7 @@ o.default = luci.sys.exec("cat /proc/device-tree/model 2>/dev/null") or "Unknown
 o = s:option(Value, "firmware_repo", translate("Download repository of OpenWrt:"))
 o.description = translate("Set the download repository of the OpenWrt files on github.com in [Online Download Update].")
 o.rmempty = true
-o.default = amlogic_firmware_repo
+o.default = trim(amlogic_firmware_repo)
 o.write = function(self, key, value)
     if value == "" then
         --self.description = translate("Invalid value.")
@@ -70,7 +73,7 @@ end
 o = s:option(Value, "releases_tag", translate("Keywords of Tags in Releases:"))
 o.description = translate("Set the keywords of Tags in Releases of github.com in [Online Download Update].")
 o.rmempty = true
-o.default = amlogic_firmware_tag
+o.default = trim(amlogic_firmware_tag)
 o.write = function(self, key, value)
     if value == "" then
         --self.description = translate("Invalid value.")
@@ -85,7 +88,7 @@ end
 o = s:option(Value, "firmware_suffix", translate("Suffix of OpenWrt files:"))
 o.description = translate("Set the suffix of the OpenWrt in Releases of github.com in [Online Download Update].")
 o.rmempty = true
-o.default = amlogic_firmware_suffix
+o.default = trim(amlogic_firmware_suffix)
 o.write = function(self, key, value)
     if value == "" then
         --self.description = translate("Invalid value.")
@@ -100,7 +103,7 @@ end
 o = s:option(Value, "kernel_repo", translate("Download path of OpenWrt kernel:"))
 o.description = translate("Set the download path of the kernel in the github.com repository in [Online Download Update].")
 o.rmempty = true
-o.default = amlogic_kernel_path
+o.default = trim(amlogic_kernel_path)
 o.write = function(self, key, value)
     if value == "" then
         --self.description = translate("Invalid value.")
@@ -164,7 +167,26 @@ o.write = function(self, key, value)
     end
 end
 
---9.Save button
+--9.Set the file system type of the shared partition
+o = s:option(ListValue,"shared_fstype",translate("Set the file system type:"))
+o.description = translate("[Default ext4] Set the file system type of the shared partition(/mnt/mmcblk*p4).")
+o:value("ext4", translate("ext4"))
+o:value("f2fs", translate("f2fs"))
+o:value("btrfs", translate("btrfs"))
+o:value("xfs", translate("xfs"))
+o.default = trim(amlogic_shared_fstype)
+o.rmempty = true
+o.write = function(self, key, value)
+    if value == "" then
+        --self.description = translate("Invalid value.")
+        amlogic_shared_fstype = "ext4"
+    else
+        --self.description = translate("Set the file system type:") .. value
+        amlogic_shared_fstype = value
+    end
+end
+
+--10.Save button
 o = s:option(Button, "", translate("Save Config:"))
 o.template = "amlogic/other_button"
 o.render = function(self, section, scope)
@@ -182,6 +204,7 @@ o.write = function(self, section, scope)
     luci.sys.exec("uci set amlogic.config.amlogic_kernel_branch=" .. amlogic_kernel_branch .. " 2>/dev/null")
     luci.sys.exec("uci set amlogic.config.amlogic_firmware_config=" .. amlogic_firmware_config .. " 2>/dev/null")
     luci.sys.exec("uci set amlogic.config.amlogic_write_bootloader=" .. amlogic_write_bootloader .. " 2>/dev/null")
+    luci.sys.exec("uci set amlogic.config.amlogic_shared_fstype=" .. amlogic_shared_fstype .. " 2>/dev/null")
     luci.sys.exec("uci commit amlogic 2>/dev/null")
     http.redirect(DISP.build_url("admin", "system", "amlogic", "config"))
     --self.description = "amlogic_firmware_repo: " .. amlogic_firmware_repo
