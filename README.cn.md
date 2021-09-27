@@ -83,9 +83,11 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 - 自动写入 bootloader：推荐勾选，有很多特性。
 
+- 设置文件系统类型：设置安装 OpenWrt 时共享分区 (/mnt/mmcblk*p4) 的文件系统类型（默认 ext4）。此项设置只针对全新安装 OpenWrt 时有效，更新内核和更新固件时不会再改变当前共享分区的文件类型。
+
 #### 默认设置说明
 
-- 插件默认的 [OpenWrt](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) 固件与 [内核](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) 下载服务由 `breakings` 提供支持，他是 Flippy 社群活跃且热心的管理者，熟悉 OpenWrt 编译，通晓 `Flippy` 提供支持的各系列盒子的安装和使用，推荐使用。
+- 插件默认的 [OpenWrt](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) 固件与 [内核](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) 下载服务由 `breakings` 提供支持，他是 Flippy 社群活跃且热心的管理者，熟悉 OpenWrt 编译，通晓 `Flippy` 提供支持的各系列盒子的安装和使用，关于 OpenWrt 的编译及使用中碰到的问题等，可以进社群咨询或到他的 Github 中反馈。
 
 ## 插件界面
 
