@@ -8,7 +8,7 @@ Supports management of Amlogic s9xxx, Allwinner (V-Plus Cloud), and Rockchip (Be
 
 ## Depends
 
-- [luci-lib-fs](https://github.com/ophub/luci-app-amlogic/tree/main/luci-lib-fs)
+- [luci-lib-fs](depends/luci-lib-fs)
 
 Tip: It is included when compiling with [coolsnowwolf/lean](https://github.com/coolsnowwolf/lede/tree/master/package/lean/luci-lib-fs) or [Lienol/openwrt](https://github.com/Lienol/openwrt/tree/main/package/lean/luci-lib-fs) source code. There is no need to add this dependency separately. When using other source code libraries, please check whether they are missing.
 
