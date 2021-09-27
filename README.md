@@ -83,9 +83,11 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 - Automatically write bootloader: It is recommended to check, there are many features.
 
+- Set the file system type: Set the file system type of the shared partition (/mnt/mmcblk*p4) when install OpenWrt (Default ext4). This setting is only valid for a fresh install of OpenWrt, and the file type of the current shared partition will not be changed when update the kernel and OpenWrt firmware.
+
 #### Description of default settings
 
-- The default [OpenWrt](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) firmware and [kernel](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) download service of the plug-in is supported by `breakings`. He is an active and enthusiastic manager of the Flippy community, familiar with OpenWrt compilation, and familiar with the installation and use of various boxes supported by `Flippy`, Recommended Use.
+- The default [OpenWrt](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) firmware and [kernel](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) download service of the plug-in is supported by `breakings`. He is an active and enthusiastic manager of the Flippy community, familiar with OpenWrt compilation, and familiar with the installation and use of various boxes supported by `Flippy`, Regarding the problems encountered in the compilation and use of OpenWrt, you can consult the community or his Github for feedback.
 
 ## Screenshot
 
