@@ -12,7 +12,7 @@ end
 --Set default upload path
 local ROOT_PTNAME = trim(luci.sys.exec("df / | tail -n1 | awk '{print $1}' | awk -F '/' '{print $3}'"))
 if ROOT_PTNAME then
-    if (string.find(ROOT_PTNAME, "mmcblk[1-4]p[1-4]")) then
+    if (string.find(ROOT_PTNAME, "mmcblk[0-4]p[1-4]")) then
         local EMMC_NAME = trim(luci.sys.exec("echo " .. ROOT_PTNAME .. " | awk '{print substr($1, 1, length($1)-2)}'"))
         upload_path = trim("/mnt/" .. EMMC_NAME .. "p4/")
     elseif (string.find(ROOT_PTNAME, "[hsv]d[a-z]")) then
