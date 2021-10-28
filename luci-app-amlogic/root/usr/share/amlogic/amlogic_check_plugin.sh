@@ -72,7 +72,7 @@ sleep 3
 
 # 02. Check the version on the server
 tolog "02. Query server version information."
-server_plugin_version=$(curl -i -s "https://api.github.com/repos/ophub/luci-app-amlogic/releases" | grep "tag_name" | head -n 1 | grep -oE "[0-9]{1,3}.[0-9]{1,3}-[0-9]+")
+server_plugin_version=$(curl -i -s "https://api.github.com/repos/ophub/luci-app-amlogic/releases" | grep "tag_name" | head -n 1 | awk -F '"' '{print $4}')
 [ -n "${server_plugin_version}" ] || tolog "02.01 Failed to get the version on the server." "1"
 tolog "02.02 current version: ${current_plugin_v}, Latest version: ${server_plugin_version}"
 sleep 3
