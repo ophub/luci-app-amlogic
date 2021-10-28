@@ -36,7 +36,7 @@
 		<tr>
 			<td width="30%" align="right"><%:Install OpenWrt:%></td>
 			<td  width="70%" align="left">
-				<input type="button" class="cbi-button cbi-button-reload" value="<%:Install%>" onclick="return amlogic_install(this, '<%=self:cfgvalue(section)%>')"/>　<span id="_check_install"></span>　<span id="_show_me"></span>　<span id="_check_model_database"></span>
+				<input type="button" class="cbi-button cbi-button-reload" value="<%:Install%>" onclick="return amlogic_install(this, '<%=self:cfgvalue(section)%>')"/>　<span id="_check_install"></span>
 			</td>
 		</tr>
 	</table>
@@ -45,7 +45,6 @@
 
 	// Show custom dtb input box
 	function sel_dtb_input(soc_value){
-		// document.getElementById('_show_me').innerHTML = soc_value;
 		if ( soc_value == "99" )
 		{
 			document.getElementById('tr_sel_dtb').style = '';
@@ -67,12 +66,6 @@
 
 		var amlogic_dtb_id = document.getElementById('amlogic_dtb');
 		var amlogic_dtb_value = amlogic_dtb_id.value;
-
-		var amlogic_show = document.getElementById('_show_me');
-		var show_me_value = '[ SoC_id: ' + amlogic_soc_value
-		if ( amlogic_dtb_value != "" ) { show_me_value = show_me_value + ', DTB_file_name: ' + amlogic_dtb_value }
-		show_me_value = show_me_value + ' ]'
-		// amlogic_show.innerHTML = show_me_value;
 
 		if (confirm('<%:You have chosen:%> [ ' + amlogic_confirm_info + ' ] , <%:Start install?%>') != true) { return false; }
 

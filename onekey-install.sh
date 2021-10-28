@@ -16,7 +16,7 @@ tolog() {
 
     # 02. Check the version on the server
     tolog "01. Query server version information."
-    SERVER_PLUGIN_VERSION=$(curl -i -s "https://api.github.com/repos/ophub/luci-app-amlogic/releases" | grep "tag_name" | head -n 1 | grep -oE "[0-9]{1,3}.[0-9]{1,3}-[0-9]+")
+    SERVER_PLUGIN_VERSION=$(curl -i -s "https://api.github.com/repos/ophub/luci-app-amlogic/releases" | grep "tag_name" | head -n 1 | awk -F '"' '{print $4}')
     [ -n "${SERVER_PLUGIN_VERSION}" ] || tolog "02.01 Failed to get the version on the server." "1"
     tolog "01.01 Latest version: ${SERVER_PLUGIN_VERSION}"
     sleep 3
