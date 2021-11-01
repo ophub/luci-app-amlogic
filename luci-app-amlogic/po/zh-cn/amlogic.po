@@ -522,7 +522,7 @@ msgid "Max Turbo Boost CPU Freq:"
 msgstr "最大 Turbo Boost CPU 频率："
 
 msgid "CPU Switching Threshold:"
-msgstr "CPU 切换频率触发阈值"
+msgstr "CPU 切换频率触发阈值："
 
 msgid "Kernel make a decision on whether it should increase the frequency (%)"
 msgstr "当 CPU 占用率超过 (%) 的情况下触发内核切换频率"
