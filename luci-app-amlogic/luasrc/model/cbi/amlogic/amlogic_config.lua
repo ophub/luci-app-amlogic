@@ -6,7 +6,7 @@ end
 
 b = Map("amlogic", translate("Plugin Settings"))
 local des_content = translate("You can customize the github.com download repository of OpenWrt files and kernels in [Online Download Update].")
-local des_content = des_content .. "<br />" .. translate("Tips: The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.13) will automatically match the current openwrt firmware.")
+local des_content = des_content .. "<br />" .. translate("Tips: The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.10) will automatically match the current openwrt firmware.")
 b.description = des_content
 
 o = b:section(NamedSection, "config", "amlogic")
