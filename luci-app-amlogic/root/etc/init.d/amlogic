@@ -21,7 +21,7 @@ start()
 	    cpu_policys="policy0"
 	fi
 
-	config_load amlogic
+	config_load $NAME
 	for policy_name in ${cpu_policys}; do
         local policy_id="${policy_name//policy/}"
 

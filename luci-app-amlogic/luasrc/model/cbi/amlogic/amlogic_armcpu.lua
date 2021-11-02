@@ -71,14 +71,14 @@ for tt,policy_name in ipairs(policy_array) do
     governor.default = "schedutil"
     governor.rmempty = false
 
-    minfreq = s:taboption(tab_id, ListValue, trim("minfreq" .. policy_id), translate("Min Idle CPU Freq:"))
+    minfreq = s:taboption(tab_id, ListValue, trim("minfreq" .. policy_id), translate("Min Freq:"))
     for t,e in ipairs(freq_array) do
         if e ~= "" then minfreq:value(e) end
     end
     minfreq.default = "500000"
     minfreq.rmempty = false
 
-    maxfreq = s:taboption(tab_id, ListValue, trim("maxfreq" .. policy_id), translate("Max Turbo Boost CPU Freq:"))
+    maxfreq = s:taboption(tab_id, ListValue, trim("maxfreq" .. policy_id), translate("Max Freq:"))
     for t,e in ipairs(freq_array) do
         if e ~= "" then maxfreq:value(e) end
     end
