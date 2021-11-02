@@ -369,7 +369,7 @@ msgid "You can customize the github.com download repository of OpenWrt files and
 msgstr "您可以自定义 [在线下载和更新] 中 OpenWrt 固件和内核的 github.com 下载仓库。"
 
 msgid "Tips: The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.10) will automatically match the current openwrt firmware."
-msgstr "提示：OpenWrt 固件的型号（如：s905d）和内核的主线版本（如：5.13）将根据当前固件自动适配。"
+msgstr "提示：OpenWrt 固件的型号（如：s905d）和内核的主线版本（如：5.10）将根据当前固件自动适配。"
 
 msgid "Download repository of OpenWrt:"
 msgstr "OpenWrt 固件的下载仓库："
