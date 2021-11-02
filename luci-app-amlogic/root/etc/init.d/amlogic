@@ -1,5 +1,5 @@
 #!/bin/sh /etc/rc.common
-START=50
+START=60
 
 NAME=amlogic
 
@@ -10,7 +10,7 @@ uci_get_by_type() {
 
 uci_set_by_type() {
 	uci set $NAME.@$1[0].$2=$3 2>/dev/null
-	uci commit amlogic
+	uci commit $NAME
 }
 
 start()
