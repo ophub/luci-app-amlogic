@@ -3,8 +3,7 @@
 --Extended support: https://github.com/ophub/luci-app-amlogic
 --Function: Support multi-core
 
-local uci = require("luci.model.uci").cursor()
-local e = require"nixio.fs"
+local fs = require "luci.fs"
 local mp
 
 --Remove the spaces in the string
@@ -27,6 +26,14 @@ function string.split(e, t)
     return o
 end
 
+--Auto-complete node
+local check_config_settings = luci.sys.exec("uci get amlogic.@settings[0].governor 2>/dev/null") or ""
+if (trim(check_config_settings) == "") then
+    luci.sys.exec("uci delete amlogic.@settings[0] 2>/dev/null")
+    luci.sys.exec("uci set amlogic.armcpu='settings' 2>/dev/null")
+    luci.sys.exec("uci commit amlogic 2>/dev/null")
+end
+
 mp = Map("amlogic",translate("CPU Freq Settings"))
 mp.description = translate("Set CPU Scaling Governor to Max Performance or Balance Mode")
 s = mp:section(NamedSection,"armcpu","settings")
@@ -46,9 +53,9 @@ for tt,policy_name in ipairs(policy_array) do
     tab_name = policy_name
     tab_id = tostring(trim("tab" .. policy_id))
 
-    cpu_freqs = e.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_frequencies")) or "100000"
+    cpu_freqs = fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_frequencies")) or "100000"
     cpu_freqs = string.sub(cpu_freqs, 1, -3)
-    cpu_governors = e.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_governors")) or "performance"
+    cpu_governors = fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_governors")) or "performance"
     cpu_governors = string.sub(cpu_governors, 1, -3)
     freq_array = string.split(cpu_freqs, " ")
     governor_array = string.split(cpu_governors, " ")
@@ -63,16 +70,22 @@ for tt,policy_name in ipairs(policy_array) do
     for t,e in ipairs(governor_array) do
         if e ~= "" then governor:value(e,translate(e,string.upper(e))) end
     end
+    governor.default = "schedutil"
+    governor.rmempty = false
 
     minfreq = s:taboption(tab_id, ListValue, trim("minifreq" .. policy_id), translate("Min Idle CPU Freq:"))
     for t,e in ipairs(freq_array) do
         if e ~= "" then minfreq:value(e) end
     end
+    minfreq.default = "500000"
+    minfreq.rmempty = false
 
     maxfreq = s:taboption(tab_id, ListValue, trim("maxfreq" .. policy_id), translate("Max Turbo Boost CPU Freq:"))
     for t,e in ipairs(freq_array) do
         if e ~= "" then maxfreq:value(e) end
     end
+    minfreq.default = "1512000"
+    minfreq.rmempty = false
 
     upthreshold = s:taboption(tab_id, Value, trim("upthreshold" .. policy_id), translate("CPU Switching Threshold:"))
     upthreshold.datatype = "range(1,99)"
