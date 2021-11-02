@@ -84,8 +84,8 @@ for tt,policy_name in ipairs(policy_array) do
     for t,e in ipairs(freq_array) do
         if e ~= "" then maxfreq:value(e) end
     end
-    minfreq.default = "1512000"
-    minfreq.rmempty = false
+    maxfreq.default = "1512000"
+    maxfreq.rmempty = false
 
     upthreshold = s:taboption(tab_id, Value, trim("upthreshold" .. policy_id), translate("CPU Switching Threshold:"))
     upthreshold.datatype = "range(1,99)"
