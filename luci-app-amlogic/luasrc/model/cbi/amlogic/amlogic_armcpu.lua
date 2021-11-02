@@ -27,7 +27,7 @@ function string.split(e, t)
 end
 
 --Auto-complete node
-local check_config_settings = luci.sys.exec("uci get amlogic.@settings[0].governor 2>/dev/null") or ""
+local check_config_settings = luci.sys.exec("uci get amlogic.@settings[0].governor0 2>/dev/null") or ""
 if (trim(check_config_settings) == "") then
     luci.sys.exec("uci delete amlogic.@settings[0] 2>/dev/null")
     luci.sys.exec("uci set amlogic.armcpu='settings' 2>/dev/null")
