@@ -26,7 +26,7 @@ start()
         local policy_id="${policy_name//policy/}"
 
         # Get an optional value list for the current device
-        local scaling_governor_list=$(cat /sys/devices/system/cpu/cpufreq/${policy_name}/scaling_available_frequencies 2>/dev/null | xargs)
+        local scaling_governor_list=($(cat /sys/devices/system/cpu/cpufreq/${policy_name}/scaling_available_frequencies 2>/dev/null | xargs))
         local second_place_order=$(echo $scaling_governor_list | awk '{print $2}')
         local second_place_reverse=$(echo $scaling_governor_list | awk '{print $(NF-1)}')
 
@@ -37,11 +37,11 @@ start()
 
         # Correct if the default value in the config file is not in the list
         if [[ -z "$(echo "${scaling_governor_list[@]}" | grep -w "${minifreq}")" ]]; then
-            minifreq="${second_place_order}"
+            local minifreq="${second_place_order}"
             uci_set_by_type settings minifreq${policy_id} ${second_place_order}
         fi
         if [[ -z "$(echo "${scaling_governor_list[@]}" | grep -w "${maxfreq}")" ]]; then
-            maxfreq="${second_place_reverse}"
+            local maxfreq="${second_place_reverse}"
             uci_set_by_type settings maxfreq${policy_id} ${second_place_reverse}
         fi
 
