@@ -24,7 +24,7 @@ start()
         fi
         local governor=$(uci_get_by_type settings governor${policy_id} schedutil)
         local minifreq=$(uci_get_by_type settings minifreq${policy_id} 500000)
-        local maxfreq=$(uci_get_by_type settings maxfreq${policy_id} 2208000)
+        local maxfreq=$(uci_get_by_type settings maxfreq${policy_id} 1512000)
         local upthreshold=$(uci_get_by_type settings upthreshold${policy_id} 50)
         local factor=$(uci_get_by_type settings factor${policy_id} 10)
 
