@@ -96,6 +96,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 ## Borrow
 
 - Upload functions by luci-app-filetransfer
+- CPU Settings functions by luci-app-cpufreq
 - Log viewing and version query functions by Vernesong
 - Kernel and scripts by Flippy
 
