@@ -41,7 +41,11 @@ firmware_tag.rmempty = false
 --4.Set OpenWrt Firmware Suffix
 firmware_suffix = o:option(Value, "amlogic_firmware_suffix", translate("Suffix of OpenWrt files:"))
 firmware_suffix.description = translate("Set the suffix of the OpenWrt in Releases of github.com in [Online Download Update].")
-firmware_suffix.default = ".img.gz"
+firmware_suffix:value(".7z", translate(".7z"))
+firmware_suffix:value(".zip", translate(".zip"))
+firmware_suffix:value(".img.gz", translate(".img.gz"))
+firmware_suffix:value(".img.xz", translate(".img.xz"))
+firmware_suffix.default = ".7z"
 firmware_suffix.rmempty = false
 
 --5.Set OpenWrt Kernel DownLoad Path
