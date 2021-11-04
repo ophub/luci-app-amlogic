@@ -87,7 +87,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 #### Description of default settings
 
-- The default OpenWrt firmware ( [Superset plugin version](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) | [Featured plugin version](https://github.com/breakings/OpenWrt/releases/tag/armv8_mini) ) and [kernel](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) download service of the plug-in is supported by [breakings](https://github.com/breakings/OpenWrt). He is an active and enthusiastic manager of the Flippy community, familiar with OpenWrt compilation, and familiar with the installation and use of various boxes supported by `Flippy`, Regarding the problems encountered in the compilation and use of OpenWrt, you can consult the community or his Github for feedback.
+- The default OpenWrt firmware ( [Superset plugin version](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) | [Featured plugin version](https://github.com/breakings/OpenWrt/releases/tag/armv8_mini) | [flippy share version](https://github.com/breakings/OpenWrt/releases/tag/flippy_openwrt) ) and [kernel](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) download service of the plug-in is supported by [breakings](https://github.com/breakings/OpenWrt). He is an active and enthusiastic manager of the Flippy community, familiar with OpenWrt compilation, and familiar with the installation and use of various boxes supported by `Flippy`, Regarding the problems encountered in the compilation and use of OpenWrt, you can consult the community or his Github for feedback.
 
 ## Screenshot
 

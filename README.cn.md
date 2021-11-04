@@ -87,7 +87,7 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 #### 默认设置说明
 
-- 插件默认的 OpenWrt 固件（ [插件高大全版](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) | [精选插件mini版](https://github.com/breakings/OpenWrt/releases/tag/armv8_mini) ）与 [内核](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) 下载服务由 [breakings](https://github.com/breakings/OpenWrt) 提供支持，他是 Flippy 社群活跃且热心的管理者，熟悉 OpenWrt 编译，通晓 `Flippy` 提供支持的各系列盒子的安装和使用，关于 OpenWrt 的编译及使用中碰到的问题等，可以进社群咨询或到他的 Github 中反馈。
+- 插件默认的 OpenWrt 固件（ [插件高大全版](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) | [精选插件mini版](https://github.com/breakings/OpenWrt/releases/tag/armv8_mini) | [flippy分享版](https://github.com/breakings/OpenWrt/releases/tag/flippy_openwrt) ）与 [内核](https://github.com/breakings/OpenWrt/tree/main/opt/kernel) 下载服务由 [breakings](https://github.com/breakings/OpenWrt) 提供支持，他是 Flippy 社群活跃且热心的管理者，熟悉 OpenWrt 编译，通晓 `Flippy` 提供支持的各系列盒子的安装和使用，关于 OpenWrt 的编译及使用中碰到的问题等，可以进社群咨询或到他的 Github 中反馈。
 
 ## 插件界面
 
