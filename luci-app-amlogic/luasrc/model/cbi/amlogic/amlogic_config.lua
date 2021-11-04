@@ -12,7 +12,8 @@ if (trim(check_config_amlogic) == "") then
     luci.sys.exec("uci commit amlogic 2>/dev/null")
 end
 
-b = Map("amlogic", translate("Plugin Settings"))
+b = Map("amlogic")
+b.title = translate("Plugin Settings")
 local des_content = translate("You can customize the github.com download repository of OpenWrt files and kernels in [Online Download Update].")
 local des_content = des_content .. "<br />" .. translate("Tips: The amlogic SoC (E.g: s905d) and mainline version of the kernel (E.g: 5.10) will automatically match the current openwrt firmware.")
 b.description = des_content
@@ -87,6 +88,4 @@ shared_fstype:value("xfs", translate("xfs"))
 shared_fstype.default = "ext4"
 shared_fstype.rmempty = false
 
-
 return b
-
