@@ -47,7 +47,7 @@ sed -i "s|https.*/OpenWrt|https://github.com/USERNAME/REPOSITORY|g" package/luci
 sed -i "s|ARMv8|RELEASES_TAGS_KEYWORD|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 3.设置 Releases 里 OpenWrt 文件的后缀
-sed -i "s|.7z|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 4.设置 OpenWrt 内核的下载路径
 sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" package/luci-app-amlogic/root/etc/config/amlogic
