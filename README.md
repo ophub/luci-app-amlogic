@@ -47,7 +47,7 @@ sed -i "s|https.*/OpenWrt|https://github.com/USERNAME/REPOSITORY|g" package/luci
 sed -i "s|ARMv8|RELEASES_TAGS_KEYWORD|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 3.Set the suffix of the OPENWRT files in your github.com Releases
-sed -i "s|.7z|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 4.Set the download path of the kernel in your github.com repository
 sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" package/luci-app-amlogic/root/etc/config/amlogic
