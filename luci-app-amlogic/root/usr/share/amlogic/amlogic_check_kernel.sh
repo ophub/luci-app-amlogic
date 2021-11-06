@@ -124,6 +124,8 @@ check_kernel() {
 
     # 02.03 Query the selected branch in the settings
     server_kernel_branch=$(uci get amlogic.config.amlogic_kernel_branch 2>/dev/null | grep -oE '^[1-9].[0-9]{1,3}')
+    branch_ver=$(echo "${server_kernel_branch}" | cut -d '.' -f1)
+    branch_maj=$(echo "${server_kernel_branch}" | cut -d '.' -f2)
     if [[ -n "${server_kernel_branch}" && "${server_kernel_branch}" != "${main_line_version}" ]]; then
         main_line_version="${server_kernel_branch}"
         main_line_now="0"
@@ -141,9 +143,9 @@ check_kernel() {
     tolog "02.03 current version: ${current_kernel_v}, Latest version: ${main_line_version}.${latest_version}"
     sleep 3
 
-    if [[ "${latest_version}" -eq "${main_line_now}" ]]; then
+    if [[ "${latest_version}" -eq "${main_line_now}" && "${main_line_maj}" -eq "${branch_maj}" ]]; then
         tolog "02.04 Already the latest version, no need to update." "1"
-        sleep 5
+        sleep 3
         tolog ""
         exit 0
     else
