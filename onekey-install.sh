@@ -21,7 +21,7 @@ tolog "01. Query server version information."
 curl -s "https://api.github.com/repos/ophub/luci-app-amlogic/releases" > ${github_api_plugin} && sync
 sleep 1
 
-server_plugin_version=$( cat ${github_api_plugin} | grep "tag_name"  | awk -F '"' '{print $4}' | sort -r | head -n 1 )
+server_plugin_version=$( cat ${github_api_plugin} | grep "tag_name"  | awk -F '"' '{print $4}' | tr " " "\n" | sort -rV | head -n 1 )
 [ -n "${server_plugin_version}" ] || tolog "01.01 Failed to get the version on the server." "1"
 tolog "01.01 Latest version: ${server_plugin_version}"
 sleep 3
