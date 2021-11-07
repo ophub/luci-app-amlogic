@@ -135,7 +135,7 @@ sleep 2
 rm -f ${github_api_plugin} 2>/dev/null && sync
 
 #echo '<a href=upload>Update</a>' >$START_LOG
-tolog '<input type="button" class="cbi-button cbi-button-reload" value="Update" onclick="return amlogic_plugin(this)"/>'
+tolog '<input type="button" class="cbi-button cbi-button-reload" value="Update" onclick="return amlogic_plugin(this)"/> Latest version: '${server_plugin_version}''
 
 exit 0
 
