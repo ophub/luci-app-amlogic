@@ -18,10 +18,10 @@ tolog() {
 # 01. Check the version on the server
 tolog "01. Query server version information."
 
-curl -s "https://api.github.com/repos/ophub/luci-app-amlogic/releases" > ${github_api_plugin} && sync
+curl -s "https://api.github.com/repos/ophub/luci-app-amlogic/releases" >${github_api_plugin} && sync
 sleep 1
 
-server_plugin_version=$( cat ${github_api_plugin} | grep "tag_name"  | awk -F '"' '{print $4}' | tr " " "\n" | sort -rV | head -n 1 )
+server_plugin_version=$(cat ${github_api_plugin} | grep "tag_name" | awk -F '"' '{print $4}' | tr " " "\n" | sort -rV | head -n 1)
 [ -n "${server_plugin_version}" ] || tolog "01.01 Failed to get the version on the server." "1"
 tolog "01.01 Latest version: ${server_plugin_version}"
 sleep 3
@@ -29,9 +29,9 @@ sleep 3
 tolog "02. Check the latest plug-in download address."
 
 server_plugin_url="https://github.com/ophub/luci-app-amlogic/releases/download"
-server_plugin_file_ipk="$( cat ${github_api_plugin} | grep -E "browser_.*${server_plugin_version}.*" | grep -oE "luci-app-amlogic_.*.ipk" | head -n 1 )"
-server_plugin_file_i18n="$( cat ${github_api_plugin} | grep -E "browser_.*${server_plugin_version}.*" | grep -oE "luci-i18n-amlogic-zh-cn_.*.ipk" | head -n 1 )"
-server_plugin_file_libfs="$( cat ${github_api_plugin} | grep -E "browser_.*${server_plugin_version}.*" | grep -oE "luci-lib-fs_.*.ipk" | head -n 1 )"
+server_plugin_file_ipk="$(cat ${github_api_plugin} | grep -E "browser_.*${server_plugin_version}.*" | grep -oE "luci-app-amlogic_.*.ipk" | head -n 1)"
+server_plugin_file_i18n="$(cat ${github_api_plugin} | grep -E "browser_.*${server_plugin_version}.*" | grep -oE "luci-i18n-amlogic-zh-cn_.*.ipk" | head -n 1)"
+server_plugin_file_libfs="$(cat ${github_api_plugin} | grep -E "browser_.*${server_plugin_version}.*" | grep -oE "luci-lib-fs_.*.ipk" | head -n 1)"
 
 if [[ -n "${server_plugin_file_ipk}" && -n "${server_plugin_file_i18n}" && -n "${server_plugin_file_libfs}" ]]; then
     tolog "02.01 Start downloading the latest plugin..."
@@ -76,4 +76,3 @@ tolog "03.01 The plugin has been installed successfully."
 tolog "03.02 Please login to OpenWrt -> system -> Amlogic Service."
 
 exit 0
-
