@@ -1,5 +1,3 @@
-![logo](https://user-images.githubusercontent.com/68696949/132637519-614c96b0-4b51-4215-8a6e-fce14ade82df.png)
-
 # luci-app-amlogic / Amlogic Service
 
 View Chinese description  |  [查看中文说明](README.cn.md)
@@ -91,7 +89,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 ## Screenshot
 
-![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/132637319-9968e553-cc49-472c-9a75-8c2bb786c5fd.gif)
+![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/145738300-2981e589-ef33-46e0-9af3-55e6e5dd67c0.gif)
 
 ## Borrow
 
