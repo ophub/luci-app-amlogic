@@ -14,7 +14,7 @@ uci_set_by_type() {
 }
 
 start() {
-    [ -x "/usr/sbin/fixcpufreq.pl" ] && /usr/sbin/fixcpufreq.pl
+    [ -x "/usr/sbin/fixcpufreq.pl" ] && /usr/sbin/fixcpufreq.pl && sync
     local cpu_policys=$(ls /sys/devices/system/cpu/cpufreq 2>/dev/null | grep -E 'policy[0-9]{1,3}' | xargs)
     if [ "${cpu_policys}" = "" ]; then
         cpu_policys="policy0"
