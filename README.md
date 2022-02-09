@@ -93,10 +93,10 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 ## Borrow
 
-- Upload functions by luci-app-filetransfer
-- CPU Settings functions by luci-app-cpufreq
-- Log viewing and version query functions by Vernesong
-- Kernel and scripts by Flippy
+- The Upload file functions by luci-app-filetransfer
+- The CPU Settings functions by luci-app-cpufreq
+- The Log viewing and version query functions by Vernesong
+- The Kernel and scripts etc by unifreq
 
 ## Acknowledgments
 
@@ -107,5 +107,5 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 - [breakings/OpenWrt](https://github.com/breakings/OpenWrt)
 
 ## License
-- [LICENSE](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE) © OPHUB
 
+The luci-app-amlogic © OPHUB is licensed under [GPL-2.0](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE)
