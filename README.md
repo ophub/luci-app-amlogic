@@ -61,11 +61,11 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 1. OpenWrt firmware download address: Fill in the repository of your OpenWrt compilation on github (or other compiler's repository), such as `https://github.com/breakings/OpenWrt`. The first button of the plug-in welcome homepage `OpenWrt Compiler author` will link to the website filled in here (Automatically update the link according to the filled website), so that everyone can find the author of the firmware for communication and learning.
 
-2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in [ophub/op/releases](https://github.com/ophub/op/releases) There are many firmwares for different routers, The OpenWrt firmware belonging to the Agmlgic series can be found by including the keyword `s9xxx_lede`.
+2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in [ophub/op/releases](https://github.com/ophub/op/releases) There are many firmwares for different routers, The OpenWrt firmware belonging to Agmlgic s9xxx series boxes can be found using keywords containing `s9xxx_lede`.
 
 3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z`. But .img is not supported, because it is too large to download and slow.
 
-- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version` : openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z. The supported `SOC` are: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. The supported `kernel version` are `5.4.xxx`, `5.10.xxx`, `5.12.xxx`, `5.13.xxx`, `5.14.xxx`, `5.15.xxx`, etc.
+- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version` : openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z. The supported `SOC` are: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. The supported `kernel version` are `5.4.xxx`, `5.10.xxx`, `5.15.xxx`, etc.
 
 #### The kernel download URL is an option
 
@@ -73,7 +73,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 #### The version branch selection as an option
 
-- Set the version branch: the default is the branch of the current OpenWrt firmware, you can freely choose other branches, you can also customize the branch, such as `5.4`, `5.10`, `5.12`, `5.13`, `5.14`, `5.15`, etc. `OpenWrt` and the `Kernel` `[Online Download Update]` will be downloaded and updated according to the branch you choose.
+- Set the version branch: the default is the branch of the current OpenWrt firmware, you can freely choose other branches, you can also customize the branch, such as `5.4`, `5.10`, `5.15`, etc. `OpenWrt` and the `Kernel` `[Online Download Update]` will be downloaded and updated according to the branch you choose.
 
 #### Other options
 
