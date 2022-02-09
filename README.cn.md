@@ -96,7 +96,7 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 - 文件上传下载等功能来自 luci-app-filetransfer
 - CPU 设置功能来自 luci-app-cpufreq
 - 日志查看和版本查询等功能来自 Vernesong
-- 内核及脚本等资源来自 Flippy
+- 内核及脚本等资源来自 unifreq
 
 ## 鸣谢
 
@@ -107,5 +107,5 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 - [breakings/OpenWrt](https://github.com/breakings/OpenWrt)
 
 ## 许可
-- [LICENSE](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE) © OPHUB
 
+The luci-app-amlogic © OPHUB is licensed under [GPL-2.0](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE)
