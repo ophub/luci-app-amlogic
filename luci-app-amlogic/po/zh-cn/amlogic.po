@@ -102,7 +102,7 @@ msgid "[s905d] Phicomm N1"
 msgstr "[s905d] 斐讯-N1"
 
 msgid "[s905d] Phicomm N1 (DMA thresh)"
-msgstr "[s905d] 斐讯-N1 (DMA thresh)"
+msgstr "[s905d] 斐讯-N1 (流控)"
 
 msgid "[s905x] HG680P & B860H"
 msgstr "[s905x] 烽火HG680 & 中兴B860H"
@@ -149,19 +149,19 @@ msgstr "[s905x3] X96 Max+ (超频@2208Mhz)"
 msgid "[s905x3] HK1 Box"
 msgstr "[s905x3] HK1 Box"
 
-msgid "[s905x3] HK1 Box (OveClock@2208Mhz)"
+msgid "[s905x3] HK1 Box (OverClock@2208Mhz)"
 msgstr "[s905x3] HK1 Box (超频@2208Mhz)"
 
 msgid "[s905x3] H96 Max X3"
 msgstr "[s905x3] H96 Max X3"
 
-msgid "[s905x3] H96 Max X3 (OveClock@2208Mhz)"
+msgid "[s905x3] H96 Max X3 (OverClock@2208Mhz)"
 msgstr "[s905x3] H96 Max X3 (超频@2208Mhz)"
 
 msgid "[s905x3] Ugoos X3"
 msgstr "[s905x3] Ugoos X3"
 
-msgid "[s905x3] Ugoos X3 (OveClock@2208Mhz)"
+msgid "[s905x3] Ugoos X3 (OverClock@2208Mhz)"
 msgstr "[s905x3] Ugoos X3 (超频@2208Mhz)"
 
 msgid "Or enter the dtb file name:"
