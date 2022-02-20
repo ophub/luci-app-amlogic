@@ -4,14 +4,14 @@
 <fieldset class="cbi-section">
 	<table width="100%" class="NewsTdHeight">
 		<tr><td colspan="2" width="100%" align="center">
-			<img id="logo_amlogic" src="/luci-static/resources/amlogic/logo.png" width="135" />
+			<img id="logo_amlogic" src="<%=resource%>/amlogic/logo.png" alt="Logo" width="135" />
 		</td></tr>
 		<tr><td colspan="2" width="100%" align="center">
-			<img id="Packit" src="/luci-static/resources/amlogic/packit.svg" loading="lazy" alt="OpenWrt" width="168px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return homepage('unifreq')" />
+			<img id="Packit" src="<%=resource%>/amlogic/packit.svg" alt="Packit" width="168px" height="20px" onclick="return homepage('packit')" />
 			&nbsp;&nbsp;
-			<img id="OpenWrt" src="/luci-static/resources/amlogic/author.svg" loading="lazy" alt="OpenWrt" width="168px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return author_homepage('author')" />
+			<img id="Author" src="<%=resource%>/amlogic/author.svg" alt="Author" width="168px" height="20px" onclick="return author_homepage('author')" />
 			&nbsp;&nbsp;
-			<img id="Plugin" src="/luci-static/resources/amlogic/plugin.svg" loading="lazy" alt="luci-app-amlogic" width="160px" height="20px" onerror="return imgerrorfuns(this,this.src)" onclick="return homepage('app')" />
+			<img id="Plugin" src="<%=resource%>/amlogic/plugin.svg" alt="luci-app-amlogic" width="160px" height="20px" onclick="return homepage('plugin')" />
 		</td></tr>
 		<tr><td width="20%" align="right"><%:Supported functions:%></td><td  width="80%" align="left" id="_clash">
 			<%:Provide services such as install to EMMC, Update Firmware and Kernel, Backup and Recovery Config, Snapshot management, etc.%>
@@ -41,8 +41,8 @@
 	function homepage(website)
 	{
 		var url = "";
-		if( website == 'unifreq' ) { url = 'https://github.com/unifreq/openwrt_packit'; }
-		if( website == 'app' ) { url = 'https://github.com/ophub/luci-app-amlogic'; }
+		if( website == 'packit' ) { url = 'https://github.com/unifreq/openwrt_packit'; }
+		if( website == 'plugin' ) { url = 'https://github.com/ophub/luci-app-amlogic'; }
 		if ( url != "" ) { winOpen(url); }
 	}
 
