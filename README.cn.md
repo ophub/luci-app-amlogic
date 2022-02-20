@@ -59,7 +59,7 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 ####  OpenWrt 固件下载包含三个选项
 
-1. OpenWrt 固件下载地址：填写您在 github 编译 OpenWrt 的仓库（或其他编译者的仓库），如：`https://github.com/breakings/OpenWrt` 。插件欢迎首页的第一个按钮 `OpenWrt Compiler author` 将链接至此处填写的网站（根据填写的网站自动更新链接），方便大家找到固件编译作者进行交流学习。
+1. OpenWrt 固件下载地址：填写您在 github 编译 OpenWrt 的仓库（或其他编译者的仓库），如：`https://github.com/breakings/OpenWrt` 。插件欢迎首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的网站（根据填写的网站自动更新链接），方便大家找到固件编译作者进行交流学习。
 
 2. Releases 里 Tags 的关键字：要可以区分其他 x86，R2S 等固件，如在 [ophub/op/releases](https://github.com/ophub/op/releases) 里有很多不同路由器的固件，可以使用包含 `s9xxx_lede` 的关键词找到属于 Agmlgic s9xxx 系列盒子的 OpenWrt 固件。
 
