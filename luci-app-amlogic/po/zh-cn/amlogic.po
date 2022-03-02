@@ -545,11 +545,16 @@ msgstr "关闭你的路由器设备。"
 msgid "Perform PowerOff"
 msgstr "执行关机"
 
+msgid "Are you sure you want to shut down?"
+msgstr "你确定要关机吗？"
+
 msgid "Device is shutting down..."
 msgstr "设备正在关机..."
 
-msgid "The device has been turned off."
-msgstr "设备已经关机。"
-
 msgid "Waiting for the device to shut down..."
-msgstr "等待设备关机"
+msgstr "等待设备关机..."
+
+msgid "The device has been turned off"
+msgstr "设备已经关机"
+
+
