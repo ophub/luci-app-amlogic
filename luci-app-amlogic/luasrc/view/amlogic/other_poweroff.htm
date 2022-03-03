@@ -1,13 +1,16 @@
 <style>
-.NewsTdHeight{ line-height:20px; }
+.NewsTdHeight{ line-height:32px; }
+.imgLeft{ float:left; margin-right:10px; vertical-align:middle; }
+.contentRight{ align-items: center; }
 </style>
 <fieldset class="cbi-section">
 	<table width="100%" class="NewsTdHeight">
 		<tr><td width="100%" align="left">
 			<input class="cbi-button cbi-button-remove" type="button" value="<%:Perform PowerOff%>" onclick="poweroff(this)" />
 			<p style="display:none">
-				<img id="poweroff_img" src="<%=resource%>/icons/loading.gif" alt="<%:Loading%>" style="vertical-align:middle" />
-				<span id="poweroff_message"><%:Device is shutting down...%></span>
+				<img id="img_loading" style="display:block" src="<%=resource%>/amlogic/loading.gif" alt="<%:Loading%>" class="imgLeft" />
+				<img id="img_poweroff" style="display:none" src="<%=resource%>/amlogic/poweroff.png" alt="<%:PowerOff%>" class="imgLeft" />
+				<span id="msg_poweroff" class="contentRight"><%:Device is shutting down...%></span>
 			</p>
 		</td></tr>
 	</table>
@@ -17,14 +20,15 @@
 
 	function status_check() {
 		var time = 5;
-		var msg = document.getElementById("poweroff_message");
-		var img = document.getElementById("poweroff_img");
+		var img_loading = document.getElementById("img_loading");
+		var img_poweroff = document.getElementById("img_poweroff");
+		var msg = document.getElementById("msg_poweroff");
 		var set = setInterval(function() {
 			time--;
-			img.src = "<%=resource%>/icons/loading.gif";
 			msg.innerHTML = "<%:Waiting for the device to shut down...%>";
 			if(time === 0) {
-				img.src = "<%=resource%>/icons/ethernet_disabled.png";
+				img_loading.style.display = 'none';
+				img_poweroff.style.display = 'block';
 				msg.innerHTML = "<%:The device has been turned off%>";
 				clearInterval(set);
 			}
@@ -35,7 +39,7 @@
 		if (confirm('<%:Are you sure you want to shut down?%>') != true) { return false; }
 
 		btn.style.display = 'none';
-		document.getElementById('poweroff_message').parentNode.style.display = '';
+		document.getElementById('msg_poweroff').parentNode.style.display = 'block';
 
 		(new XHR()).post('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_poweroff")%>', { token: '<%=token%>' }, status_check);
 	}
