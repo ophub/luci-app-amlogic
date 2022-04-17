@@ -65,7 +65,7 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 3. OpenWrt 文件的后缀：支持的格式有 `.img.gz` / `.img.xz` / `.7z` 。但是不支持 .img，因为太大下载太慢。
 
-- 在 Releases 里的 `OpenWrt` 固件命名时请包含 `SOC型号` 和 `内核版本` ：openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz，例如：openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z。支持的 `SOC` 有：`s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`。支持的`内核版本`有 `5.4.xxx`、`5.10.xxx`、`5.15.xxx` 等。
+- 在 Releases 里的 `OpenWrt` 固件命名时请包含 `SOC型号` 和 `内核版本` ：openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz，例如：openwrt_ `s905d`_ n1_R21.8.6_k`5.15.25`-flippy-62+o.7z。支持的 `SOC` 有：`s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`。支持的`内核版本`有 `5.10.xxx`、`5.15.xxx` 等。
 
 #### 内核下载地址为一个选项
 
@@ -73,7 +73,7 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 #### 版本分支选择为一个选项
 
-- 设置版本分支：默认为当前 OpenWrt 固件的分支，你可以自由选择其他分支，也可以自定义分支，如 `5.4`，`5.10`，`5.15` 等。`OpenWrt` 和 `内核` `[在线下载更新]` 时，将根据你选择的分支进行下载与更新。
+- 设置版本分支：默认为当前 OpenWrt 固件的分支，你可以自由选择其他分支，也可以自定义分支，如 `5.10`，`5.15` 等。`OpenWrt` 和 `内核` `[在线下载更新]` 时，将根据你选择的分支进行下载与更新。
 
 #### 其他选项
 

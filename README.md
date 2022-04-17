@@ -65,7 +65,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z`. But .img is not supported, because it is too large to download and slow.
 
-- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version` : openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_ `s905d`_ n1_R21.8.6_k`5.4.138`-flippy-62+o.7z. The supported `SOC` are: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. The supported `kernel version` are `5.4.xxx`, `5.10.xxx`, `5.15.xxx`, etc.
+- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version` : openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_ `s905d`_ n1_R21.8.6_k`5.15.25`-flippy-62+o.7z. The supported `SOC` are: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. The supported `kernel version` are `5.10.xxx`, `5.15.xxx`, etc.
 
 #### The kernel download URL is an option
 
@@ -73,7 +73,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 #### The version branch selection as an option
 
-- Set the version branch: the default is the branch of the current OpenWrt firmware, you can freely choose other branches, you can also customize the branch, such as `5.4`, `5.10`, `5.15`, etc. `OpenWrt` and the `Kernel` `[Online Download Update]` will be downloaded and updated according to the branch you choose.
+- Set the version branch: the default is the branch of the current OpenWrt firmware, you can freely choose other branches, you can also customize the branch, such as `5.10`, `5.15`, etc. `OpenWrt` and the `Kernel` `[Online Download Update]` will be downloaded and updated according to the branch you choose.
 
 #### Other options
 
