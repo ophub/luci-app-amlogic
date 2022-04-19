@@ -61,7 +61,7 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 1. OpenWrt firmware download address: Fill in the repository of your OpenWrt compilation on github (or other compiler's repository), such as `https://github.com/breakings/OpenWrt`. The `OpenWrt Compiler author` button on the plugin welcome home page will link to the website filled in here (Automatically update the link according to the filled website), so that everyone can find the author of the firmware for communication and learning.
 
-2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, such as in [ophub/op/releases](https://github.com/ophub/op/releases) There are many firmwares for different routers, The OpenWrt firmware belonging to Agmlgic s9xxx series boxes can be found using keywords containing `s9xxx_lede`.
+2. Keywords of Tags in Releases: to be able to distinguish other x86, R2S and other firmware, Make sure that the corresponding OpenWrt firmware can be found using this keyword.
 
 3. OpenWrt file suffix: the supported formats are `.img.gz` / `.img.xz` / `.7z`. But .img is not supported, because it is too large to download and slow.
 
