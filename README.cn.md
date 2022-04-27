@@ -8,7 +8,12 @@
 
 - [luci-lib-fs](depends/luci-lib-fs)
 
-提示：当使用 [coolsnowwolf/lean](https://github.com/coolsnowwolf/lede/tree/master/package/lean/luci-lib-fs) 或 [Lienol/openwrt](https://github.com/Lienol/openwrt/tree/main/package/lean/luci-lib-fs) 的源码库进行 OpenWrt 编译时，无须单独添加此依赖。当使用其他源码库时请自行检查是否缺少。
+提示：当使用 [coolsnowwolf/lean](https://github.com/coolsnowwolf/luci/tree/master/libs/luci-lib-fs) 的源码库进行 OpenWrt 编译时，无须单独添加此依赖。当使用 [openwrt/openwrt](https://github.com/openwrt/openwrt/) 或其他源码库时请自行检查是否缺少 `feeds/luci/libs/luci-lib-fs` 依赖。添加方法如下：
+
+```yaml
+# 添加 luci-lib-fs
+svn co https://github.com/ophub/luci-app-amlogic/trunk/depends/luci-lib-fs feeds/luci/libs/luci-lib-fs
+```
 
 ## 插件编译
 
@@ -37,7 +42,7 @@ curl -fsSL git.io/luci-app-amlogic | bash
 
 - 支持 [flippy](https://github.com/unifreq/openwrt_packit) 和 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 相关脚本打包的 OpenWrt 固件。插件里 `在线下载更新` 中的 `OpenWrt 固件` 及 `内核` 文件的下载地址支持自定义为自己的 github.com 的仓库。配置信息保存在 [/etc/config/amlogic](https://github.com/ophub/luci-app-amlogic/blob/main/luci-app-amlogic/root/etc/config/amlogic) 文件中。OpenWrt 固件编译时可以直接修改这个文件里的相关值来进行指定：
 
-```shell
+```yaml
 # 1.设置OpenWrt 文件的下载仓库
 sed -i "s|https.*/OpenWrt|https://github.com/USERNAME/REPOSITORY|g" package/luci-app-amlogic/root/etc/config/amlogic
 
@@ -102,7 +107,6 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 - [OpenWrt](https://github.com/openwrt/openwrt)
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
-- [Lienol/openwrt](https://github.com/Lienol/openwrt)
 - [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit)
 - [breakings/OpenWrt](https://github.com/breakings/OpenWrt)
 
