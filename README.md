@@ -8,7 +8,12 @@ Supports management of Amlogic s9xxx, Allwinner (V-Plus Cloud), and Rockchip (Be
 
 - [luci-lib-fs](depends/luci-lib-fs)
 
-Tip: It is included when compiling with [coolsnowwolf/lean](https://github.com/coolsnowwolf/lede/tree/master/package/lean/luci-lib-fs) or [Lienol/openwrt](https://github.com/Lienol/openwrt/tree/main/package/lean/luci-lib-fs) source code. There is no need to add this dependency separately. When using other source code libraries, please check whether they are missing.
+Tip: When using the source library of [coolsnowwolf/lean](https://github.com/coolsnowwolf/luci/tree/master/libs/luci-lib-fs) to compile OpenWrt, you do not need to add this dependency separately. When using [openwrt/openwrt](https://github.com/openwrt/openwrt/) or other source libraries, please check whether the `feeds/luci/libs/luci-lib-fs` dependency is missing. The method of adding is as follows:
+
+```yaml
+# Add luci-lib-fs
+svn co https://github.com/ophub/luci-app-amlogic/trunk/depends/luci-lib-fs feeds/luci/libs/luci-lib-fs
+```
 
 ## Plugin compilation
 
@@ -37,7 +42,7 @@ curl -fsSL git.io/luci-app-amlogic | bash
 
 - Supports OpenWrt firmware packaged by [flippy](https://github.com/unifreq/openwrt_packit) and [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) related scripts. The online update file download url of `OpenWrt firmware` and `kernel` can be customized as your own github.com repository. The config information is stored in the [/etc/config/amlogic](https://github.com/ophub/luci-app-amlogic/blob/main/luci-app-amlogic/root/etc/config/amlogic) file. When the OpenWrt firmware is compiled, you can directly modify the relevant values in this file to specify:
 
-```shell
+```yaml
 # 1.Set the download repository of the OpenWrt files to your github.com
 sed -i "s|https.*/OpenWrt|https://github.com/USERNAME/REPOSITORY|g" package/luci-app-amlogic/root/etc/config/amlogic
 
@@ -102,7 +107,6 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 - [OpenWrt](https://github.com/openwrt/openwrt)
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
-- [Lienol/openwrt](https://github.com/Lienol/openwrt)
 - [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit)
 - [breakings/OpenWrt](https://github.com/breakings/OpenWrt)
 
