@@ -89,7 +89,6 @@ Plug-in settings 4 items: OpenWrt firmware download URL, kernel download URL, Ve
 
 - The Upload file functions by luci-app-filetransfer
 - The CPU Settings functions by luci-app-cpufreq
-- The Log viewing and version query functions by Vernesong
 - The Kernel and scripts etc by unifreq
 
 ## Acknowledgments
