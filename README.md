@@ -4,6 +4,14 @@ View Chinese description  |  [查看中文说明](README.cn.md)
 
 Supports management of Amlogic s9xxx, Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox L1 Pro) boxes. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config`, `Snapshot management` and `Custom firmware / kernel download site`, etc.
 
+## Manual install
+
+- If the OpenWrt you are using does not have this plugin, you can also install it manually. Use SSH to log in to any directory of OpenWrt system, Or in the `System menu` → `TTYD terminal`, Run the onekey install command to automatically download and install this plugin.
+
+```yaml
+curl -fsSL git.io/luci-app-amlogic | bash
+```
+
 ## Plugin compilation
 
 ```yaml
@@ -17,14 +25,6 @@ make package/luci-app-amlogic/compile V=99
 make menuconfig
 # choose LuCI ---> 3. Applications  ---> <*> luci-app-amlogic ----> save
 make V=99
-```
-
-## Manual install
-
-- If the OpenWrt you are using does not have this plugin, you can also install it manually. Use SSH to log in to any directory of OpenWrt system, Or in the `System menu` → `TTYD terminal`, Run the onekey install command to automatically download and install this plugin.
-
-```yaml
-curl -fsSL git.io/luci-app-amlogic | bash
 ```
 
 ## Custom config
