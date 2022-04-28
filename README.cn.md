@@ -89,7 +89,6 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 - 文件上传下载等功能来自 luci-app-filetransfer
 - CPU 设置功能来自 luci-app-cpufreq
-- 日志查看和版本查询等功能来自 Vernesong
 - 内核及脚本等资源来自 unifreq
 
 ## 鸣谢
