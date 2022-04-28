@@ -4,6 +4,14 @@
 
 支持对晶晨 s9xxx 系列（斐讯N1、HK1等），全志（微加云），以及瑞芯微（贝壳云、我家云）的盒子进行在线管理。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新 OpenWrt 固件或内核版本`，`备份/恢复固件配置`，`快照管理` 及 `自定义固件/内核下载站点`等功能。
 
+## 手动安装
+
+- 如果你正在使用的 OpenWrt 没有这个插件，也可以手动安装。使用 SSH 登录 OpenWrt 系统的任意目录，或者在 `系统菜单` → `TTYD 终端` 里，运行一键安装命令，即可自动下载安装本插件。
+
+```yaml
+curl -fsSL git.io/luci-app-amlogic | bash
+```
+
 ## 插件编译
 
 ```yaml
@@ -17,14 +25,6 @@ make package/luci-app-amlogic/compile V=99
 make menuconfig
 # choose LuCI ---> 3. Applications  ---> <*> luci-app-amlogic ----> save
 make V=99
-```
-
-## 手动安装
-
-- 如果你正在使用的 OpenWrt 没有这个插件，也可以手动安装。使用 SSH 登录 OpenWrt 系统的任意目录，或者在 `系统菜单` → `TTYD 终端` 里，运行一键安装命令，即可自动下载安装本插件。
-
-```yaml
-curl -fsSL git.io/luci-app-amlogic | bash
 ```
 
 ## 自定义配置
