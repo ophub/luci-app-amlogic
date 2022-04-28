@@ -4,17 +4,6 @@ View Chinese description  |  [查看中文说明](README.cn.md)
 
 Supports management of Amlogic s9xxx, Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox L1 Pro) boxes. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config`, `Snapshot management` and `Custom firmware / kernel download site`, etc.
 
-## Depends
-
-- [luci-lib-fs](depends/luci-lib-fs)
-
-Tip: When using the source library of [coolsnowwolf/lean](https://github.com/coolsnowwolf/luci/tree/master/libs/luci-lib-fs) to compile OpenWrt, you do not need to add this dependency separately. When using [openwrt/openwrt](https://github.com/openwrt/openwrt/) or other source libraries, please check whether the `feeds/luci/libs/luci-lib-fs` dependency is missing. The method of adding is as follows:
-
-```yaml
-# Add luci-lib-fs
-svn co https://github.com/ophub/luci-app-amlogic/trunk/depends/luci-lib-fs feeds/luci/libs/luci-lib-fs
-```
-
 ## Plugin compilation
 
 ```yaml
