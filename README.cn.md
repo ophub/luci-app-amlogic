@@ -4,17 +4,6 @@
 
 支持对晶晨 s9xxx 系列（斐讯N1、HK1等），全志（微加云），以及瑞芯微（贝壳云、我家云）的盒子进行在线管理。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新 OpenWrt 固件或内核版本`，`备份/恢复固件配置`，`快照管理` 及 `自定义固件/内核下载站点`等功能。
 
-## 依赖
-
-- [luci-lib-fs](depends/luci-lib-fs)
-
-提示：当使用 [coolsnowwolf/lean](https://github.com/coolsnowwolf/luci/tree/master/libs/luci-lib-fs) 的源码库进行 OpenWrt 编译时，无须单独添加此依赖。当使用 [openwrt/openwrt](https://github.com/openwrt/openwrt/) 或其他源码库时请自行检查是否缺少 `feeds/luci/libs/luci-lib-fs` 依赖。添加方法如下：
-
-```yaml
-# 添加 luci-lib-fs
-svn co https://github.com/ophub/luci-app-amlogic/trunk/depends/luci-lib-fs feeds/luci/libs/luci-lib-fs
-```
-
 ## 插件编译
 
 ```yaml
