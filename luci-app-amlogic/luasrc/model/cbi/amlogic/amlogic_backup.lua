@@ -1,6 +1,6 @@
-local io    = require "io"
-local os    = require "os"
-local fs    = require "nixio.fs"
+local io = require "io"
+local os = require "os"
+local fs = require "nixio.fs"
 local b, c
 
 -- Checks wheather the given path exists and points to a directory.
@@ -40,7 +40,7 @@ o.write = function(self, section, scope)
 	sPath = "/.reserved/openwrt_config.tar.gz"
 	sFile = fs.basename(sPath)
 	if isdirectory(sPath) then
-		fd = io.popen('tar -C "%s" -cz .' % {sPath}, "r")
+		fd = io.popen('tar -C "%s" -cz .' % { sPath }, "r")
 		sFile = sFile .. ".tar.gz"
 	else
 		fd = nixio.open(sPath, "r")
@@ -52,11 +52,11 @@ o.write = function(self, section, scope)
 		um.value = translate("The file Will download automatically.") .. sPath
 	end
 
-	luci.http.header('Content-Disposition', 'attachment; filename="%s"' % {sFile})
+	luci.http.header('Content-Disposition', 'attachment; filename="%s"' % { sFile })
 	luci.http.prepare_content("application/octet-stream")
 	while true do
 		block = fd:read(nixio.const.buffersize)
-		if (not block) or (#block ==0) then
+		if (not block) or (#block == 0) then
 			break
 		else
 			luci.http.write(block)
