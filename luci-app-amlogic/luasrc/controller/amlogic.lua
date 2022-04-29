@@ -41,8 +41,6 @@ function index()
 	entry({"admin", "system", "amlogic", "start_poweroff"}, call("action_poweroff")).leaf = true
 end
 
-local fs = require "luci.fs2"
-
 --Remove the spaces in the string
 function trim(str)
 	--return (string.gsub(str, "^%s*(.-)%s*$", "%1"))
@@ -116,7 +114,7 @@ end
 --Refresh the log
 function action_refresh_log()
 	local logfile="/tmp/amlogic/amlogic.log"
-	if not fs.access(logfile) then
+	if not nixio.fs.access(logfile) then
 		luci.sys.exec("uname -a > /tmp/amlogic/amlogic.log && sync")
 		luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_install.log && sync >/dev/null 2>&1")
 		luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_upfiles.log && sync >/dev/null 2>&1")

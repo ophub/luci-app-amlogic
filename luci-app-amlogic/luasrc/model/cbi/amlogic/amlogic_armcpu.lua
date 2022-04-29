@@ -3,7 +3,6 @@
 --Extended support: https://github.com/ophub/luci-app-amlogic
 --Function: Support multi-core
 
-local fs = require "luci.fs2"
 local mp
 
 --Remove the spaces in the string
@@ -53,9 +52,9 @@ policy_id = tostring(trim(string.gsub(policy_name, "policy", "")))
 tab_name = policy_name
 tab_id = tostring(trim("tab" .. policy_id))
 
-cpu_freqs = fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_frequencies")) or "100000"
+cpu_freqs = nixio.fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_frequencies")) or "100000"
 cpu_freqs = string.sub(cpu_freqs, 1, -3)
-cpu_governors = fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_governors")) or "performance"
+cpu_governors = nixio.fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_governors")) or "performance"
 cpu_governors = string.sub(cpu_governors, 1, -3)
 freq_array = string.split(cpu_freqs, " ")
 governor_array = string.split(cpu_governors, " ")
