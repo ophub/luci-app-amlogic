@@ -2,7 +2,7 @@
 
 View Chinese description  |  [查看中文说明](README.cn.md)
 
-Supports management of Amlogic s9xxx, Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox L1 Pro) boxes. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config`, `Snapshot management` and `Custom firmware / kernel download site`, etc.
+Supports management of Amlogic s9xxx, Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox L1 Pro) boxes. It is also supported for OpenWrt installed in a KVM virtual machine on Armbian systems. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config`, `Snapshot management` and `Custom firmware / kernel download site`, etc.
 
 ## Manual install
 
@@ -98,6 +98,10 @@ The plugin has 6 functions: install OpenWrt, upload updates manually, download u
 5. Plugin Settings: Set the kernel download address of the Plugin and other information. For details, please refer to the relevant introduction in `Plugin Setting Instructions`.
 
 6. CPU Settings: Set the CPU scheduling policy (default settings are recommended), which can be set as required.
+
+## KVM virtual machine usage instructions
+
+For boxes with excess performance, you can install the [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system first, and then install the KVM virtual machine to achieve multi-system use. The compilation of the OpenWrt system can be done by using the [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) script developed by [unifreq](https://github.com/unifreq/openwrt_packit). Please refer to the [qemu-aarch64-readme.pdf](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.pdf) document for installation and usage instructions. The OpenWrt qemu firmware for `Online Download Update` in the plugin is powered by [breakings](https://github.com/breakings/OpenWrt).
 
 ## Screenshot
 

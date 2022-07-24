@@ -2,7 +2,7 @@
 
 查看英文说明 | [View English description](README.md)
 
-支持对晶晨 s9xxx 系列（斐讯N1、HK1等），全志（微加云），以及瑞芯微（贝壳云、我家云）的盒子进行在线管理。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新 OpenWrt 固件或内核版本`，`备份/恢复固件配置`，`快照管理` 及 `自定义固件/内核下载站点`等功能。
+支持对晶晨 s9xxx 系列（斐讯N1、HK1等），全志（微加云），以及瑞芯微（贝壳云、我家云）的盒子进行在线管理，也支持在 Armbian 系统的 KVM 虚拟机中安装的 OpenWrt 里使用。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新 OpenWrt 固件或内核版本`，`备份/恢复固件配置`，`快照管理` 及 `自定义固件/内核下载站点`等功能。
 
 ## 手动安装
 
@@ -98,6 +98,12 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 5. 插件设置：设置插件的内核下载地址等信息，详见 `插件设置说明` 的相关介绍。
 
 6. CPU 设置：设置 CPU 的调度策略（推荐使用默认设置），可根据需要进行设置。
+
+## KVM 虚拟机使用说明
+
+对于性能过剩的盒子，可以先安装 [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) 系统，再安装 KVM 虚拟机实现多系统使用。其中 OpenWrt 系统的编译可以使用 [unifreq](https://github.com/unifreq/openwrt_packit) 开发的 [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) 脚本进行制作，其安装与使用说明详见 [qemu-aarch64-readme.pdf](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.pdf) 文档。插件中 `在线下载更新` 的 OpenWrt qemu 固件由 [breakings](https://github.com/breakings/OpenWrt) 提供支持。
+
+插件在 KVM 虚拟机中的使用方法和在盒子中直接安装使用 OpenWrt 的方法相同。
 
 ## 插件界面
 
