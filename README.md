@@ -101,7 +101,7 @@ The plugin has 6 functions: install OpenWrt, upload updates manually, download u
 
 ## KVM virtual machine usage instructions
 
-For boxes with excess performance, you can install the [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system first, and then install the KVM virtual machine to achieve multi-system use. The compilation of the OpenWrt system can be done by using the [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) script developed by [unifreq](https://github.com/unifreq/openwrt_packit). Please refer to the [qemu-aarch64-readme.pdf](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.pdf) document for installation and usage instructions. The OpenWrt qemu firmware for `Online Download Update` in the plugin is powered by [breakings](https://github.com/breakings/OpenWrt).
+For boxes with excess performance, you can install the [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system first, and then install the KVM virtual machine to achieve multi-system use. The compilation of the OpenWrt system can be done by using the [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) script developed by [unifreq](https://github.com/unifreq/openwrt_packit). Please refer to the [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) document for installation and usage instructions. The OpenWrt qemu firmware for `Online Download Update` in the plugin is powered by [breakings](https://github.com/breakings/OpenWrt).
 
 ## Screenshot
 
