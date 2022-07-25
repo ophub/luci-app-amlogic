@@ -101,7 +101,7 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 ## KVM 虚拟机使用说明
 
-对于性能过剩的盒子，可以先安装 [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) 系统，再安装 KVM 虚拟机实现多系统使用。其中 OpenWrt 系统的编译可以使用 [unifreq](https://github.com/unifreq/openwrt_packit) 开发的 [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) 脚本进行制作，其安装与使用说明详见 [qemu-aarch64-readme.pdf](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.pdf) 文档。插件中 `在线下载更新` 的 OpenWrt qemu 固件由 [breakings](https://github.com/breakings/OpenWrt) 提供支持。
+对于性能过剩的盒子，可以先安装 [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) 系统，再安装 KVM 虚拟机实现多系统使用。其中 OpenWrt 系统的编译可以使用 [unifreq](https://github.com/unifreq/openwrt_packit) 开发的 [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) 脚本进行制作，其安装与使用说明详见 [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) 文档。插件中 `在线下载更新` 的 OpenWrt qemu 固件由 [breakings](https://github.com/breakings/OpenWrt) 提供支持。
 
 插件在 KVM 虚拟机中的使用方法和在盒子中直接安装使用 OpenWrt 的方法相同。
 
