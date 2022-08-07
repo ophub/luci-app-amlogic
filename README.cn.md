@@ -99,6 +99,8 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 6. CPU 设置：设置 CPU 的调度策略（推荐使用默认设置），可根据需要进行设置。
 
+注意：`安装 OpenWrt` 和 `CPU 设置` 等部分功能会根据设备及环境的不同自动隐藏不适用的功能。
+
 ## KVM 虚拟机使用说明
 
 对于性能过剩的盒子，可以先安装 [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) 系统，再安装 KVM 虚拟机实现多系统使用。其中 OpenWrt 系统的编译可以使用 [unifreq](https://github.com/unifreq/openwrt_packit) 开发的 [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) 脚本进行制作，其安装与使用说明详见 [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) 文档。插件中 `在线下载更新` 的 OpenWrt qemu 固件由 [breakings](https://github.com/breakings/OpenWrt) 提供支持。
@@ -111,11 +113,11 @@ sed -i "s|opt/kernel|https://github.com/USERNAME/REPOSITORY/KERNELPATH|g" packag
 
 ## 借鉴
 
-- 文件上传下载等功能来自 luci-app-filetransfer
-- CPU 设置功能来自 luci-app-cpufreq
-- 内核及脚本等资源来自 unifreq
+- 内核及脚本等资源来自 [unifreq](https://github.com/unifreq)
+- 文件上传下载等功能借鉴了 [luci-app-filetransfer](https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-filetransfer)
+- CPU 设置功能借鉴了 [luci-app-cpufreq](https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-cpufreq)
 
-## 鸣谢
+## 链接
 
 - [OpenWrt](https://github.com/openwrt/openwrt)
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
