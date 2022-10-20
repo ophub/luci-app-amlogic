@@ -56,12 +56,6 @@ mmcblk?p[1-4])
     PARTITION_NAME=""
     LB_PRE="${ROOT_DISK_TYPE}_"
     ;;
-nvme?n?p[1-4])
-    EMMC_NAME=$(echo ${ROOT_PTNAME} | awk '{print substr($1, 1, length($1)-1)}')
-    ROOT_DISK_TYPE="NVME"
-    PARTITION_NAME="p"
-    LB_PRE="${ROOT_DISK_TYPE}_"
-    ;;
 *)
     echo "Unable to recognize the disk type of ${ROOT_PTNAME}!"
     exit 1
