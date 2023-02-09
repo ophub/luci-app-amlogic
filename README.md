@@ -2,9 +2,9 @@
 
 View Chinese description  |  [查看中文说明](README.cn.md)
 
-Supports management of Amlogic s9xxx, Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox L1 Pro, FastRhino R66S/R68S, Radxa 5B/E25, Hinlink OPC-H68k) boxes. It is also supported for OpenWrt installed in a KVM virtual machine on Armbian systems. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config`, `Snapshot management` and `Custom firmware / kernel download site`, etc.
+Supports management of Amlogic s9xxx, Allwinner (V-Plus-Cloud), and Rockchip (BeikeYun, Chainedbox-L1-Pro, FastRhino-R66S/R68S, Radxa-5B/E25, Hinlink-H66K/H68k) boxes. It is also supported for OpenWrt installed in a KVM virtual machine on Armbian systems. The current functions include `install OpenWrt to EMMC`, `Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel`, `Backup / Restore firmware config`, `Snapshot management` and `Custom firmware / kernel download site`, etc.
 
-The use of OpenWrt system and luci-app-amlogic in the box requires the support of some [required software packages](https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/router-config#1011-required-options-for-openwrt). Please add according to the instructions when `customizing OpenWrt compilation`. When using one click script to `manual install` in OpenWrt without compiling luci-app-amlogic, if there is a missing dependency, please install the dependency according to the log prompt (`System` > `Software Package` > `Refresh List` > `Search for the corresponding software package` > `Install`), and then try again.
+The use of OpenWrt system and luci-app-amlogic in the box requires the support of some [required software packages](https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/make-openwrt/documents#1011-required-options-for-openwrt). Please add according to the instructions when `customizing OpenWrt compilation`. When using one click script to `manual install` in OpenWrt without compiling luci-app-amlogic, if there is a missing dependency, please install the dependency according to the log prompt (`System` > `Software Package` > `Refresh List` > `Search for the corresponding software package` > `Install`), and then try again.
 
 ## Manual install
 
