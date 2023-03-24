@@ -31,7 +31,7 @@ make V=99
 
 ## 自定义配置
 
-- 支持 [flippy](https://github.com/unifreq/openwrt_packit) 和 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 相关脚本打包的 OpenWrt 固件。插件里 `在线下载更新` 中的 `OpenWrt 固件` 及 `内核` 文件的下载地址支持自定义为自己的 github.com 的仓库。配置信息保存在 [/etc/config/amlogic](https://github.com/ophub/luci-app-amlogic/blob/main/luci-app-amlogic/root/etc/config/amlogic) 文件中。OpenWrt 固件编译时可以直接修改这个文件里的相关值来进行指定：
+- 支持 [flippy](https://github.com/unifreq/openwrt_packit) 和 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 相关脚本打包的 OpenWrt 固件。插件里 `在线下载更新` 中的 `OpenWrt 固件` 及 `内核` 文件的下载地址支持自定义为自己的 github.com 的仓库。配置信息保存在 [/etc/config/amlogic](luci-app-amlogic/root/etc/config/amlogic) 文件中。OpenWrt 固件编译时可以直接修改这个文件里的相关值来进行指定：
 
 ```yaml
 # 1.设置OpenWrt 文件的下载仓库
@@ -55,7 +55,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 ###  OpenWrt 固件下载包含三个选项
 
-1. OpenWrt 固件下载地址：填写您在 github 编译 OpenWrt 的仓库（或其他编译者的仓库），如：`https://github.com/breakings/OpenWrt` 。插件欢迎首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的网站（根据填写的网站自动更新链接），方便大家找到固件编译作者进行交流学习。
+1. OpenWrt 固件下载仓库：填写您在 github 编译 OpenWrt 的仓库（或其他编译者的仓库），如：`https://github.com/breakings/OpenWrt` 。插件欢迎首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的网站（根据填写的网站自动更新链接），方便大家找到固件编译作者进行交流学习。
 
 2. Releases 里 Tags 的关键字：要可以区分其他 x86，R2S 等固件，确保可以使用此关键字找到相应的 OpenWrt 固件。
 
@@ -65,7 +65,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 ### 内核下载地址为一个选项
 
-- OpenWrt 内核的下载路径：可以填写完整路径 `https://github.com/breakings/OpenWrt/tree/main/opt/kernel` 。如果和 OpenWrt 固件是同仓库的情况下，也可以简写路径 `opt/kernel` 。也可以独立指向到任意仓库中内核存放路径 `https://github.com/ophub/kernel/tree/main/pub/stable` 。内核文件支持以文件夹或列表的形式存储在指定的路径下。
+- OpenWrt 内核下载仓库：可以填写完整路径 `https://github.com/breakings/OpenWrt` 或 `breakings/OpenWrt` 。插件将自动从 Releases 的 [kernel_stable](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) 里下载通用内核，从 [kernel_rk3588](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk3588) 里下载 rk3588 专用内核。
 
 ### 版本分支选择为一个选项
 
