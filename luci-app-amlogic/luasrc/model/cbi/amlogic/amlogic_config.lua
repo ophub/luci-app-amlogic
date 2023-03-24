@@ -53,7 +53,7 @@ firmware_suffix.rmempty = false
 --5.Set OpenWrt Kernel DownLoad Path
 kernel_path = o:option(Value, "amlogic_kernel_path", translate("Download path of OpenWrt kernel:"))
 kernel_path.description = translate("Set the download path of the kernel in the github.com repository in [Online Download Update].")
-kernel_path.default = "https://github.com/breakings/OpenWrt"
+kernel_path.default = "opt/kernel"
 kernel_path.rmempty = false
 
 --6.Set kernel version branch
