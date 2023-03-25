@@ -23,9 +23,8 @@
 #
 #============================ Set make environment variables ============================
 #
-# Set a fixed value
+# Set the plugin download directory
 tmp_dir="/root"
-github_api_file="${tmp_dir}/github_api_file"
 #
 #========================================================================================
 
@@ -35,56 +34,52 @@ process_msg() {
 }
 
 query_version() {
-    process_msg "01. Query server version information."
-
-    # Delete other ipk files
-    rm -f ${github_api_file}
-
-    # Call API interface to query plug-in information
-    curl -s "https://api.github.com/repos/ophub/luci-app-amlogic/releases" >${github_api_file}
-    sleep 1
+    process_msg "01. Start querying plugin version..."
 
     # Query the latest version
-    plugin_version="$(cat ${github_api_file} | grep "tag_name" | awk -F '"' '{print $4}' | tr " " "\n" | sort -rV | head -n 1)"
-    [[ -n "${plugin_version}" ]] || process_msg "01.01 Failed to get the version on the server." "1"
-    process_msg "01.01 Latest version: ${plugin_version}"
+    latest_version="$(
+        curl -s \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/ophub/luci-app-amlogic/releases |
+            jq -r '.[].tag_name' |
+            sort -rV | head -n 1
+    )"
+    [[ -n "${latest_version}" ]] || process_msg "01.01 Querying the plugin version failed." "1"
+    process_msg "01.01 Latest version: ${latest_version}"
 }
 
 download_plugin() {
-    process_msg "02. Check the latest plug-in download address."
+    process_msg "02. Start downloading the latest plugin..."
 
     # Delete other ipk files
     rm -f ${tmp_dir}/*.ipk
 
-    # Get the plug-in download address
-    plugin_url="https://github.com/ophub/luci-app-amlogic/releases/download"
-    main_file="$(cat ${github_api_file} | grep -E "browser_.*${plugin_version}.*" | grep -oE "luci-app-amlogic_.*.ipk" | head -n 1)"
-    language_file="$(cat ${github_api_file} | grep -E "browser_.*${plugin_version}.*" | grep -oE "luci-i18n-amlogic-zh-cn_.*.ipk" | head -n 1)"
-    if [[ -n "${main_file}" && -n "${language_file}" ]]; then
-        process_msg "02.01 Start downloading the latest plugin..."
-    else
-        process_msg "02.01 No available plug-in found!" "1"
-    fi
+    # Set the plugin download path
+    download_repo="https://github.com/ophub/luci-app-amlogic/releases/download"
+    plugin_file="${download_repo}/${latest_version}/luci-app-amlogic_${latest_version}_all.ipk"
+    language_file="${download_repo}/${latest_version}/luci-i18n-amlogic-zh-cn_${latest_version}_all.ipk"
 
     # Download the plug-in's ipk file
-    wget "${plugin_url}/${plugin_version}/${main_file}" -O "${tmp_dir}/${main_file}"
-    if [[ "${?}" -eq "0" && -s "${tmp_dir}/${main_file}" ]]; then
-        process_msg "02.02 ${main_file} complete."
+    wget "${plugin_file}" -q -P "${tmp_dir}"
+    if [[ "${?}" -eq "0" ]]; then
+        process_msg "02.01 Plugin downloaded successfully."
     else
-        process_msg "02.02 The plugin file failed to download." "1"
+        process_msg "02.01 Plugin download failed." "1"
     fi
 
     # Download the plug-in's i18n file
-    wget "${plugin_url}/${plugin_version}/${language_file}" -O "${tmp_dir}/${language_file}"
-    if [[ "${?}" -eq "0" && -s "${tmp_dir}/${language_file}" ]]; then
-        process_msg "02.03 ${language_file} complete."
+    wget "${language_file}" -q -P "${tmp_dir}"
+    if [[ "${?}" -eq "0" ]]; then
+        process_msg "02.02 Language pack downloaded successfully."
     else
-        process_msg "02.03 The plugin i18n failed to download." "1"
+        process_msg "02.02 Language pack download failed." "1"
     fi
+
+    sync && sleep 2
 }
 
 install_plugin() {
-    process_msg "03. Start automatic installation."
+    process_msg "03. Start installing plugins..."
 
     # Force plug-in reinstallation
     opkg --force-reinstall install ${tmp_dir}/*.ipk
@@ -92,7 +87,6 @@ install_plugin() {
     # Delete cache file
     rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/* 2>/dev/null
     rm -f ${tmp_dir}/*.ipk
-    rm -f ${github_api_file}
 
     process_msg "03.01 The plugin has been installed successfully, Path: System -> Amlogic Service."
 }
