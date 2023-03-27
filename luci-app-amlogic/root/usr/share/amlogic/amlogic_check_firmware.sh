@@ -141,10 +141,11 @@ check_updated() {
             jq -r --arg RTK "${releases_tag_keywords}" '.[] | select(.tag_name | contains($RTK))' |
             jq -s '.[] | {tag_name:.tag_name, data:.published_at, url:.assets[].browser_download_url }' |
             jq -s --arg BOARD "_${BOARD}_" --arg MLV "${main_line_version}" '.[] | select((.url | contains($BOARD)) and (.url | contains($MLV)))' |
-            jq -s 'sort_by(.data)|reverse[]'
+            jq -s 'sort_by(.data)|reverse[]' |
+            jq -s '.[0]'
     )"
-    latest_updated_at="$(echo ${latest_version} | jq -s '.[0].data' -r)"
-    latest_url="$(echo ${latest_version} | jq -s '.[0].url' -r)"
+    latest_updated_at="$(echo ${latest_version} | jq -r '.data')"
+    latest_url="$(echo ${latest_version} | jq -r '.url')"
 
     latest_updated_at_format="$(echo ${latest_updated_at} | tr 'T' '(' | tr 'Z' ')')"
 
