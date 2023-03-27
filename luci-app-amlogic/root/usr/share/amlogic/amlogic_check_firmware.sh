@@ -91,7 +91,7 @@ if [[ -z "${PLATFORM}" || -z "$(echo "${support_platform[@]}" | grep -w "${PLATF
     tolog "Missing [ PLATFORM / SOC / BOARD ] value in ${AMLOGIC_SOC_FILE} file." "1"
 fi
 
-tolog "PLATFORM: [ ${PLATFORM} ], Box: [ ${SOC}_${BOARD} ], Use in [ ${EMMC_NAME} ]"
+tolog "PLATFORM: [ ${PLATFORM} ], BOARD: [ ${BOARD} ], Use in [ ${EMMC_NAME} ]"
 sleep 2
 
 # 01. Query local version information
@@ -140,7 +140,7 @@ check_updated() {
             https://api.github.com/repos/${server_firmware_url}/releases |
             jq -r --arg RTK "${releases_tag_keywords}" '.[] | select(.tag_name | contains($RTK))' |
             jq -s '.[] | {tag_name:.tag_name, data:.published_at, url:.assets[].browser_download_url }' |
-            jq -s --arg BOARD "_${BOARD}_" --arg MLV "${main_line_version}" '.[] | select((.url | contains($BOARD)) and (.url | contains($MLV)))' |
+            jq -s --arg BOARD "_${BOARD}_" --arg MLV "${main_line_version}." '.[] | select((.url | contains($BOARD)) and (.url | contains($MLV)))' |
             jq -s 'sort_by(.data)|reverse[]' |
             jq -s '.[0]'
     )"
