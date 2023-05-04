@@ -121,6 +121,7 @@ For boxes with excess performance, you can install the [Armbian](https://github.
 
 - [OpenWrt](https://github.com/openwrt/openwrt)
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
+- [immortalwrt](https://github.com/immortalwrt/immortalwrt)
 - [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit)
 - [breakings/OpenWrt](https://github.com/breakings/OpenWrt)
 
