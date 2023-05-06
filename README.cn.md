@@ -2,7 +2,7 @@
 
 查看英文说明 | [View English description](README.md)
 
-支持对晶晨 s9xxx 系列（斐讯N1、HK1等），全志（微加云），以及瑞芯微（贝壳云，我家云，电犀牛R66S/R68S，瑞莎5B/E25，恒领H66K/H68k）的盒子进行在线管理，也支持在 Armbian 系统的 KVM 虚拟机中安装的 OpenWrt 里使用。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新 OpenWrt 固件或内核版本`，`备份/恢复固件配置`，`快照管理` 及 `自定义固件/内核下载站点`等功能。
+支持对晶晨 s9xxx 系列（X96, HK1, H96等），全志（微加云），以及瑞芯微（贝壳云，我家云，电犀牛R66S/R68S，瑞莎5B/E25，恒领H66K/H68K）的盒子进行在线管理，也支持在 Armbian 系统的 KVM 虚拟机中安装的 OpenWrt 里使用。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新` OpenWrt 固件或内核版本，`备份/恢复固件配置`，`快照管理` 及 `自定义固件/内核下载站点`等功能。
 
 在盒子中使用 OpenWrt 系统及晶晨宝盒插件，需要一些[必选软件包](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/make-openwrt/documents/README.cn.md#1011-openwrt-必选项)的支持，在`自定义编译 OpenWrt`时，请根据说明添加。在未编译晶晨宝盒的 OpenWrt 中使用一键脚本`手动安装`时，如果提示有缺少的依赖，请根据日志提示先安装依赖（`系统` > `软件包` > `刷新列表` > `搜索对应的软件包` > `安装`），然后`再重试`。
 
@@ -16,7 +16,7 @@ curl -fsSL git.io/luci-app-amlogic | bash
 
 ## 插件编译
 
-```yaml
+```shell
 # 添加插件
 svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
 
@@ -33,7 +33,7 @@ make V=99
 
 - 支持 [flippy](https://github.com/unifreq/openwrt_packit) 和 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 相关脚本打包的 OpenWrt 固件。插件里 `在线下载更新` 中的 `OpenWrt 固件` 及 `内核` 文件的下载地址支持自定义为自己的 github.com 的仓库。配置信息保存在 [/etc/config/amlogic](luci-app-amlogic/root/etc/config/amlogic) 文件中。OpenWrt 固件编译时可以直接修改这个文件里的相关值来进行指定：
 
-```yaml
+```shell
 # 1.设置OpenWrt 文件的下载仓库
 sed -i "s|amlogic_firmware_repo.*|amlogic_firmware_repo 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
