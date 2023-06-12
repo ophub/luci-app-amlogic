@@ -38,7 +38,7 @@ rm -f ${all_plugin_list}
 
 process_msg() {
     echo -e "${1}"
-    [[ -z "${2}" ]] || exit 1
+    [[ -n "${2}" && "${2}" -eq "1" ]] && exit 1
 }
 
 query_version() {
@@ -56,7 +56,6 @@ query_version() {
         # Check if the response is empty or an error occurred
         if [[ -z "${response}" ]] || [[ "${response}" == *"Not Found"* ]]; then
             process_msg "01.01 Query failed, please try again." "1"
-            break
         else
             echo "${response}" |
                 jq -r '.[].tag_name' | sort -rV \
