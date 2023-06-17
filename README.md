@@ -66,6 +66,7 @@ There are 4 items for plugin settings: OpenWrt firmware download address, kernel
 ### Kernel Download Address as an Option
 
 - OpenWrt kernel download repository: You can fill in the complete path `https://github.com/breakings/OpenWrt` or `breakings/OpenWrt`. The plugin will automatically download the universal kernel from [kernel_stable](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) in Releases and the rk3588 dedicated kernel from [kernel_rk3588](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk3588).
+- Custom Kernel Download Tags: You can add `KERNEL_TAGS='xxx'` in the `/etc/flippy-openwrt-release` file of the OpenWrt system to specify kernel download tags. If specified, the plugin will automatically download the kernel from the specified `kernel_xxx` in the Releases.
 
 ### Version branch selection as an option
 
