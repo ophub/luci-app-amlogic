@@ -21,9 +21,9 @@ function index()
 	entry({ "admin", "system", "amlogic", "backup" }, form("amlogic/amlogic_backup"), _("Backup Firmware Config"), 5).leaf = true
 	entry({ "admin", "system", "amlogic", "backuplist" }, form("amlogic/amlogic_backuplist")).leaf = true
 	if (string.find(platfrom, "qemu")) == nil then
-		entry({ "admin", "system", "amlogic", "armcpu" }, form("amlogic/amlogic_armcpu"), _("CPU Settings"), 6).leaf = true
+		entry({ "admin", "system", "amlogic", "armcpu" }, cbi("amlogic/amlogic_armcpu"), _("CPU Settings"), 6).leaf = true
 	end
-	entry({ "admin", "system", "amlogic", "config" }, form("amlogic/amlogic_config"), _("Plugin Settings"), 7).leaf = true
+	entry({ "admin", "system", "amlogic", "config" }, cbi("amlogic/amlogic_config"), _("Plugin Settings"), 7).leaf = true
 	entry({ "admin", "system", "amlogic", "log" }, form("amlogic/amlogic_log"), _("Server Logs"), 8).leaf = true
 	entry({ "admin", "system", "amlogic", "poweroff" }, form("amlogic/amlogic_poweroff"), _("PowerOff"), 9).leaf = true
 	entry({ "admin", "system", "amlogic", "check_firmware" }, call("action_check_firmware"))
