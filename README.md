@@ -2,28 +2,28 @@
 
 View Chinese description  |  [查看中文说明](README.cn.md)
 
-This supports online management of Amlogic S9xxx series (such as X96, HK1, H96 etc.), Allwinner (VPlus), and Rockchip (BeikeYun, Chainedbox-L1-Pro, FastRhino-R66S/R68S, Radxa-5B/E25, Hinlink-H66K/H68K) boxes, and it also supports using OpenWrt installed on Armbian system KVM virtual machines. The current features include `installing OpenWrt to EMMC`, `manually uploading upgrade/online downloading updated` OpenWrt firmware or kernel version, `backing up/restoring firmware configuration`, `snapshot management`, and `custom firmware/kernel download sites`.
+This plugin supports online management of Amlogic S9xxx series (X96, HK1, H96, etc.), Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox-L1-Pro, FastRhino-R66S/R68S, Radxa-5B/E25, Hinlink-H66K/H68K) boxes. It also works in OpenWrt installed in the KVM virtual machine of the Armbian system. Current features include `install OpenWrt to EMMC`, `manually uploading/updating online` OpenWrt firmware or kernel versions, `backup/restore OpenWrt configuration`, `snapshot management`, and `customizing firmware/kernel download site`, etc.
 
-To use OpenWrt system and `luci-app-amlogic` plugins in the box, some [required packages](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/make-openwrt/documents/README.md#1011-openwrt-required-options) are needed. Please add them according to the instructions when customizing the compilation of OpenWrt. When using the one-click script `manual installation` in OpenWrt that has not compiled `luci-app-amlogic`, if there is a prompt for missing dependencies, please install the dependencies first according to the log prompt (`System` > `Software Package` > `Refresh List` > `Search for Corresponding Software Package` > `Install`), and then`retry`.
+Using the OpenWrt system and Amlogic box plugin in the box requires the support of some [required software packages](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/make-openwrt/documents/README.md#1011-required-openwrt-options). When `custom compiling OpenWrt`, please add it according to the instructions. When using the one-click script for `manual installation` in OpenWrt without compiling Amlogic's box, if there is a prompt for missing dependencies, please install the dependencies according to the log prompt (`System` > `Software Packages` > `Refresh List` > `Search for the corresponding package` > `Install`), then `retry`.
 
 ## Manual Installation
 
-- If the plugin is not available in the OpenWrt you are using, you can also install it manually. Log in to any directory of the OpenWrt system using SSH or run the one-click installation command in the `System Menu` → `TTYD Terminal` to automatically download and install the plugin.
+- If the OpenWrt you are currently using does not have this plugin, you can also install it manually. Use SSH to log in to any directory of the OpenWrt system, or in `System Menu` → `TTYD Terminal`, run the one-click installation command to automatically download and install this plugin.
 
 ```yaml
 curl -fsSL git.io/luci-app-amlogic | bash
 ```
 
-## Plugin compilation
+## Plugin Compilation
 
-```yaml
-# Add luci-app-amlogic
+```shell
+# Add the plugin
 svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
 
 # You can compile this plugin separately
 make package/luci-app-amlogic/compile V=99
 
-# Or integrate this plugin when compiling the full OpenWrt
+# Or integrate this plugin during the full compilation of OpenWrt
 make menuconfig
 # choose LuCI ---> 3. Applications  ---> <*> luci-app-amlogic ----> save
 make V=99
@@ -31,94 +31,95 @@ make V=99
 
 ## Custom Configuration
 
-- Supports OpenWrt firmware packaged by [flippy](https://github.com/unifreq/openwrt_packit) and [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) scripts. The download addresses of `OpenWrt firmware` and `kernel` files in the `Online Download Update` section of the plugin support customization to your own github.com repository. The configuration information is saved in the [/etc/config/amlogic](luci-app-amlogic/root/etc/config/amlogic) file. When compiling OpenWrt firmware, you can directly modify the relevant values in this file to specify them:
+- It supports OpenWrt firmware packaged by [flippy](https://github.com/unifreq/openwrt_packit) and [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) related scripts. The download addresses of `OpenWrt firmware` and `kernel` files in `online download update` of the plugin can be customized as your own github.com repository. Configuration information is saved in the [/etc/config/amlogic](luci-app-amlogic/root/etc/config/amlogic) file. During the compilation of OpenWrt firmware, you can directly modify the related values in this file:
 
-```yaml
-# 1. Set the download repository for OpenWrt files
+```shell
+# 1. Set the download repository of OpenWrt files
 sed -i "s|amlogic_firmware_repo.*|amlogic_firmware_repo 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-# 2. Set the keyword for tags in Releases
+# 2. Set the keyword of Tags in Releases
 sed -i "s|ARMv8|RELEASES_TAGS_KEYWORD|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-# 3. Set the suffix for OpenWrt files in Releases
+# 3. Set the suffix of OpenWrt file in Releases
 sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-# 4. Set the download path for OpenWrt kernel
+# 4. Set the download path of OpenWrt kernel
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
-- When compiling OpenWrt, you can make the above 4 modifications to achieve customization. You can also login to the OpenWrt system and modify these settings in `System` → `Amlogic Service` settings.
+- When you are compiling OpenWrt, modifying the above 4 points can achieve customization. You can also modify the above information after logging into the OpenWrt system, in `System` → `Amlogic Box` settings.
 
-## Plugin Settings Description
+## Plugin Settings Explanation
 
-There are 4 items for plugin settings: OpenWrt firmware download address, kernel download address, version branch selection, and others.
+The plugin settings consist of 4 elements: OpenWrt firmware download address, kernel download address, version branch selection, and others.
 
-### OpenWrt Firmware Download Contains Three Options
+### OpenWrt firmware download contains three options
 
-1. OpenWrt firmware download repository: Fill in the repository where you compile OpenWrt on GitHub (or other compilers), such as `https://github.com/breakings/OpenWrt`. The plugin welcomes the `OpenWrt Compiler author` button on the homepage to link to the website filled here (automatically update the link based on the website filled) to facilitate everyone to find the firmware compilation author for communication and learning.
+1. OpenWrt firmware download repository: Fill in your repository on github where you compile OpenWrt (or other compiler's repository), such as: `https://github.com/breakings/OpenWrt`. The `OpenWrt Compiler author` button on the plugin's welcome homepage will link to the website filled in here (automatically updates the link according to the filled website), making it easy for everyone to find the firmware compiler for exchange and learning.
 
-2. Keyword for tags in Releases: To distinguish from other x86, R2S and other firmware, ensure that this keyword can be used to find the corresponding OpenWrt firmware.
+2. Tags keywords in Releases: It needs to distinguish other x86, R2S, etc. firmwares, and ensure that this keyword can find the corresponding OpenWrt firmware.
 
-3. Suffix of OpenWrt files: Supported formats are `.img.gz` / `.img.xz` / `.7z`. However, `.img` is not supported because it is too large and downloads too slowly.
+3. Suffix of OpenWrt file: Supported formats include `.img.gz` / `.img.xz` / `.7z`. However, .img is not supported because it is too large and slow to download.
 
-- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version`: openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_`s905d`_n1_R21.8.6_k`5.15.25`-flippy-62+o.7z. Supported `SOC` are: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. Supported `kernel versions` include `5.10.xxx`, `5.15.xxx`, etc.
+- When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version`: openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_ `s905d`_ n1_R21.8.6_k`5.15.25`-flippy-62+o.7z. Supported `SOC` includes: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. Supported `kernel versions` include `5.10.xxx`, `5.15.xxx`, etc.
 
-### Kernel Download Address as an Option
+### Kernel download address is one option
 
-- OpenWrt kernel download repository: You can fill in the complete path `https://github.com/breakings/OpenWrt` or `breakings/OpenWrt`. The plugin will automatically download the universal kernel from [kernel_stable](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) in Releases and the rk3588 dedicated kernel from [kernel_rk3588](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk3588).
-- Custom Kernel Download Tags: You can add `KERNEL_TAGS='xxx'` in the `/etc/flippy-openwrt-release` file of the OpenWrt system to specify kernel download tags. If specified, the plugin will automatically download the kernel from the specified `kernel_xxx` in the Releases.
+- OpenWrt kernel download repository: You can fill in the full path `https://github.com/breakings/OpenWrt` or `breakings/OpenWrt`. The plugin will automatically download the general kernel from [kernel_stable](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) in Releases, and the rk3588 dedicated kernel from [kernel_rk3588](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk3588).
+- Custom kernel download Tags: You can add `KERNEL_TAGS='xxx'` to specify the kernel download Tags in the `/etc/flippy-openwrt-release` file of the OpenWrt system. If specified, the plugin will automatically download the kernel from `kernel_xxx` in Releases.
 
-### Version branch selection as an option
+### Version branch selection is one option
 
-- Set version branch: It defaults to the current branch of the OpenWrt firmware. You can freely choose other branches or customize branches, such as `5.10`, `5.15`, etc. When `[Online Download Update]` for `OpenWrt` and `Kernel`, they will be downloaded and updated based on the branch you selected.
+- Set version branch: The default is the branch of the current OpenWrt firmware. You can freely choose other branches or customize the branch, such as `5.10`, `5.15`, etc. The `OpenWrt` and `Kernel` `[Online Download Update]` will download and update according to the branch you selected.
 
 ### Other options
 
-- Keep configuration on update: Modify according to needs. If checked, the current configuration will be preserved when updating firmware.
+- Keep configuration update: Modify as needed. If checked, the current configuration will be retained when updating the firmware.
 
-- Automatically write bootloader: Recommended to check, has many features.
+- Automatically write bootloader: Recommended to be checked, it has many features.
 
-- Set file system type: Set the file system type of the shared partition (`/mnt/mmcblk*p4`) during installation of OpenWrt (default is ext4). This setting only applies when installing OpenWrt from scratch and will not change the file type of the current shared partition when updating the kernel or firmware.
+- Set file system type: Set the file system type of the shared partition (/mnt/mmcblk*p4) when installing OpenWrt (default is ext4). This setting only applies to fresh installations of OpenWrt, and will not change the file type of the current shared partition when updating the kernel and firmware.
 
-### Default settings description
+### Default Settings Explanation
 
-- The download services for the default OpenWrt firmware ([Plugin Full Version](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) | [Selected Plugin Mini Version](https://github.com/breakings/OpenWrt/releases/tag/armv8_mini) | [Flippy Share Version](https://github.com/breakings/OpenWrt/releases/tag/flippy_openwrt)) and [kernel](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) are provided and supported by [breakings](https://github.com/breakings/OpenWrt), who is an active and enthusiastic manager in the Flippy community, familiar with OpenWrt compilation and knowledgeable about the installation and use of various series of boxes supported by `Flippy`. For any issues encountered during the compilation and use of OpenWrt, you can consult the community or provide feedback on his Github page.
+- The default OpenWrt firmware ([Plugin Full Version](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) | [Selected Plugins Mini Version](https://github.com/breakings/OpenWrt/releases/tag/armv8_mini) | [Flippy Shared Version](https://github.com/breakings/OpenWrt/releases/tag/flippy_openwrt)) and [Kernel](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) download service are provided by [breakings](https://github.com/breakings/OpenWrt), who is an active and enthusiastic manager in the Flippy community, familiar with OpenWrt compilation, and proficient in the installation and use of various series of boxes supported by `Flippy`. For issues encountered in the compilation and use of OpenWrt, you can consult in the community or give feedback on his Github.
 
-- After the update cycle of the kernel ends, it will be deprecated and other versions of the kernel can be selected in `Plugin Settings`. Some kernels do not have complete firmware, so you can change the kernel branch in `Plugin Settings` and select the corresponding version branch in the download address.
+- The kernel will be deprecated after the update cycle, and you can choose to use the kernel of `any other version` in the `plugin settings`. Some kernels do not have a complete firmware, you can change the kernel branch in the `plugin settings` and choose the version branch corresponding to the download address.
 
-## Plugin Usage Instructions
 
-The plugin has 6 functions: Install OpenWrt, manually upload updates, download updates online, backup firmware configuration, plugin settings, and CPU settings.
+## Plugin User Instructions
 
-1. Install OpenWrt: Select your device from the `Select Device Model` list and click `Install` to write the firmware from TF/SD/USB to the device's built-in eMMC.
+The plugin has 6 functions: Install OpenWrt, Manual Upload Update, Online Download Update, Firmware Configuration Backup, Plugin Settings, and CPU Settings.
 
-2. Manually Upload Updates: Click the `Select File` button, select the local `OpenWrt kernel (upload all kernel files)` or `OpenWrt firmware (compressed firmware recommended)` and upload it. After uploading is complete, the corresponding `Change OpenWrt Kernel` or `Update OpenWrt Firmware` button will appear at the bottom of the page based on the uploaded content, which can be clicked to update (the system will automatically restart after the update is complete).
+1. Install OpenWrt: Select your device from the `Select Device Model` list, and click `Install` to write the firmware from TF/SD/USB into the built-in eMMC of the device.
 
-3. Download Updates Online: Clicking the `Only Update Box Plugin` button will update the `luci-app-amlogic` to the latest version; clicking the `Only Update System Kernel` button will download the corresponding kernel according to the kernel branch selected in `Plugin Settings`; clicking the `Full System Update` button will download the latest firmware from the download site selected in `Plugin Settings`.
+2. Manual Upload Update: Click the `Choose File` button, select the local `OpenWrt Kernel (upload the full set of kernel files)` or `OpenWrt Firmware (recommended to upload compressed firmware)`, and upload. Once the upload is complete, the corresponding `Replace OpenWrt Kernel` or `Update OpenWrt Firmware` button will appear at the bottom of the page, click to update (the system will automatically reboot after the update).
 
-4. Click the `Open List` button to edit the backup list. Click the `Download Backup` button to back up the configuration information of the OpenWrt on the current device locally. Click the `Upload Backup` button to upload the backup configuration file and restore the system configuration. Click the `Create Snapshot`, `Restore Snapshot`, and `Delete Snapshot` buttons to manage the snapshots accordingly. Snapshots record all the configuration information in the `/etc` directory of the current OpenWrt system. They facilitate restoring the system to the current configuration state with a single click in the future. The purpose is similar to `Download Backup`, but snapshots are only saved in the current system and do not support downloading for use.
+3. Online Download Update: Click the `Update Box Plugin Only` button to update the Amlogic Box plugin to the latest version; click `Update System Kernel Only` to download the corresponding kernel according to the kernel branch selected in `Plugin Settings`; click `Full System Update` to download the latest firmware based on the download site set in `Plugin Settings`.
 
-5. Plugin Settings: Set information such as kernel download address for the plugin, see `Plugin Settings Description` for relevant introduction.
+4. Backup Firmware Configuration: Click the `Open List` button to edit the backup list; click the `Download Backup` button to backup the OpenWrt configuration information from the current device to local; click the `Upload Backup` button to upload the backup configuration files and restore the system configuration. Click `Create Snapshot`, `Restore Snapshot` and `Delete Snapshot` buttons to manage the snapshot accordingly. Snapshots will record all configuration information in the `/etc` directory of the current OpenWrt system, which is convenient for one-click restore to the current configuration status in the future. This function is similar to `Download Backup`, but only saves in the current system and does not support download use.
 
-6. CPU Settings: Set the scheduling strategy of the CPU (default settings recommended), which can be set according to needs.
+5. Plugin Settings: Set the kernel download address and other information of the plugin, for details, see the relevant introduction in `Plugin Settings Instructions`.
 
-Note: Some functions such as `Install OpenWrt` and `CPU Settings` will be automatically hidden if they are not applicable based on the device and environment.
+6. CPU Settings: Set the scheduling policy of the CPU (recommended to use the default settings), which can be set according to needs.
 
-## KVM Virtual Machine Usage Instructions
+Note: `Install OpenWrt` and `CPU Settings` and other functions will automatically hide inapplicable functions depending on the device and environment.
 
-For boxes with excess performance, you can first install the [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system and then install the KVM virtual machine to achieve multi-system use. The compilation of the OpenWrt system can use the [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) script developed by [unifreq](https://github.com/unifreq/openwrt_packit), and its installation and usage instructions are detailed in the [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) document. The OpenWrt qemu firmware for `Online Download Update` in the plugin is supported by [breakings](https://github.com/breakings/OpenWrt).
+## KVM Virtual Machine User Instructions
 
-The usage method of the plugin in KVM virtual machine is the same as that of installing and using OpenWrt directly on the box.
+For overpowered boxes, you can first install the [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system, then install the KVM virtual machine to achieve multi-system use. The compilation of the OpenWrt system can use the [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) script developed by [unifreq](https://github.com/unifreq/openwrt_packit), and its installation and use instructions are detailed in the [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) document. The OpenWrt qemu firmware in `Online Download Update` is supported by [breakings](https://github.com/breakings/OpenWrt).
+
+The method of using the plugin in the KVM virtual machine is the same as the method of directly installing and using OpenWrt in the box.
 
 ## Plugin Interface
 
 ![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/145738300-2981e589-ef33-46e0-9af3-55e6e5dd67c0.gif)
 
-## Borrow
+## Acknowledgement
 
-- Resources such as kernel and scripts come from [unifreq](https://github.com/unifreq).
-- Features such as file upload and download are borrowed from [luci-app-filetransfer](https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-filetransfer).
-- The CPU settings function is borrowed from [luci-app-cpufreq](https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-cpufreq).
+- Kernel and scripts resources are from [unifreq](https://github.com/unifreq)
+- File upload and download functions were inspired by [luci-app-filetransfer](https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-filetransfer)
+- CPU settings function was inspired by [luci-app-cpufreq](https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-cpufreq)
 
 ## Links
 
