@@ -248,15 +248,15 @@ update_kernel() {
     tar -xf ${P4_PATH}/boot-${kernel_name}.tar.gz -C /boot
 
     # Check if the file exists
-    local valid_files
+    local required_files
     if [[ "${PLATFORM}" == "qemu-aarch64" ]]; then
-        valid_files="vmlinuz-${kernel_name} initrd.img-${kernel_name} config-${kernel_name} System.map-${kernel_name}"
+        required_files="vmlinuz-${kernel_name} initrd.img-${kernel_name}"
         rm -f /boot/uInitrd*
     else
-        valid_files="vmlinuz-${kernel_name} uInitrd-${kernel_name} config-${kernel_name} System.map-${kernel_name}"
+        required_files="vmlinuz-${kernel_name} uInitrd-${kernel_name}"
         rm -f /boot/initrd.img*
     fi
-    for f in ${valid_files}; do [[ -f "/boot/${f}" ]] || restore_kernel; done
+    for f in ${required_files}; do [[ -f "/boot/${f}" ]] || restore_kernel; done
 
     # Check if the files are the same
     (
