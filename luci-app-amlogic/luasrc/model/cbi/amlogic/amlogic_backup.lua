@@ -41,10 +41,9 @@ my.render = function(self, section, scope)
 end
 
 my.write = function(self, section, scope)
-	local handle = io.popen("[[ -s /etc/amlogic_backup_list.conf ]] || sed -n \"/BACKUP_LIST='/,/.*'$/p\" /usr/sbin/openwrt-backup | tr -d \"BACKUP_LIST=|'\" >/etc/amlogic_backup_list.conf 2>/dev/null")
-	local result = handle:read("*a")
-	handle:close()
-	luci.http.redirect(luci.dispatcher.build_url("admin", "system", "amlogic", "backuplist"))
+    local handle = io.popen("[[ -s /etc/amlogic_backup_list.conf ]] || sed -n \"/BACKUP_LIST='/,/.*'$/p\" /usr/sbin/openwrt-backup | sed -e \"s/BACKUP_LIST=\\(.*\\)/\\1/; s/'//g; s/\\\\\\\\//g; s/ //g\" > /etc/amlogic_backup_list.conf 2>/dev/null")
+    handle:close()
+    luci.http.redirect(luci.dispatcher.build_url("admin", "system", "amlogic", "backuplist"))
 end
 
 -- Button for download backup config
