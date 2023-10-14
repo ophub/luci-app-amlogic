@@ -17,12 +17,12 @@ end
 
 -- Remove backslash at the end of each line
 function remove_backslash_at_end(value)
-    local lines = {}
-    for line in value:gmatch("[^\r\n]+") do
-        line = line:gsub("%s*\\%s*$", "")
-        table.insert(lines, line)
-    end
-    return table.concat(lines, "\n")
+	local lines = {}
+	for line in value:gmatch("[^\r\n]+") do
+		line = line:gsub("%s*\\%s*$", "")
+		table.insert(lines, line)
+	end
+	return table.concat(lines, "\n")
 end
 
 local f = SimpleForm("customize",
