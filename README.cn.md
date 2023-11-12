@@ -110,6 +110,12 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 插件在 KVM 虚拟机中的使用方法和在盒子中直接安装使用 OpenWrt 的方法相同。
 
+## OpenWrt 系统的编译说明
+
+第一步，编译 Rootfs 文件：使用 OpenWrt 源码，在 `Target System` 里选择 `Arm SystemReady (EFI) compliant` 选项，在 `Subtarget` 里选择 `64-bit (armv8) machines` 选项，在 `Target Profile` 里选择 `Generic EFI Boot` 选项，并添加 [必选软件包](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.cn.md#1011-openwrt-必选项) 即可编译 OpenWrt 的 `rootfs.tar.gz` 文件。
+
+第二步，打包不同设备的 OpenWrt 专用固件：使用 [flippy](https://github.com/unifreq/openwrt_packit) 或者 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 的脚本均可打包不同设备的 OpenWrt 专用固件。具体使用说明可在相关仓库中查看。
+
 ## 插件界面
 
 ![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/145738345-31dd85cf-5e43-444e-a624-f21a28be2a7c.gif)

@@ -111,6 +111,12 @@ For overpowered boxes, you can first install the [Armbian](https://github.com/op
 
 The method of using the plugin in the KVM virtual machine is the same as the method of directly installing and using OpenWrt in the box.
 
+## Compilation Instructions for OpenWrt System
+
+Step 1: Compile the Rootfs file for OpenWrt: Use the OpenWrt source code and select `Arm SystemReady (EFI) compliant` option in `Target System`, select `64-bit (armv8) machines` option in `Subtarget`, select `Generic EFI Boot` option in `Target Profile`, and add the [required software packages](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.md#1011-required-openwrt-options) to compile the `rootfs.tar.gz` file for OpenWrt.
+
+Step 2: Package the dedicated OpenWrt firmware for different devices: You can use the scripts from [flippy](https://github.com/unifreq/openwrt_packit) or [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) to package the dedicated OpenWrt firmware for different devices. Please refer to the respective repositories for detailed usage instructions.
+
 ## Plugin Interface
 
 ![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/145738300-2981e589-ef33-46e0-9af3-55e6e5dd67c0.gif)
