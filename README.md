@@ -18,7 +18,8 @@ curl -fsSL git.io/luci-app-amlogic | bash
 
 ```shell
 # Add the plugin
-svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
+rm -rf package/luci-app-amlogic
+git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # You can compile this plugin separately
 make package/luci-app-amlogic/compile V=99
