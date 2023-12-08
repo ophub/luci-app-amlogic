@@ -63,7 +63,7 @@ download_plugin() {
     language_file="${download_repo}/${latest_version}/luci-i18n-amlogic-zh-cn_${latest_version}_all.ipk"
 
     # Download the plug-in's ipk file
-    wget "${plugin_file}" -q -P "${tmp_dir}"
+    curl -fsSL "${plugin_file}" -o "${tmp_dir}/luci-app-amlogic_${latest_version}_all.ipk"
     if [[ "${?}" -eq "0" ]]; then
         process_msg "02.01 Plugin downloaded successfully."
     else
@@ -71,7 +71,7 @@ download_plugin() {
     fi
 
     # Download the plug-in's i18n file
-    wget "${language_file}" -q -P "${tmp_dir}"
+    curl -fsSL "${language_file}" -o "${tmp_dir}/luci-i18n-amlogic-zh-cn_${latest_version}_all.ipk"
     if [[ "${?}" -eq "0" ]]; then
         process_msg "02.02 Language pack downloaded successfully."
     else
