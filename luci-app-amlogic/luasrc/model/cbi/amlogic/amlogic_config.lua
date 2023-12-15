@@ -89,4 +89,10 @@ shared_fstype:value("xfs", translate("xfs"))
 shared_fstype.default = "ext4"
 shared_fstype.rmempty = false
 
+--10.Set the github proxy
+github_proxy = o:option(Value, "amlogic_github_proxy", translate("Set the github proxy:"))
+github_proxy.description = translate("[Default ''] Set the github proxy to download firmware and kernel faster.")
+github_proxy.default = ""
+github_proxy.rmempty = false
+
 return b
