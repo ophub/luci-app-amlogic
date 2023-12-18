@@ -180,7 +180,7 @@ download_kernel() {
     rm -f ${KERNEL_DOWNLOAD_PATH}/sha256sums
     rm -rf ${KERNEL_DOWNLOAD_PATH}/${download_version}*
 
-    if [[ -n "${github_proxy}"]]; then
+    if [[ -n "${github_proxy}" ]]; then
         kernel_down_from="${kernel_repo}/https://github.com/${kernel_repo}/releases/download/kernel_${kernel_tag}/${download_version}.tar.gz"
     else
         kernel_down_from="https://github.com/${kernel_repo}/releases/download/kernel_${kernel_tag}/${download_version}.tar.gz"

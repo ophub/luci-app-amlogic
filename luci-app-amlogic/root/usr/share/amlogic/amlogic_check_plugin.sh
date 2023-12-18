@@ -123,7 +123,7 @@ else
     tolog "02.03 Start downloading the latest plugin..."
 
     # Set the plugin download path
-    if [[ -n "${github_proxy}"]]; then
+    if [[ -n "${github_proxy}" ]]; then
         download_repo="${github_proxy}/https://github.com/ophub/luci-app-amlogic/releases/download"
     else
         download_repo="https://github.com/ophub/luci-app-amlogic/releases/download"

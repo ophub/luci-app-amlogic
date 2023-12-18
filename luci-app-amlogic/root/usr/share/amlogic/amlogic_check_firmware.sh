@@ -257,7 +257,7 @@ download_firmware() {
     # Restore converted characters in file names(%2B to +)
     firmware_download_oldname="${opfile_path//%2B/+}"
 
-    if [[ -n "${github_proxy}"]]; then
+    if [[ -n "${github_proxy}" ]]; then
         latest_url="${github_proxy}/https://github.com/${server_firmware_url}/releases/download/${firmware_download_oldname}"
     else
         latest_url="https://github.com/${server_firmware_url}/releases/download/${firmware_download_oldname}"
