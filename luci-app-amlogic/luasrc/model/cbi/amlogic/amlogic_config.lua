@@ -93,6 +93,6 @@ shared_fstype.rmempty = false
 github_proxy = o:option(Value, "amlogic_github_proxy", translate("Set the github proxy:"))
 github_proxy.description = translate("[Default ''] Set up a github.com proxy for faster firmware and kernel downloads.")
 github_proxy.default = ""
-github_proxy.rmempty = false
+github_proxy.rmempty = true
 
 return b
