@@ -69,8 +69,8 @@ The plugin settings consist of 4 elements: OpenWrt firmware download address, ke
 
 ### Kernel download address is one option
 
-- OpenWrt kernel download repository: You can fill in the full path `https://github.com/breakings/OpenWrt` or `breakings/OpenWrt`. The plugin will automatically download the general kernel from [kernel_stable](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) in Releases, and the rk3588 dedicated kernel from [kernel_rk3588](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk3588).
-- Custom kernel download Tags: You can add `KERNEL_TAGS='xxx'` to specify the kernel download Tags in the `/etc/flippy-openwrt-release` file of the OpenWrt system. If specified, the plugin will automatically download the kernel from `kernel_xxx` in Releases.
+- OpenWrt Kernel Download Repository: You can provide the full path `https://github.com/breakings/OpenWrt` or the shorthand `breakings/OpenWrt`. The plugin will automatically download kernels corresponding to specific tags from Releases on Github.com. For instance, it will download the universal kernel from [kernel_stable](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable), the rk3588 specialized kernel from [kernel_rk3588](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk3588), and the rk35xx specialized kernel from [kernel_rk35xx](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk35xx), among others.
+- Custom Kernel Download Tags: You can add `KERNELTAGS='xxx'` to the `/etc/flippy-openwrt-release` file in the OpenWrt system to specify the fixed Tags for kernel downloads. If specified, the plugin will automatically download kernels from the designated `kernel_xxx` in Releases. For example, when `KERNELTAGS='flippy'` is specified, kernels will be automatically downloaded from `kernel_flippy`. When making custom settings, ensure that this Tag exists in the kernel download repository.
 
 ### Version branch selection is one option
 
