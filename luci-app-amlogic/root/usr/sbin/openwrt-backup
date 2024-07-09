@@ -393,12 +393,6 @@ delete_snapshot() {
 migrate_snapshot() {
     cur_rootdev="$(get_root_partition_name)"
 
-    if [[ -z "${cur_rootdev}" ]]; then
-        echo "The disk device corresponding to the current rootfs cannot be found!"
-        read -p "Press [ enter ] to return." q
-        return
-    fi
-
     dev_pre=$(echo "${cur_rootdev}" | awk '{print substr($1, 1, length($1)-1);}')
     rootdev_idx=$(echo "${cur_rootdev}" | awk '{print substr($1, length($1),1);}')
     case $rootdev_idx in
