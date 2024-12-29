@@ -56,7 +56,7 @@ The plugin settings consist of 4 elements: OpenWrt firmware download address, ke
 
 ### OpenWrt firmware download contains three options
 
-1. OpenWrt firmware download repository: Fill in your repository on github where you compile OpenWrt (or other compiler's repository), such as: `https://github.com/breakings/OpenWrt`. The `OpenWrt Compiler author` button on the plugin's welcome homepage will link to the website filled in here (automatically updates the link according to the filled website), making it easy for everyone to find the firmware compiler for exchange and learning.
+1. OpenWrt firmware download repository: Fill in your repository on github where you compile OpenWrt (or other compiler's repository), such as: `https://github.com/breakingbadboy/OpenWrt`. The `OpenWrt Compiler author` button on the plugin's welcome homepage will link to the website filled in here (automatically updates the link according to the filled website), making it easy for everyone to find the firmware compiler for exchange and learning.
 
 2. Tags keywords in Releases: It needs to distinguish other x86, R2S, etc. firmwares, and ensure that this keyword can find the corresponding OpenWrt firmware.
 
@@ -66,7 +66,7 @@ The plugin settings consist of 4 elements: OpenWrt firmware download address, ke
 
 ### Kernel download address is one option
 
-- OpenWrt Kernel Download Repository: You can provide the full path `https://github.com/breakings/OpenWrt` or the shorthand `breakings/OpenWrt`. The plugin will automatically download kernels corresponding to specific tags from Releases on Github.com. For instance, it will download the universal kernel from [kernel_stable](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable), the rk3588 specialized kernel from [kernel_rk3588](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk3588), and the rk35xx specialized kernel from [kernel_rk35xx](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk35xx), among others.
+- OpenWrt Kernel Download Repository: You can provide the full path `https://github.com/breakingbadboy/OpenWrt` or the shorthand `breakingbadboy/OpenWrt`. The plugin will automatically download kernels corresponding to specific tags from Releases on Github.com. For instance, it will download the universal kernel from [kernel_stable](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable), the rk3588 specialized kernel from [kernel_rk3588](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk3588), and the rk35xx specialized kernel from [kernel_rk35xx](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk35xx), among others.
 - Custom Kernel Download Tags: You can add `KERNELTAGS='xxx'` to the `/etc/flippy-openwrt-release` file in the OpenWrt system to specify the fixed Tags for kernel downloads. If specified, the plugin will automatically download kernels from the designated `kernel_xxx` in Releases. For example, when `KERNELTAGS='flippy'` is specified, kernels will be automatically downloaded from `kernel_flippy`. When making custom settings, ensure that this Tag exists in the kernel download repository.
 
 ### Version branch selection is one option
@@ -83,7 +83,7 @@ The plugin settings consist of 4 elements: OpenWrt firmware download address, ke
 
 ### Default Settings Explanation
 
-- The default OpenWrt firmware ([Plugin Full Version](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) | [Selected Plugins Mini Version](https://github.com/breakings/OpenWrt/releases/tag/armv8_mini) | [Flippy Shared Version](https://github.com/breakings/OpenWrt/releases/tag/flippy_openwrt)) and [Kernel](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) download service are provided by [breakings](https://github.com/breakings/OpenWrt), who is an active and enthusiastic manager in the Flippy community, familiar with OpenWrt compilation, and proficient in the installation and use of various series of boxes supported by `Flippy`. For issues encountered in the compilation and use of OpenWrt, you can consult in the community or give feedback on his Github.
+- The default OpenWrt firmware ([Plugin Full Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/ARMv8) | [Selected Plugins Mini Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/armv8_mini) | [Flippy Shared Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/flippy_openwrt)) and [Kernel](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable) download service are provided by [breakingbadboy](https://github.com/breakingbadboy/OpenWrt), who is an active and enthusiastic manager in the Flippy community, familiar with OpenWrt compilation, and proficient in the installation and use of various series of boxes supported by `Flippy`. For issues encountered in the compilation and use of OpenWrt, you can consult in the community or give feedback on his Github.
 
 - The kernel will be deprecated after the update cycle, and you can choose to use the kernel of `any other version` in the `plugin settings`. Some kernels do not have a complete firmware, you can change the kernel branch in the `plugin settings` and choose the version branch corresponding to the download address.
 
@@ -108,7 +108,7 @@ Note: `Install OpenWrt` and `CPU Settings` and other functions will automaticall
 
 ## KVM Virtual Machine User Instructions
 
-For overpowered boxes, you can first install the [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system, then install the KVM virtual machine to achieve multi-system use. The compilation of the OpenWrt system can use the [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) script developed by [unifreq](https://github.com/unifreq/openwrt_packit), and its installation and use instructions are detailed in the [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) document. The OpenWrt qemu firmware in `Online Download Update` is supported by [breakings](https://github.com/breakings/OpenWrt).
+For overpowered boxes, you can first install the [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system, then install the KVM virtual machine to achieve multi-system use. The compilation of the OpenWrt system can use the [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) script developed by [unifreq](https://github.com/unifreq/openwrt_packit), and its installation and use instructions are detailed in the [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) document. The OpenWrt qemu firmware in `Online Download Update` is supported by [breakingbadboy](https://github.com/breakingbadboy/OpenWrt).
 
 The method of using the plugin in the KVM virtual machine is the same as the method of directly installing and using OpenWrt in the box.
 
@@ -134,7 +134,7 @@ Step 2: Package the dedicated OpenWrt firmware for different devices: You can us
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
 - [immortalwrt](https://github.com/immortalwrt/immortalwrt)
 - [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit)
-- [breakings/OpenWrt](https://github.com/breakings/OpenWrt)
+- [breakingbadboy/OpenWrt](https://github.com/breakingbadboy/OpenWrt)
 
 ## License
 

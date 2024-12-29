@@ -56,7 +56,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 ###  OpenWrt 固件下载包含三个选项
 
-1. OpenWrt 固件下载仓库：填写您在 github 编译 OpenWrt 的仓库（或其他编译者的仓库），如：`https://github.com/breakings/OpenWrt` 。插件欢迎首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的网站（根据填写的网站自动更新链接），方便大家找到固件编译作者进行交流学习。
+1. OpenWrt 固件下载仓库：填写您在 github 编译 OpenWrt 的仓库（或其他编译者的仓库），如：`https://github.com/breakingbadboy/OpenWrt` 。插件欢迎首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的网站（根据填写的网站自动更新链接），方便大家找到固件编译作者进行交流学习。
 
 2. Releases 里 Tags 的关键字：要可以区分其他 x86，R2S 等固件，确保可以使用此关键字找到相应的 OpenWrt 固件。
 
@@ -66,7 +66,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 ### 内核下载地址为一个选项
 
-- OpenWrt 内核下载仓库：可以填写完整路径 `https://github.com/breakings/OpenWrt` 或简写为 `breakings/OpenWrt` 。插件将自动从 Github.com 的 Releases 里下载对应 tags 的内核。例如从 [kernel_stable](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) 里下载通用内核，从 [kernel_rk3588](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk3588) 里下载 rk3588 专用内核，从 [kernel_rk35xx](https://github.com/breakings/OpenWrt/releases/tag/kernel_rk35xx) 里下载 rk35xx 专用内核等。
+- OpenWrt 内核下载仓库：可以填写完整路径 `https://github.com/breakingbadboy/OpenWrt` 或简写为 `breakingbadboy/OpenWrt` 。插件将自动从 Github.com 的 Releases 里下载对应 tags 的内核。例如从 [kernel_stable](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable) 里下载通用内核，从 [kernel_rk3588](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk3588) 里下载 rk3588 专用内核，从 [kernel_rk35xx](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk35xx) 里下载 rk35xx 专用内核等。
 - 自定义内核下载 Tags：可以在 `OpenWrt` 系统的 `/etc/flippy-openwrt-release` 文件中添加 `KERNEL_TAGS='xxx'` 指定内核下载的固定 Tags。如果进行了指定，插件将自动从 Releases 中指定的 `kernel_xxx` 里下载内核。例如当指定 `KERNEL_TAGS='flippy'` 时将自动从`kernel_flippy` 里下载内核。在进行自定义设置时，要确保内核下载仓库里有这个 Tags。
 
 ### 版本分支选择为一个选项
@@ -83,7 +83,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 ### 默认设置说明
 
-- 插件默认的 OpenWrt 固件（ [插件高大全版](https://github.com/breakings/OpenWrt/releases/tag/ARMv8) | [精选插件mini版](https://github.com/breakings/OpenWrt/releases/tag/armv8_mini) | [flippy分享版](https://github.com/breakings/OpenWrt/releases/tag/flippy_openwrt) ）与 [内核](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) 下载服务由 [breakings](https://github.com/breakings/OpenWrt) 提供支持，他是 Flippy 社群活跃且热心的管理者，熟悉 OpenWrt 编译，通晓 `Flippy` 提供支持的各系列盒子的安装和使用，关于 OpenWrt 的编译及使用中碰到的问题等，可以进社群咨询或到他的 Github 中反馈。
+- 插件默认的 OpenWrt 固件（ [插件高大全版](https://github.com/breakingbadboy/OpenWrt/releases/tag/ARMv8) | [精选插件mini版](https://github.com/breakingbadboy/OpenWrt/releases/tag/armv8_mini) | [flippy分享版](https://github.com/breakingbadboy/OpenWrt/releases/tag/flippy_openwrt) ）与 [内核](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable) 下载服务由 [breakingbadboy](https://github.com/breakingbadboy/OpenWrt) 提供支持，他是 Flippy 社群活跃且热心的管理者，熟悉 OpenWrt 编译，通晓 `Flippy` 提供支持的各系列盒子的安装和使用，关于 OpenWrt 的编译及使用中碰到的问题等，可以进社群咨询或到他的 Github 中反馈。
 
 - 内核在更新周期结束后将弃用，可在 `插件设置` 里 `任选其他版本` 的内核使用。部分内核没有完整固件，可在 `插件设置` 中更改内核分支，选择下载地址中对应的版本分支。
 
@@ -107,7 +107,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 ## KVM 虚拟机使用说明
 
-对于性能过剩的盒子，可以先安装 [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) 系统，再安装 KVM 虚拟机实现多系统使用。其中 OpenWrt 系统的编译可以使用 [unifreq](https://github.com/unifreq/openwrt_packit) 开发的 [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) 脚本进行制作，其安装与使用说明详见 [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) 文档。插件中 `在线下载更新` 的 OpenWrt qemu 固件由 [breakings](https://github.com/breakings/OpenWrt) 提供支持。
+对于性能过剩的盒子，可以先安装 [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) 系统，再安装 KVM 虚拟机实现多系统使用。其中 OpenWrt 系统的编译可以使用 [unifreq](https://github.com/unifreq/openwrt_packit) 开发的 [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) 脚本进行制作，其安装与使用说明详见 [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) 文档。插件中 `在线下载更新` 的 OpenWrt qemu 固件由 [breakingbadboy](https://github.com/breakingbadboy/OpenWrt) 提供支持。
 
 插件在 KVM 虚拟机中的使用方法和在盒子中直接安装使用 OpenWrt 的方法相同。
 
@@ -133,7 +133,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
 - [immortalwrt](https://github.com/immortalwrt/immortalwrt)
 - [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit)
-- [breakings/OpenWrt](https://github.com/breakings/OpenWrt)
+- [breakingbadboy/OpenWrt](https://github.com/breakingbadboy/OpenWrt)
 
 ## 许可
 
