@@ -57,25 +57,66 @@ download_plugin() {
     # Delete other ipk files
     rm -f ${tmp_dir}/*.ipk 2>/dev/null
 
+    # Check if the package manager is opkg or apk
+    package_manager=""
+    if command -v opkg >/dev/null 2>&1; then
+        package_manager="opkg"
+    elif command -v apk >/dev/null 2>&1; then
+        package_manager="apk"
+    else
+        process_msg "No supported package manager found. Please install opkg or apk." "1"
+    fi
+    process_msg "package_manager: ${package_manager}"
+
     # Set the plugin download path
     download_repo="https://github.com/ophub/luci-app-amlogic/releases/download"
-    plugin_file="${download_repo}/${latest_version}/luci-app-amlogic_${latest_version}_all.ipk"
-    language_file="${download_repo}/${latest_version}/luci-i18n-amlogic-zh-cn_${latest_version}_all.ipk"
 
-    # Download the plug-in's ipk file
-    curl -fsSL "${plugin_file}" -o "${tmp_dir}/luci-app-amlogic_${latest_version}_all.ipk"
-    if [[ "${?}" -eq "0" ]]; then
-        process_msg "02.01 Plugin downloaded successfully."
+    # Intelligent File Discovery
+    plugin_file_name=""
+    lang_file_name=""
+
+    # Method 1: Use GitHub API if 'jq' is installed (Preferred Method)
+    if command -v jq >/dev/null 2>&1; then
+        process_msg "Using GitHub API with jq to find package files."
+        api_url="https://api.github.com/repos/ophub/luci-app-amlogic/releases/tags/${latest_version}"
+
+        # Fetch all asset names from the API
+        asset_list="$(curl -fsSL -m 15 "${api_url}" | jq -r '.assets[].name' | xargs)"
+
+        if [[ -n "${asset_list}" ]]; then
+            # Discover exact filenames using regular expressions from the asset list
+            plugin_file_name="$(echo "${asset_list}" | tr ' ' '\n' | grep -oE "^luci-app-amlogic.*${package_manager}$" | head -n 1)"
+            lang_file_name="$(echo "${asset_list}" | tr ' ' '\n' | grep -oE "^luci-i18n-amlogic-zh-cn.*${package_manager}$" | head -n 1)"
+        else
+            process_msg "Warning: Failed to fetch data from GitHub API." "1"
+        fi
     else
-        process_msg "02.01 Plugin download failed." "1"
+        process_msg "jq not found, Aborting." "1"
     fi
 
-    # Download the plug-in's i18n file
-    curl -fsSL "${language_file}" -o "${tmp_dir}/luci-i18n-amlogic-zh-cn_${latest_version}_all.ipk"
-    if [[ "${?}" -eq "0" ]]; then
-        process_msg "02.02 Language pack downloaded successfully."
-    else
-        process_msg "02.02 Language pack download failed." "1"
+    # Validation and Download
+    if [[ -z "${plugin_file_name}" || -z "${lang_file_name}" ]]; then
+        process_msg "Could not discover plugin(.${package_manager}) in the release. Aborting." "1"
+    fi
+
+    process_msg "02.01 Found plugin file: ${plugin_file_name}"
+    process_msg "02.02 Found language file: ${lang_file_name}"
+
+    plugin_full_url="${download_repo}/${latest_version}/${plugin_file_name}"
+    lang_full_url="${download_repo}/${latest_version}/${lang_file_name}"
+
+    # Download the main plugin file
+    process_msg "02.03 Downloading main plugin..."
+    curl -fsSL "${plugin_full_url}" -o "${tmp_dir}/${plugin_file_name}"
+    if [[ "${?}" -ne "0" ]]; then
+        process_msg "02.03 Plugin download failed." "1"
+    fi
+
+    # Download the language pack
+    process_msg "02.04 Downloading language pack..."
+    curl -fsSL "${lang_full_url}" -o "${tmp_dir}/${lang_file_name}"
+    if [[ "${?}" -ne "0" ]]; then
+        process_msg "02.04 Language pack download failed." "1"
     fi
 
     sync && sleep 2
@@ -85,7 +126,11 @@ install_plugin() {
     process_msg "03. Start installing plugins..."
 
     # Force plug-in reinstallation
-    opkg --force-reinstall install ${tmp_dir}/*.ipk
+    if [[ "${package_manager}" == "opkg" ]]; then
+        opkg --force-reinstall install ${tmp_dir}/*.ipk
+    elif [[ "${package_manager}" == "apk" ]]; then
+        apk add --force-overwrite --allow-untrusted ${tmp_dir}/*.apk
+    fi
 
     # Delete cache file
     rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/* 2>/dev/null
