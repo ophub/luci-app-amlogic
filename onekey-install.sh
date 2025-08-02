@@ -60,7 +60,7 @@ download_plugin() {
     # Check if the package manager is opkg or apk
     package_manager=""
     if command -v opkg >/dev/null 2>&1; then
-        package_manager="opkg"
+        package_manager="ipk"
     elif command -v apk >/dev/null 2>&1; then
         package_manager="apk"
     else
