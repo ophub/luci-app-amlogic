@@ -64,14 +64,13 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 - 在 Releases 里的 `OpenWrt` 固件命名时请包含 `SOC型号` 和 `内核版本` ：openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz，例如：openwrt_ `s905d`_ n1_R21.8.6_k`5.15.25`-flippy-62+o.7z。支持的 `SOC` 有：`s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`。支持的`内核版本`有 `5.10.xxx`、`5.15.xxx` 等。
 
-### 内核下载地址为一个选项
+### 内核下载为三个选项
 
-- OpenWrt 内核下载仓库：可以填写完整路径 `https://github.com/breakingbadboy/OpenWrt` 或简写为 `breakingbadboy/OpenWrt` 。插件将自动从 Github.com 的 Releases 里下载对应 tags 的内核。例如从 [kernel_stable](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable) 里下载通用内核，从 [kernel_rk3588](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk3588) 里下载 rk3588 专用内核，从 [kernel_rk35xx](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk35xx) 里下载 rk35xx 专用内核等。
-- 自定义内核下载 Tags：可以在 `OpenWrt` 系统的 `/etc/flippy-openwrt-release` 文件中添加 `KERNEL_TAGS='xxx'` 指定内核下载的固定 Tags。如果进行了指定，插件将自动从 Releases 中指定的 `kernel_xxx` 里下载内核。例如当指定 `KERNEL_TAGS='flippy'` 时将自动从`kernel_flippy` 里下载内核。在进行自定义设置时，要确保内核下载仓库里有这个 Tags。
+- OpenWrt 内核下载仓库：可以填写完整路径 `https://github.com/breakingbadboy/OpenWrt` 或简写为 `breakingbadboy/OpenWrt` 。
 
-### 版本分支选择为一个选项
+- 自定义内核下载 Tag：允许您指定从内核仓库 Releases 中下载特定 Tag 的内核文件，例如 [kernel_stable](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable)、[kernel_rk3588](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk3588) 和 [kernel_rk35xx](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk35xx) 等。当此项被设置时，插件将精确地从您指定的 Tag 下载；如果留空，插件则会根据当前 OpenWrt 系统信息自动匹配最合适的 Tag 进行下载。
 
-- 设置版本分支：默认为当前 OpenWrt 固件的分支，你可以自由选择其他分支，也可以自定义分支，如 `5.10`，`5.15` 等。`OpenWrt` 和 `内核` `[在线下载更新]` 时，将根据你选择的分支进行下载与更新。
+- 设置内核版本分支：默认为当前 OpenWrt 固件的分支，你可以自由选择其他分支，也可以自定义分支，如 `5.10`，`5.15` 等。`OpenWrt` 和 `内核` `[在线下载更新]` 时，将根据你选择的分支进行下载与更新。
 
 ### 其他选项
 

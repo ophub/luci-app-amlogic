@@ -64,14 +64,13 @@ The plugin settings consist of 4 elements: OpenWrt firmware download address, ke
 
 - When naming the `OpenWrt` firmware in Releases, please include `SOC model` and `kernel version`: openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, for example: openwrt_ `s905d`_ n1_R21.8.6_k`5.15.25`-flippy-62+o.7z. Supported `SOC` includes: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. Supported `kernel versions` include `5.10.xxx`, `5.15.xxx`, etc.
 
-### Kernel download address is one option
+### Kernel download address contains three options
 
-- OpenWrt Kernel Download Repository: You can provide the full path `https://github.com/breakingbadboy/OpenWrt` or the shorthand `breakingbadboy/OpenWrt`. The plugin will automatically download kernels corresponding to specific tags from Releases on Github.com. For instance, it will download the universal kernel from [kernel_stable](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable), the rk3588 specialized kernel from [kernel_rk3588](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk3588), and the rk35xx specialized kernel from [kernel_rk35xx](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk35xx), among others.
-- Custom Kernel Download Tags: You can add `KERNELTAGS='xxx'` to the `/etc/flippy-openwrt-release` file in the OpenWrt system to specify the fixed Tags for kernel downloads. If specified, the plugin will automatically download kernels from the designated `kernel_xxx` in Releases. For example, when `KERNELTAGS='flippy'` is specified, kernels will be automatically downloaded from `kernel_flippy`. When making custom settings, ensure that this Tag exists in the kernel download repository.
+- OpenWrt Kernel Download Repository: You can provide the full path `https://github.com/breakingbadboy/OpenWrt` or the shorthand `breakingbadboy/OpenWrt`.
 
-### Version branch selection is one option
+- Custom Kernel Download Tags: Specify which kernel to download from the kernel repository's Releases, such as [kernel_stable](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable), [kernel_rk3588](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk3588), and [kernel_rk35xx](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk35xx), etc. When a tag is specified, the plugin will download strictly from that tag; if left empty, the plugin will automatically select the most suitable tag based on the current OpenWrt system information.
 
-- Set version branch: The default is the branch of the current OpenWrt firmware. You can freely choose other branches or customize the branch, such as `5.10`, `5.15`, etc. The `OpenWrt` and `Kernel` `[Online Download Update]` will download and update according to the branch you selected.
+- Set kernel version branch: The default is the branch of the current OpenWrt firmware. You can freely choose other branches or customize the branch, such as `5.10`, `5.15`, etc. The `OpenWrt` and `Kernel` `[Online Download Update]` will download and update according to the branch you selected.
 
 ### Other options
 

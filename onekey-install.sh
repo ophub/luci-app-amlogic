@@ -55,7 +55,7 @@ download_plugin() {
     process_msg "02. Start downloading the latest plugin..."
 
     # Delete other ipk files
-    rm -f ${tmp_dir}/*.ipk 2>/dev/null
+    rm -f ${tmp_dir}/*.ipk ${tmp_dir}/*.apk
 
     # Check if the package manager is opkg or apk
     package_manager=""
@@ -134,7 +134,7 @@ install_plugin() {
 
     # Delete cache file
     rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/* 2>/dev/null
-    rm -f ${tmp_dir}/*.ipk
+    rm -f ${tmp_dir}/*.ipk ${tmp_dir}/*.apk
 
     process_msg "03.01 The plugin has been installed successfully, Path: System -> Amlogic Service."
 }
