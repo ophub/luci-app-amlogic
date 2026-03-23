@@ -116,6 +116,16 @@ download_plugin() {
         [[ "${?}" -ne "0" ]] && process_msg "02.04 Language pack [ ${langfile} ] download failed." "1"
     done
 
+    # The .apk filename is preceded by a tilde (~) instead of a dot (.).
+    for file in ${tmp_dir}/*.apk; do
+        [[ -f "${file}" ]] || continue
+        base_name="$(basename "${file}")"
+        new_name="$(echo "${base_name}" | sed -E 's/\.([a-f0-9]{7}\.apk)/~\1/')"
+        if [[ "${base_name}" != "${new_name}" ]]; then
+            mv -f "${file}" "${tmp_dir}/${new_name}" || true
+        fi
+    done
+
     sync && sleep 2
 }
 
