@@ -4,7 +4,7 @@
 
 # luci-app-amlogic / Amlogic Service
 
-View Chinese description  |  [查看中文说明](README.cn.md)
+[English Instructions](README.md) | [中文说明](README.cn.md)
 
 This plugin supports online management of Amlogic S9xxx series (X96, HK1, H96, etc.), Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox-L1-Pro, FastRhino-R66S/R68S, Radxa-5B/E25) boxes. It also supports usage within OpenWrt installed in KVM virtual machines running on the Armbian system. Current features include `installing OpenWrt to eMMC`, `manually uploading/updating online` OpenWrt firmware or kernel versions, `backup/restore OpenWrt configuration`, `snapshot management`, and `customizing firmware/kernel download site`, etc.
 
