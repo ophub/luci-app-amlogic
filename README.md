@@ -74,9 +74,9 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 
 ### Kernel download address contains two options
 
-- OpenWrt Kernel Download Repository: You can enter the full URL `https://github.com/breakingbadboy/OpenWrt` or the shorthand `breakingbadboy/OpenWrt`.
+- Kernel Download Repository: You can enter the full URL `https://github.com/ophub/kernel` or the shorthand `ophub/kernel`.
 
-- Custom Kernel Download Tags: Allows you to specify which tag to download kernel files from in the kernel repository's Releases, such as [kernel_stable](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable), [kernel_rk3588](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk3588), and [kernel_rk35xx](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk35xx), etc. When specified, the plugin will download exclusively from the designated tag; if left empty, the plugin will automatically select the most suitable tag based on the current OpenWrt system configuration.
+- Kernel Download Tags: Allows you to specify which tag to download kernel files from in the kernel repository's Releases, such as [kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy), [kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable), [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588), and [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx), etc. When specified, the plugin will download exclusively from the designated tag; if left empty, the plugin will automatically select the most suitable tag based on the current OpenWrt system configuration.
 
 ### Version branch selection is one option
 
@@ -90,11 +90,13 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 
 - Set file system type: Configures the file system type for the shared partition (/mnt/mmcblk*p4) during OpenWrt installation (default: ext4). This setting only applies to fresh OpenWrt installations and will not alter the file system type of the existing shared partition during kernel or firmware updates.
 
-### Default Settings Explanation
+### Default Settings Description
 
-- The default OpenWrt firmware ([Plugin Full Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/ARMv8) | [Selected Plugins Mini Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/armv8_mini) | [Flippy Shared Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/flippy_openwrt)) and [Kernel](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable) download service are provided by [breakingbadboy](https://github.com/breakingbadboy/OpenWrt), an active and dedicated manager in the Flippy community who is well-versed in OpenWrt compilation and proficient in the installation and usage of the various box series supported by `Flippy`. For questions regarding OpenWrt compilation and usage, you can seek assistance in the community or provide feedback on his GitHub page.
+- The default OpenWrt firmware download service for this plugin ( [Comprehensive Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/ARMv8) | [Mini Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/armv8_mini) | [Flippy Shared Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/flippy_openwrt) ) is supported by [breakingbadboy](https://github.com/breakingbadboy/OpenWrt). He is a core maintainer in the Flippy community, highly experienced in OpenWrt compilation, and proficient in the installation and configuration of various ARM devices. If you encounter any issues during OpenWrt compilation or usage, feel free to consult the community or submit feedback on his GitHub page.
 
-- Kernels will be deprecated after their update cycle ends. You can select `any other version` of the kernel in the `Plugin Settings`. Some kernel versions may not have corresponding complete firmware. In such cases, you can change the kernel branch in the `Plugin Settings` and select the appropriate version branch from the download repository.
+- The default OpenWrt kernel for the plugin is provided by [https://github.com/ophub/kernel](https://github.com/ophub/kernel). Among them, kernels under the [kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) tag are stable mainline kernels compiled and shared by developer [flippy](https://github.com/unifreq). For the [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) and [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) tags, kernels with `flippy` in their names are Rockchip-specific kernels provided by the same developer, while the rest are compiled by [ophub/kernel](https://github.com/ophub/kernel). Kernels under the [kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) tag are stable mainline kernels compiled by [ophub/kernel](https://github.com/ophub/kernel), and [kernel_h6](https://github.com/ophub/kernel/releases/tag/kernel_h6) is the dedicated kernel for Allwinner `H6 (TQC-A01)` devices.
+
+- Kernels will be deprecated once they reach the end of their lifecycle (EOL). When this occurs, you can select an alternative supported kernel version in the `Plugin Settings` to continue using the service. If certain kernel versions lack a corresponding complete firmware, you can also change the kernel branch in the `Plugin Settings` to match an available version from the download source.
 
 
 ## Plugin User Instructions

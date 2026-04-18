@@ -74,13 +74,13 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 ### 内核下载为两个选项
 
-- OpenWrt 内核下载仓库：可填写完整路径 `https://github.com/breakingbadboy/OpenWrt` 或简写为 `breakingbadboy/OpenWrt`。
+- 内核的下载仓库：可填写完整路径 `https://github.com/ophub/kernel` 或简写为 `ophub/kernel`。
 
-- 自定义内核下载 Tag：允许您指定从内核仓库 Releases 中下载特定 Tag 的内核文件，例如 [kernel_stable](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable)、[kernel_rk3588](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk3588) 和 [kernel_rk35xx](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_rk35xx) 等。设置后，插件将从指定的 Tag 精确下载；若留空，插件将根据当前 OpenWrt 系统信息自动匹配最合适的 Tag 进行下载。
+- 内核的下载标签：允许您指定从内核仓库 Releases 中下载特定 Tag 的内核文件，例如 [kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy)、[kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable)、[kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) 和 [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) 等。设置后，插件将从指定的 Tag 精确下载；若留空，插件将根据当前 OpenWrt 系统信息自动匹配最合适的 Tag 进行下载。
 
 ### 版本分支选择为一个选项
 
-- 设置版本分支：默认为当前 OpenWrt 固件所用的分支。您可以自由选择其他分支，也可以自定义分支，如 `5.10`、`5.15` 等。执行 `OpenWrt` 和`内核`的`[在线下载更新]`时，将根据所选分支进行下载与更新。
+- 设置版本分支：默认为当前 OpenWrt 固件所用的分支。您可以自由选择其他分支，也可以自定义分支，如 `6.18`、`6.12` 等。执行 `OpenWrt` 和`内核`的`[在线下载更新]`时，将根据所选分支进行下载与更新。
 
 ### 其他选项
 
@@ -92,9 +92,11 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 ### 默认设置说明
 
-- 插件默认的 OpenWrt 固件（ [插件高大全版](https://github.com/breakingbadboy/OpenWrt/releases/tag/ARMv8) | [精选插件mini版](https://github.com/breakingbadboy/OpenWrt/releases/tag/armv8_mini) | [flippy分享版](https://github.com/breakingbadboy/OpenWrt/releases/tag/flippy_openwrt) ）与 [内核](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable) 下载服务由 [breakingbadboy](https://github.com/breakingbadboy/OpenWrt) 提供支持，他是 Flippy 社区中活跃且热心的管理者，熟悉 OpenWrt 编译，精通 `Flippy` 所支持的各系列盒子的安装与使用。关于 OpenWrt 编译及使用中遇到的问题，可前往社区咨询或在其 GitHub 页面反馈。
+- 插件默认的 OpenWrt 固件（ [全插件完整版](https://github.com/breakingbadboy/OpenWrt/releases/tag/ARMv8) | [精选插件 Mini 版](https://github.com/breakingbadboy/OpenWrt/releases/tag/armv8_mini) | [Flippy 分享版](https://github.com/breakingbadboy/OpenWrt/releases/tag/flippy_openwrt) ）下载服务由 [breakingbadboy](https://github.com/breakingbadboy/OpenWrt) 提供支持。他是 flippy 社区的核心维护者，深谙 OpenWrt 编译，并精通固件所支持的各系列 ARM 设备的安装与配置。如在 OpenWrt 编译或使用过程中遇到问题，可前往社区咨询或在其 GitHub 页面提交反馈。
 
-- 内核在更新周期结束后将被弃用，届时可在`插件设置`中选择其他版本的内核继续使用。部分内核版本可能没有对应的完整固件，可在`插件设置`中更改内核分支，选择下载地址中对应的版本分支。
+- 插件默认的 OpenWrt 内核由 [https://github.com/ophub/kernel](https://github.com/ophub/kernel) 提供支持。其中，[kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) 标签下的内核均为 [flippy](https://github.com/unifreq) 大佬编译并分享的稳定版主线内核；在 [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) 和 [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) 标签中，名称包含 `flippy` 的也是由他编译和分享的 Rockchip 系列专用内核，其余则由 [ophub/kernel](https://github.com/ophub/kernel) 编译提供。[kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) 标签下为 [ophub/kernel](https://github.com/ophub/kernel) 编译的稳定版主线内核；而 [kernel_h6](https://github.com/ophub/kernel/releases/tag/kernel_h6) 则是全志 `H6（TQC-A01）` 设备的专用内核。
+
+- 当内核结束其生命周期（停止更新）后将被弃用，届时可在`插件设置`中选择其他受支持的内核版本继续使用。若部分内核版本暂未提供对应的完整固件，用户同样可在`插件设置`中更改内核分支，以匹配下载地址中可用的对应版本。
 
 ## 插件使用说明
 
