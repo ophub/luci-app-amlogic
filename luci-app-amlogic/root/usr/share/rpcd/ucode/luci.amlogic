@@ -182,9 +182,10 @@ function ensure_main_log() {
 	ensure_dirs();
 	if (!access(LOG_FILE)) {
 		shcall("uname -a > " + LOG_FILE);
-		for (let n of [LOG_INSTALL, LOG_UPFILES, LOG_PLUGIN, LOG_KERNEL,
-		               LOG_FIRMWARE, LOG_RESCUE, LOG_RUNNING])
-			writefile(n, '');
+		let _logs1 = [LOG_INSTALL, LOG_UPFILES, LOG_PLUGIN, LOG_KERNEL,
+		              LOG_FIRMWARE, LOG_RESCUE, LOG_RUNNING];
+		for (let i = 0; i < length(_logs1); i++)
+			writefile(_logs1[i], '');
 	}
 }
 
@@ -466,9 +467,10 @@ function m_read_log_full(req) {
 }
 
 function m_del_log() {
-	for (let n of [LOG_FILE, LOG_INSTALL, LOG_UPFILES, LOG_PLUGIN, LOG_KERNEL,
-	               LOG_FIRMWARE, LOG_RESCUE, LOG_RUNNING])
-		writefile(n, '');
+	let _logs2 = [LOG_FILE, LOG_INSTALL, LOG_UPFILES, LOG_PLUGIN, LOG_KERNEL,
+	              LOG_FIRMWARE, LOG_RESCUE, LOG_RUNNING];
+	for (let i = 0; i < length(_logs2); i++)
+		writefile(_logs2[i], '');
 	return { code: 0 };
 }
 

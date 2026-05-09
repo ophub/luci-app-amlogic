@@ -126,8 +126,19 @@ function showSubButton(el, btnLabel, labelText, onClick) {
 function handlePoll(action) {
 	if (action.state === 'done') return;
 
-	return callLogTail(action.name).then(function (line) {
-		line = (line || '').trim();
+	return callLogTail(action.name).then(function (raw) {
+		// read_log_tail returns up to 4096 bytes (multi-line).  Only inspect
+		// the last non-empty line so that intermediate opkg/apk output
+		// (e.g. "Collected errors:", dependency warnings) cannot trigger a
+		// false-positive 'Failed'/'error' match before the final result is
+		// written.  The terminal keywords ("Successful Update", "FAILED",
+		// etc.) are always written as the very last log line.
+		var lines = (raw || '').split('\n');
+		var line = '';
+		for (var i = lines.length - 1; i >= 0; i--) {
+			var l = lines[i].trim();
+			if (l) { line = l; break; }
+		}
 
 		if (action.state === 'idle') {
 			return;
