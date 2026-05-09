@@ -27,7 +27,7 @@ curl -fsSL git.io/luci-app-amlogic | bash
 ```shell
 # Add the plugin
 rm -rf package/luci-app-amlogic
-git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b js https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # You can compile this plugin separately
 make package/luci-app-amlogic/compile V=99
