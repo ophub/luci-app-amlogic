@@ -27,7 +27,7 @@ curl -fsSL git.io/luci-app-amlogic | bash
 ```shell
 # 添加插件
 rm -rf package/luci-app-amlogic
-git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # 可以单独编译此插件
 make package/luci-app-amlogic/compile V=99
