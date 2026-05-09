@@ -54,6 +54,9 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 
 # 4. Set the download path of OpenWrt kernel
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
+
+# 5. Set the branch of Amlogic Service plugin (main/js)
+sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
 - When compiling OpenWrt, modifying the above 4 items enables customization. These settings can also be modified after logging into the OpenWrt system via `System` → `Amlogic Box`.
@@ -81,6 +84,10 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 ### Version branch selection is one option
 
 - Set version branch: Defaults to the branch of the current OpenWrt firmware. You can freely choose other branches or customize the branch, such as `5.10`, `5.15`, etc. The `OpenWrt` and `Kernel` `[Online Download Update]` operations will download and update based on the selected branch.
+
+### Amlogic Box Plugin Branch Settings
+
+- Amlogic Box Plugin Branch Settings: The system defaults to the Lua-based `main` branch, but you can customize it to the `js` (JavaScript) branch or others as needed. This setting directly applies to the `[Only update Amlogic Service]` action under `[Online Download Update]`, where the system will execute the download and update based on your currently selected branch. Please note that the main and js branches differ only in their underlying programming languages and are completely identical in overall functionality; for example, the underlying shell scripts invoked for core features like `installing OpenWrt`, `updating the kernel`, and `Snapshot Management` are exactly the same.
 
 ### Other options
 
