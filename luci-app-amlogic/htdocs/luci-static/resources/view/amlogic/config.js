@@ -127,7 +127,16 @@ return view.extend({
 		kbranch.default = m2 ? m2[1] : '5.10';
 		kbranch.rmempty = false;
 
-		// 8. Keep config
+		// 8. Plugin branch
+		const pbranch = o.option(form.ListValue, 'amlogic_plugin_branch',
+			_('Set plugin branch:'),
+			_('Set the branch of the luci-app-amlogic plugin used in [Only update Amlogic Service]. Default (empty) uses the main-lua branch.'));
+		pbranch.value('', _('main-lua [Default]'));
+		pbranch.value('js', _('js [JavaScript version]'));
+		pbranch.default = '';
+		pbranch.rmempty = true;
+
+		// 9. Keep config
 		const fcfg = o.option(form.Flag, 'amlogic_firmware_config',
 			_('Keep config update:'),
 			_('Set whether to keep the current config during [Online Download Update] and [Manually Upload Update].'));

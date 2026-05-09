@@ -17,6 +17,7 @@ check_option="${1}"
 download_version="${2}"
 TMP_CHECK_DIR="/tmp/amlogic"
 AMLOGIC_SOC_FILE="/etc/flippy-openwrt-release"
+AMLOGIC_CONFIG_FILE="/etc/config/amlogic"
 START_LOG="${TMP_CHECK_DIR}/amlogic_check_plugin.log"
 RUNNING_LOG="${TMP_CHECK_DIR}/amlogic_running_script.log"
 LOG_FILE="${TMP_CHECK_DIR}/amlogic.log"
@@ -63,7 +64,20 @@ fi
 tolog "PLATFORM: [ ${PLATFORM} ]"
 sleep 2
 
-# Step 1: Detect package manager and current version
+# Read plugin branch from UCI config; default to "" (main-lua) when missing or empty
+# When amlogic_plugin_branch is missing, add it with empty value (main-lua default)
+if [[ -f "${AMLOGIC_CONFIG_FILE}" ]]; then
+    plugin_branch="$(uci get amlogic.config.amlogic_plugin_branch 2>/dev/null | xargs)"
+    if ! grep -q "amlogic_plugin_branch" "${AMLOGIC_CONFIG_FILE}" 2>/dev/null; then
+        uci set amlogic.config.amlogic_plugin_branch='' 2>/dev/null
+        uci commit amlogic 2>/dev/null
+        plugin_branch=""
+    fi
+else
+    plugin_branch=""
+fi
+tolog "Plugin branch: [ ${plugin_branch:-main-lua} ]"
+sleep 1
 get_plugin_info() {
     package_manager=""
     current_plugin_v=""
@@ -88,12 +102,22 @@ check_plugin() {
     sleep 2
 
     tolog "02. Start querying plugin version..."
-    latest_version="$(
-        curl -fsSL -m 10 \
-            https://github.com/ophub/luci-app-amlogic/releases |
-            grep -oE 'expanded_assets/[0-9]+\.[0-9]+\.[0-9]+(-[0-9]+)?' | sed 's|expanded_assets/||g' |
-            sort -urV | head -n 1
-    )"
+    if [[ "${plugin_branch}" == "js" ]]; then
+        latest_version="$(
+            curl -fsSL -m 10 \
+                https://github.com/ophub/luci-app-amlogic/releases |
+                grep -oE 'expanded_assets/[0-9]+\.[0-9]+\.[0-9]+-js' | sed 's|expanded_assets/||g' |
+                sort -urV | head -n 1
+        )"
+    else
+        latest_version="$(
+            curl -fsSL -m 10 \
+                https://github.com/ophub/luci-app-amlogic/releases |
+                grep -oE 'expanded_assets/[0-9]+\.[0-9]+\.[0-9]+' | sed 's|expanded_assets/||g' |
+                grep -v '\-js' |
+                sort -urV | head -n 1
+        )"
+    fi
     if [[ -z "${latest_version}" ]]; then
         tolog "02.01 Query failed, please try again." "1"
     fi
