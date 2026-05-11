@@ -27,7 +27,7 @@ curl -fsSL git.io/luci-app-amlogic | bash
 ```shell
 # 添加插件
 rm -rf package/luci-app-amlogic
-git clone -b js https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # 可以单独编译此插件
 make package/luci-app-amlogic/compile V=99
@@ -55,8 +55,8 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 # 4.设置 OpenWrt 内核的下载路径
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-# 5.设置晶晨宝盒插件分支（main/js）
-sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'js'|g" package/luci-app-amlogic/root/etc/config/amlogic
+# 5.设置晶晨宝盒插件分支（main/lua）
+sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
 - 编译 OpenWrt 时，修改以上 4 项即可实现自定义。上述信息也可在登录 OpenWrt 系统后，通过 `系统` → `晶晨宝盒` 的设置界面进行修改。
@@ -85,9 +85,9 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'js'|g" package/luci-app
 
 - 设置版本分支：默认为当前 OpenWrt 固件所用的分支。您可以自由选择其他分支，也可以自定义分支，如 `6.18`、`6.12` 等。执行 `OpenWrt` 和`内核`的`[在线下载更新]`时，将根据所选分支进行下载与更新。
 
-### 插件分支选择为一个选项
+### 插件分支设置
 
-- 设置晶晨宝盒插件分支：系统默认采用基于 Lua 语言的 `main` 分支，您也可根据需求将其自定义切换为 `js`（JavaScript）等其他分支。该设置将直接应用于 `[在线下载更新]` 中的 `[仅更新宝盒插件]` 操作，系统会根据您当前选择的分支执行相应的下载与更新。请注意，main 与 js 分支仅存在底层编程语言的差异，两者在整体功能表现上完全一致，例如在 `安装 OpenWrt`、`更新内核` 及 `快照管理` 等核心功能中所调用的 shell 脚本均完全相同。
+- 设置晶晨宝盒插件分支：系统默认采用基于 JavaScript 语言的 `main` 分支，您也可根据需求将其自定义切换为 `lua`（Lua）等其他分支。该设置将直接应用于 `[在线下载更新]` 中的 `[仅更新宝盒插件]` 操作，系统会根据您当前选择的分支执行相应的下载与更新。请注意，main 与 lua 分支仅存在底层编程语言的差异，两者在整体功能表现上完全一致，例如在 `安装 OpenWrt`、`更新内核` 及 `快照管理` 等核心功能中所调用的 shell 脚本均完全相同。
 
 ### 其他选项
 
