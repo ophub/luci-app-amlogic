@@ -81,13 +81,13 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 
 - Kernel Download Tags: Allows you to specify which tag to download kernel files from in the kernel repository's Releases, such as [kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy), [kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable), [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588), and [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx), etc. When specified, the plugin will download exclusively from the designated tag; if left empty, the plugin will automatically select the most suitable tag based on the current OpenWrt system configuration.
 
-### Version branch selection is one option
+### Kernel version branch selection is one option
 
 - Set version branch: Defaults to the branch of the current OpenWrt firmware. You can freely choose other branches or customize the branch, such as `5.10`, `5.15`, etc. The `OpenWrt` and `Kernel` `[Online Download Update]` operations will download and update based on the selected branch.
 
-### Amlogic Box Plugin Branch Settings
+### Plugin branch selection is one option
 
-- Amlogic Box Plugin Branch Settings: The system defaults to the JavaScript `main` branch, but you can customize it to the `lua` (Lua) branch or others as needed. This setting directly applies to the `[Only update Amlogic Service]` action under `[Online Download Update]`, where the system will execute the download and update based on your currently selected branch. Please note that the main and lua branches differ only in their underlying programming languages and are completely identical in overall functionality; for example, the underlying shell scripts invoked for core features like `installing OpenWrt`, `updating the kernel`, and `Snapshot Management` are exactly the same.
+- Amlogic Service plugin branch: The system defaults to the JavaScript `main` branch, but you can customize it to the `lua` (Lua) branch or others as needed. This setting directly applies to the `[Only update Amlogic Service]` action under `[Online Download Update]`, where the system will execute the download and update based on your currently selected branch. Please note that the main and lua branches differ only in their underlying programming languages and are completely identical in overall functionality; for example, the underlying shell scripts invoked for core features like `installing OpenWrt`, `updating the kernel`, and `Snapshot Management` are exactly the same.
 
 ### Other options
 
