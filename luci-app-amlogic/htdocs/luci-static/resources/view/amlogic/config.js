@@ -130,9 +130,9 @@ return view.extend({
 		// 8. Plugin branch
 		const pbranch = o.option(form.ListValue, 'amlogic_plugin_branch',
 			_('Set plugin branch:'),
-			_('Set the branch of the luci-app-amlogic plugin used in [Only update Amlogic Service]. Default (empty) uses the main (Lua) branch.'));
-		pbranch.value('', _('main [Lua version]'));
-		pbranch.value('js', _('js [JavaScript version]'));
+			_('Set the branch of the luci-app-amlogic plugin used in [Only update Amlogic Service]. Default (empty) uses the main (JavaScript) branch.'));
+		pbranch.value('', _('main [JavaScript version]'));
+		pbranch.value('lua', _('lua [Lua version]'));
 		pbranch.default = '';
 		pbranch.rmempty = true;
 
