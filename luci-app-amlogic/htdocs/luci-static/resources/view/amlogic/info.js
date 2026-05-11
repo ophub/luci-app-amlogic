@@ -73,7 +73,7 @@ return view.extend({
 			boxRows.push(SUPPORTED_BOXES[i], E('br'));
 
 		return E('div', { class: 'cbi-section' }, [
-			E('h2', _('Amlogic Service')),
+			E('h2', { style: 'border-bottom:none' }, _('Amlogic Service')),
 			E('p', { style: 'border:none; margin-bottom:0' }, _('Supports management of Amlogic s9xxx, Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox L1 Pro) boxes.')),
 			E('table', { class: 'amlogic-row-table' }, [
 				E('tr', [
