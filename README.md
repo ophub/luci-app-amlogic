@@ -15,19 +15,23 @@ Running the OpenWrt system with the Amlogic Service plugin on the box requires c
 - If the OpenWrt you are currently using does not have this plugin, you can also install it manually. Log in to the OpenWrt system via SSH and navigate to any directory, or open `System Menu` → `TTYD Terminal`, then run the following one-click installation command to automatically download and install this plugin.
 
 ```yaml
-# Download the JavaScript version plugin (main branch)
+# Intelligently select the available plugin version
 curl -fsSL ophub.org/luci-app-amlogic | bash
 # Download the Lua version plugin (lua branch)
 curl -fsSL ophub.org/luci-app-amlogic | bash -s -- -b lua
+# Download the JavaScript version plugin (main branch)
+curl -fsSL ophub.org/luci-app-amlogic | bash -s -- -b main
 ```
 
 or
 
 ```yaml
-# Download the JavaScript version plugin (main branch)
+# Intelligently select the available plugin version
 curl -fsSL git.io/luci-app-amlogic | bash
 # Download the Lua version plugin (lua branch)
 curl -fsSL git.io/luci-app-amlogic | bash -s -- -b lua
+# Download the JavaScript version plugin (main branch)
+curl -fsSL git.io/luci-app-amlogic | bash -s -- -b main
 ```
 
 ## Plugin Compilation
