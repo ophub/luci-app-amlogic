@@ -250,7 +250,8 @@ function m_state() {
 		current_kernel_version:   current_kernel_version(),
 		current_kernel_branch:    current_kernel_branch(),
 		kernel_release:           sh('uname -r'),
-		has_luci_js:              access('/www/luci-static/resources/luci.js') ? true : false
+		has_luci_js:              access('/www/luci-static/resources/luci.js') ? true : false,
+		plugin_branch:            access('/usr/lib/lua/luci/controller/amlogic.lua') ? 'lua' : 'main'
 	};
 }
 
