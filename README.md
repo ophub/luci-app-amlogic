@@ -15,11 +15,19 @@ Running the OpenWrt system with the Amlogic Service plugin on the box requires c
 - If the OpenWrt you are currently using does not have this plugin, you can also install it manually. Log in to the OpenWrt system via SSH and navigate to any directory, or open `System Menu` → `TTYD Terminal`, then run the following one-click installation command to automatically download and install this plugin.
 
 ```yaml
+# Download the JavaScript version plugin (main branch)
 curl -fsSL ophub.org/luci-app-amlogic | bash
+# Download the Lua version plugin (lua branch)
+curl -fsSL ophub.org/luci-app-amlogic | bash -s -- -b lua
 ```
+
 or
+
 ```yaml
+# Download the JavaScript version plugin (main branch)
 curl -fsSL git.io/luci-app-amlogic | bash
+# Download the Lua version plugin (lua branch)
+curl -fsSL git.io/luci-app-amlogic | bash -s -- -b lua
 ```
 
 ## Plugin Compilation
@@ -59,7 +67,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
-- When compiling OpenWrt, modifying the above 4 items enables customization. These settings can also be modified after logging into the OpenWrt system via `System` → `Amlogic Box`.
+- When compiling OpenWrt, modifying the above 4 items enables customization. These settings can also be modified after logging into the OpenWrt system via `System` → `Amlogic Service`.
 
 ## Plugin Settings Explanation
 
@@ -83,7 +91,7 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 
 ### Kernel version branch selection is one option
 
-- Set version branch: Defaults to the branch of the current OpenWrt firmware. You can freely choose other branches or customize the branch, such as `5.10`, `5.15`, etc. The `OpenWrt` and `Kernel` `[Online Download Update]` operations will download and update based on the selected branch.
+- Set kernel version branch: Defaults to the branch of the current OpenWrt firmware. You can freely choose other branches or customize the branch, such as `5.10`, `5.15`, etc. The `OpenWrt` and `Kernel` `[Online Download Update]` operations will download and update based on the selected branch.
 
 ### Plugin branch selection is one option
 
@@ -114,7 +122,7 @@ The plugin provides 6 functions: Install OpenWrt, Manual Upload Update, Online D
 
 2. Manual Upload Update: Click the `Choose File` button to select a local `OpenWrt Kernel (upload the complete set of kernel files)` or `OpenWrt Firmware (compressed format recommended)` and upload it. Once the upload completes, the corresponding `Replace OpenWrt Kernel` or `Update OpenWrt Firmware` button will appear at the bottom of the page. Click to proceed with the update (the system will reboot automatically upon completion).
 
-3. Online Download Update: Click the `Update Box Plugin Only` button to update the Amlogic Box plugin to the latest version; click `Update System Kernel Only` to download the corresponding kernel according to the kernel branch selected in `Plugin Settings`; click `Full System Update` to download the latest firmware based on the download site set in `Plugin Settings`. Click the `Rescue Original System Kernel` button to copy the currently running kernel to the target disk, facilitating recovery when a kernel update fails and the OpenWrt system cannot boot. For example, you can boot OpenWrt from a USB drive to rescue the system on eMMC, with cross-rescue support among `eMMC/NVME/sdX` devices.
+3. Online Download Update: Click the `Only update Amlogic Service` button to update the Amlogic Service plugin to the latest version; click `Update system kernel only` to download the corresponding kernel according to the kernel branch selected in `Plugin Settings`; click `Complete system update` to download the latest firmware based on the download site set in `Plugin Settings`. Click the `Rescue Kernel` button to copy the currently running kernel to the target disk, facilitating recovery when a kernel update fails and the OpenWrt system cannot boot. For example, you can boot OpenWrt from a USB drive to rescue the system on eMMC, with cross-rescue support among `eMMC/NVME/sdX` devices.
 
 4. Backup Firmware Configuration: Click the `Open List` button to edit the backup list; click the `Download Backup` button to back up the current device's OpenWrt configuration to your local machine; click the `Upload Backup` button to upload backup configuration files and restore the system configuration. Click `Create Snapshot`, `Restore Snapshot`, and `Delete Snapshot` to manage snapshots. Snapshots capture all configuration data under the `/etc` directory of the current OpenWrt system, enabling one-click restoration to the saved state in the future. This feature is similar to `Download Backup`, but snapshots are stored on the device only and cannot be downloaded.
 
