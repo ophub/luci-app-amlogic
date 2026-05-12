@@ -133,10 +133,15 @@ kernel_branch.rmempty = false
 
 --8.Set plugin branch
 plugin_branch = o:option(Value, "amlogic_plugin_branch", translate("Set plugin branch:"))
-plugin_branch.description = translate("Set the branch of the luci-app-amlogic plugin used in [Only update Amlogic Service]. Default (empty) uses the main (JavaScript) branch.")
-plugin_branch:value("", translate("main [JavaScript version]"))
+local has_luci_js = (luci.sys.exec("[ -f /www/luci-static/resources/luci.js ] && echo yes") or ""):find("yes")
+if has_luci_js then
+    plugin_branch.description = translate("Set the branch of the luci-app-amlogic plugin used in [Only update Amlogic Service]. Default (empty) uses the main (JavaScript) branch.")
+    plugin_branch:value("", translate("main [JavaScript version]"))
+else
+    plugin_branch.description = translate("Set the branch of the luci-app-amlogic plugin used in [Only update Amlogic Service]. This system does not have JS LuCI, only the Lua branch is available.")
+end
 plugin_branch:value("lua", translate("lua [Lua version]"))
-plugin_branch.default = ""
+plugin_branch.default = has_luci_js and "" or "lua"
 plugin_branch.rmempty = true
 
 --9.Restore configuration

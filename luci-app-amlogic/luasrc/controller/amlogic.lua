@@ -182,7 +182,32 @@ function start_amlogic_plugin()
 	luci.sys.call(string.format("[ -f %s ] && cp -vf %s %s >> %s 2>&1", config_file, config_file, config_bak, log_file))
 
 	-- 3. Detect and install
+	-- Detect release of the downloaded package (r1=lua, r2=js)
+	local new_release = ""
+	local cur_release = ""
+	if luci.sys.call("command -v opkg >/dev/null") == 0 then
+		local ipk_file = luci.sys.exec("ls /tmp/amlogic/luci-app-amlogic_*.ipk 2>/dev/null | head -n 1"):gsub("%s+$", "")
+		new_release = ipk_file:match("%-r(%d+)_") or ""
+		local raw = luci.sys.exec("opkg list-installed 2>/dev/null | grep '^luci-app-amlogic ' | awk '{print $3}' | cut -d'-' -f2"):gsub("%s+$", "")
+		cur_release = raw:match("^r?(%d+)$") or ""
+	elseif luci.sys.call("command -v apk >/dev/null") == 0 then
+		local apk_file = luci.sys.exec("ls /tmp/amlogic/luci-app-amlogic_*.apk 2>/dev/null | head -n 1"):gsub("%s+$", "")
+		new_release = apk_file:match("%-r(%d+)[%-~]") or ""
+		local pkg_name = luci.sys.exec("apk list --installed 2>/dev/null | grep '^luci-app-amlogic-' | awk '{print $1}'"):gsub("%s+$", "")
+		cur_release = pkg_name:match("%-r?(%d+)$") or ""
+	end
+	-- When switching branches (r1<->r2), remove old package first so that
+	-- opkg/apk registers all new files. plain remove does NOT touch dep packages.
 	local install_status = 1
+	if cur_release ~= "" and new_release ~= "" and cur_release ~= new_release then
+		luci.sys.call("echo 'Branch switch detected (r" .. cur_release .. " -> r" .. new_release .. "), removing old package first...' >> " .. log_file)
+		if luci.sys.call("command -v opkg >/dev/null") == 0 then
+			luci.sys.call("opkg remove luci-app-amlogic --force-depends >> " .. log_file .. " 2>&1 || true")
+		elseif luci.sys.call("command -v apk >/dev/null") == 0 then
+			luci.sys.call("apk del luci-app-amlogic >> " .. log_file .. " 2>&1 || true")
+		end
+		luci.sys.call("echo 'Old package removed (dependencies kept).' >> " .. log_file)
+	end
 	if luci.sys.call("command -v opkg >/dev/null") == 0 then
 		luci.sys.call("echo 'System uses opkg. Attempting to install .ipk package...' >> " .. log_file)
 		local install_cmd = string.format("opkg --force-reinstall install /tmp/amlogic/*.ipk >> %s 2>&1", log_file)
@@ -200,7 +225,7 @@ function start_amlogic_plugin()
 		-- SUCCESS
 		luci.sys.call("echo 'Installation successful. Finalizing...' >> " .. log_file)
 		luci.sys.call(string.format("[ -f %s ] && cp -vf %s %s >> %s 2>&1", config_bak, config_bak, config_file, log_file))
-		luci.sys.call("rm -f /etc/config/amlogic.apk-new /etc/config/amlogic.ipk-old >> " .. log_file .. " 2>&1")
+		luci.sys.call("rm -f /etc/config/amlogic.apk-new /etc/config/amlogic.ipk-old /etc/config/amlogic-opkg >> " .. log_file .. " 2>&1")
 		luci.sys.call("rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/* " .. config_bak)
 		luci.sys.call("echo '' > " .. running_lock)
 		luci.sys.call("echo 'Successful Update' > " .. log_file)
@@ -226,6 +251,17 @@ function start_amlogic_plugin()
 			"fi) &"
 		}, "\n")
 		luci.sys.call(cleanup_cmd)
+
+		-- Auto-set plugin branch in UCI config if not already configured
+		local cur_branch = luci.sys.exec("uci -q get amlogic.config.amlogic_plugin_branch 2>/dev/null"):gsub("%s+$", "")
+		if cur_branch == "" then
+			if luci.sys.exec("[ -f /www/luci-static/resources/luci.js ] && echo yes"):find("yes") then
+				luci.sys.call("uci set amlogic.config.amlogic_plugin_branch='main' && uci commit amlogic")
+			else
+				luci.sys.call("uci set amlogic.config.amlogic_plugin_branch='lua' && uci commit amlogic")
+			end
+		end
+
 		return 0
 	else
 		-- FAILURE
