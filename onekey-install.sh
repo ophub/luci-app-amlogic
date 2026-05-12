@@ -12,12 +12,12 @@
 # Copyright (C) 2021- https://github.com/unifreq/openwrt_packit
 # Copyright (C) 2021- https://github.com/ophub/luci-app-amlogic
 #
-# Branch Selection: Auto-detected by default (Lua LuCI → lua branch, JS LuCI → main branch).
+# Branch Selection: Auto-detected by default (Lua LuCI → lua branch, JS LuCI → js branch).
 #                   Use the '-b' parameter to override auto-detection.
 # Commands:
 #          curl -fsSL ophub.org/luci-app-amlogic | bash
 #          curl -fsSL ophub.org/luci-app-amlogic | bash -s -- -b lua
-#          curl -fsSL ophub.org/luci-app-amlogic | bash -s -- -b main
+#          curl -fsSL ophub.org/luci-app-amlogic | bash -s -- -b js
 #
 #==================================== Functions list ====================================
 #
@@ -31,7 +31,7 @@
 #
 # Set the plugin download directory
 tmp_dir="/root"
-# Set the default branch suffix (empty = JavaScript version, "lua" = Lua version)
+# Set the default branch suffix (empty = Lua version, "-js" = JavaScript version)
 # Will be auto-detected in parse_args if not specified by -b parameter
 branch_suffix=""
 # Whether branch was manually specified via -b
@@ -49,9 +49,9 @@ parse_args() {
         case "${1}" in
         -b | --branch)
             if [[ "${2}" == "lua" ]]; then
-                branch_suffix="-lua"
-            else
                 branch_suffix=""
+            else
+                branch_suffix="-js"
             fi
             branch_manual="1"
             shift 2
@@ -65,10 +65,10 @@ parse_args() {
     # Auto-detect LuCI type when branch is not manually specified
     if [[ -z "${branch_manual}" ]]; then
         if [[ -f "/www/luci-static/resources/luci.js" ]]; then
-            branch_suffix=""
+            branch_suffix="-js"
             process_msg "01. Detected JS LuCI, auto-selecting JS branch."
         else
-            branch_suffix="-lua"
+            branch_suffix=""
             process_msg "01. Detected Lua LuCI, auto-selecting Lua branch."
         fi
     fi
@@ -81,16 +81,16 @@ query_version() {
     releases_html="$(curl -fsSL -m 10 https://github.com/ophub/luci-app-amlogic/releases)"
 
     # Select matching tags based on branch suffix
-    if [[ "${branch_suffix}" == "-lua" ]]; then
-        # Match tags ending with -lua (e.g. 3.1.301-lua)
+    if [[ "${branch_suffix}" == "-js" ]]; then
+        # Match tags ending with -js (e.g. 3.1.301-js)
         latest_version="$(
             echo "${releases_html}" |
-                grep -oE 'expanded_assets/[0-9]+\.[0-9]+\.[0-9]+-lua' |
+                grep -oE 'expanded_assets/[0-9]+\.[0-9]+\.[0-9]+-js' |
                 sed 's|expanded_assets/||g' |
                 sort -urV | head -n 1
         )"
     else
-        # Match tags with digits only, no suffix (e.g. 3.1.301)
+        # Match tags with digits only, no suffix (e.g. 3.1.301) → Lua version
         latest_version="$(
             echo "${releases_html}" |
                 grep -oE 'expanded_assets/[0-9]+\.[0-9]+\.[0-9]+' |
