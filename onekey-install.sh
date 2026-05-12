@@ -179,8 +179,8 @@ download_plugin() {
         process_msg "03.02 jq not found, Aborting." "1"
     fi
 
-    # Validation
-    if [[ -z "${plugin_file_name}" || "${#lang_file_list[@]}" -eq "0" ]]; then
+    # Validation: main plugin is required; language packs are optional
+    if [[ -z "${plugin_file_name}" ]]; then
         process_msg "03.03 Could not discover plugin(.${package_manager}) in the release. Aborting." "1"
     fi
 
@@ -255,7 +255,7 @@ install_plugin() {
     # Install the new package
     if [[ "${package_manager}" == "ipk" ]]; then
         process_msg "04.02 Installing with opkg..."
-        opkg --force-reinstall install ${tmp_dir}/*.ipk
+        opkg --force-reinstall --force-downgrade install ${tmp_dir}/*.ipk
         [[ "${?}" -ne "0" ]] && process_msg "04.02 Installation failed." "1"
     elif [[ "${package_manager}" == "apk" ]]; then
         process_msg "04.02 Installing with apk..."
