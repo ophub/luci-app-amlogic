@@ -16,13 +16,26 @@ function index()
 	local install_menu = luci.sys.exec("cat /etc/flippy-openwrt-release 2>/dev/null | grep SHOW_INSTALL_MENU | awk -F'=' '{print $2}' | grep -oE '(yes|no)' | xargs") or "Unknown"
 	-- Detect whether root fs is already on internal storage (eMMC/NVMe/disk).
 	-- If so, OpenWrt is already installed and the Install menu should be hidden.
+	-- Note: sd* devices may be USB (removable=1) or internal disk (removable=0);
+	-- check /sys/block/<dev>/removable to distinguish them.
 	local root_pt = luci.sys.exec("df / | tail -n1 | awk '{print $1}' | awk -F'/' '{print $3}'") or ""
 	root_pt = root_pt:gsub("%s+", "")
-	local is_installed = (root_pt ~= "" and (
-		root_pt:match("^mmcblk%d+p%d+$") or
-		root_pt:match("^[hsv]d[a-z]%d+$") or
-		root_pt:match("^nvme%d+n%d+p%d+$")
-	)) and true or false
+	local is_installed = false
+	if root_pt ~= "" then
+		local is_storage_type = (
+			root_pt:match("^mmcblk%d+p%d+$") or
+			root_pt:match("^[hsv]d[a-z]%d+$") or
+			root_pt:match("^nvme%d+n%d+p%d+$")
+		)
+		if is_storage_type then
+			-- Extract base block device name (e.g. sda2 -> sda, mmcblk2p4 -> mmcblk2)
+			local base_dev = root_pt:gsub("p?%d+$", "")
+			local removable = luci.sys.exec("cat /sys/block/" .. base_dev .. "/removable 2>/dev/null") or ""
+			removable = removable:gsub("%s+", "")
+			-- removable=0 means internal storage (eMMC/NVMe/SATA), removable=1 means USB/SD
+			is_installed = (removable == "0")
+		end
+	end
 
 	entry({ "admin", "system", "amlogic", "info" }, form("amlogic/amlogic_info"), _("Amlogic Service"), 1).leaf = true
 	local can_install = (string.find(platfrom, "amlogic") ~= nil or string.find(platfrom, "allwinner") ~= nil or string.find(install_menu, "yes") ~= nil)
