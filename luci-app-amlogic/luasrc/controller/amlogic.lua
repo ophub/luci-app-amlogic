@@ -596,7 +596,8 @@ function action_state()
 		current_firmware_version = current_firmware_version(),
 		current_plugin_version = current_plugin_version(),
 		current_kernel_version = current_kernel_version(),
-		current_kernel_branch = current_kernel_branch();
+		current_kernel_branch = current_kernel_branch(),
+		plugin_branch = (luci.sys.exec("test -f /usr/lib/lua/luci/controller/amlogic.lua && echo lua || echo main"):gsub("%s+$", "") == "lua") and "lua" or "main"
 	})
 end
 
