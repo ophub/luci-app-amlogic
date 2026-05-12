@@ -15,7 +15,7 @@
 - 如果您正在使用的 OpenWrt 没有此插件，也可以手动安装。通过 SSH 登录 OpenWrt 系统并进入任意目录，或在 `系统菜单` → `TTYD 终端` 中，运行以下一键安装命令即可自动完成插件的下载与安装。
 
 ```yaml
-# 智能选择可用的插件版本
+# 智能选择可用的插件版本 (推荐)
 curl -fsSL ophub.org/luci-app-amlogic | bash
 # 下载 Lua 版本插件 (lua 分支)
 curl -fsSL ophub.org/luci-app-amlogic | bash -s -- -b lua
@@ -26,7 +26,7 @@ curl -fsSL ophub.org/luci-app-amlogic | bash -s -- -b main
 或者
 
 ```yaml
-# 智能选择可用的插件版本
+# 智能选择可用的插件版本 (推荐)
 curl -fsSL git.io/luci-app-amlogic | bash
 # 下载 Lua 版本插件 (lua 分支)
 curl -fsSL git.io/luci-app-amlogic | bash -s -- -b lua
