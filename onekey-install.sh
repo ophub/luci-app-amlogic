@@ -13,7 +13,8 @@
 # Copyright (C) 2021- https://github.com/ophub/luci-app-amlogic
 #
 # Branch Selection: Auto-detected by default (Lua LuCI → lua branch, JS LuCI → js branch).
-#                   Use the '-b' parameter to override auto-detection.
+#                   Reads amlogic_plugin_branch from /etc/config/amlogic if no -b parameter.
+#                   Use the '-b' parameter to override. Supported values: lua, js, javascript, main.
 # Commands:
 #          curl -fsSL ophub.org/luci-app-amlogic | bash
 #          curl -fsSL ophub.org/luci-app-amlogic | bash -s -- -b lua
@@ -48,12 +49,7 @@ parse_args() {
     while [[ "${#}" -gt "0" ]]; do
         case "${1}" in
         -b | --branch)
-            if [[ "${2}" == "lua" ]]; then
-                branch_suffix=""
-            else
-                branch_suffix="-js"
-            fi
-            branch_manual="1"
+            branch_manual="${2,,}" # Convert to lowercase
             shift 2
             ;;
         *)
@@ -62,8 +58,41 @@ parse_args() {
         esac
     done
 
-    # Auto-detect LuCI type when branch is not manually specified
+    # If not specified via -b, try reading from UCI config
     if [[ -z "${branch_manual}" ]]; then
+        branch_manual="$(uci get amlogic.config.amlogic_plugin_branch 2>/dev/null | tr '[:upper:]' '[:lower:]' | xargs)"
+    fi
+
+    # Normalize branch aliases: js/javascript/main → js_request; lua → lua_request; * → auto-detect
+    local is_js_request=""
+    local is_lua_request=""
+    case "${branch_manual}" in
+    js | javascript | main)
+        is_js_request="1"
+        ;;
+    lua)
+        is_lua_request="1"
+        ;;
+    *)
+        # Empty or unknown value → fall through to auto-detect
+        ;;
+    esac
+
+    # Resolve final branch_suffix based on request + system capability
+    if [[ -n "${is_js_request}" ]]; then
+        # JS was requested, verify system supports it
+        if [[ -f "/www/luci-static/resources/luci.js" ]]; then
+            branch_suffix="-js"
+            process_msg "01. JS branch selected, JS LuCI confirmed."
+        else
+            branch_suffix=""
+            process_msg "01. Warning: JS LuCI not found, falling back to Lua branch."
+        fi
+    elif [[ -n "${is_lua_request}" ]]; then
+        branch_suffix=""
+        process_msg "01. Lua branch selected."
+    else
+        # No valid branch specified anywhere, auto-detect from system
         if [[ -f "/www/luci-static/resources/luci.js" ]]; then
             branch_suffix="-js"
             process_msg "01. Detected JS LuCI, auto-selecting JS branch."
@@ -253,10 +282,12 @@ install_plugin() {
         rm -f /usr/share/luci/menu.d/luci-app-amlogic.json 2>/dev/null
     fi
 
-    # Auto-set plugin branch in UCI config if not already configured
-    _cur_branch="$(uci -q get amlogic.config.amlogic_plugin_branch 2>/dev/null)"
-    if [[ -z "${_cur_branch}" ]]; then
-        if [[ -f "/www/luci-static/resources/luci.js" ]]; then
+    # Update plugin branch in UCI config to match what was actually installed.
+    # Always overwrite so that branch switches (Lua<->JS) are reflected correctly.
+    # Guard: only write when new_release was successfully detected; if detection
+    # failed (empty string) we must not silently overwrite a valid 'main' config.
+    if [[ -n "${new_release}" ]]; then
+        if [[ "${new_release}" == "2" ]]; then
             uci set amlogic.config.amlogic_plugin_branch='main' 2>/dev/null
         else
             uci set amlogic.config.amlogic_plugin_branch='lua' 2>/dev/null
