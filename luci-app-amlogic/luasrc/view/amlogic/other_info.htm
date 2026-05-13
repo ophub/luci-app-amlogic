@@ -7,11 +7,13 @@
 			<img id="logo_amlogic" src="<%=resource%>/amlogic/logo.png" alt="Logo" width="135" />
 		</td></tr>
 		<tr><td colspan="2" width="100%" align="center">
-			<img id="Packit" src="<%=resource%>/amlogic/packit.svg" alt="Packit" width="168px" height="20px" onclick="return homepage('packit')" />
+			<img id="Packit" src="<%=resource%>/amlogic/packit.svg" alt="Packit" width="168px" height="20px" style="vertical-align:middle; border-radius:3px" onclick="return homepage('packit')" />
 			&nbsp;&nbsp;
-			<img id="Author" src="<%=resource%>/amlogic/author.svg" alt="Author" width="168px" height="20px" onclick="return author_homepage('author')" />
+			<img id="Author" src="<%=resource%>/amlogic/author.svg" alt="Author" width="168px" height="20px" style="vertical-align:middle; border-radius:3px" onclick="return author_homepage('author')" />
 			&nbsp;&nbsp;
-			<img id="Plugin" src="<%=resource%>/amlogic/plugin.svg" alt="luci-app-amlogic" width="160px" height="20px" onclick="return homepage('plugin')" />
+			<img id="Plugin" src="<%=resource%>/amlogic/plugin.svg" alt="luci-app-amlogic" width="160px" height="20px" style="vertical-align:middle; border-radius:3px" onclick="return homepage('plugin')" />
+			&nbsp;&nbsp;
+			<img id="Langs" src="<%=resource%>/amlogic/lua.svg" alt="lua" width="46px" height="20px" style="vertical-align:middle; border-radius:3px" />
 		</td></tr>
 		<tr><td width="20%" align="right"><%:Supported functions:%></td><td  width="80%" align="left" id="_clash">
 			<%:Provide services such as install to EMMC, Update Firmware and Kernel, Backup and Recovery Config, Snapshot management, etc.%>
@@ -66,5 +68,20 @@
 		}
 		});
 	}
+
+	var _langs_img = document.getElementById('Langs');
+	var _langs_map = {
+		'lua':        { src: '<%=resource%>/amlogic/lua.svg',        alt: 'lua',        width: '46' },
+		'javascript': { src: '<%=resource%>/amlogic/javascript.svg',  alt: 'javascript', width: '86' }
+	};
+	XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "state")%>', null, function(x, status) {
+	if ( x && x.status == 200 ) {
+		var branch = (status.plugin_branch === 'lua') ? 'lua' : 'javascript';
+		var cfg = _langs_map[branch];
+		_langs_img.src   = cfg.src;
+		_langs_img.alt   = cfg.alt;
+		_langs_img.setAttribute('width', cfg.width);
+	}
+	});
 
 //]]></script>

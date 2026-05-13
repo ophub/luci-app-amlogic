@@ -261,7 +261,11 @@ function start_amlogic_plugin()
 			"  rm -f /usr/share/rpcd/ucode/luci.amlogic",
 			"  rm -f /www/luci-static/resources/view/amlogic/*.js",
 			"  rm -f /usr/share/luci/menu.d/luci-app-amlogic.json",
-			"fi) &"
+			"fi",
+			"# Restart services so the newly installed files take effect immediately,",
+			"# avoiding the need for users to manually clear browser cache.",
+			"/etc/init.d/rpcd restart",
+			"/etc/init.d/uhttpd restart) &"
 		}, "\n")
 		luci.sys.call(cleanup_cmd)
 
