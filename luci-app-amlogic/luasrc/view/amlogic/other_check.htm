@@ -27,11 +27,14 @@
 			function(x,status)
 			{
 				if ( x && x.status == 200 ) {
-					btn.value = (status.rule_update_status == "0") ? '<%:Successful Update%>' : '<%:Update Failed%>';
-				} else {
-					btn.value = '<%:Update%>';
+					if (status.rule_update_status != "0") {
+						btn.value = '<%:Update Failed%>';
+						btn.disabled = false;
+					}
+					// status == 0: update in progress, keep Updating... + disabled
 				}
-				btn.disabled = false;
+				// no response / network error: device is likely rebooting,
+				// keep Updating... + disabled
 			}
 		);
 		return false;
@@ -44,11 +47,14 @@
 
 		XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_amlogic_kernel")%>', null, function(x, status) {
 				if ( x && x.status == 200 ) {
-					btn.value = (status.rule_kernel_status == "0") ? '<%:Successful Update%>' : '<%:Update Failed%>';
-				} else {
-					btn.value = '<%:Update%>';
+					if (status.rule_kernel_status != "0") {
+						btn.value = '<%:Update Failed%>';
+						btn.disabled = false;
+					}
+					// status == 0: update in progress, keep Updating... + disabled
 				}
-				btn.disabled = false;
+				// no response / network error: device is likely rebooting,
+				// keep Updating... + disabled
 			}
 		);
 		return false;
@@ -61,11 +67,14 @@
 
 		XHR.get('<%=luci.dispatcher.build_url("admin", "system", "amlogic", "start_amlogic_plugin")%>', null, function(x, status) {
 				if ( x && x.status == 200 ) {
-					btn.value = (status.rule_plugin_status == "0") ? '<%:Successful Update%>' : '<%:Update Failed%>';
-				} else {
-					btn.value = '<%:Update%>';
+					if (status.rule_plugin_status != "0") {
+						btn.value = '<%:Update Failed%>';
+						btn.disabled = false;
+					}
+					// status == 0: update in progress, keep Updating... + disabled
 				}
-				btn.disabled = false;
+				// no response / network error: plugin update may still be running,
+				// keep Updating... + disabled
 			}
 		);
 		return false;

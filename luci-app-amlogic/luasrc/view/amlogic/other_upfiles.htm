@@ -36,18 +36,14 @@
 					if(status.rule_update_status!="0")
 					{
 						btn.value = '<%:Update Failed%>';
+						btn.disabled = false;
 					}
-					else
-					{
-						btn.value = '<%:Successful Update%>';
-					}
+					// status == 0: update in progress, keep Updating... + disabled
 				}
-				else {
-					btn.value = '<%:Update OpenWrt firmware%>';
-				}
+				// no response / network error: device is likely rebooting,
+				// keep Updating... + disabled
 			}
 		);
-		btn.disabled = false;
 		return false;
 	}
 
@@ -61,18 +57,14 @@
 					if(status.rule_kernel_status!="0")
 					{
 						btn.value = '<%:Update Failed%>';
+						btn.disabled = false;
 					}
-					else
-					{
-						btn.value = '<%:Successful Update%>';
-					}
+					// status == 0: update in progress, keep Updating... + disabled
 				}
-				else {
-					btn.value = '<%:Replace OpenWrt Kernel%>';
-				}
+				// no response / network error: device is likely rebooting,
+				// keep Updating... + disabled
 			}
 		);
-		btn.disabled = false;
 		return false;
 	}
 
