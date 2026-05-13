@@ -73,18 +73,18 @@
 					if(status.rule_install_status!="0")
 					{
 						btn.value = '<%:Install Failed%>';
+						btn.disabled = false;
 					}
 					else
 					{
 						btn.value = '<%:Successful Install%>';
+						btn.disabled = false;
 					}
 				}
-				else {
-					btn.value = '<%:Install%>';
-				}
+				// no response / network error: install may still be running,
+				// keep Installing... + disabled
 			}
 		);
-		btn.disabled = false;
 		return false;
 	}
 
