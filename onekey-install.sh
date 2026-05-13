@@ -266,6 +266,11 @@ install_plugin() {
     # Delete cache file and leftover config conflict files
     rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/* 2>/dev/null
     rm -f /etc/config/amlogic.apk-new /etc/config/amlogic.ipk-old /etc/config/amlogic-opkg 2>/dev/null
+
+    # Restart services so the newly installed files take effect immediately,
+    # avoiding the need for users to manually clear browser cache.
+    /etc/init.d/rpcd restart 2>/dev/null
+    /etc/init.d/uhttpd restart 2>/dev/null
     rm -f ${tmp_dir}/*.ipk ${tmp_dir}/*.apk
 
     # Cross-branch cleanup: remove files from the other branch to avoid conflicts.
