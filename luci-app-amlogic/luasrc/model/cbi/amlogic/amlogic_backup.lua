@@ -1,6 +1,8 @@
---Copyright: https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-filetransfer
---Extended support: https://github.com/ophub/luci-app-amlogic
---Function: Download files
+-- SPDX-License-Identifier: GPL-2.0
+-- Backup Firmware Config (Lua CBI model)
+--
+-- Purpose: create and download a config backup tarball, manage btrfs snapshots,
+-- and switch KVM grub partitions; calls openwrt-backup and btrfs utilities.
 
 local io = require "io"
 local os = require "os"

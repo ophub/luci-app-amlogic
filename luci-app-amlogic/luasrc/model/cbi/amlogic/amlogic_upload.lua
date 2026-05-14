@@ -1,6 +1,8 @@
---Copyright: https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-filetransfer
---Extended support: https://github.com/ophub/luci-app-amlogic
---Function: Upload files
+-- SPDX-License-Identifier: GPL-2.0
+-- Upload and Install Files (Lua CBI model)
+--
+-- Purpose: accept firmware/kernel/IPK/backup uploads, list staged files in the
+-- upload directory, and trigger install/restore actions via openwrt-backup or opkg/apk.
 
 local os    = require "os"
 local fs    = require "nixio.fs"
@@ -8,13 +10,13 @@ local nutil = require "nixio.util"
 local type  = type
 local b, form
 
---Remove the spaces in the string
+-- Strip all whitespace from a string.
 function trim(str)
 	--return (string.gsub(str, "^%s*(.-)%s*$", "%1"))
 	return (string.gsub(str, "%s+", ""))
 end
 
--- Evaluate given shell glob pattern and return a table containing all matching
+-- Expand a shell glob pattern and return all matching paths as a table.
 function glob(...)
 	local iter, code, msg = fs.glob(...)
 	if iter then
@@ -24,7 +26,7 @@ function glob(...)
 	end
 end
 
--- Checks wheather the given path exists and points to a regular file.
+-- Checks whether the given path exists and points to a regular file.
 function isfile(filename)
 	return fs.stat(filename, "type") == "reg"
 end
@@ -53,7 +55,7 @@ function stat(path, key)
 	return key and data and data[key] or data, code, msg
 end
 
---Set default upload path
+-- Detect upload destination: shared data partition derived from the root device.
 local ROOT_PTNAME = trim(luci.sys.exec("df / | tail -n1 | awk '{print $1}' | awk -F '/' '{print $3}'"))
 if ROOT_PTNAME then
 	if (string.find(ROOT_PTNAME, "mmcblk[0-4]p[1-4]")) then
@@ -69,11 +71,11 @@ else
 	upload_path = "/tmp/upload/"
 end
 
---Clear the version check log
+-- Clear stale check logs from any previous session.
 luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_plugin.log && sync >/dev/null 2>&1")
 luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_kernel.log && sync >/dev/null 2>&1")
 
---SimpleForm for Update OpenWrt firmware/kernel
+-- SimpleForm for file upload input.
 b = SimpleForm("upload", nil)
 b.title = translate("Upload")
 local des_content = translate("Update plugins first, then update the kernel or firmware.")
@@ -131,6 +133,7 @@ local function getSizeStr(size)
 	return string.format("%.1f", size) .. byteUnits[i]
 end
 
+-- Scan the upload directory; classify each file by type for action buttons.
 local inits, attr = {}
 for i, f in ipairs(glob(trim(upload_path .. "*"))) do
 	attr = stat(f)
@@ -144,47 +147,39 @@ for i, f in ipairs(glob(trim(upload_path .. "*"))) do
 		inits[i].remove = 0
 		inits[i].ipk = false
 
-		--Check whether the openwrt firmware file
-		-- openwrt_s905d_v5.10.16_2021.05.31.1958.img.gz
+		-- Detect firmware image files (.img.gz / .img.xz / .7z / .img).
 		if (string.lower(string.sub(fs.basename(f), -7, -1)) == ".img.gz") then
 			openwrt_firmware_file = true
 		end
-		-- openwrt_s905d_n1_R21.7.15_k5.4.134-flippy-62+o.img.xz
 		if (string.lower(string.sub(fs.basename(f), -7, -1)) == ".img.xz") then
 			openwrt_firmware_file = true
 		end
-		-- openwrt_s905d_n1_R21.7.15_k5.13.2-flippy-62+.7z
 		if (string.lower(string.sub(fs.basename(f), -3, -1)) == ".7z") then
 			openwrt_firmware_file = true
 		end
-		-- openwrt_s905d_n1_R21.7.15_k5.13.2-flippy-62+.img
 		if (string.lower(string.sub(fs.basename(f), -4, -1)) == ".img") then
 			openwrt_firmware_file = true
 		end
 
-		--Check whether the three kernel files
-		-- boot-5.10.16-flippy-53+.tar.gz
+		-- Detect kernel tarballs (boot- / dtb- / modules- prefixes).
 		if (string.lower(string.sub(fs.basename(f), 1, 5)) == "boot-") then
 			boot_file = true
 		end
-		-- dtb-amlogic-5.10.16-flippy-53+.tar.gz
 		if (string.lower(string.sub(fs.basename(f), 1, 4)) == "dtb-") then
 			dtb_file = true
 		end
-		-- modules-5.10.16-flippy-53+.tar.gz
 		if (string.lower(string.sub(fs.basename(f), 1, 8)) == "modules-") then
 			modules_file = true
 		end
 
-		--Check whether the backup file
-		-- openwrt_config.tar.gz
+		-- Detect config backup tarball (openwrt_config.tar.gz).
 		if (string.lower(string.sub(fs.basename(f), 1, -1)) == "openwrt_config.tar.gz") then
 			backup_config_file = true
 		end
 	end
 end
 
---SimpleForm for Upload file list
+-- SimpleForm for upload file list table.
 form = SimpleForm("filelist", translate("Upload file list"), nil)
 form.reset = false
 form.submit = false
@@ -239,7 +234,7 @@ function IsPackageFile(name)
 	return string.sub(lname, -4) == ".ipk" or string.sub(lname, -4) == ".apk"
 end
 
---Add Button for *.ipk
+-- Install/Restore button: shown for .ipk/.apk packages and config backups.
 btnis = tb:option(Button, "ipk", translate("Install"))
 btnis.template = "amlogic/other_button"
 btnis.render = function(self, section, scope)
@@ -269,21 +264,19 @@ btnis.write = function(self, section)
 		if luci.sys.call("command -v opkg >/dev/null") == 0 then
 			install_cmd = string.format('opkg --force-reinstall install %s', full_path)
 			r = luci.sys.exec(install_cmd)
-		-- If opkg is not found, check for apk
+		-- Fall back to apk
 		elseif luci.sys.call("command -v apk >/dev/null") == 0 then
-			-- NOTE: --allow-untrusted is required for local packages
+			-- --allow-untrusted is required for local packages
 			install_cmd = string.format('apk add --force-overwrite --allow-untrusted %s', full_path)
 			r = luci.sys.exec(install_cmd)
-		-- If neither is found
 		else
 			r = "Error: Neither 'opkg' nor 'apk' package manager found on the system."
 		end
 
-		-- Clean LuCI cache after installation
+		-- Clear LuCI cache after installation.
 		luci.sys.exec("rm -rf /tmp/luci-indexcache /tmp/luci-modulecache/* >/dev/null 2>&1")
 
-		-- Display the result message
-		-- We add a message to prompt the user to refresh the page to see changes.
+		-- Show result; prompt user to refresh for changes to take effect.
 		local result_msg = r .. "<br/><b>" .. translate("Please refresh the page to see the changes.") .. "</b>"
 		form.description = string.format('<span style="color: red">%s</span>', result_msg)
 
@@ -294,7 +287,7 @@ btnis.write = function(self, section)
 	end
 end
 
---SimpleForm for Check upload files
+-- Section delegated to other_upfiles template for kernel/firmware action buttons.
 form:section(SimpleSection).template = "amlogic/other_upfiles"
 
 return b, form

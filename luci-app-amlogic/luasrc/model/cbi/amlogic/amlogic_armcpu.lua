@@ -1,7 +1,8 @@
---Copyright: https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-cpufreq
---Planner: https://github.com/unifreq/openwrt_packit
---Extended support: https://github.com/ophub/luci-app-amlogic
---Function: Support multi-core
+-- SPDX-License-Identifier: GPL-2.0
+-- CPU Settings (Lua CBI model)
+--
+-- Purpose: render per-policy CPU governor and frequency tabs using the
+-- cpufreq sysfs interface; apply settings via /etc/init.d/amlogic start.
 
 local mp
 
@@ -92,7 +93,7 @@ end
 
 -- Apply the settings to the system
 function mp.on_after_commit(self)
-    luci.sys.exec("(sleep 2 && /etc/init.d/amlogic start) >/dev/null 2>&1 &")
+	luci.sys.exec("(sleep 2 && /etc/init.d/amlogic start) >/dev/null 2>&1 &")
 end
 
 return mp

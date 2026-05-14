@@ -1,8 +1,15 @@
+-- SPDX-License-Identifier: GPL-2.0
+-- Amlogic service controller
+--
+-- Purpose: register all LuCI menu entries and HTTP action handlers for the
+-- Lua version of luci-app-amlogic; proxy calls to the shared shell scripts
+-- under /usr/share/amlogic/ and /usr/sbin/.
 module("luci.controller.amlogic", package.seeall)
 
 local sys = require "luci.sys"
 local PKG_NAME = "luci-app-amlogic"
 
+-- Register menu entries and HTTP action handlers
 function index()
 	if not nixio.fs.access("/etc/config/amlogic") then
 		return
@@ -14,10 +21,7 @@ function index()
 
 	local platfrom = luci.sys.exec("cat /etc/flippy-openwrt-release 2>/dev/null | grep PLATFORM | awk -F'=' '{print $2}' | grep -oE '(amlogic|rockchip|allwinner|qemu)' | xargs") or "Unknown"
 	local install_menu = luci.sys.exec("cat /etc/flippy-openwrt-release 2>/dev/null | grep SHOW_INSTALL_MENU | awk -F'=' '{print $2}' | grep -oE '(yes|no)' | xargs") or "Unknown"
-	-- Detect whether root fs is already on internal storage (eMMC/NVMe/disk).
-	-- If so, OpenWrt is already installed and the Install menu should be hidden.
-	-- Note: sd* devices may be USB (removable=1) or internal disk (removable=0);
-	-- check /sys/block/<dev>/removable to distinguish them.
+	-- Detect whether root fs is on internal storage; hide Install menu if already installed.
 	local root_pt = luci.sys.exec("df / | tail -n1 | awk '{print $1}' | awk -F'/' '{print $3}'") or ""
 	root_pt = root_pt:gsub("%s+", "")
 	local is_installed = false
@@ -89,8 +93,7 @@ end
 luci.sys.exec("[ -d /tmp/upload ] || mkdir -p /tmp/upload >/dev/null")
 luci.sys.exec("[ -d /tmp/amlogic ] || mkdir -p /tmp/amlogic >/dev/null")
 
--- Read per-request UCI config and platform info.
--- Defined as a function so values are always fresh (not stale from module load).
+-- Read per-request UCI config and platform info; always fresh (not cached from module load).
 local function get_config()
 	local amlogic_firmware_config = luci.sys.exec("uci get amlogic.config.amlogic_firmware_config 2>/dev/null") or "1"
 	local update_restore_config = (tonumber(amlogic_firmware_config) == 0) and "no-restore" or "restore"
@@ -195,8 +198,7 @@ function start_amlogic_plugin()
 	luci.sys.call(string.format("[ -f %s ] && cp -vf %s %s >> %s 2>&1", config_file, config_file, config_bak, log_file))
 
 	-- 3. Detect and install
-	-- Detect release of the downloaded package (r1=lua, r2=js)
-	local new_release = ""
+	-- Detect release of the downloaded package (r1=lua, r2=js)	local new_release = ""
 	local cur_release = ""
 	if luci.sys.call("command -v opkg >/dev/null") == 0 then
 		local ipk_file = luci.sys.exec("ls /tmp/amlogic/luci-app-amlogic_*.ipk 2>/dev/null | head -n 1"):gsub("%s+$", "")

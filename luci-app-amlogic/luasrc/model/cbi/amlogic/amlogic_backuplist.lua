@@ -1,7 +1,13 @@
+-- SPDX-License-Identifier: GPL-2.0
+-- Backup file list editor (Lua CBI model)
+--
+-- Purpose: edit /etc/amlogic_backup_list.conf which controls which files/dirs
+-- the openwrt-backup script archives; seeds defaults from openwrt-backup if absent.
+
 local fs = require "nixio.fs"
 local backup_list_conf = "/etc/amlogic_backup_list.conf"
 
--- Delete all spaces and tabs at the beginning of the line, and the unified line break is \n
+-- Strip leading whitespace from each line and normalise line endings to \n.
 function remove_spaces(value)
 	local lines = {}
 	for line in value:gmatch("[^\r\n]+") do
