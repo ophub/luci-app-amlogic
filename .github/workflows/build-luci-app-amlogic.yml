@@ -1,92 +1,164 @@
+#==========================================================================
+# https://github.com/ophub/luci-app-amlogic
+# Description: Build and Release luci-app-amlogic plugin for OpenWrt
+#==========================================================================
+
 name: Build and Release luci-app-amlogic
+
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: "Source branch to build"
+        required: true
+        default: main
+        type: choice
+        options:
+          - main
+          - lua
+
+env:
+  LUCI_VERSION: ""
+  LUCI_VARIANT: ""
+  LUCI_ICO: ""
+
 jobs:
   build:
     runs-on: ubuntu-24.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - format: apk
+            sdk_url: https://downloads.openwrt.org/releases/25.12.4/targets/armsr/armv8/openwrt-sdk-25.12.4-armsr-armv8_gcc-14.3.0_musl.Linux-x86_64.tar.zst
+          - format: ipk
+            sdk_url: https://downloads.openwrt.org/releases/24.10.6/targets/armsr/armv8/openwrt-sdk-24.10.6-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64.tar.zst
+
+    name: build-${{ matrix.format }}-${{ inputs.branch }}
+
     steps:
-      - name: Checkout repository
+      - name: Checkout repository [ ${{ inputs.branch }} ]
         uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.branch }}
 
       - name: Initialize the build environment
         run: |
           sudo apt-get update
           sudo apt-get install -y $(curl -fsSL https://ophub.org/ubuntu2404-make-openwrt-depends)
 
-      - name: Download and extract the OpenWrt SDK
+      - name: Resolve release tag from Makefile
+        env:
+          PKG_BRANCH: ${{ inputs.branch }}
         run: |
-          wget https://downloads.openwrt.org/releases/24.10.5/targets/armsr/armv8/openwrt-sdk-24.10.5-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64.tar.zst
-          tar -I zstd -xf openwrt-sdk-24.10.5-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64.tar.zst
-          mv openwrt-sdk-24.10.5-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64 openwrt-sdk
+          # Parse PKG_VERSION and PKG_RELEASE from the Makefile
+          PKG_VERSION=$(awk -F':=' '/^PKG_VERSION/{print $2}' luci-app-amlogic/Makefile | tr -d ' ')
+          PKG_RELEASE=$(awk -F':=' '/^PKG_RELEASE/{print $2}' luci-app-amlogic/Makefile | tr -d ' ')
+          echo "Parsed PKG_VERSION=${PKG_VERSION}"
+          echo "Parsed PKG_RELEASE=${PKG_RELEASE}"
+
+          # Determine the release tag, variant, and icon based on the branch
+          if [[ "${PKG_BRANCH}" = "lua" ]]; then
+            TAG="${PKG_VERSION}"
+            VARIANT="Lua Version"
+            ICO="![Lua](https://img.shields.io/badge/Lua-2C2D72?logo=lua&logoColor=white)"
+          else
+            TAG="${PKG_VERSION}-js"
+            VARIANT="JavaScript Version"
+            ICO="![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)"
+          fi
+
+          echo "Release tag: ${TAG}"
+          {
+            echo "LUCI_VERSION=${TAG}"
+            echo "LUCI_VARIANT=${VARIANT}"
+            echo "LUCI_ICO=${ICO}"
+          } >> "${GITHUB_ENV}"
+
+      - name: Download and extract the OpenWrt SDK [ ${{ matrix.format }} ]
+        env:
+          SDK_URL: ${{ matrix.sdk_url }}
+        run: |
+          SDK_TAR="$(basename "${SDK_URL}")"
+          SDK_DIR="${SDK_TAR%.tar.zst}"
+          curl -fL --retry 3 --connect-timeout 30 -o "${SDK_TAR}" "${SDK_URL}"
+          tar -I zstd -xf "${SDK_TAR}"
+          mv "${SDK_DIR}" openwrt-sdk
 
       - name: Update and install SDK feeds
         working-directory: openwrt-sdk
         run: |
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          ./scripts/feeds install luci luci-base luci-lib-ipkg luci-i18n-base-ru luci-i18n-base-zh-cn kmod-tun
 
       - name: Add the luci-app-amlogic package
         working-directory: openwrt-sdk
         run: |
-          git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+          test -d "${GITHUB_WORKSPACE}/luci-app-amlogic" || { echo "source dir missing"; exit 1; }
+          rm -rf package/luci-app-amlogic
+          cp -af "${GITHUB_WORKSPACE}/luci-app-amlogic" package/luci-app-amlogic
           ls -d package/luci-app-amlogic
 
       - name: Configure the OpenWrt build
         working-directory: openwrt-sdk
         run: |
-          echo "CONFIG_PACKAGE_luci-app-amlogic=y" >> .config
-          echo "CONFIG_PACKAGE_luci-i18n-amlogic-ru=y" >> .config
-          echo "CONFIG_PACKAGE_luci-i18n-amlogic-zh-cn=y" >> .config
-          echo "CONFIG_LUCI_LANG_ru=y" >> .config
-          echo "CONFIG_LUCI_LANG_zh-cn=y" >> .config
+          {
+            echo "CONFIG_PACKAGE_luci-app-amlogic=y"
+            echo "CONFIG_PACKAGE_luci-i18n-amlogic-ru=y"
+            echo "CONFIG_PACKAGE_luci-i18n-amlogic-zh-cn=y"
+            echo "CONFIG_LUCI_LANG_ru=y"
+            echo "CONFIG_LUCI_LANG_zh-cn=y"
+          } >> .config
           make defconfig
-          cat .config | grep luci-app-amlogic
-          cat .config | grep luci-i18n-amlogic-ru
-          cat .config | grep luci-i18n-amlogic-zh-cn
+          grep -E 'luci-app-amlogic|luci-i18n-amlogic-(ru|zh-cn)' .config || true
+
       - name: Compile the luci-app-amlogic package
         working-directory: openwrt-sdk
         run: |
-          make package/luci-app-amlogic/{clean,compile} V=99 -j$(nproc) || { cat tmp/.packagedeps-luci-app-amlogic; exit 1; }
+          if ! make package/luci-app-amlogic/{clean,compile} V=99 -j$(nproc); then
+            echo "=== build failed, dumping context ==="
+            [[ -f tmp/.packagedeps-luci-app-amlogic ]] && cat tmp/.packagedeps-luci-app-amlogic
+            if [[ -d logs ]]; then
+              find logs -type f \( -name "*.txt" -o -name "*.log" \) -print -exec sh -c 'echo "--- ${1} ---"; cat "${1}"' _ {} \;
+            fi
+            exit 1
+          fi
 
       - name: Verify compiled packages
         working-directory: openwrt-sdk
         run: |
-          find bin/packages/ -type f -name "*.ipk"
+          find bin/packages/ -type f \( -name "*.ipk" -o -name "*.apk" \)
 
-      - name: Collect and identify compiled packages
+      - name: Collect compiled packages (ipk or apk)
         run: |
           mkdir -p artifacts
-          find openwrt-sdk/bin/packages/ -type f -name "luci-app-amlogic*.ipk" -exec cp {} artifacts/ \;
-          find openwrt-sdk/bin/packages/ -type f -name "luci-i18n-amlogic*.ipk" -exec cp {} artifacts/ \;
+          for pattern in "luci-app-amlogic*.ipk" "luci-app-amlogic*.apk" \
+                         "luci-i18n-amlogic*.ipk" "luci-i18n-amlogic*.apk"; do
+            find openwrt-sdk/bin/packages/ -type f -name "${pattern}" -exec cp {} artifacts/ \;
+          done
 
           echo "=== Collected package files ==="
           ls -lh artifacts/
 
-          # Identify the main package file
-          PKG_FILE="$(find artifacts/ -name "luci-app-amlogic*.ipk" -type f | head -n 1)"
-          PKG_NAME="$(basename "${PKG_FILE}")"
-          echo "Main package: ${PKG_NAME}"
-
-          # Extract version from package filename
-          VERSION=$(echo "${PKG_NAME}" | cut -d'_' -f2 | cut -d'-' -f1)
-          echo "Package version: ${VERSION}"
-
-          # Export version for subsequent steps
-          echo "LUCI_VERSION=${VERSION}" >> $GITHUB_ENV
+          if [[ -z "$(ls -A artifacts/ 2>/dev/null)" ]]; then
+            echo "ERROR: no luci-app-amlogic / luci-i18n-amlogic ipk or apk packages found"
+            exit 1
+          fi
 
       - name: Create Release and upload packages
-        uses: ncipollo/release-action@main
+        uses: ophub/upload-to-releases@main
         with:
           tag: ${{ env.LUCI_VERSION }}
           artifacts: artifacts/*
-          allowUpdates: true
-          removeArtifacts: false
-          replacesArtifacts: true
-          makeLatest: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          allow_updates: true
+          remove_artifacts: false
+          replaces_artifacts: true
+          make_latest: ${{ inputs.branch == 'main' && matrix.format == 'apk' }}
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            - Supports management of Amlogic s9xxx, Allwinner, and Rockchip boxes.
-              The current functions include install OpenWrt to EMMC,
-              Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel,
-              Backup / Restore firmware config, Snapshot management, etc.
+            ## ${{ env.LUCI_VARIANT }} ${{ env.LUCI_ICO }}
+            Supports management of Amlogic s9xxx, Allwinner, and Rockchip boxes.
+            The current functions include install OpenWrt to EMMC,
+            Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel,
+            Backup / Restore firmware config, Snapshot management, etc.

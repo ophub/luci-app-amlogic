@@ -1,0 +1,75 @@
+#==========================================================================
+# https://github.com/ophub/luci-app-amlogic
+# Description: Delete older releases and workflows runs
+#==========================================================================
+
+name: Delete older releases and workflows
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      del_workflows:
+        description: "Delete workflows records?"
+        required: true
+        default: true
+        type: boolean
+      workflows_keep_day:
+        description: "Days to keep workflows."
+        required: false
+        default: "1"
+        type: choice
+        options:
+          - 30
+          - 20
+          - 10
+          - 9
+          - 8
+          - 7
+          - 6
+          - 5
+          - 4
+          - 3
+          - 2
+          - 1
+          - 0
+      workflows_keep_keyword:
+        description: "keywords for keep workflows."
+        required: false
+        default: ""
+      out_log:
+        description: "Output detailed JSON logs."
+        required: false
+        default: true
+        type: boolean
+
+env:
+  TZ: Etc/UTC
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+    if: ${{ github.event.repository.owner.id == github.event.sender.id }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Initialize the environment
+        id: init
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo timedatectl set-timezone "${TZ}"
+          echo "status=success" >> ${GITHUB_OUTPUT}
+
+      - name: Delete releases and workflows runs
+        uses: ophub/delete-releases-workflows@main
+        with:
+          delete_releases: false
+          delete_tags: false
+          delete_workflows: ${{ inputs.del_workflows }}
+          workflows_keep_day: ${{ inputs.workflows_keep_day }}
+          workflows_keep_keyword: ${{ inputs.workflows_keep_keyword }}
+          out_log: ${{ inputs.out_log }}
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
