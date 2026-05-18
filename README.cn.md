@@ -39,7 +39,7 @@ curl -fsSL git.io/luci-app-amlogic | bash -s -- -b main
 ```shell
 # 添加插件
 rm -rf package/luci-app-amlogic
-git clone -b lua https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # 可以单独编译此插件
 make package/luci-app-amlogic/compile V=99
@@ -68,7 +68,7 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 5.设置晶晨宝盒插件分支（main/lua）
-sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
 - 编译 OpenWrt 时，修改以上 4 项即可实现自定义。上述信息也可在登录 OpenWrt 系统后，通过 `系统` → `晶晨宝盒` 的设置界面进行修改。

@@ -39,7 +39,7 @@ curl -fsSL git.io/luci-app-amlogic | bash -s -- -b main
 ```shell
 # Add the plugin
 rm -rf package/luci-app-amlogic
-git clone -b lua https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # You can compile this plugin separately
 make package/luci-app-amlogic/compile V=99
@@ -68,7 +68,7 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 5. Set the branch of Amlogic Service plugin (main/lua)
-sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
 - When compiling OpenWrt, modifying the above 4 items enables customization. These settings can also be modified after logging into the OpenWrt system via `System` → `Amlogic Service`.
