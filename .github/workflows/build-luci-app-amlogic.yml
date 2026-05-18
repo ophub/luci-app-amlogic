@@ -11,9 +11,10 @@ on:
       branch:
         description: "Source branch to build"
         required: true
-        default: main
+        default: all
         type: choice
         options:
+          - all
           - main
           - lua
 
@@ -23,25 +24,38 @@ env:
   LUCI_ICO: ""
 
 jobs:
+  setup:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Set build matrix based on branch input
+        id: set-matrix
+        run: |
+          if [[ "${{ inputs.branch }}" == "all" ]]; then
+            MATRIX='{"include":[{"branch":"main","format":"apk","sdk_url":"https://downloads.openwrt.org/releases/25.12.4/targets/armsr/armv8/openwrt-sdk-25.12.4-armsr-armv8_gcc-14.3.0_musl.Linux-x86_64.tar.zst"},{"branch":"main","format":"ipk","sdk_url":"https://downloads.openwrt.org/releases/24.10.6/targets/armsr/armv8/openwrt-sdk-24.10.6-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64.tar.zst"},{"branch":"lua","format":"apk","sdk_url":"https://downloads.openwrt.org/releases/25.12.4/targets/armsr/armv8/openwrt-sdk-25.12.4-armsr-armv8_gcc-14.3.0_musl.Linux-x86_64.tar.zst"},{"branch":"lua","format":"ipk","sdk_url":"https://downloads.openwrt.org/releases/24.10.6/targets/armsr/armv8/openwrt-sdk-24.10.6-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64.tar.zst"}]}'
+          elif [[ "${{ inputs.branch }}" == "lua" ]]; then
+            MATRIX='{"include":[{"branch":"lua","format":"apk","sdk_url":"https://downloads.openwrt.org/releases/25.12.4/targets/armsr/armv8/openwrt-sdk-25.12.4-armsr-armv8_gcc-14.3.0_musl.Linux-x86_64.tar.zst"},{"branch":"lua","format":"ipk","sdk_url":"https://downloads.openwrt.org/releases/24.10.6/targets/armsr/armv8/openwrt-sdk-24.10.6-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64.tar.zst"}]}'
+          else
+            MATRIX='{"include":[{"branch":"main","format":"apk","sdk_url":"https://downloads.openwrt.org/releases/25.12.4/targets/armsr/armv8/openwrt-sdk-25.12.4-armsr-armv8_gcc-14.3.0_musl.Linux-x86_64.tar.zst"},{"branch":"main","format":"ipk","sdk_url":"https://downloads.openwrt.org/releases/24.10.6/targets/armsr/armv8/openwrt-sdk-24.10.6-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64.tar.zst"}]}'
+          fi
+          echo "matrix=${MATRIX}" >> "${GITHUB_OUTPUT}"
+
   build:
+    needs: setup
     runs-on: ubuntu-24.04
 
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - format: apk
-            sdk_url: https://downloads.openwrt.org/releases/25.12.4/targets/armsr/armv8/openwrt-sdk-25.12.4-armsr-armv8_gcc-14.3.0_musl.Linux-x86_64.tar.zst
-          - format: ipk
-            sdk_url: https://downloads.openwrt.org/releases/24.10.6/targets/armsr/armv8/openwrt-sdk-24.10.6-armsr-armv8_gcc-13.3.0_musl.Linux-x86_64.tar.zst
+      matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
 
-    name: build-${{ matrix.format }}-${{ inputs.branch }}
+    name: build-${{ matrix.branch }}-${{ matrix.format }}
 
     steps:
-      - name: Checkout repository [ ${{ inputs.branch }} ]
+      - name: Checkout repository [ ${{ matrix.branch }} ]
         uses: actions/checkout@v6
         with:
-          ref: ${{ inputs.branch }}
+          ref: ${{ matrix.branch }}
 
       - name: Initialize the build environment
         run: |
@@ -50,7 +64,7 @@ jobs:
 
       - name: Resolve release tag from Makefile
         env:
-          PKG_BRANCH: ${{ inputs.branch }}
+          PKG_BRANCH: ${{ matrix.branch }}
         run: |
           # Parse PKG_VERSION and PKG_RELEASE from the Makefile
           PKG_VERSION=$(awk -F':=' '/^PKG_VERSION/{print $2}' luci-app-amlogic/Makefile | tr -d ' ')
@@ -82,7 +96,7 @@ jobs:
         run: |
           SDK_TAR="$(basename "${SDK_URL}")"
           SDK_DIR="${SDK_TAR%.tar.zst}"
-          curl -fL --retry 3 --connect-timeout 30 -o "${SDK_TAR}" "${SDK_URL}"
+          curl -fL --retry 3 --connect-timeout 60 -o "${SDK_TAR}" "${SDK_URL}"
           tar -I zstd -xf "${SDK_TAR}"
           mv "${SDK_DIR}" openwrt-sdk
 
@@ -130,7 +144,7 @@ jobs:
         run: |
           find bin/packages/ -type f \( -name "*.ipk" -o -name "*.apk" \)
 
-      - name: Collect compiled packages (ipk or apk)
+      - name: Collect compiled packages
         run: |
           mkdir -p artifacts
           for pattern in "luci-app-amlogic*.ipk" "luci-app-amlogic*.apk" \
@@ -154,7 +168,7 @@ jobs:
           allow_updates: true
           remove_artifacts: false
           replaces_artifacts: true
-          make_latest: ${{ inputs.branch == 'main' && matrix.format == 'apk' }}
+          make_latest: ${{ matrix.branch == 'main' && matrix.format == 'apk' }}
           gh_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             ## ${{ env.LUCI_VARIANT }} ${{ env.LUCI_ICO }}
