@@ -509,9 +509,6 @@ msgstr "首先更新插件，再更新内核或固件。更多选项可以在插
 msgid "Collecting data..."
 msgstr "正在收集数据…"
 
-msgid "Check All Components Update"
-msgstr "插件和内核检查更新"
-
 msgid "Server Logs"
 msgstr "操作日志"
 
@@ -603,3 +600,60 @@ msgid "The device has been turned off"
 msgstr "设备已经关机"
 
 
+
+msgid "Are you sure you want to power off the device?"
+msgstr "确定要关闭设备吗？"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Click the button below to safely power off the device."
+msgstr "点击下方的按钮可以安全地关闭设备。"
+
+msgid "Display the log of plug-in service operation."
+msgstr "显示插件服务运行日志。"
+
+msgid "Edit list of backup files"
+msgstr "编辑备份文件列表"
+
+msgid "Enter the dtb file name:"
+msgstr "输入 dtb 文件名："
+
+msgid "In this list, you can manually add the file or directory list of files that need to be backed up. Please confirm that the format and content of the file are correct."
+msgstr "在此列表中，您可以手动添加需要备份的文件或目录。请确认文件的格式和内容正确。"
+
+msgid "Please refresh the page to see the changes."
+msgstr "请刷新页面以查看更改。"
+
+msgid "Power Off"
+msgstr "关闭设备"
+
+msgid "Powered off."
+msgstr "已关机。"
+
+msgid "Powering off, please wait..."
+msgstr "正在关机，请稍候……"
+
+msgid "Running"
+msgstr "运行中"
+
+msgid "Save Failed"
+msgstr "保存失败"
+
+msgid "Service Log"
+msgstr "服务日志"
+
+msgid "Start Refresh"
+msgstr "开始刷新"
+
+msgid "Stop Refresh"
+msgstr "停止刷新"
+
+msgid "Stopped"
+msgstr "已停止"
+
+msgid "Successfully saved."
+msgstr "保存成功。"
+
+msgid "Upload file..."
+msgstr "上传文件……"
