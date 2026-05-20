@@ -4,7 +4,7 @@
 
 # luci-app-amlogic / Amlogic Service
 
-[English Instructions](README.md) | [中文说明](README.cn.md)
+[English Instructions](README.md) | [中文说明](README.cn.md) | [Инструкция на русском](README.ru.md)
 
 This plugin supports online management of Amlogic S9xxx series (X96, HK1, H96, etc.), Allwinner (V-Plus Cloud), and Rockchip (BeikeYun, Chainedbox-L1-Pro, FastRhino-R66S/R68S, Radxa-5B/E25) boxes. It also supports usage within OpenWrt installed in KVM virtual machines running on the Armbian system. Current features include `installing OpenWrt to eMMC`, `manually uploading/updating online` OpenWrt firmware or kernel versions, `backup/restore OpenWrt configuration`, `snapshot management`, and `customizing firmware/kernel download site`, etc.
 
@@ -95,7 +95,7 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 
 ### Kernel version branch selection is one option
 
-- Set kernel version branch: Defaults to the branch of the current OpenWrt firmware. You can freely choose other branches or customize the branch, such as `5.10`, `5.15`, etc. The `OpenWrt` and `Kernel` `[Online Download Update]` operations will download and update based on the selected branch.
+- Set kernel version branch: Defaults to the branch of the current OpenWrt firmware. You can freely choose other branches or customize the branch, such as `6.18`, `6.12`, etc. The `OpenWrt` and `Kernel` `[Online Download Update]` operations will download and update based on the selected branch.
 
 ### Plugin branch selection is one option
 

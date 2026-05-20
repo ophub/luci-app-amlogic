@@ -4,7 +4,7 @@
 
 # luci-app-amlogic / 晶晨宝盒
 
-[English Instructions](README.md) | [中文说明](README.cn.md)
+[English Instructions](README.md) | [中文说明](README.cn.md) | [Инструкция на русском](README.ru.md)
 
 支持对晶晨 S9xxx 系列（X96、HK1、H96 等）、全志（微加云）以及瑞芯微（贝壳云、我家云、电犀牛 R66S/R68S、瑞莎 5B/E25）的盒子进行在线管理，也支持在 Armbian 系统的 KVM 虚拟机中安装的 OpenWrt 里使用。目前的功能包括`安装 OpenWrt 至 EMMC`、`手动上传升级/在线下载更新` OpenWrt 固件或内核版本、`备份/恢复固件配置`、`快照管理`以及`自定义固件/内核下载站点`等。
 
@@ -77,7 +77,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 插件设置包含 4 项内容：OpenWrt 固件下载地址、内核下载地址、版本分支选择、其他。
 
-###  OpenWrt 固件下载包含三个选项
+### OpenWrt 固件下载包含三个选项
 
 1. OpenWrt 固件下载仓库：填写您在 GitHub 上编译 OpenWrt 的仓库地址（或其他编译者的仓库），如：`https://github.com/breakingbadboy/OpenWrt` 。插件首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的地址（链接随填写内容自动更新），便于用户找到固件编译者进行交流与学习。
 
