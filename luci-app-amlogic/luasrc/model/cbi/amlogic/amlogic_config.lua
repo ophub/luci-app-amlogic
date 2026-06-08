@@ -80,7 +80,6 @@ local known_tags = {
 -- Additional tags only available for the ophub/kernel repository.
 local ophub_extra_tags = {
 	kernel_flippy = "kernel_flippy [Mainline Stable Kernel by Flippy]",
-	kernel_h6 = "kernel_h6 [Allwinner H6 Kernel]",
 	kernel_beta = "kernel_beta [Beta Kernel]",
 }
 -- Conditionally merge extra tags for the ophub/kernel repository.
@@ -101,8 +100,8 @@ else
 		kernel_tagsname = "kernel_rk3588"
 	elseif (string.find(kernel_release_info, "-rk35xx")) then
 		kernel_tagsname = "kernel_rk35xx"
-	elseif (string.find(kernel_release_info, "-h6") or string.find(kernel_release_info, "-zicai")) then
-		kernel_tagsname = "kernel_h6"
+	elseif (string.find(kernel_release_info, "-beta")) then
+		kernel_tagsname = "kernel_beta"
 	else
 		kernel_tagsname = "kernel_stable"
 	end
@@ -123,7 +122,6 @@ kernel_tags.rmempty = false
 --7. Kernel version branch (major.minor).
 kernel_branch = o:option(Value, "amlogic_kernel_branch", translate("Set version branch:"))
 kernel_branch.description = translate("Set the version branch of the OpenWrt files and kernel selected in [Online Download Update].")
-kernel_branch:value("5.4", translate("5.4"))
 kernel_branch:value("5.10", translate("5.10"))
 kernel_branch:value("5.15", translate("5.15"))
 kernel_branch:value("6.1", translate("6.1"))
