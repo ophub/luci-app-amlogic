@@ -26,18 +26,15 @@ function index()
 	root_pt = root_pt:gsub("%s+", "")
 	local is_installed = false
 	if root_pt ~= "" then
-		local is_storage_type = (
-			root_pt:match("^mmcblk%d+p%d+$") or
-			root_pt:match("^[hsv]d[a-z]%d+$") or
-			root_pt:match("^nvme%d+n%d+p%d+$")
-		)
-		if is_storage_type then
-			-- Extract base block device name (e.g. sda2 -> sda, mmcblk2p4 -> mmcblk2)
-			local base_dev = root_pt:gsub("p?%d+$", "")
-			local removable = luci.sys.exec("cat /sys/block/" .. base_dev .. "/removable 2>/dev/null") or ""
-			removable = removable:gsub("%s+", "")
-			-- removable=0 means internal storage (eMMC/NVMe/SATA), removable=1 means USB/SD
-			is_installed = (removable == "0")
+		-- Only hide the install menu when root is already on eMMC (device/type == "MMC").
+		-- All other boot media (TF/SD, NVMe, SATA, USB) should still show the install menu.
+		if root_pt:match("^mmcblk%d+p%d+$") then
+			-- Extract base device name (e.g. mmcblk1p2 -> mmcblk1)
+			local base_dev = root_pt:gsub("p%d+$", "")
+			local mmc_type = luci.sys.exec("cat /sys/block/" .. base_dev .. "/device/type 2>/dev/null") or ""
+			mmc_type = mmc_type:gsub("%s+", "")
+			-- eMMC reports "MMC", TF/SD card reports "SD"
+			is_installed = (mmc_type == "MMC")
 		end
 	end
 
