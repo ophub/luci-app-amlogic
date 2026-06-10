@@ -171,21 +171,21 @@ jobs:
           make_latest: ${{ matrix.branch == 'main' && matrix.format == 'apk' }}
           gh_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            ## ${{ env.LUCI_VARIANT }} ${{ env.LUCI_ICO }}
+            # ${{ env.LUCI_VARIANT }} ${{ env.LUCI_ICO }}
+
+            ## English
             Supports management of Amlogic s9xxx, Allwinner, and Rockchip boxes.
             The current functions include install OpenWrt to EMMC,
             Manually Upload Updates / Download Updates Online to update the OpenWrt firmware or kernel,
             Backup / Restore firmware config, Snapshot management, etc.
 
-            <br>
-
+            ## 中文
             支持对晶晨 S9xxx 系列、全志以及瑞芯微的盒子进行在线管理，
             目前的功能包括安装 OpenWrt 至 EMMC、
             手动上传升级/在线下载更新 OpenWrt 固件或内核版本、
             备份/恢复固件配置、快照管理以及自定义固件/内核下载站点等。
 
-            <br>
-
+            ## Русский
             Поддерживает онлайн-управление приставками серии Amlogic s9xxx, Allwinner и Rockchip.
             Текущие функции включают установку OpenWrt на EMMC,
             ручную загрузку обновлений / загрузку обновлений онлайн для прошивки OpenWrt или ядра,
