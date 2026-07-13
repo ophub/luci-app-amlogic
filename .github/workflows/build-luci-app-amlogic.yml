@@ -25,7 +25,7 @@ env:
 
 jobs:
   setup:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -43,7 +43,7 @@ jobs:
 
   build:
     needs: setup
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
 
@@ -62,7 +62,7 @@ jobs:
       - name: Initialize the build environment
         run: |
           sudo apt-get update
-          sudo apt-get install -y $(curl -fsSL https://ophub.org/ubuntu2404-make-openwrt-depends)
+          sudo apt-get install -y $(curl -fsSL https://ophub.org/ubuntu2604-make-openwrt-depends)
 
       - name: Resolve release tag from Makefile
         env:
