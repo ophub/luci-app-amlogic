@@ -111,7 +111,7 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 
 ### Default Settings Description
 
-- The default OpenWrt firmware download service for this plugin is provided by [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt). If you encounter any issues during OpenWrt compilation or usage, please submit feedback on the GitHub page.
+- The default OpenWrt firmware download service for this plugin is provided by [https://github.com/ophub/amlogic-s9xxx-openwrt](https://github.com/ophub/amlogic-s9xxx-openwrt). If you encounter any issues during OpenWrt compilation or usage, please submit feedback on the [Issues](https://github.com/ophub/amlogic-s9xxx-openwrt/issues) page.
 
 - The default OpenWrt kernel for the plugin is provided by [https://github.com/ophub/kernel](https://github.com/ophub/kernel). Among them, kernels under the [kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) tag are stable mainline kernels compiled and shared by developer [flippy](https://github.com/unifreq). For the [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) and [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) tags, kernels with `flippy` in their names are Rockchip-specific kernels provided by the same developer, while the rest are compiled by [ophub/kernel](https://github.com/ophub/kernel). Kernels under the [kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) tag are stable mainline kernels compiled by [ophub/kernel](https://github.com/ophub/kernel).
 

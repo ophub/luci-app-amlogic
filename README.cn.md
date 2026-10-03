@@ -111,7 +111,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 ### 默认设置说明
 
-- 插件默认的 OpenWrt 固件下载服务由 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 提供支持。如在 OpenWrt 编译或使用过程中遇到问题，可前往 GitHub 页面提交反馈。
+- 插件默认的 OpenWrt 固件下载服务由 [https://github.com/ophub/amlogic-s9xxx-openwrt](https://github.com/ophub/amlogic-s9xxx-openwrt) 提供支持。如在 OpenWrt 编译或使用过程中遇到问题，可前往 [Issues](https://github.com/ophub/amlogic-s9xxx-openwrt/issues) 页面提交反馈。
 
 - 插件默认的 OpenWrt 内核由 [https://github.com/ophub/kernel](https://github.com/ophub/kernel) 提供支持。其中，[kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) 标签下的内核均为 [flippy](https://github.com/unifreq) 大佬编译并分享的稳定版主线内核；在 [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) 和 [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) 标签中，名称包含 `flippy` 的也是由他编译和分享的 Rockchip 系列专用内核，其余则由 [ophub/kernel](https://github.com/ophub/kernel) 编译提供。[kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) 标签下为 [ophub/kernel](https://github.com/ophub/kernel) 编译的稳定版主线内核。
 

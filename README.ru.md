@@ -111,7 +111,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 ### Описание настроек по умолчанию
 
-- Служба загрузки прошивки OpenWrt по умолчанию для этого плагина предоставляется [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt). Если у вас возникнут вопросы при сборке или использовании OpenWrt, оставляйте отзывы на странице GitHub.
+- Служба загрузки прошивки OpenWrt по умолчанию для этого плагина предоставляется [https://github.com/ophub/amlogic-s9xxx-openwrt](https://github.com/ophub/amlogic-s9xxx-openwrt). Если у вас возникнут вопросы при сборке или использовании OpenWrt, оставляйте отзывы на странице [Issues](https://github.com/ophub/amlogic-s9xxx-openwrt/issues).
 
 - Ядро OpenWrt по умолчанию для плагина предоставлено репозиторием [https://github.com/ophub/kernel](https://github.com/ophub/kernel). Ядра под тегом [kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) — это стабильные ядра мейнлайна, скомпилированные и опубликованные разработчиком [flippy](https://github.com/unifreq). В тегах [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) и [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) ядра с именем, содержащим `flippy`, — это специализированные ядра для Rockchip от того же разработчика, остальные скомпилированы [ophub/kernel](https://github.com/ophub/kernel). Под тегом [kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) находятся стабильные ядра мейнлайна от [ophub/kernel](https://github.com/ophub/kernel).
 
