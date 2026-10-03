@@ -37,13 +37,13 @@ mydevice.rmempty = false
 --2. Firmware download repository URL.
 firmware_repo = o:option(Value, "amlogic_firmware_repo", translate("OpenWrt download repository:"))
 firmware_repo.description = translate("Set the OpenWrt files download repository on github.com in [Online Download Update].")
-firmware_repo.default = "https://github.com/breakingbadboy/OpenWrt"
+firmware_repo.default = "https://github.com/ophub/amlogic-s9xxx-openwrt"
 firmware_repo.rmempty = false
 
 --3. Firmware release tag keyword filter.
 firmware_tag = o:option(Value, "amlogic_firmware_tag", translate("OpenWrt download tags keyword:"))
 firmware_tag.description = translate("Set the OpenWrt files download tags keyword for github.com in [Online Download Update].")
-firmware_tag.default = "ARMv8"
+firmware_tag.default = "OpenWrt_lede_"
 firmware_tag.rmempty = false
 
 --4. Firmware file extension selection.
@@ -59,9 +59,8 @@ firmware_suffix.rmempty = false
 --5. Kernel download repository URL.
 kernel_path = o:option(Value, "amlogic_kernel_path", translate("Kernel download repository:"))
 kernel_path.description = translate("Set the kernel files download repository on github.com in [Online Download Update].")
-kernel_path:value("https://github.com/breakingbadboy/OpenWrt")
 kernel_path:value("https://github.com/ophub/kernel")
-kernel_path.default = "https://github.com/breakingbadboy/OpenWrt"
+kernel_path.default = "https://github.com/ophub/kernel"
 kernel_path.rmempty = false
 
 --6. Kernel tags: build the tag list based on the selected repository, then derive the default.

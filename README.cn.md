@@ -79,7 +79,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 ### OpenWrt 固件下载包含三个选项
 
-1. OpenWrt 固件下载仓库：填写您在 GitHub 上编译 OpenWrt 的仓库地址（或其他编译者的仓库），如：`https://github.com/breakingbadboy/OpenWrt` 。插件首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的地址（链接随填写内容自动更新），便于用户找到固件编译者进行交流与学习。
+1. OpenWrt 固件下载仓库：填写您在 GitHub 上编译 OpenWrt 的仓库地址（或其他编译者的仓库），如：`https://github.com/ophub/amlogic-s9xxx-openwrt` 。插件首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的地址（链接随填写内容自动更新），便于用户找到固件编译者进行交流与学习。
 
 2. Releases 里 Tags 的关键字：该关键字需能区分 x86、R2S 等其他架构的固件，确保通过此关键字可准确找到对应的 OpenWrt 固件。
 
@@ -111,7 +111,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 ### 默认设置说明
 
-- 插件默认的 OpenWrt 固件（ [全插件完整版](https://github.com/breakingbadboy/OpenWrt/releases/tag/ARMv8) | [精选插件 Mini 版](https://github.com/breakingbadboy/OpenWrt/releases/tag/armv8_mini) | [Flippy 分享版](https://github.com/breakingbadboy/OpenWrt/releases/tag/flippy_openwrt) ）下载服务由 [breakingbadboy](https://github.com/breakingbadboy/OpenWrt) 提供支持。他是 flippy 社区的核心维护者，深谙 OpenWrt 编译，并精通固件所支持的各系列 ARM 设备的安装与配置。如在 OpenWrt 编译或使用过程中遇到问题，可前往社区咨询或在其 GitHub 页面提交反馈。
+- 插件默认的 OpenWrt 固件下载服务由 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 提供支持。如在 OpenWrt 编译或使用过程中遇到问题，可前往 GitHub 页面提交反馈。
 
 - 插件默认的 OpenWrt 内核由 [https://github.com/ophub/kernel](https://github.com/ophub/kernel) 提供支持。其中，[kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) 标签下的内核均为 [flippy](https://github.com/unifreq) 大佬编译并分享的稳定版主线内核；在 [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) 和 [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) 标签中，名称包含 `flippy` 的也是由他编译和分享的 Rockchip 系列专用内核，其余则由 [ophub/kernel](https://github.com/ophub/kernel) 编译提供。[kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) 标签下为 [ophub/kernel](https://github.com/ophub/kernel) 编译的稳定版主线内核。
 
@@ -137,7 +137,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 ## KVM 虚拟机使用说明
 
-对于性能较强的盒子，可先安装 [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) 系统，再通过 KVM 虚拟机实现多系统并行使用。OpenWrt 系统镜像可使用 [unifreq](https://github.com/unifreq/openwrt_packit) 开发的 [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) 脚本进行制作，其安装与使用说明详见 [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) 文档。插件`在线下载更新`中的 OpenWrt QEMU 固件由 [breakingbadboy](https://github.com/breakingbadboy/OpenWrt) 提供支持。
+对于性能较强的盒子，可先安装 [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) 系统，再通过 KVM 虚拟机实现多系统并行使用。OpenWrt 系统镜像可使用 [unifreq](https://github.com/unifreq/openwrt_packit) 开发的 [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) 脚本进行制作，其安装与使用说明详见 [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) 文档。
 
 插件在 KVM 虚拟机中的使用方法与在盒子中直接使用 OpenWrt 时相同。
 
