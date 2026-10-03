@@ -223,10 +223,10 @@ install_plugin() {
     new_release=""
     if [[ "${package_manager}" == "ipk" ]]; then
         _ipk_file="$(ls ${tmp_dir}/luci-app-amlogic_*.ipk 2>/dev/null | head -n 1)"
-        new_release="$(echo "${_ipk_file}" | grep -oE '\-r[0-9]+_' | grep -oE '[0-9]+')"
+        new_release="$(echo "${_ipk_file}" | grep -oE '\-r[0-9]+_' | grep -oE '[0-9]+' | head -n 1)"
     elif [[ "${package_manager}" == "apk" ]]; then
-        _apk_file="$(ls ${tmp_dir}/luci-app-amlogic_*.apk 2>/dev/null | head -n 1)"
-        new_release="$(echo "${_apk_file}" | grep -oE '\-r[0-9]+[-~]' | grep -oE '[0-9]+')"
+        _apk_file="$(ls ${tmp_dir}/luci-app-amlogic-*.apk 2>/dev/null | head -n 1)"
+        new_release="$(echo "${_apk_file}" | grep -oE '\-r[0-9]+' | grep -oE '[0-9]+' | head -n 1)"
     fi
 
     # Detect the PKG_RELEASE of the currently installed package
