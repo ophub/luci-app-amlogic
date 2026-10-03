@@ -39,7 +39,7 @@ curl -fsSL git.io/luci-app-amlogic | bash -s -- -b main
 ```shell
 # 添加插件
 rm -rf package/luci-app-amlogic
-git clone -b lua https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # 可以单独编译此插件
 make package/luci-app-amlogic/compile V=99
@@ -68,7 +68,7 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 5.设置晶晨宝盒插件分支（main/lua）
-sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
 - 编译 OpenWrt 时，修改以上 4 项即可实现自定义。上述信息也可在登录 OpenWrt 系统后，通过 `系统` → `晶晨宝盒` 的设置界面进行修改。
@@ -146,6 +146,11 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-ap
 第一步，编译 Rootfs 文件：使用 OpenWrt 源码进行编译，在 `Target System` 中选择 `Arm SystemReady (EFI) compliant`，在 `Subtarget` 中选择 `64-bit (armv8) machines`，在 `Target Profile` 中选择 `Generic EFI Boot`，并添加[必选软件包](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.cn.md#1011-openwrt-必选项)，即可编译生成 OpenWrt 的 `rootfs.tar.gz` 文件。
 
 第二步，打包不同设备的 OpenWrt 专用固件：使用 [flippy](https://github.com/unifreq/openwrt_packit) 或 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 的脚本均可为不同设备打包 OpenWrt 专用固件。详细使用说明请参阅相关仓库。
+
+## 插件版本号说明
+
+- 插件的版本号采用日期 + 日内序号格式 `YY.MM.DDNN`。例如 `26.10.0101` 表示 2026 年 10 月 01 日的第 01 个发布，`26.10.0102` 表示当日的第 02 个发布，依此类推。
+- Releases 页面同时提供 Lua 和 JavaScript 两个分支的安装包：Lua 版本（lua 分支）标签为 `YY.MM.DDNN`，JavaScript 版本（main 分支）标签为 `YY.MM.DDNN-js`。
 
 ## 插件界面
 

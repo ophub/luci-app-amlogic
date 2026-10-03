@@ -39,7 +39,7 @@ curl -fsSL git.io/luci-app-amlogic | bash -s -- -b main
 ```shell
 # Add the plugin
 rm -rf package/luci-app-amlogic
-git clone -b lua https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # You can compile this plugin separately
 make package/luci-app-amlogic/compile V=99
@@ -68,7 +68,7 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 5. Set the branch of Amlogic Service plugin (main/lua)
-sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
 - When compiling OpenWrt, modifying the above 4 items enables customization. These settings can also be modified after logging into the OpenWrt system via `System` → `Amlogic Service`.
@@ -147,6 +147,11 @@ The plugin operates identically in a KVM virtual machine as it does when OpenWrt
 Step 1: Compile the Rootfs file: Using the OpenWrt source code, select the `Arm SystemReady (EFI) compliant` option under `Target System`, select `64-bit (armv8) machines` under `Subtarget`, select `Generic EFI Boot` under `Target Profile`, and add the [required software packages](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.md#1011-required-openwrt-options) to compile the OpenWrt `rootfs.tar.gz` file.
 
 Step 2: Package device-specific OpenWrt firmware: Use the scripts from [flippy](https://github.com/unifreq/openwrt_packit) or [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) to package device-specific OpenWrt firmware. Refer to the respective repositories for detailed usage instructions.
+
+## Plugin Version Numbering
+
+- The plugin version uses a date + daily sequence format `YY.MM.DDNN`. For example, `26.10.0101` is the 1st release on October 1, 2026, `26.10.0102` is the 2nd release of the same day, and so on.
+- The Releases page provides packages for both Lua and JavaScript branches: the Lua version (lua branch) is tagged `YY.MM.DDNN`, and the JavaScript version (main branch) is tagged `YY.MM.DDNN-js`.
 
 ## Plugin Interface
 

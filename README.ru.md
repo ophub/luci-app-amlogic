@@ -39,7 +39,7 @@ curl -fsSL git.io/luci-app-amlogic | bash -s -- -b main
 ```shell
 # Добавить плагин
 rm -rf package/luci-app-amlogic
-git clone -b lua https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # Можно скомпилировать плагин отдельно
 make package/luci-app-amlogic/compile V=99
@@ -68,7 +68,7 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 5. Указать ветку плагина Amlogic Service (main/lua)
-sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
 - При сборке OpenWrt достаточно изменить указанные 4 пункта для пользовательской настройки. Эти параметры также можно изменить после входа в систему OpenWrt через `Система` → `Сервис Amlogic`.
@@ -146,6 +146,11 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-ap
 Шаг 1. Компиляция файла Rootfs: используя исходный код OpenWrt, в разделе `Target System` выберите `Arm SystemReady (EFI) compliant`, в `Subtarget` — `64-bit (armv8) machines`, в `Target Profile` — `Generic EFI Boot`, и добавьте [обязательные пакеты](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.md#1011-required-openwrt-options) для компиляции файла `rootfs.tar.gz` OpenWrt.
 
 Шаг 2. Упаковка специализированной прошивки OpenWrt для конкретных устройств: используйте скрипты от [flippy](https://github.com/unifreq/openwrt_packit) или [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) для создания специализированной прошивки. Подробные инструкции по использованию см. в соответствующих репозиториях.
+
+## Описание нумерации версий плагина
+
+- Версия плагина использует формат даты + внутридневного порядкового номера `YY.MM.DDNN`. Например, `26.10.0101` — первый релиз 1 октября 2026 года, `26.10.0102` — второй релиз того же дня, и так далее.
+- На странице Releases доступны пакеты для веток Lua и JavaScript: версия Lua (ветка lua) имеет тег `YY.MM.DDNN`, а версия JavaScript (ветка main) — `YY.MM.DDNN-js`.
 
 ## Интерфейс плагина
 
