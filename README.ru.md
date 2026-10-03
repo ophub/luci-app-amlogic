@@ -71,7 +71,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
-- При сборке OpenWrt достаточно изменить указанные 4 пункта для пользовательской настройки. Эти параметры также можно изменить после входа в систему OpenWrt через `Система` → `Сервис Amlogic`.
+- При сборке OpenWrt достаточно изменить указанные пункты для пользовательской настройки. Эти параметры также можно изменить после входа в систему OpenWrt через `Система` → `Сервис Amlogic`.
 
 ## Описание настроек плагина
 
@@ -85,7 +85,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 3. Расширение файлов OpenWrt: поддерживаемые форматы — `.img.gz`, `.img.xz` и `.7z`. Формат `.img` не поддерживается из-за большого размера файла и низкой скорости загрузки.
 
-- При именовании файлов прошивки `OpenWrt` в Releases указывайте `модель SoC` и `версию ядра`: openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz, например: openwrt_ `s905d`_ n1_R21.8.6_k`5.15.25`-flippy-62+o.7z. Поддерживаемые модели `SoC`: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. Поддерживаемые версии ядра: `5.10.xxx`, `5.15.xxx` и другие.
+- При именовании файлов прошивки `OpenWrt` в Releases указывайте `модель SoC` и `версию ядра`: `openwrt_{soc}_xxx_{kernel}_xxx.img.gz`, например: `openwrt_s905d_n1_R21.8.6_k5.15.25-flippy-62+o.7z`. Поддерживаемые модели `SoC`: `s905x3`, `s905x2`, `s905x`, `s905w`, `s905d`, `s922x`, `s912`, `l1pro`, `beikeyun`, `vplus`. Поддерживаемые версии ядра: `5.10.xxx`, `5.15.xxx` и другие.
 
 ### Раздел загрузки ядра содержит два параметра
 
@@ -172,4 +172,4 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 ## Лицензия
 
-The luci-app-amlogic © OPHUB is licensed under [GPL-2.0](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE)
+luci-app-amlogic © OPHUB is licensed under [GPL-2.0](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE)
