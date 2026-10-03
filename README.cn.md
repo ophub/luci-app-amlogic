@@ -147,6 +147,11 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 第二步，打包不同设备的 OpenWrt 专用固件：使用 [flippy](https://github.com/unifreq/openwrt_packit) 或 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 的脚本均可为不同设备打包 OpenWrt 专用固件。详细使用说明请参阅相关仓库。
 
+## 插件版本号说明
+
+- 插件的版本号采用日期 + 日内序号格式 `YY.MM.DDNN`。例如 `26.10.0101` 表示 2026 年 10 月 01 日的第 01 个发布，`26.10.0102` 表示当日的第 02 个发布，依此类推。
+- Releases 页面同时提供 Lua 和 JavaScript 两个分支的安装包：Lua 版本（lua 分支）标签为 `YY.MM.DDNN`，JavaScript 版本（main 分支）标签为 `YY.MM.DDNN-js`。
+
 ## 插件界面
 
 ![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/145738345-31dd85cf-5e43-444e-a624-f21a28be2a7c.gif)

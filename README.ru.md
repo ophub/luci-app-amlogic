@@ -147,6 +147,11 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 Шаг 2. Упаковка специализированной прошивки OpenWrt для конкретных устройств: используйте скрипты от [flippy](https://github.com/unifreq/openwrt_packit) или [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) для создания специализированной прошивки. Подробные инструкции по использованию см. в соответствующих репозиториях.
 
+## Описание нумерации версий плагина
+
+- Версия плагина использует формат даты + внутридневного порядкового номера `YY.MM.DDNN`. Например, `26.10.0101` — первый релиз 1 октября 2026 года, `26.10.0102` — второй релиз того же дня, и так далее.
+- На странице Releases доступны пакеты для веток Lua и JavaScript: версия Lua (ветка lua) имеет тег `YY.MM.DDNN`, а версия JavaScript (ветка main) — `YY.MM.DDNN-js`.
+
 ## Интерфейс плагина
 
 ![luci-app-amlogic](https://user-images.githubusercontent.com/68696949/145738345-31dd85cf-5e43-444e-a624-f21a28be2a7c.gif)
