@@ -6,9 +6,9 @@
 
 [English Instructions](README.md) | [中文说明](README.cn.md) | [Инструкция на русском](README.ru.md)
 
-支持对晶晨 S9xxx 系列（X96、HK1、H96 等）、全志（微加云）以及瑞芯微（贝壳云、我家云、电犀牛 R66S/R68S、瑞莎 5B/E25）的盒子进行在线管理，也支持在 Armbian 系统的 KVM 虚拟机中安装的 OpenWrt 里使用。目前的功能包括`安装 OpenWrt 至 EMMC`、`手动上传升级/在线下载更新` OpenWrt 固件或内核版本、`备份/恢复固件配置`、`快照管理`以及`自定义固件/内核下载站点`等。
+支持对晶晨 S9xxx 系列（X96、HK1、H96 等）、全志（微加云）以及瑞芯微（贝壳云、我家云、电犀牛 R66S/R68S、瑞莎 5B/E25）的盒子进行在线管理，也支持在 Armbian 系统的 KVM 虚拟机中安装的 OpenWrt 里使用。目前的功能包括 `安装 OpenWrt 至 EMMC`、`手动上传更新/在线下载更新` OpenWrt 固件或内核版本、`备份/恢复固件配置`、`快照管理` 以及 `自定义固件/内核下载站点` 等。
 
-在盒子中使用 OpenWrt 系统及晶晨宝盒插件，需要一些[必选软件包](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.cn.md#1011-openwrt-必选项)的支持，在`自定义编译 OpenWrt`时，请根据说明添加。在未集成晶晨宝盒插件的 OpenWrt 中使用一键脚本`手动安装`时，如果提示缺少依赖，请根据日志提示先安装依赖（`系统` > `软件包` > `刷新列表` > `搜索对应的软件包` > `安装`），然后`再重试`。
+在盒子中使用 OpenWrt 系统及晶晨宝盒插件，需要一些[必选软件包](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.cn.md#1011-openwrt-必选项)的支持，在 `自定义编译 OpenWrt` 时，请根据说明添加。在未集成晶晨宝盒插件的 OpenWrt 中使用一键脚本 `手动安装` 时，如果提示缺少依赖，请根据日志提示先安装依赖（`系统` > `软件包` > `刷新列表` > `搜索对应的软件包` > `安装`），然后 `再重试`。
 
 ## 手动安装
 
@@ -52,7 +52,7 @@ make V=99
 
 ## 自定义配置
 
-- 本插件支持由 [flippy](https://github.com/unifreq/openwrt_packit) 和 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 相关脚本打包的 OpenWrt 固件。插件中`在线下载更新`功能的 `OpenWrt 固件`及`内核`文件下载地址支持自定义为您自己的 GitHub 仓库。配置信息保存在 [/etc/config/amlogic](luci-app-amlogic/root/etc/config/amlogic) 文件中。编译 OpenWrt 固件时，可直接修改该文件中的相关值进行配置：
+- 本插件支持由 [flippy](https://github.com/unifreq/openwrt_packit) 和 [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt) 相关脚本打包的 OpenWrt 固件。插件中 `在线下载更新` 功能的 `OpenWrt 固件` 及 `内核` 文件下载地址支持自定义为您自己的 GitHub 仓库。配置信息保存在 [/etc/config/amlogic](luci-app-amlogic/root/etc/config/amlogic) 文件中。编译 OpenWrt 固件时，可直接修改该文件中的相关值进行配置：
 
 ```shell
 # 1.设置OpenWrt 文件的下载仓库
@@ -71,7 +71,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
-- 编译 OpenWrt 时，修改以上 4 项即可实现自定义。上述信息也可在登录 OpenWrt 系统后，通过 `系统` → `晶晨宝盒` 的设置界面进行修改。
+- 编译 OpenWrt 时，修改以上各项即可实现自定义。上述信息也可在登录 OpenWrt 系统后，通过 `系统` → `晶晨宝盒` 的设置界面进行修改。
 
 ## 插件设置说明
 
@@ -79,13 +79,13 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-ap
 
 ### OpenWrt 固件下载包含三个选项
 
-1. OpenWrt 固件下载仓库：填写您在 GitHub 上编译 OpenWrt 的仓库地址（或其他编译者的仓库），如：`https://github.com/ophub/amlogic-s9xxx-openwrt` 。插件首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的地址（链接随填写内容自动更新），便于用户找到固件编译者进行交流与学习。
+1. OpenWrt 固件下载仓库：填写您在 GitHub 上编译 OpenWrt 的仓库地址（或其他编译者的仓库），如：`https://github.com/ophub/amlogic-s9xxx-openwrt`。插件首页的 `OpenWrt Compiler author` 按钮将链接至此处填写的地址（链接随填写内容自动更新），便于用户找到固件编译者进行交流与学习。
 
 2. Releases 里 Tags 的关键字：该关键字需能区分 x86、R2S 等其他架构的固件，确保通过此关键字可准确找到对应的 OpenWrt 固件。
 
 3. OpenWrt 文件的后缀：支持的格式包括 `.img.gz`、`.img.xz` 和 `.7z`，不支持 `.img` 格式（因文件体积过大，下载速度慢）。
 
-- 在 Releases 中为 `OpenWrt` 固件命名时，请包含 `SoC 型号`和`内核版本`：openwrt_ `{soc}`_ xxx_`{kernel}`_ xxx.img.gz，例如：openwrt_ `s905d`_ n1_R21.8.6_k`5.15.25`-flippy-62+o.7z。支持的 `SoC` 包括：`s905x3`、`s905x2`、`s905x`、`s905w`、`s905d`、`s922x`、`s912`、`l1pro`、`beikeyun`、`vplus`。支持的`内核版本`包括 `5.10.xxx`、`5.15.xxx` 等。
+- 在 Releases 中为 `OpenWrt` 固件命名时，请包含 `SoC 型号` 和 `内核版本`：`openwrt_{soc}_xxx_{kernel}_xxx.img.gz`，例如：`openwrt_s905d_n1_R21.8.6_k5.15.25-flippy-62+o.7z`。支持的 `SoC` 包括：`s905x3`、`s905x2`、`s905x`、`s905w`、`s905d`、`s922x`、`s912`、`l1pro`、`beikeyun`、`vplus`。支持的 `内核版本` 包括 `5.10.xxx`、`5.15.xxx` 等。
 
 ### 内核下载为两个选项
 
@@ -95,7 +95,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-ap
 
 ### 内核版本分支选择为一个选项
 
-- 设置版本分支：默认为当前 OpenWrt 固件所用的分支。您可以自由选择其他分支，也可以自定义分支，如 `6.18`、`6.12` 等。执行 `OpenWrt` 和`内核`的`[在线下载更新]`时，将根据所选分支进行下载与更新。
+- 设置版本分支：默认为当前 OpenWrt 固件所用的分支。您可以自由选择其他分支，也可以自定义分支，如 `6.18`、`6.12` 等。执行 `OpenWrt` 和 `内核` 的 `[在线下载更新]` 时，将根据所选分支进行下载与更新。
 
 ### 插件分支设置为一个选项
 
@@ -115,25 +115,25 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-ap
 
 - 插件默认的 OpenWrt 内核由 [https://github.com/ophub/kernel](https://github.com/ophub/kernel) 提供支持。其中，[kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) 标签下的内核均为 [flippy](https://github.com/unifreq) 大佬编译并分享的稳定版主线内核；在 [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) 和 [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) 标签中，名称包含 `flippy` 的也是由他编译和分享的 Rockchip 系列专用内核，其余则由 [ophub/kernel](https://github.com/ophub/kernel) 编译提供。[kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) 标签下为 [ophub/kernel](https://github.com/ophub/kernel) 编译的稳定版主线内核。
 
-- 当内核结束其生命周期（停止更新）后将被弃用，届时可在`插件设置`中选择其他受支持的内核版本继续使用。若部分内核版本暂未提供对应的完整固件，用户同样可在`插件设置`中更改内核分支，以匹配下载地址中可用的对应版本。
+- 当内核结束其生命周期（停止更新）后将被弃用，届时可在 `插件设置` 中选择其他受支持的内核版本继续使用。若部分内核版本暂未提供对应的完整固件，用户同样可在 `插件设置` 中更改内核分支，以匹配下载地址中可用的对应版本。
 
 ## 插件使用说明
 
 插件提供 6 项功能：安装 OpenWrt、手动上传更新、在线下载更新、备份固件配置、插件设置、CPU 设置。
 
-1. 安装 OpenWrt：在`选择设备型号`列表中选择您的设备，点击`安装`即可将固件从 TF/SD/USB 写入设备内置的 eMMC。
+1. 安装 OpenWrt：在 `选择设备型号` 列表中选择您的设备，点击 `安装` 即可将固件从 TF/SD/USB 写入设备内置的 eMMC。
 
-2. 手动上传更新：点击`选择文件`按钮，选择本地的 `OpenWrt 内核（需上传全套内核文件）`或 `OpenWrt 固件（推荐上传压缩格式）`并上传。上传完成后，页面下方将根据所上传的内容显示对应的`更换 OpenWrt 内核`或`更新 OpenWrt 固件`按钮，点击即可执行更新（更新完成后系统将自动重启）。
+2. 手动上传更新：点击 `选择文件` 按钮，选择本地的 `OpenWrt 内核（需上传全套内核文件）` 或 `OpenWrt 固件（推荐上传压缩格式）` 并上传。上传完成后，页面下方将根据所上传的内容显示对应的 `更换 OpenWrt 内核` 或 `更新 OpenWrt 固件` 按钮，点击即可执行更新（更新完成后系统将自动重启）。
 
-3. 在线下载更新：点击`仅更新宝盒插件`按钮，可将晶晨宝盒插件更新至最新版本；点击`仅更新系统内核`将根据`插件设置`中选择的内核分支下载对应的内核；点击`完整更新全系统`将根据`插件设置`中的下载站点下载最新固件；点击`救援原系统内核`按钮，会将当前设备正在使用的内核复制到目标磁盘，便于在内核更新失败导致 OpenWrt 系统无法启动时实施救援。例如，可从 USB 启动 OpenWrt 系统救援 eMMC 中的系统，支持在 `eMMC/NVME/sdX` 设备之间相互救援。
+3. 在线下载更新：点击 `仅更新宝盒插件` 按钮，可将晶晨宝盒插件更新至最新版本；点击 `仅更新系统内核` 将根据 `插件设置` 中选择的内核分支下载对应的内核；点击 `完整更新全系统` 将根据 `插件设置` 中的下载站点下载最新固件；点击 `救援原系统内核` 按钮，会将当前设备正在使用的内核复制到目标磁盘，便于在内核更新失败导致 OpenWrt 系统无法启动时实施救援。例如，可从 USB 启动 OpenWrt 系统救援 eMMC 中的系统，支持在 `eMMC/NVME/sdX` 设备之间相互救援。
 
-4. 备份固件配置：点击`打开列表`按钮可编辑备份列表；点击`下载备份`按钮可将当前设备中 OpenWrt 的配置信息备份到本地；点击`上传备份`按钮可上传备份的配置文件以恢复系统配置。点击`创建快照`、`还原快照`和`删除快照`按钮可对快照进行相应管理。快照会记录当前 OpenWrt 系统中 `/etc` 目录下的全部配置信息，便于日后一键恢复至当前配置状态。其作用与`下载备份`类似，但仅保存在当前系统中，不支持下载。
+4. 备份固件配置：点击 `打开列表` 按钮可编辑备份列表；点击 `下载备份` 按钮可将当前设备中 OpenWrt 的配置信息备份到本地；点击 `上传备份` 按钮可上传备份的配置文件以恢复系统配置。点击 `创建快照`、`还原快照` 和 `删除快照` 按钮可对快照进行相应管理。快照会记录当前 OpenWrt 系统中 `/etc` 目录下的全部配置信息，便于日后一键恢复至当前配置状态。其作用与 `下载备份` 类似，但仅保存在当前系统中，不支持下载。
 
 5. 插件设置：设置插件的内核下载地址等信息，详见 `插件设置说明` 的相关介绍。
 
 6. CPU 设置：设置 CPU 的调度策略（推荐使用默认设置），可根据需要进行设置。
 
-注意：`安装 OpenWrt` 和 `CPU 设置`等部分功能会根据设备类型及运行环境的差异自动隐藏不适用的选项。
+注意：`安装 OpenWrt` 和 `CPU 设置` 等部分功能会根据设备类型及运行环境的差异自动隐藏不适用的选项。
 
 ## KVM 虚拟机使用说明
 
@@ -162,7 +162,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-ap
 - 文件上传下载等功能借鉴了 [luci-app-filetransfer](https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-filetransfer)
 - CPU 设置功能借鉴了 [luci-app-cpufreq](https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-cpufreq)
 
-## 链接
+## 相关链接
 
 - [OpenWrt](https://github.com/openwrt/openwrt)
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
@@ -172,4 +172,4 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-ap
 
 ## 许可
 
-The luci-app-amlogic © OPHUB is licensed under [GPL-2.0](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE)
+luci-app-amlogic © OPHUB is licensed under [GPL-2.0](https://github.com/ophub/luci-app-amlogic/blob/main/LICENSE)
