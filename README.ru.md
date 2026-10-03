@@ -79,7 +79,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 ### Раздел загрузки прошивки OpenWrt содержит три параметра
 
-1. Репозиторий загрузки прошивки OpenWrt: укажите адрес GitHub-репозитория, в котором вы компилируете OpenWrt (или репозиторий другого разработчика), например: `https://github.com/breakingbadboy/OpenWrt`. Кнопка `OpenWrt Compiler author` на главной странице плагина будет ссылаться на указанный здесь адрес (ссылка обновляется автоматически), что позволяет пользователям легко найти автора прошивки для общения и совместной работы.
+1. Репозиторий загрузки прошивки OpenWrt: укажите адрес GitHub-репозитория, в котором вы компилируете OpenWrt (или репозиторий другого разработчика), например: `https://github.com/ophub/amlogic-s9xxx-openwrt`. Кнопка `OpenWrt Compiler author` на главной странице плагина будет ссылаться на указанный здесь адрес (ссылка обновляется автоматически), что позволяет пользователям легко найти автора прошивки для общения и совместной работы.
 
 2. Ключевое слово тегов в Releases: данное ключевое слово должно позволять отличать прошивку от образов для других архитектур (x86, R2S и т. д.), чтобы по нему можно было точно найти соответствующую прошивку OpenWrt.
 
@@ -111,7 +111,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 ### Описание настроек по умолчанию
 
-- Служба загрузки прошивки OpenWrt по умолчанию для этого плагина ( [Полная версия](https://github.com/breakingbadboy/OpenWrt/releases/tag/ARMv8) | [Мини-версия](https://github.com/breakingbadboy/OpenWrt/releases/tag/armv8_mini) | [Версия от Flippy](https://github.com/breakingbadboy/OpenWrt/releases/tag/flippy_openwrt) ) предоставлена [breakingbadboy](https://github.com/breakingbadboy/OpenWrt). Он является ключевым сопровождающим сообщества Flippy, глубоко разбирается в сборке OpenWrt и прекрасно знаком с установкой и настройкой различных ARM-устройств. Если у вас возникнут вопросы по сборке или использованию OpenWrt, обращайтесь в сообщество или оставляйте отзывы на его странице GitHub.
+- Служба загрузки прошивки OpenWrt по умолчанию для этого плагина предоставляется [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt). Если у вас возникнут вопросы при сборке или использовании OpenWrt, оставляйте отзывы на странице GitHub.
 
 - Ядро OpenWrt по умолчанию для плагина предоставлено репозиторием [https://github.com/ophub/kernel](https://github.com/ophub/kernel). Ядра под тегом [kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) — это стабильные ядра мейнлайна, скомпилированные и опубликованные разработчиком [flippy](https://github.com/unifreq). В тегах [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) и [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) ядра с именем, содержащим `flippy`, — это специализированные ядра для Rockchip от того же разработчика, остальные скомпилированы [ophub/kernel](https://github.com/ophub/kernel). Под тегом [kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) находятся стабильные ядра мейнлайна от [ophub/kernel](https://github.com/ophub/kernel).
 
@@ -137,7 +137,7 @@ sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-a
 
 ## Инструкция по использованию в KVM-виртуальной машине
 
-На устройствах с достаточной производительностью можно сначала установить систему [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian), а затем использовать KVM-виртуальные машины для параллельной работы нескольких систем. Образ системы OpenWrt можно создать с помощью скрипта [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh), разработанного [unifreq](https://github.com/unifreq/openwrt_packit); инструкции по установке и использованию приведены в документе [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md). Прошивка OpenWrt QEMU для функции `Онлайн-загрузка и обновление` предоставлена [breakingbadboy](https://github.com/breakingbadboy/OpenWrt).
+На устройствах с достаточной производительностью можно сначала установить систему [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian), а затем использовать KVM-виртуальные машины для параллельной работы нескольких систем. Образ системы OpenWrt можно создать с помощью скрипта [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh), разработанного [unifreq](https://github.com/unifreq/openwrt_packit); инструкции по установке и использованию приведены в документе [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md).
 
 Плагин работает в KVM-виртуальной машине точно так же, как и при использовании OpenWrt непосредственно на устройстве.
 

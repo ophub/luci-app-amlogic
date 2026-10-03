@@ -79,7 +79,7 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 
 ### OpenWrt firmware download contains three options
 
-1. OpenWrt firmware download repository: Enter the GitHub repository where you compile OpenWrt (or another contributor's repository), such as: `https://github.com/breakingbadboy/OpenWrt`. The `OpenWrt Compiler author` button on the plugin's homepage will link to the URL entered here (the link updates automatically), making it easy for users to locate the firmware author for discussion and collaboration.
+1. OpenWrt firmware download repository: Enter the GitHub repository where you compile OpenWrt (or another contributor's repository), such as: `https://github.com/ophub/amlogic-s9xxx-openwrt`. The `OpenWrt Compiler author` button on the plugin's homepage will link to the URL entered here (the link updates automatically), making it easy for users to locate the firmware author for discussion and collaboration.
 
 2. Tags keyword in Releases: This keyword must distinguish the firmware from other architectures such as x86, R2S, etc., ensuring that the corresponding OpenWrt firmware can be accurately located.
 
@@ -111,7 +111,7 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 
 ### Default Settings Description
 
-- The default OpenWrt firmware download service for this plugin ( [Comprehensive Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/ARMv8) | [Mini Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/armv8_mini) | [Flippy Shared Version](https://github.com/breakingbadboy/OpenWrt/releases/tag/flippy_openwrt) ) is supported by [breakingbadboy](https://github.com/breakingbadboy/OpenWrt). He is a core maintainer in the Flippy community, highly experienced in OpenWrt compilation, and proficient in the installation and configuration of various ARM devices. If you encounter any issues during OpenWrt compilation or usage, feel free to consult the community or submit feedback on his GitHub page.
+- The default OpenWrt firmware download service for this plugin is provided by [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt). If you encounter any issues during OpenWrt compilation or usage, please submit feedback on the GitHub page.
 
 - The default OpenWrt kernel for the plugin is provided by [https://github.com/ophub/kernel](https://github.com/ophub/kernel). Among them, kernels under the [kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) tag are stable mainline kernels compiled and shared by developer [flippy](https://github.com/unifreq). For the [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) and [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) tags, kernels with `flippy` in their names are Rockchip-specific kernels provided by the same developer, while the rest are compiled by [ophub/kernel](https://github.com/ophub/kernel). Kernels under the [kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) tag are stable mainline kernels compiled by [ophub/kernel](https://github.com/ophub/kernel).
 
@@ -138,7 +138,7 @@ Note: Certain functions such as `Install OpenWrt` and `CPU Settings` will be aut
 
 ## KVM Virtual Machine User Instructions
 
-For boxes with surplus processing power, you can first install the [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system, then set up KVM virtual machines to run multiple systems simultaneously. The OpenWrt system image can be built using the [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) script developed by [unifreq](https://github.com/unifreq/openwrt_packit), with installation and usage instructions detailed in the [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) document. The OpenWrt QEMU firmware available via `Online Download Update` is provided by [breakingbadboy](https://github.com/breakingbadboy/OpenWrt).
+For boxes with surplus processing power, you can first install the [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system, then set up KVM virtual machines to run multiple systems simultaneously. The OpenWrt system image can be built using the [mk_qemu-aarch64_img.sh](https://github.com/unifreq/openwrt_packit/blob/master/mk_qemu-aarch64_img.sh) script developed by [unifreq](https://github.com/unifreq/openwrt_packit), with installation and usage instructions detailed in the [qemu-aarch64-readme.md](https://github.com/unifreq/openwrt_packit/blob/master/files/qemu-aarch64/qemu-aarch64-readme.md) document.
 
 The plugin operates identically in a KVM virtual machine as it does when OpenWrt is installed directly on the box.
 
