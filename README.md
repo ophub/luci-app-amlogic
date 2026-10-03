@@ -39,7 +39,7 @@ curl -fsSL git.io/luci-app-amlogic | bash -s -- -b main
 ```shell
 # Add the plugin
 rm -rf package/luci-app-amlogic
-git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b lua https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 
 # You can compile this plugin separately
 make package/luci-app-amlogic/compile V=99
@@ -68,7 +68,7 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # 5. Set the branch of Amlogic Service plugin (main/lua)
-sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'main'|g" package/luci-app-amlogic/root/etc/config/amlogic
+sed -i "s|amlogic_plugin_branch.*|amlogic_plugin_branch 'lua'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
 - When compiling OpenWrt, modifying the above 4 items enables customization. These settings can also be modified after logging into the OpenWrt system via `System` → `Amlogic Service`.
@@ -111,7 +111,7 @@ The plugin settings consist of 4 categories: OpenWrt firmware download, kernel d
 
 ### Default Settings Description
 
-- The default OpenWrt firmware download service for this plugin is provided by [ophub](https://github.com/ophub/amlogic-s9xxx-openwrt). If you encounter any issues during OpenWrt compilation or usage, please submit feedback on the GitHub page.
+- The default OpenWrt firmware download service for this plugin is provided by [https://github.com/ophub/amlogic-s9xxx-openwrt](https://github.com/ophub/amlogic-s9xxx-openwrt). If you encounter any issues during OpenWrt compilation or usage, please submit feedback on the [Issues](https://github.com/ophub/amlogic-s9xxx-openwrt/issues) page.
 
 - The default OpenWrt kernel for the plugin is provided by [https://github.com/ophub/kernel](https://github.com/ophub/kernel). Among them, kernels under the [kernel_flippy](https://github.com/ophub/kernel/releases/tag/kernel_flippy) tag are stable mainline kernels compiled and shared by developer [flippy](https://github.com/unifreq). For the [kernel_rk3588](https://github.com/ophub/kernel/releases/tag/kernel_rk3588) and [kernel_rk35xx](https://github.com/ophub/kernel/releases/tag/kernel_rk35xx) tags, kernels with `flippy` in their names are Rockchip-specific kernels provided by the same developer, while the rest are compiled by [ophub/kernel](https://github.com/ophub/kernel). Kernels under the [kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) tag are stable mainline kernels compiled by [ophub/kernel](https://github.com/ophub/kernel).
 
