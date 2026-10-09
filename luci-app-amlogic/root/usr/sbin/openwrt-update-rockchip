@@ -500,13 +500,13 @@ done
 echo
 
 # umount loop devices (openwrt will auto mount some partition)
-MOUNTED_DEVS=$(lsblk -l -o NAME,PATH,MOUNTPOINT | grep "${LOOP_DEV}" | awk '$3 !~ /^$/ {print $2}')
+MOUNTED_DEVS=$(lsblk -l -o NAME,PATH,MOUNTPOINT | grep "${LOOP_DEV}" | awk '$3 !~ /^$/ {print $3}')
 for dev in ${MOUNTED_DEVS}; do
     while :; do
         echo -n "umount ${dev} ... "
         umount -f ${dev}
         sleep 1
-        mnt=$(lsblk -l -o NAME,PATH,MOUNTPOINT | grep "${dev}" | awk '$3 !~ /^$/ {print $2}')
+        mnt=$(lsblk -l -o NAME,PATH,MOUNTPOINT | grep "${dev}" | awk '$3 !~ /^$/ {print $3}')
         if [ "${mnt}" == "" ]; then
             echo "ok"
             break
