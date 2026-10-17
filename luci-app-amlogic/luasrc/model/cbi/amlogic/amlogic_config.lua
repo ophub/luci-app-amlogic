@@ -25,7 +25,7 @@ local des_content = des_content .. "<br />" .. translate("Tip: The same files as
 b.description = des_content
 
 o = b:section(NamedSection, "config", "amlogic")
-o.anonymouse = true
+o.anonymous = true
 
 --1. Current platform display.
 mydevice = o:option(DummyValue, "mydevice", translate("Current Device:"))
@@ -60,6 +60,7 @@ firmware_suffix.rmempty = false
 kernel_path = o:option(Value, "amlogic_kernel_path", translate("Kernel download repository:"))
 kernel_path.description = translate("Set the kernel files download repository on github.com in [Online Download Update].")
 kernel_path:value("https://github.com/ophub/kernel")
+kernel_path:value("https://github.com/breakingbadboy/OpenWrt")
 kernel_path.default = "https://github.com/ophub/kernel"
 kernel_path.rmempty = false
 
