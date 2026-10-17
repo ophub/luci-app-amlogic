@@ -39,7 +39,6 @@ mp.title = translate("CPU Freq Settings")
 mp.description = translate("Set CPU Scaling Governor to Max Performance or Balance Mode")
 
 s = mp:section(NamedSection, "armcpu", "settings")
-s.anonymous = true
 
 local cpu_policys = luci.sys.exec("ls /sys/devices/system/cpu/cpufreq | grep -E 'policy[0-9]{1,3}' | xargs") or "policy0"
 policy_array = string.split(cpu_policys, " ")

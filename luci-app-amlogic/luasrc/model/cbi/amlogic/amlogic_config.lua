@@ -25,7 +25,6 @@ local des_content = des_content .. "<br />" .. translate("Tip: The same files as
 b.description = des_content
 
 o = b:section(NamedSection, "config", "amlogic")
-o.anonymous = true
 
 --1. Current platform display.
 mydevice = o:option(DummyValue, "mydevice", translate("Current Device:"))
