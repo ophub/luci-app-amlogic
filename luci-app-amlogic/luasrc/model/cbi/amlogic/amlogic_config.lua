@@ -121,14 +121,25 @@ kernel_tags.rmempty = false
 --7. Kernel version branch (major.minor).
 kernel_branch = o:option(Value, "amlogic_kernel_branch", translate("Set version branch:"))
 kernel_branch.description = translate("Set the version branch of the OpenWrt files and kernel selected in [Online Download Update].")
-kernel_branch:value("5.10", translate("5.10"))
-kernel_branch:value("5.15", translate("5.15"))
-kernel_branch:value("6.1", translate("6.1"))
-kernel_branch:value("6.6", translate("6.6"))
-kernel_branch:value("6.12", translate("6.12"))
-kernel_branch:value("6.18", translate("6.18"))
-local default_kernel_branch = luci.sys.exec("uname -r | grep -oE '^[1-9].[0-9]{1,3}'")
-kernel_branch.default = trim(default_kernel_branch)
+-- Offered branches, plus the value used when uname -r cannot be parsed.
+local kernel_branches = { "5.10", "5.15", "6.1", "6.6", "6.12", "6.18" }
+local kernel_branch_fallback = "6.18"
+-- Derive the default from the running kernel.
+local default_kernel_branch = trim(luci.sys.exec("uname -r 2>/dev/null | grep -oE '^[0-9]+\\.[0-9]+' | head -n1") or "")
+if default_kernel_branch == "" then
+	default_kernel_branch = kernel_branch_fallback
+end
+-- A running kernel may be newer than anything listed above; keep it selectable so the
+-- derived default is a real choice, not just a Combobox free-text value.
+if not luci.util.contains(kernel_branches, default_kernel_branch) then
+	kernel_branches[#kernel_branches + 1] = default_kernel_branch
+end
+-- Version numbers are literals, not translatable strings; omitting the label makes
+-- Value.value() display the key itself.
+for _, branch in ipairs(kernel_branches) do
+	kernel_branch:value(branch)
+end
+kernel_branch.default = default_kernel_branch
 kernel_branch.rmempty = false
 
 --8. Plugin branch: show main (JS) only if luci.js is present.
