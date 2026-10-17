@@ -43,7 +43,6 @@ return view.extend({
 			_('You can customize the github.com download repository of OpenWrt files and kernels in [Online Download Update].') +
 			'<br />' + _('Tip: The same files as the current OpenWrt system\'s BOARD (such as rock5b) and kernel (such as 5.10) will be downloaded.'));
 		const o = m.section(form.NamedSection, 'config', 'amlogic');
-		o.anonymous = true;
 
 		// 1. Display device platform
 		const dev = o.option(form.DummyValue, 'mydevice', _('Current Device:'),
