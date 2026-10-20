@@ -4,6 +4,8 @@
 -- Purpose: configure download repositories, kernel tags/branches, plugin branch,
 -- and install options stored in /etc/config/amlogic (UCI section "config").
 
+local util = require "luci.util"
+
 -- Strip all whitespace from a string.
 function trim(str)
 	--return (string.gsub(str, "^%s*(.-)%s*$", "%1"))
@@ -131,7 +133,7 @@ if default_kernel_branch == "" then
 end
 -- A running kernel may be newer than anything listed above; keep it selectable so the
 -- derived default is a real choice, not just a Combobox free-text value.
-if not luci.util.contains(kernel_branches, default_kernel_branch) then
+if not util.contains(kernel_branches, default_kernel_branch) then
 	kernel_branches[#kernel_branches + 1] = default_kernel_branch
 end
 -- Version numbers are literals, not translatable strings; omitting the label makes

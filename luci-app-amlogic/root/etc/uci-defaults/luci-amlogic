@@ -1,6 +1,17 @@
 #!/bin/sh
 
-sed -i 's/cbi.submit\"] = true/cbi.submit\"] = \"1\"/g' /usr/lib/lua/luci/dispatcher.lua
+# Patch the CBI post flag only on classic Lua LuCI where the dispatcher file
+# exists; back it up first and roll back if the result is not valid Lua, so a
+# failed edit can never take the whole web UI down.
+dp="/usr/lib/lua/luci/dispatcher.lua"
+if [ -f "$dp" ] && grep -q 'cbi.submit"\] = true' "$dp"; then
+	cp -f "$dp" "${dp}.amlogic-bak"
+	sed -i 's/cbi.submit\"] = true/cbi.submit\"] = \"1\"/g' "$dp"
+	if command -v luac >/dev/null 2>&1; then
+		luac -p "$dp" 2>/dev/null || cp -f "${dp}.amlogic-bak" "$dp"
+	fi
+	rm -f "${dp}.amlogic-bak"
+fi
 
 uci -q batch <<-EOF >/dev/null
 	delete ucitrack.@amlogic[-1]

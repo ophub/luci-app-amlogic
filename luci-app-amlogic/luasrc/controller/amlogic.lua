@@ -7,11 +7,12 @@
 module("luci.controller.amlogic", package.seeall)
 
 local sys = require "luci.sys"
+local fs = require "nixio.fs"
 local PKG_NAME = "luci-app-amlogic"
 
 -- Register menu entries and HTTP action handlers
 function index()
-	if not nixio.fs.access("/etc/config/amlogic") then
+	if not fs.access("/etc/config/amlogic") then
 		return
 	end
 
@@ -150,7 +151,7 @@ end
 --Refresh the log
 function action_refresh_log()
 	local logfile = "/tmp/amlogic/amlogic.log"
-	if not nixio.fs.access(logfile) then
+	if not fs.access(logfile) then
 		luci.sys.exec("uname -a > /tmp/amlogic/amlogic.log && sync")
 		luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_install.log && sync >/dev/null 2>&1")
 		luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_upfiles.log && sync >/dev/null 2>&1")
@@ -263,8 +264,14 @@ function start_amlogic_plugin()
 			"fi",
 			"# Restart services so the newly installed files take effect immediately,",
 			"# avoiding the need for users to manually clear browser cache.",
-			"/etc/init.d/rpcd restart",
-			"/etc/init.d/uhttpd restart) &"
+			"# Refresh the opkg status mtime so the just-registered package state is",
+			"# picked up correctly on the next opkg/apk invocation after the switch.",
+			"touch /usr/lib/opkg/status 2>/dev/null",
+			"# Restart uhttpd before rpcd: this cleanup runs detached from the web",
+			"# server, and restarting rpcd last avoids tearing down the bridge while",
+			"# uhttpd is still being reconfigured.",
+			"/etc/init.d/uhttpd restart >/dev/null 2>&1",
+			"/etc/init.d/rpcd restart >/dev/null 2>&1) &"
 		}, "\n")
 		luci.sys.call(cleanup_cmd)
 
