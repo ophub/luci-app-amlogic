@@ -8,24 +8,24 @@ module("luci.controller.amlogic", package.seeall)
 
 local sys = require "luci.sys"
 local _nfs = require "nixio.fs"
-local fs = (type(_nfs) == "table") and _nfs or (nixio and nixio.fs)
+local fs = (type(_nfs) == "table") and _nfs or nil
 local PKG_NAME = "luci-app-amlogic"
 
--- fs may be nil on runtimes where nixio.fs is unavailable; guard every access so
--- the controller never breaks the whole dispatch tree.
 local function fs_access(path)
 	return fs and fs.access and fs.access(path)
 end
 
 -- Register menu entries and HTTP action handlers
 function index()
-	if not fs_access("/etc/config/amlogic") then
+	local nixio_fs = require "nixio.fs"
+	local has_config = nixio_fs and nixio_fs.access and nixio_fs.access("/etc/config/amlogic")
+	if not has_config then
 		return
 	end
 
 	local page = entry({ "admin", "system", "amlogic" }, alias("admin", "system", "amlogic", "info"), _("Amlogic Service"), 88)
 	page.dependent = true
-	page.acl_depends = { PKG_NAME }
+	page.acl_depends = { "luci-app-amlogic" }
 
 	local platfrom = luci.sys.exec("cat /etc/flippy-openwrt-release 2>/dev/null | grep PLATFORM | awk -F'=' '{print $2}' | grep -oE '(amlogic|rockchip|allwinner|qemu)' | xargs") or "Unknown"
 	local install_menu = luci.sys.exec("cat /etc/flippy-openwrt-release 2>/dev/null | grep SHOW_INSTALL_MENU | awk -F'=' '{print $2}' | grep -oE '(yes|no)' | xargs") or "Unknown"
