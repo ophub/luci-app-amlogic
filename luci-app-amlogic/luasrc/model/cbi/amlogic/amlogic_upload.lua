@@ -5,8 +5,12 @@
 -- upload directory, and trigger install/restore actions via openwrt-backup or opkg/apk.
 
 local os    = require "os"
-local fs    = require "nixio.fs"
-local nutil = require "nixio.util"
+local _nix  = require "nixio"
+local nixio = (type(_nix) == "table") and _nix or nixio
+local _nfs  = require "nixio.fs"
+local fs    = (type(_nfs) == "table") and _nfs or (nixio and nixio.fs)
+local _nut  = require "nixio.util"
+local nutil = (type(_nut) == "table") and _nut or (nixio and nixio.util)
 local type  = type
 local b, form
 

@@ -7,12 +7,19 @@
 module("luci.controller.amlogic", package.seeall)
 
 local sys = require "luci.sys"
-local fs = require "nixio.fs"
+local _nfs = require "nixio.fs"
+local fs = (type(_nfs) == "table") and _nfs or (nixio and nixio.fs)
 local PKG_NAME = "luci-app-amlogic"
+
+-- fs may be nil on runtimes where nixio.fs is unavailable; guard every access so
+-- the controller never breaks the whole dispatch tree.
+local function fs_access(path)
+	return fs and fs.access and fs.access(path)
+end
 
 -- Register menu entries and HTTP action handlers
 function index()
-	if not fs.access("/etc/config/amlogic") then
+	if not fs_access("/etc/config/amlogic") then
 		return
 	end
 
@@ -151,7 +158,7 @@ end
 --Refresh the log
 function action_refresh_log()
 	local logfile = "/tmp/amlogic/amlogic.log"
-	if not fs.access(logfile) then
+	if not fs_access(logfile) then
 		luci.sys.exec("uname -a > /tmp/amlogic/amlogic.log && sync")
 		luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_install.log && sync >/dev/null 2>&1")
 		luci.sys.exec("echo '' > /tmp/amlogic/amlogic_check_upfiles.log && sync >/dev/null 2>&1")

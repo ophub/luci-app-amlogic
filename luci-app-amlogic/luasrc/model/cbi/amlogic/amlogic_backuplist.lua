@@ -4,7 +4,8 @@
 -- Purpose: edit /etc/amlogic_backup_list.conf which controls which files/dirs
 -- the openwrt-backup script archives; seeds defaults from openwrt-backup if absent.
 
-local fs = require "nixio.fs"
+local _nfs = require "nixio.fs"
+local fs = (type(_nfs) == "table") and _nfs or (nixio and nixio.fs)
 local backup_list_conf = "/etc/amlogic_backup_list.conf"
 
 -- Strip leading whitespace from each line and normalise line endings to \n.
@@ -41,7 +42,7 @@ o.template = "cbi/tvalue"
 o.rows = 30
 
 function o.cfgvalue(self, section)
-	local readconf = fs.readfile(backup_list_conf)
+	local readconf = (fs and fs.readfile and fs.readfile(backup_list_conf)) or ""
 	local value = remove_spaces(readconf)
 	local value = remove_backslash_at_end(value)
 	return value
@@ -50,7 +51,9 @@ end
 function o.write(self, section, value)
 	local value = remove_spaces(value)
 	local value = remove_backslash_at_end(value)
-	fs.writefile(backup_list_conf, value)
+	if fs and fs.writefile then
+		fs.writefile(backup_list_conf, value)
+	end
 	luci.http.redirect(luci.dispatcher.build_url("admin", "system", "amlogic", "backup"))
 end
 

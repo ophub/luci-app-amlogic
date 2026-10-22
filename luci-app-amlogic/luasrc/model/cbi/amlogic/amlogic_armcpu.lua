@@ -4,7 +4,8 @@
 -- Purpose: render per-policy CPU governor and frequency tabs using the
 -- cpufreq sysfs interface; apply settings via /etc/init.d/amlogic start.
 
-local fs = require "nixio.fs"
+local _nfs = require "nixio.fs"
+local fs = (type(_nfs) == "table") and _nfs or (nixio and nixio.fs)
 
 local mp
 
@@ -54,9 +55,9 @@ for tt, policy_name in ipairs(policy_array) do
 	tab_name = policy_name
 	tab_id = tostring(trim("tab" .. policy_id))
 
-	cpu_freqs = fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_frequencies")) or "100000"
+	cpu_freqs = (fs and fs.readfile and fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_frequencies"))) or "100000"
 	cpu_freqs = string.sub(cpu_freqs, 1, -3)
-	cpu_governors = fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_governors")) or "performance"
+	cpu_governors = (fs and fs.readfile and fs.readfile(trim("/sys/devices/system/cpu/cpufreq/" .. policy_name .. "/scaling_available_governors"))) or "performance"
 	cpu_governors = string.sub(cpu_governors, 1, -3)
 	freq_array = string.split(cpu_freqs, " ")
 	governor_array = string.split(cpu_governors, " ")
